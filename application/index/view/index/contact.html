@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {include file="common/header"}
+    <title>宝仕龙</title>
+
+</head>
+<style>
+	.header1{
+		    background-color: rgba(62, 60, 59,.85);
+	}
+	.mar100 {
+	    margin-bottom: 80px;
+	}
+	.wrap {
+	    padding-top: 90px;
+	}
+	.container {
+	    padding-top: 120px;
+		padding-left: 120px;
+	}
+	.page-title h2, .about-content-03 .titel h3 {
+	    font-size: 25px;
+	    color: #e6002d;
+	    padding-left: 20px;
+		font-weight: 400;
+		letter-spacing: 3px;
+	    background: url(/static/images/icon-16.png) no-repeat left 8px;
+	}
+	.contact-msg {
+	    width: 400px;
+	    margin-left: 20px;
+	    margin-top: 42px;
+	    padding-left: 18px;
+	    padding-top: 3px;
+	    padding-bottom: 21px;
+	    border-left: 1px solid #999;
+	}
+	.contact-msg p {
+	    font-size: 14px;
+	    line-height: 24px;
+	    color: #666;
+	}
+	.contact-site {
+	    margin-top: 42px;
+	    margin-left: 44px;
+	    font-size: 0;
+		width: 400px;
+		text-align: center;
+	}
+	.contact-site p {
+	    font-size: 14px;
+	    line-height: 24px;
+	    color: #999;
+	    margin-bottom: 3px;
+		letter-spacing: 2px;
+	}
+	.contact-site p.b{
+		font-size: 18px;
+		line-height: 28px;
+		letter-spacing: 5px;
+	} 
+	.contact-form {
+	    width: 515px;
+	    height: 458px;
+	    background-color: #f7f7f7;
+	    margin-top: 38px;
+	}
+	.form-container {
+	    padding-top: 52px;
+	    padding-bottom: 96px;
+	    width: 398px;
+	    margin: auto;
+		overflow: hidden;
+	}
+	.form-container .form-group {
+	    margin-bottom: 5px;
+	    position: relative;
+	    padding-top: 24px;
+	}
+	.form-container .form-title {
+	    transition: all .8s ease;
+	    font-size: 20px;
+	    color: #ccc;
+	    position: absolute;
+	    left: 7px;
+	    top: 25px;
+	}
+	.form-container label {
+	    display: block;
+	}
+	.form-container .form-group div {
+	    position: relative;
+	}
+	.form-container input {
+	    width: 100%;
+	    border-left: none;
+	    border-right: none;
+	    border-top: none;
+	    border-bottom: 3px solid #ccc;
+	    background-color: transparent;
+	    font-size: 20px;
+	    color: #000;
+	    font-family: "futuracondensed";
+	    padding: 5px 6px;
+		outline: none;
+	}
+	.form-container .form-group div:after {
+	    transition: width .8s ease;
+	    content: "";
+	    display: block;
+	    position: absolute;
+	    left: 0;
+	    bottom: 0;
+	    width: 0;
+	    height: 3px;
+	    background-color: #cc0000;
+	}
+	.form-container .msg {
+	    font-size: 12px;
+	    color: #999;
+	    margin-top: 6px;
+	}
+	.send-full {
+	    margin-top: 40px;
+	}
+	.fr {
+	    float: right;
+	}
+	.send-full a {
+	    transition: background .8s ease;
+	    display: inline-block;
+	    width: 108px;
+	    height: 40px;
+	    line-height: 40px;
+	    background-color: rgba(204,0,0,1);
+	    text-align: center;
+	    font-size: 16px;
+	    color: #fff;
+	}
+</style>
+<body>
+
+{include file='common/daohang'}
+
+    <div class="main">
+        <div class="wrap mar100"></div>
+		<div style="background:url(/static/images/po.png) no-repeat center center;background-size: cover;">
+			<div class="container w1200">
+				<div class="page-title">
+					<h2>探索宝仕龙吊顶迷人而多样的世界</h2>
+				</div>
+				<div class="contact-msg">
+					<p>如果您有任何需求，请填写以下信息并将其发送给我们，我们将尽快为您提供帮助</p>
+
+				</div>
+				<div class="contact-site">
+					<p>宝仕龙大板全景顶</p>
+					<p>浙江省嘉兴市海盐县百步镇金山路1189号</p>
+					<p class="b">400 -8877 -831 </p>
+				</div>
+				<div class="contact-form">
+					<form action="/feedback/contact" method="post" name="contactForm" id="contactForm">
+						<div class="form-container">
+							<div class="form-group">
+								<label class="form-title">姓名</label>
+								<div>
+									<input type="text" name="name" id="name">
+								</div>
+								<label class="msg">请输入您的名字</label>
+							</div>
+							<div class="form-group">
+								<label class="form-title">电子邮件</label>
+								<div>
+									<input type="text" name="mail" id="mail">
+								</div>
+								<label class="msg">请输入您的电子邮件地址</label>
+							</div>
+							<div class="form-group">
+								<label class="form-title">信息</label>
+								<div>
+									<input type="text" name="msg" id="msg">
+								</div>
+								<label class="msg">请控制在50个字以内</label>
+							</div>
+							<div class="send-full fr">
+								<a href="javascript:;" id="btn-submit">发送</a>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="mar100"></div>
+    </div>
+
+    <div class="measure-container measure-common">
+    	<div class="measure-tit">免费设计</div>
+    	<div class="measure-tit1">专业设计师1对1家装指导</div>
+    	<form action="" method="" class="measure">
+    		<div class="measure-item">
+    			<label><img src="/static/images/people.png" alt=""></label>
+    			<input class="mul_input" placeholder="您的姓名"> 
+    		</div>
+    		<div class="measure-item">
+    			<label><img src="/static/images/phone.png" alt=""></label>
+    			<input class="mul_input"  placeholder="联系方式"> 
+    		</div>
+    		<div class="measure-item">
+    			<label><img src="/static/images/add.png" alt=""></label>
+    			<input class="mul_input" placeholder="所在楼盘"> 
+    		</div>
+    		<div class="button">
+    			<input type="button" value="立即申请">
+    		</div>
+    	</form>
+    </div>
+{include file="common/footer"}
+   
+       <div class="popup-section popup-navigation">
+           <div class="popup-container">
+               <div class="navigation-left">
+                   <div class="navigation-item">
+                       <div class="navigation-span">
+                           <a href="index.html">
+                               <span>首页</span>
+                           </a>
+                       </div>
+                   </div>
+                   <div class="navigation-item">
+                       <div class="navigation-span">
+                           <a href="../application/index/view/index/brand.html">
+                               <span>走进宝仕龙</span>
+                           </a>
+                       </div>
+                   </div>
+   <!--                <div class="navigation-item">
+                       <div class="navigation-span">
+                           <a href="brandWitness.html">
+                               <span>品牌见证</span>
+                           </a>
+                       </div>
+                   </div> -->
+                   <div class="navigation-item">
+                       <div class="navigation-span">
+                           <a href="../application/index/view/index/eight.html">
+                               <span>八大空间</span>
+                           </a>
+                       </div>
+                   </div>
+                   <div class="navigation-item">
+                       <div class="navigation-span">
+                           <a href="live_museum.html">
+                               <span>百套案例</span>
+                           </a>
+                       </div>
+                   </div>
+                   <div class="navigation-item">
+                       <div class="navigation-span">
+                           <a href="pos.html">
+                               <span>大商样板</span>
+                           </a>
+                       </div>
+                   </div>
+                   <div class="navigation-item">
+                       <div class="navigation-span">
+                           <a href="cooperate-people.html">
+                               <span>商学院</span>
+                           </a>
+                       </div>
+                   </div>
+                   <div class="navigation-item">
+                       <div class="navigation-span">
+                           <a href="contact.html">
+                               <span>联系我们</span>
+                           </a>
+                       </div>
+                   </div>
+                   <div class="navigation-item">
+                       <div class="navigation-span">
+                           <a href="productSearch.html">
+                               <span>防伪查询</span>
+                           </a>
+                       </div>
+                   </div>
+               </div>
+               <div class="navigation-right">
+   
+                   <div class="navigation-add">
+                       <div class="navigation-add-line"></div>
+                       <div class="address">
+                           Jl. Duren Tiga Raya No. 33<br>
+                           Jakarta Selatan - 12760 <br>
+                           Indonesia
+                       </div>
+                       <p></p>
+                       +62 21 799 1521
+                       <br>
+                       +62 21 722 5003
+                       <br>
+                       info@prodotti-id.com
+                       <p></p>
+                       <div class="socials">
+                           <div class="icon">
+                               <a href="javascript:;">
+                                   <img src="/static/images/logo-facebook.svg" alt="">
+                               </a>
+                           </div>
+                           <div class="icon">
+                               <a href="javascript:;">
+                                   <img src="/static/images/logo-instagram.svg" alt="">
+                               </a>
+                           </div>
+                           <div class="icon">
+                               <a href="javascript:;">
+                                   <img src="/static/images/logo-youtube.svg" alt="">
+                               </a>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="navigation-add">
+                       <div class="navigation-add-line"></div>
+                       <div>
+                           Monday - Friday<br>
+                           09.00 A.M - 06.00 P.M<br><p></p>
+                           Saturday - Sunday<br>
+                           Appointment Only<br>
+                       </div>
+                       <div class="navigation-bottom">
+                           <div class="navigation-bottom-item">
+                               <a href="javascript:;">
+                                   <span>Privacy & Cookie Policy</span>
+                               </a>
+                           </div>
+                       </div>
+   
+                   </div>
+   
+               </div>
+           </div>
+       </div>
+    <div class="popup-section popup-search">
+
+        <div class="popup-container">
+            <div class="search-form">
+                <input type="text" placeholder="Search for Products, Brands or News" class="input-form" style="width: 0;">
+                <div class="search-result">
+                    <div class="search-result-item"></div>
+                    <div class="search-result-item"></div>
+                    <div class="search-result-item"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="popup-brand">
+        <div class="brand-list">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <div class="slider-image">
+                                <div class="background-image" style="background-image: url('/static/images/brand_swiper_01.jpg')"></div>
+                            </div>
+                            <div class="slider-title">Alexander Lamont</div>
+                            <div class="slider-hr"></div>
+                            <div class="slider-category">Furniture</div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <div class="slider-image">
+                                <div class="background-image" style="background-image: url('/static/images/brand_swiper_02.jpg')"></div>
+                            </div>
+                            <div class="slider-title">Alexander Lamont</div>
+                            <div class="slider-hr"></div>
+                            <div class="slider-category">Furniture</div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <div class="slider-image">
+                                <div class="background-image" style="background-image: url('/static/images/brand_swiper_01.jpg')"></div>
+                            </div>
+                            <div class="slider-title">Alexander Lamont</div>
+                            <div class="slider-hr"></div>
+                            <div class="slider-category">Furniture</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </div>
+    <!--公用-->
+
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/commen.js"></script>
+    <script src="js/swiper.min.js"></script>
+    <script src="js/swiper.animate1.0.3.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=lDvSAVMmEWSfw2CDZRi2cOaMrT6dzoXs"></script>
+    <script src="js/iconfont.js"></script>
+	<script src="js/fixed.js"></script>
+</body>
+</html>

@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <title>宝仕龙</title>
+    <link href="/static/images/logo.png" rel="shortcut icon">
+    <link rel="stylesheet" href="__STATIC__/css/swiper.min.css">
+    <link rel="stylesheet" href="__STATIC__/css/reset.css">
+    <link rel="stylesheet" href="__STATIC__/css/common.css">
+    <script src="__STATIC__/js/modernizr-custom.js"></script>
+</head>
+<style>
+
+    .liveGrid-section {pointer-events: none; overflow-x: hidden;padding-top: 90px;}
+	.liveGrid-title{text-align: center;font-size: 20px;position: relative;margin-top: 30px;letter-spacing: 2px;}
+	.liveGrid-title:after{position: absolute;content: '';bottom:-25px ;left: 50%;transform: translateX(-50%);width: 35px;height: 2px;background: #d2d2d2;}
+    .liveGrid-container {}
+    .grid {position: relative;margin: 70px auto 0;padding-bottom: 15px;box-sizing: content-box;}
+    .js .grid::after {content: '';position: absolute;width: 100%;height: 100%;top: 0;left: 0;pointer-events: none;background: #252323 url(/static/images/common/loading.svg) no-repeat 50% 75px;background-size: 60px auto;-webkit-transition: opacity 0.3s;transition: opacity 0.3s;}
+    .js .grid--loaded::after {opacity: 0;}
+    .grid__item {width: 270px;padding: 10px;box-sizing: border-box}
+    .grid__item:hover {}
+    .grid__item--current {opacity: 0 !important;}
+    .img-wrap {display: block;}
+    .img-wrap:focus,.img-wrap:hover {outline: none;}
+    .img-wrap img {display: block;max-width: 100%;-webkit-filter: grayscale(1);filter: gray;filter: grayscale(1);-webkit-transition: all 600ms ease-in-out;-moz-transition: all 600ms ease-in-out;-ms-transition: all 600ms ease-in-out;-o-transition: all 600ms ease-in-out;transition: all 600ms ease-in-out;}
+    .img-wrap img:hover {transform: scale(1.1)}
+    .preview {position: fixed;z-index: 1000;top: 0;left: 0;display: -ms-flex;display: -webkit-flex;display: flex;-ms-flex-pack: center;-webkit-justify-content: center;justify-content: center;-ms-flex-line-pack: center;-webkit-align-content: center;align-content: center;-ms-flex-align: center;-webkit-align-items: center;align-items: center;width: 50%;height: 100%;pointer-events: none;}
+    .preview::before {content: '';position: fixed;top: 0;left: 0;width: 100%;height: 100%;opacity: 0;background: #1f1d1d;-webkit-transition: opacity 0.6s;transition: opacity 0.6s;}
+    .preview--open {pointer-events: auto;}
+    .preview--open::before {opacity: 1;}
+    .clone {position: fixed;z-index: 110;-webkit-transition: -webkit-transform 0.5s;transition: transform 0.5s;-webkit-backface-visibility: hidden;}
+    .original {position: relative;z-index: 120;display: block;object-fit: contain;-webkit-transition: opacity 0.2s;transition: opacity 0.2s;-webkit-backface-visibility: hidden;}
+    .preview--open .animate { /* open */-webkit-transition: -webkit-transform 0.6s, opacity 0.2s;transition: transform 0.6s, opacity 0.2s;}
+    .animate { /* close */-webkit-transition: -webkit-transform 0.3s, opacity 0.2s;transition: transform 0.3s, opacity 0.2s;}
+    .description {color: #fff;}
+    .js .description--grid {display: none;}
+    .description--preview {font-size: 2em;position: absolute;z-index: 140;width: 100%;left: 100%;top: 0;height: 100%;padding: 0 1em;display: -ms-flex;display: -webkit-flex;display: flex;-ms-flex-direction: column;-webkit-flex-direction: column;flex-direction: column;-ms-flex-pack: center;-webkit-justify-content: center;justify-content: center;-ms-flex-align: start;-webkit-align-items: flex-start;align-items: flex-start;opacity: 0;-webkit-transition: opacity 1s, -webkit-transform 1s;transition: opacity 1s, transform 1s;-webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);-webkit-transform: translate3d(0, 30px, 0);transform: translate3d(0, 30px, 0);}
+    .preview--open .description--preview {opacity: 1;-webkit-transition-delay: 0.2s;transition-delay: 0.2s;-webkit-transform: translate3d(0, 0, 0);transform: translate3d(0, 0, 0);}
+    .description--preview h3 {font-weight: normal;margin: 0;}
+    .description--preview p {font-size: 0.65em;max-width: 100%;}
+
+    .description--preview p em {color: #5D5D5D;display: block;padding: 10px 0 0 0;}
+
+
+    /* Details */
+
+    .details {max-width: 100%;}
+    .details ul {line-height: 1;position: relative;margin: 0;padding: 0;list-style: none;}
+    .details ul li {font-size: 0.5em;position: relative;display: inline-block;margin: 0 1em 0 0;padding: 0.15em 0;white-space: nowrap;opacity: 0;color: #9d9d9d;-webkit-transition: -webkit-transform 1s, opacity 1s;transition: transform 1s, opacity 1s;-webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);-webkit-transform: translate3d(0, 20px, 0);transform: translate3d(0, 20px, 0);}
+    .preview--open .details ul li {opacity: 1;-webkit-transform: translate3d(0, 0, 0);transform: translate3d(0, 0, 0);}
+    .preview--open .details ul li:nth-child(1) {-webkit-transition-delay: 0.2s;transition-delay: 0.2s;}
+    .preview--open .details ul li:nth-child(2) {-webkit-transition-delay: 0.3s;transition-delay: 0.3s;}
+    .preview--open .details ul li:nth-child(3) {-webkit-transition-delay: 0.4s;transition-delay: 0.4s;}
+    .preview--open .details ul li:nth-child(4) {-webkit-transition-delay: 0.5s;transition-delay: 0.5s;}
+    .preview--open .details ul li:nth-child(5) {-webkit-transition-delay: 0.6s;transition-delay: 0.6s;}
+    .details ul li:first-child {font-weight: bold;color: #909090;}
+    .icon + span {margin-left: 5px;vertical-align: middle;}
+    .details .icon {margin-right: 5px;color: #77d45b;}
+
+
+    /* Close button */
+    .action {font-size: 18px;margin: 0;padding: 0;cursor: pointer;vertical-align: top;color: #6bd68a;border: none;background: none;}
+    .action:hover, .action:focus {color: #6bd68a;outline: none;}
+    .action--close {position: fixed;z-index: 150;top: 0;right: 0;padding: 1em;opacity: 0;-webkit-transition: opacity 0.3s, -webkit-transform 0.3s;transition: opacity 0.3s, transform 0.3s;-webkit-transform: scale3d(0.6, 0.6, 1);transform: scale3d(0.6, 0.6, 1);}
+    .preview--image-loaded .action--close {opacity: 1;-webkit-transform: scale3d(1, 1, 1);transform: scale3d(1, 1, 1);}
+    .text-hidden {position: absolute;display: block;overflow: hidden;width: 0;height: 0;color: transparent;}
+
+    /*@media screen and (max-width: 40em) {*/
+        /*.description--preview h3 {*/
+            /*font-size: 0.5em;*/
+        /*}*/
+        /*.description--preview p,*/
+        /*.details {*/
+            /*display: none;*/
+        /*}*/
+    /*}*/
+
+    .txt-img {position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%)}
+    .txt-img .txt-imgbox {height: 50px;position: relative;overflow: hidden}
+    .txt-img .txt-imgbox img {height: 100%;max-width: unset}
+    .txt-img .txt-imgbox img:first-child {padding: 0 1px;}
+    .txt-img .txt-imgbox img:last-child {position: absolute;top: 0;right: 0;max-width: unset;height: 100%;}
+
+
+    /*该页面专属*/
+    .header1 .navbar .nav {background-color: #3e3c3b;}
+    .header1 .nav-item {color: #3e3c3b;}
+</style>
+<body>
+
+{include file='common/daohang'}
+
+    <div class="main">
+        <div class="liveGrid-section">
+			<div class="liveGrid-title">定制是未来  大单是常态</div>
+            <div class="liveGrid-container">
+                <!--<div class="txt-bg">-->
+                    <!--<p>powerhouse</p>-->
+                <!--</div>-->
+                <div class="txt-img">
+                    <div class="txt-imgbox">
+                        <img src="/static/images/inside/grid/grid-font.png" alt="">
+                        <img src="/static/images/inside/grid/grid-mask.png" class="txt-imgbox-mask" alt="">
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="grid__item" data-size="1280x857">
+                        <a href="live_grid_sketch_detail.html" class="img-wrap">
+							<img src="/static/images/inside/sketch/1.jpg" alt="img01" />
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="1280x1280">
+                       <a href="live_grid_sketch_detail.html" class="img-wrap">
+						   <img src="/static/images/inside/sketch/2.jpg" alt="img02" />
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="1280x853">
+                        <a href="live_grid_sketch_detail.html" class="img-wrap">
+							<img src="/static/images/inside/sketch/3.jpg" alt="img03" />
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="865x1280">
+                        <a href="live_grid_sketch_detail.html" class="img-wrap">
+							<img src="/static/images/inside/sketch/4.jpg" alt="img04" />
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="1280x1280">
+                        <a href="live_grid_sketch_detail.html" class="img-wrap">
+							<img src="/static/images/inside/sketch/5.jpg" alt="img5" />
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="1280x850">
+                        <a href="live_grid_sketch_detail.html" class="img-wrap">
+							<img src="/static/images/inside/sketch/6.jpg" alt="img6" />
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="1280x853">
+                        <a href="live_grid_sketch_detail.html" class="img-wrap">
+							<img src="/static/images/inside/sketch/7.jpg" alt="img07" />
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="958x1280">
+                        <a href="live_grid_sketch_detail.html" class="img-wrap">
+							<img src="/static/images/inside/sketch/8.jpg" alt="img08" />
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="837x1280">
+                        <a href="live_grid_sketch_detail.html" class="img-wrap">
+							<img src="/static/images/inside/sketch/22.jpg" alt="img09" />
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="1280x961">
+                        <a href="live_grid_sketch_detail.html" class="img-wrap">
+							<img src="/static/images/inside/sketch/10.jpg" alt="img10" />
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="1280x1131">
+                        <a href="live_grid_sketch_detail.html" class="img-wrap">
+							<img src="/static/images/inside/sketch/11.jpg" alt="img11" />
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="1280x857">
+                        <a href="live_grid_sketch_detail.html" class="img-wrap">
+							<img src="/static/images/inside/sketch/23.jpg" alt="img12" />
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="1280x1280">
+                        <a href="live_grid_sketch_detail.html" class="img-wrap">
+							<img src="/static/images/inside/sketch/13.jpg" alt="img13" />
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="1280x853">
+                        <a href="live_grid_sketch_detail.html" class="img-wrap">
+							<img src="/static/images/inside/sketch/14.jpg" alt="img14" />
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="865x1280">
+                        <a href="live_grid_sketch_detail.html" class="img-wrap">
+							<img src="/static/images/inside/sketch/15.jpg" alt="img15" />
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="1280x1280">
+                        <a href="live_grid_sketch_detail.html" class="img-wrap">
+							<img src="/static/images/inside/sketch/16.jpg" alt="img16" />
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="1280x850">
+                        <a href="live_grid_sketch_detail.html" class="img-wrap">
+							<img src="/static/images/inside/sketch/17.jpg" alt="img17" />
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="1280x853">
+                        <a href="live_grid_sketch_detail.html" class="img-wrap">
+							<img src="/static/images/inside/sketch/18.jpg" alt="img18" />
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="958x1280">
+                        <a href="live_grid_sketch_detail.html" class="img-wrap">
+							<img src="/static/images/inside/sketch/19.jpg" alt="img19" />
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="837x1280">
+                        <a href="live_grid_sketch_detail.html" class="img-wrap">
+							<img src="/static/images/inside/sketch/20.jpg" alt="img20" />
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="1280x961">
+                        <a href="live_grid_sketch_detail.html" class="img-wrap">
+							<img src="/static/images/inside/sketch/21.jpg" alt="img21" />
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="1280x1131">
+                        <a href="live_grid_sketch_detail.html" class="img-wrap">
+							<img src="/static/images/inside/sketch/9.jpg" alt="img22" />
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="1280x857">
+                        <a href="live_grid_sketch_detail.html" class="img-wrap">
+							<img src="/static/images/inside/sketch/12.jpg" alt="img01" />
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="1280x1280">
+                        <a href="live_grid_sketch_detail.html" class="img-wrap">
+							<img src="/static/images/inside/sketch/24.jpg" alt="img13" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!--公用-->
+    <div class="measure-container measure-common">
+    	<div class="measure-tit">免费设计</div>
+    	<div class="measure-tit1">专业设计师1对1家装指导</div>
+    	<form action="" method="" class="measure">
+    		<div class="measure-item">
+    			<label><img src="/static/images/people.png" alt=""></label>
+    			<input class="mul_input" placeholder="您的姓名"> 
+    		</div>
+    		<div class="measure-item">
+    			<label><img src="/static/images/phone.png" alt=""></label>
+    			<input class="mul_input"  placeholder="联系方式"> 
+    		</div>
+    		<div class="measure-item">
+    			<label><img src="/static/images/add.png" alt=""></label>
+    			<input class="mul_input" placeholder="所在楼盘"> 
+    		</div>
+    		<div class="button">
+    			<input type="button" value="立即申请">
+    		</div>
+    	</form>
+    </div>
+
+{include file="common/footer"}
+
+    
+        <div class="popup-section popup-navigation">
+            <div class="popup-container">
+                <div class="navigation-left">
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="index.html">
+                                <span>首页</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="../application/index/view/index/brand.html">
+                                <span>走进宝仕龙</span>
+                            </a>
+                        </div>
+                    </div>
+    <!--                <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="brandWitness.html">
+                                <span>品牌见证</span>
+                            </a>
+                        </div>
+                    </div> -->
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="../application/index/view/index/eight.html">
+                                <span>八大空间</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="live_museum.html">
+                                <span>百套案例</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="pos.html">
+                                <span>大商样板</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="cooperate-people.html">
+                                <span>商学院</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="contact.html">
+                                <span>联系我们</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="productSearch.html">
+                                <span>防伪查询</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="navigation-right">
+    
+                    <div class="navigation-add">
+                        <div class="navigation-add-line"></div>
+                        <div class="address">
+                            Jl. Duren Tiga Raya No. 33<br>
+                            Jakarta Selatan - 12760 <br>
+                            Indonesia
+                        </div>
+                        <p></p>
+                        +62 21 799 1521
+                        <br>
+                        +62 21 722 5003
+                        <br>
+                        info@prodotti-id.com
+                        <p></p>
+                        <div class="socials">
+                            <div class="icon">
+                                <a href="javascript:;">
+                                    <img src="/static/images/logo-facebook.svg" alt="">
+                                </a>
+                            </div>
+                            <div class="icon">
+                                <a href="javascript:;">
+                                    <img src="/static/images/logo-instagram.svg" alt="">
+                                </a>
+                            </div>
+                            <div class="icon">
+                                <a href="javascript:;">
+                                    <img src="/static/images/logo-youtube.svg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="navigation-add">
+                        <div class="navigation-add-line"></div>
+                        <div>
+                            Monday - Friday<br>
+                            09.00 A.M - 06.00 P.M<br><p></p>
+                            Saturday - Sunday<br>
+                            Appointment Only<br>
+                        </div>
+                        <div class="navigation-bottom">
+                            <div class="navigation-bottom-item">
+                                <a href="javascript:;">
+                                    <span>Privacy & Cookie Policy</span>
+                                </a>
+                            </div>
+                        </div>
+    
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+    <div class="popup-section popup-search">
+
+        <div class="popup-container">
+            <div class="search-form">
+                <input type="text" placeholder="Search for Products, Brands or News" class="input-form" style="width: 0;">
+                <div class="search-result">
+                    <div class="search-result-item"></div>
+                    <div class="search-result-item"></div>
+                    <div class="search-result-item"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="popup-brand">
+        <div class="brand-list">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <a href="live_grid_sketch_detail.html">
+                            <div class="slider-image">
+                                <div class="background-image" style="background-image: url('/static/images/brand_swiper_01.jpg')"></div>
+                            </div>
+                            <div class="slider-title">Alexander Lamont</div>
+                            <div class="slider-hr"></div>
+                            <div class="slider-category">Furniture</div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="live_grid_sketch_detail.html">
+                            <div class="slider-image">
+                                <div class="background-image" style="background-image: url('/static/images/brand_swiper_02.jpg')"></div>
+                            </div>
+                            <div class="slider-title">Alexander Lamont</div>
+                            <div class="slider-hr"></div>
+                            <div class="slider-category">Furniture</div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="live_grid_sketch_detail.html">
+                            <div class="slider-image">
+                                <div class="background-image" style="background-image: url('/static/images/brand_swiper_01.jpg')"></div>
+                            </div>
+                            <div class="slider-title">Alexander Lamont</div>
+                            <div class="slider-hr"></div>
+                            <div class="slider-category">Furniture</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </div>
+    <!--公用-->
+
+<script src="__STATIC__/js/jquery-1.11.3.min.js"></script>
+<script src="__STATIC__/js/swiper.min.js"></script>
+<script src="__STATIC__/js/jquery.easing.1.3.js"></script>
+<script src="__STATIC__/js/imagesloaded.pkgd.min.js"></script>
+<script src="__STATIC__/js/masonry.pkgd.min.js"></script>
+<script src="__STATIC__/js/classie.js"></script>
+<script src="__STATIC__/js/grid.js"></script>
+<script src="__STATIC__/js/commen.js"></script>
+<script src="__STATIC__/js/iconfont.js"></script>
+<script src="__STATIC__/js/fixed.js"></script>
+    <script>
+        $('.main').addClass('js');
+        $('.grid__item').css({opacity:0});
+
+        // (function () {
+        //     let current = $('.header1 .logo img');
+        //     current.animate({opacity:0},500,'linear',function () {
+        //         current.attr('src',$('.header2 .logo img').attr('src'));
+        //         current.animate({opacity:1},500,'linear',function () {
+        //
+        //         })
+        //     })
+        // })();
+
+        $(function () {
+            (function() {
+                var support = { transitions: Modernizr.csstransitions },
+                    // transition end event name
+                    transEndEventNames = { 'WebkitTransition': 'webkitTransitionEnd', 'MozTransition': 'transitionend', 'OTransition': 'oTransitionEnd', 'msTransition': 'MSTransitionEnd', 'transition': 'transitionend' },
+                    transEndEventName = transEndEventNames[ Modernizr.prefixed( 'transition' ) ],
+                    onEndTransition = function( el, callback ) {
+                        var onEndCallbackFn = function( ev ) {
+                            if( support.transitions ) {
+                                if( ev.target != this ) return;
+                                this.removeEventListener( transEndEventName, onEndCallbackFn );
+                            }
+                            if( callback && typeof callback === 'function' ) { callback.call(this); }
+                        };
+                        if( support.transitions ) {
+                            el.addEventListener( transEndEventName, onEndCallbackFn );
+                        }
+                        else {
+                            onEndCallbackFn();
+                        }
+                    };
+
+                new GridFx(document.querySelector('.grid'), {
+                    imgPosition : {
+                        x : -0.5,
+                        y : 1
+                    },
+                    onOpenItem : function(instance, item) {
+                        instance.items.forEach(function(el) {
+                            if(item != el) {
+                                var delay = Math.floor(Math.random() * 50);
+                                el.style.WebkitTransition = 'opacity .5s ' + delay + 'ms cubic-bezier(.7,0,.3,1), -webkit-transform .5s ' + delay + 'ms cubic-bezier(.7,0,.3,1)';
+                                el.style.transition = 'opacity .5s ' + delay + 'ms cubic-bezier(.7,0,.3,1), transform .5s ' + delay + 'ms cubic-bezier(.7,0,.3,1)';
+                                el.style.WebkitTransform = 'scale3d(0.1,0.1,1)';
+                                el.style.transform = 'scale3d(0.1,0.1,1)';
+                                el.style.opacity = 0;
+                            }
+                        });
+                    },
+                    onCloseItem : function(instance, item) {
+                        instance.items.forEach(function(el) {
+                            if(item != el) {
+                                el.style.WebkitTransition = 'opacity .4s, -webkit-transform .4s';
+                                el.style.transition = 'opacity .4s, transform .4s';
+                                el.style.WebkitTransform = 'scale3d(1,1,1)';
+                                el.style.transform = 'scale3d(1,1,1)';
+                                el.style.opacity = 1;
+
+                                onEndTransition(el, function() {
+                                    el.style.transition = 'none';
+                                    el.style.WebkitTransform = 'none';
+                                });
+                            }
+                        });
+                    }
+                },function () {
+                    $('.txt-img .txt-imgbox').animate({height:'100px'},3000,'linear',()=>{})
+                    $('.txt-img .txt-imgbox-mask').animate({right:'-120%'},2000,'linear',()=>{
+                        $('.liveGrid-section').css({pointerEvents:'unset'})
+
+                        $(".grid__item").each(function(){
+                            d = Math.random()*1000;
+                            $(this).delay(d).animate({opacity: .95}, {
+                                step: function(n){
+                                    //rotating the images on the Y axis from 360deg to 0deg
+                                    console.log(n)
+                                    ry = (.95-n)*720;
+                                    //translating the images from 1000px to 0px
+                                    tz = (.95-n)*1000;
+                                    //applying the transformation
+                                    $(this).css("transform", "rotateY("+ry+"deg) translateZ("+tz+"px)");
+                                },
+                                duration: 6000,
+                                //some easing fun. Comes from the jquery easing plugin.
+                                easing: 'easeOutQuint',
+                            })
+                        })
+                    })
+                });
+            })();
+
+
+
+        })
+
+
+    </script>
+</body>
+</html>
+
+</html>

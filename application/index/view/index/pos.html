@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {include file="common/header"}
+    <title>宝仕龙</title>
+
+</head>
+<style>
+    .inside-banner .banner_left{position:absolute;width:50%;height:100%;overflow:hidden;right:50%;background:#fff;z-index:10;}
+    .inside-banner .banner_right{position:absolute;left:50%;width:50%;height:100%;overflow:hidden;background:#fff;z-index:10;}
+    .inside-banner.active .banner_left{right:100%;transition:all 0.85s cubic-bezier(1, 0.08, 0.94, 0.71);-webkit-transition:all 0.85s cubic-bezier(1, 0.08, 0.94, 0.71);-moz-transition:all 0.85s cubic-bezier(1, 0.08, 0.94, 0.71);-ms-transition:all 0.85s cubic-bezier(1, 0.08, 0.94, 0.71);-o-transition:all 0.85s cubic-bezier(1, 0.08, 0.94, 0.71);}
+    .inside-banner.active .banner_right{left:100%;transition:all 0.85s cubic-bezier(1, 0.08, 0.94, 0.71);-webkit-transition:all 0.85s cubic-bezier(1, 0.08, 0.94, 0.71);-moz-transition:all 0.85s cubic-bezier(1, 0.08, 0.94, 0.71);-ms-transition:all 0.85s cubic-bezier(1, 0.08, 0.94, 0.71);-o-transition:all 0.85s cubic-bezier(1, 0.08, 0.94, 0.71);}
+    .inside-banner .banner_video {position: absolute;top: 0;width: 100%;height: 100%;}
+    .inside-banner .banner_video video{object-fit:cover;width:100%;height:100%;}
+    .inside-banner {overflow: hidden;position: relative;height: 100vh;}
+    .inside-banner .banner_img{width:100%;height:100%;position:absolute;top:0;left:0;}
+    .inside-banner.active .banner_video,.inside-banner.active .banner_img{transform:scale(1.02);-webkit-transform:scale(1.02);-moz-transform:scale(1.02);-ms-transform:scale(1.02);-o-transform:scale(1.02);transform-origin:center center;transition:all 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);-webkit-transition:all 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);-moz-transition:all 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);-ms-transition:all 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);-o-transition:all 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);}
+    .inside-banner .banner_zz{position:absolute;top:0;width:100%;height:100%;background:linear-gradient(to bottom, rgba(178, 154, 116, 0.25) 10%, rgba(2,130,172,0) 100%);background: -moz-linear-gradient(to bottom, rgba(178, 154, 116, 0.25) 10%, rgba(2,130,172,0) 100%);background: -webkit-linear-gradient(to bottom, rgba(178, 154, 116, 0.25) 10%, rgba(2,130,172,0) 100%);filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3FB29A74',endColorstr='#000099cb',GradientType=0);}
+    /*此样式在移动端时设置为block*/
+    .vis_xs{display:none;}
+    .inside-banner .shadows {position: absolute;z-index: 3;left: 50%;top: 0;bottom: 0;width: 0px;max-width: 320px;border-left: 1px solid #000;border-right: 1px solid #000;opacity: 0;-webkit-transform: translateX(-50%);transform: translateX(-50%);-webkit-transition: opacity .75s,visibility .75s,width .75s;transition: opacity .75s,visibility .75s,width .75s;-webkit-transition-delay: .8s;transition-delay: .8s;pointer-events: none;}
+    .inside-banner.active .shadows {width: 320px;opacity: 0.25;}
+    .inside-banner .shadow {position: absolute;width: 47px;height: 100%;}
+    .inside-banner .shadow.shadow-left {right: 100%;-webkit-transform: scale(-1);transform: scale(-1);}
+    .inside-banner .shadow.shadow-right {left: 100%;}
+    .inside-banner .banner_contair {width: 100%;height: 100%; display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-pack: center;-ms-flex-pack: center;justify-content: center;-webkit-box-align: center;-ms-flex-align: center;align-items: center;}
+    .inside-banner .inside-banner-heading {-webkit-transition:none;transition:none;-webkit-transform:translate3d(0,50px,0);transform:translate3d(0,50px,0)}
+    .inside-banner.active .inside-banner-heading {pointer-events: none;-webkit-transform: translateZ(0);transform: translateZ(0);-webkit-transition: -webkit-transform 1.6s cubic-bezier(.32,.32,0,.99) 0s;transition: -webkit-transform 1.6s cubic-bezier(.32,.32,0,.99) 0s;transition: transform 1.6s cubic-bezier(.32,.32,0,.99) 0s;transition: transform 1.6s cubic-bezier(.32,.32,0,.99) 0s,-webkit-transform 1.6s cubic-bezier(.32,.32,0,.99) 0s;-webkit-transition-delay: 0.85s;transition-delay: 0.85s;display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-orient: vertical;-webkit-box-direction: normal;-ms-flex-direction: column;flex-direction: column;-webkit-box-pack: center;-ms-flex-pack: center;justify-content: center;-webkit-box-align: center;-ms-flex-align: center;align-items: center;}
+    .inside-banner .sub-heading {visibility:hidden;opacity:0;-webkit-transform:translateY(20px);transform:translateY(20px)}
+    .inside-banner.active .sub-heading {color: #fff;display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-orient: vertical;-webkit-box-direction: normal;-ms-flex-direction: column;flex-direction: column;-webkit-box-pack: center;-ms-flex-pack: center;justify-content: center;-webkit-box-align: center;-ms-flex-align: center;align-items: center;opacity: 1;visibility: inherit;-webkit-transition: opacity 1.5s,visibility 1.5s,-webkit-transform 1.5s;transition: opacity 1.5s,visibility 1.5s,-webkit-transform 1.5s;transition: transform 1.5s,opacity 1.5s,visibility 1.5s;transition: transform 1.5s,opacity 1.5s,visibility 1.5s,-webkit-transform 1.5s;-webkit-transition-delay: 0.85s;transition-delay: 0.85s;}
+    .inside-banner-heading h2 {line-height: 80px;}
+    .inside-banner-heading h2.inside-banner-title {font-size: 50px;}
+    .inside-banner-heading h2.inside-banner-title2 {font-size: 25px;}
+
+    .pos-section {padding-top: 50px;background-color: #f3f7f9;}
+    .pos-container {position: relative;height: calc(100vh - 156px);padding-top: 80px;background: #f3f7f9;overflow: hidden;width: 100%;box-sizing: border-box}
+    .pos-swiper {z-index: 5;position: relative;width: calc(100% - 220px);height: 60vh;margin: 0 auto;}
+    .pos-wrapper {width: 100%;margin: 0 auto;position: absolute;display: -webkit-box;display: -ms-flexbox;display: flex;-ms-flex-pack: distribute;justify-content: space-around;top: 48%;left: 50%;-webkit-transform: translate(-50%, -50%);transform: translate(-50%, -50%);z-index: 7;}
+    .pos-wrapper-bg {position: absolute;top: 0;left: 0;width: 100%;height: 100%;}
+    .pos-wrapper-bg span {display: block;position: relative;width: 100%;height: 100%;background-image: url(/static/images/inside/pos/pos-item-bg.jpg);background-size: cover;background-position-y: center;animation-name: none}
+    .pos-slide {width: 200px;height: 280px;}
+    .pos-slide[data-position='left'] {position: absolute;left: -6%;top: 50%;-webkit-transform: translateY(-50%);transform: translateY(-50%);}
+    .pos-slide[data-position='center'] {position: relative;width: 60vh;min-width: 400px;height: 82vh;min-height: 640px;max-height: 720px;max-width: 520px;overflow: hidden}
+    .pos-slide[data-position='right'] {position: absolute;right: -6%;top: 50%;-webkit-transform: translateY(-50%);transform: translateY(-50%);}
+    .pos-slide .pos-slideBase {position: absolute;top: 0;left: 0;width: 0%;height: 100%;background-image: url(/static/images/inside/pos/pos_person_bg.jpg);-webkit-box-shadow: 0 6px 35px rgba(56, 54, 51, 0.25);box-shadow: 0 6px 35px rgba(56, 54, 51, 0.25);}
+    .pos-slide .pos-slide-PersonImg {position: absolute;top: 0;left: 0;width: 100%;height: 100%;overflow: hidden;}
+    .pos-slide .pos-slide-PersonImg-container {position: absolute;top: 0;left: 100%;width: 100%;height: 100%;}
+    .pos-slide .pos-slide-PersonImg-container span {position: absolute;top: 0;left: 0;width: 100%;height: 100%;background-repeat: no-repeat;background-size: cover;background-position: center;-webkit-transition: opacity .5s;-moz-transition: opacity .5s;-ms-transition: opacity .5s;-o-transition: opacity .5s;transition: opacity .5s;}
+    .pos-slide .pos-slide-info {position: absolute;bottom: -100px;box-sizing: border-box;width: 100%;padding: 0 30px 50px;color: #FFFFFF;
+        opacity: 0;}
+    .pos-slide .pos-slide-info h3 {margin-bottom: 15px;font-size: 18px;}
+    .pos-slide .pos-slide-info p {line-height: 1.8;font-size: 12px;font-weight: bold}
+
+    .pos-footer {position: absolute;width: 100%;height: 100px;bottom: 0px;}
+    .pos-footer-inner {position: relative;margin: 0 auto;height: 100%;bottom: 15%;}
+    .pos-footer-nav {position: absolute;display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-pack: end;-ms-flex-pack: end;justify-content: flex-end;width: 280px;height: 40px;bottom: 13px;right: 40px;z-index: 10;}
+    .pos-footer-btnContainer {display: -webkit-box;display: -ms-flexbox;display: flex;margin-left: 30px;}
+    .pos-footer-btnContainer.disactive { pointer-events: none;opacity: 0.5}
+    .pos-footer-btn {cursor: pointer;-webkit-transition: opacity 0.2s ease-out;transition: opacity 0.2s ease-out;overflow: hidden}
+    .pos-footer-btn:hover {opacity: .6;}
+    .pos-footer-btn span {display: inline-block;width: 40px;height: 40px;line-height: 40px;text-align: center;vertical-align: top;background-position: center center;background-size: cover;background-repeat: no-repeat;background-image: url("/static/images/inside/pos/arw-topNav-left.png")}
+    .pos-footer-btn .iconfont {display: none;}
+    .pos-footer-prev {}
+    .pos-footer-next {margin-left: 5px;}
+    .pos-footer-next {-webkit-transform: rotate(180deg);transform: rotate(180deg);}
+    .pos-swiper-bg {z-index: 2;position: relative;width: 100%;height: 745px;top: -280px;}
+    .pos-wrapper-bg:after {position: absolute;top: 0;left: 0;width: 100%;height: 100%;content: '';mix-blend-mode: screen;
+        /*background: -webkit-gradient(linear, left top, right top, from(#ededed), color-stop(25%, #d5d5d5), color-stop(50%, #bcbcbc), color-stop(75%, #9f9f9f),to(#888888));*/
+        /*background: linear-gradient(90deg, #02e 0%, #90f 8.33%, #ff3875 16.66%, #eb33ff 24.99%,#888888 100%);*/
+        background-repeat: no-repeat;background-position: 0% 0;background-size: 300% 100%;-webkit-animation-duration: 12s;animation-duration: 12s;-webkit-animation-name: grad-scroll;animation-name: grad-scroll;-webkit-animation-timing-function: linear;animation-timing-function: linear;-webkit-animation-iteration-count: infinite;animation-iteration-count: infinite;}
+    .grad-bg {
+        /*background: -webkit-gradient(linear, left top, right top, from(#02e), color-stop(8.33%, #90f), color-stop(16.66%, #ff3875), color-stop(24.99%, #eb33ff), color-stop(33.32%, #009b87), color-stop(41.65%, #02e), color-stop(49.98%, #90f), color-stop(58.31%, #ff3875), color-stop(66.64%, #eb33ff), color-stop(74.97%, #009b87), color-stop(83.3%, #02e), color-stop(91.63%, #90f), to(#ff3875));*/
+        /*background: linear-gradient(90deg, #02e 0%, #90f 8.33%, #ff3875 16.66%, #eb33ff 24.99%, #009b87 33.32%, #02e 41.65%, #90f 49.98%, #ff3875 58.31%, #eb33ff 66.64%, #009b87 74.97%, #02e 83.3%, #90f 91.63%, #ff3875 100%);*/
+        background-repeat: no-repeat;background-position: 0% 0;background-size: 300% 100%;-webkit-animation-duration: 12s;animation-duration: 12s;-webkit-animation-name: grad-scroll;animation-name: grad-scroll;-webkit-animation-timing-function: linear;animation-timing-function: linear;-webkit-animation-iteration-count: infinite;animation-iteration-count: infinite;}
+
+    .pos-footer-barContainer {display: -webkit-box;display: -ms-flexbox;display: flex;}
+    .pos-footer-counter {position: relative;width: 17px;height: 40px;overflow: hidden;}
+    .pos-footer-counter span {display: inline-block;width: 100%;height: 100%;font-size: 14px;line-height: 40px;color: #3e3c3b;text-align: right;position: relative;}
+    .pos-footer-counter span:last-child {position: absolute;top: 0;left: 0;}
+    .pos-footer-bar {position: relative;height: 40px;width: 70px;top: 50%;-webkit-transform: translateY(-50%);transform: translateY(-50%);margin: 0 15px;overflow: hidden;}
+    .pos-footer-barInner {position: absolute;background-color: #3e3c3b;height: 1px;width: 100%;top: 50%;left: -100%;}
+    .pos-footer-barbg {position: absolute;width: 100%;background-color: #3e3c3b;opacity: 0.3;height: 1px;top: 50%;-webkit-transform: translateY(-50%);transform: translateY(-50%);}
+.liveGrid-title{margin-bottom: 80px;text-align: center;font-size: 20px;position: relative;margin-top: 30px;letter-spacing: 2px;}
+	.liveGrid-title:after{position: absolute;content: '';bottom:-25px ;left: 50%;transform: translateX(-50%);width: 35px;height: 2px;background: #d2d2d2;}
+    @-webkit-keyframes grad-scroll {
+        0% {
+            background-position: 62.475% 0;
+        }
+
+        100% {
+            background-position: 0% 0;
+        }
+    }
+
+    @keyframes grad-scroll {
+        0% {
+            background-position: 62.475% 0;
+        }
+
+        100% {
+            background-position: 0% 0;
+        }
+    }
+</style>
+<body>
+{include file='common/daohang'}
+    <div class="main">
+        <div class="inside-banner">
+            <div class="banner_img hid_xs" style="background:url(/static/images/inside/pos/pos-banner.jpg) no-repeat center center;background-size:cover;"></div>
+            <div class="banner_img vis_xs" style="background:url(/static/images/inside/pos/pos-banner.jpg) no-repeat center center;background-size:cover;"></div>
+            <div class="banner_zz"></div>
+            <div class="banner_left"></div>
+            <div class="banner_right"></div>
+            <div class="banner_contair">
+                <div class="inside-banner-heading">
+                    <div class="sub-heading">
+                        <h2 class="inside-banner-title">相信品牌的力量</h2>
+                        <h2 class="inside-banner-title2">与时代同行 不负时代之机 启幕财富时光</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="shadows">
+                <img src="/static/images/common/shadow.png" alt="" class="shadow shadow-left">
+                <img src="/static/images/common/shadow.png" alt="" class="shadow shadow-right">
+            </div>
+
+        </div>
+
+        <div class="pos-section">
+			<div class="liveGrid-title">定制是未来  大单是常态</div>
+            <div class="pos-container">
+                <div class="pos-swiper">
+                    <div class="pos-wrapper-bg">
+                        <span class="grad-bg"></span>
+                    </div>
+                    <div class="pos-wrapper">
+
+                        <div class="pos-slide" data-position="left">
+
+                            <div class="pos-slideBase"></div>
+                            <div class="pos-slide-PersonImg">
+                                <div class="pos-slide-PersonImg-container">
+                                    <span></span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="pos-slide" data-position="center">
+                            <div class="pos-slideBase"></div>
+                            <div class="pos-slide-PersonImg">
+                                <div class="pos-slide-PersonImg-container">
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </div>
+                            <div class="pos-slide-info">
+                                <h3 class="pos-slide-title"></h3>
+                                <p></p>
+                            </div>
+                        </div>
+                        <div class="pos-slide" data-position="right">
+                            <div class="pos-slideBase"></div>
+                            <div class="pos-slide-PersonImg">
+                                <div class="pos-slide-PersonImg-container">
+                                    <span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="pos-footer">
+                    <div class="pos-footer-inner">
+                        <div class="pos-footer-nav">
+                            <div class="pos-footer-barContainer">
+                                <div class="pos-footer-counter pos-footer-counter-current">
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                                <div class="pos-footer-bar">
+                                    <div class="pos-footer-barInner"></div>
+                                    <div class="pos-footer-barbg"></div>
+                                </div>
+                                <div class="pos-footer-counter pos-footer-counter-all">
+                                    <span></span>
+                                </div>
+                            </div>
+                            <div class="pos-footer-btnContainer">
+                                <div class="pos-footer-btn pos-footer-prev">
+                                    <span>
+                                        <i class="iconfont icon-swiper-prev"></i>
+                                    </span>
+                                </div>
+                                <div class="pos-footer-btn pos-footer-next">
+                                    <span>
+                                        <i class="iconfont icon-swiper-next"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pos-swiper-bg grad-bg">
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+{include file="common/footer"}
+    
+        <div class="popup-section popup-navigation">
+            <div class="popup-container">
+                <div class="navigation-left">
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="index.html">
+                                <span>首页</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="../application/index/view/index/brand.html">
+                                <span>走进宝仕龙</span>
+                            </a>
+                        </div>
+                    </div>
+    <!--                <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="brandWitness.html">
+                                <span>品牌见证</span>
+                            </a>
+                        </div>
+                    </div> -->
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="../application/index/view/index/eight.html">
+                                <span>八大空间</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="live_museum.html">
+                                <span>百套案例</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="pos.html">
+                                <span>大商样板</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="cooperate-people.html">
+                                <span>商学院</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="contact.html">
+                                <span>联系我们</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="productSearch.html">
+                                <span>防伪查询</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="navigation-right">
+    
+                    <div class="navigation-add">
+                        <div class="navigation-add-line"></div>
+                        <div class="address">
+                            Jl. Duren Tiga Raya No. 33<br>
+                            Jakarta Selatan - 12760 <br>
+                            Indonesia
+                        </div>
+                        <p></p>
+                        +62 21 799 1521
+                        <br>
+                        +62 21 722 5003
+                        <br>
+                        info@prodotti-id.com
+                        <p></p>
+                        <div class="socials">
+                            <div class="icon">
+                                <a href="javascript:;">
+                                    <img src="/static/images/logo-facebook.svg" alt="">
+                                </a>
+                            </div>
+                            <div class="icon">
+                                <a href="javascript:;">
+                                    <img src="/static/images/logo-instagram.svg" alt="">
+                                </a>
+                            </div>
+                            <div class="icon">
+                                <a href="javascript:;">
+                                    <img src="/static/images/logo-youtube.svg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="navigation-add">
+                        <div class="navigation-add-line"></div>
+                        <div>
+                            Monday - Friday<br>
+                            09.00 A.M - 06.00 P.M<br><p></p>
+                            Saturday - Sunday<br>
+                            Appointment Only<br>
+                        </div>
+                        <div class="navigation-bottom">
+                            <div class="navigation-bottom-item">
+                                <a href="javascript:;">
+                                    <span>Privacy & Cookie Policy</span>
+                                </a>
+                            </div>
+                        </div>
+    
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+<div class="measure-container measure-common">
+		<div class="measure-tit">免费设计</div>
+		<div class="measure-tit1">专业设计师1对1家装指导</div>
+		<form action="" method="" class="measure">
+			<div class="measure-item">
+				<label><img src="/static/images/people.png" alt=""></label>
+				<input class="mul_input" placeholder="您的姓名"> 
+			</div>
+			<div class="measure-item">
+				<label><img src="/static/images/phone.png" alt=""></label>
+				<input class="mul_input"  placeholder="联系方式"> 
+			</div>
+			<div class="measure-item">
+				<label><img src="/static/images/add.png" alt=""></label>
+				<input class="mul_input" placeholder="所在楼盘"> 
+			</div>
+			<div class="button">
+				<input type="button" value="立即申请">
+			</div>
+		</form>
+	</div>
+	<div class="mutual on">
+	    <ul class="list">
+			<li>
+			    <a href="javascript:;">
+			        <div class="mutualIco">
+			            <img src="/static/images/ico2.png" alt="">
+						<div class="mutualIco-text">在线咨询</div>
+			        </div>
+			
+			        <span class="txt1">
+			            扫描二维码与销售顾问咨询
+			            <img src="/static/images/common/r-wx.jpg" alt="">
+			        </span>
+			    </a>
+			</li>
+	        <li>
+	            <a target="_blank"  class="vid-play-btn">
+	                <div class="mutualIco">
+	                    <img src="/static/images/ico3.png" alt="">
+						<div class="mutualIco-text">免费量房</div>
+	                </div>
+	            </a>
+	        </li>
+			<li>
+			    <a href="javascript:;">
+			        <div class="mutualIco">
+			            <img src="/static/images/ico1.png" alt="">
+						<div class="mutualIco-text">电话咨询</div>
+			        </div>
+			        <span class="txt1">400-887-7831 / 0573-86788519</span>
+			    </a>
+			</li>
+	        <li class="backtoTop">
+	            <a href="javascript:;">
+	                <div class="mutualIco">
+	                    <img src="/static/images/ico4.png" alt="">
+						<div class="mutualIco-text">top</div>
+	                </div>
+	            </a>
+	        </li>
+	    </ul>
+	</div>
+    <!--此块为道明底部移动端，之后转移-->
+    <!--<style>-->
+        <!--.app-bottom-nav {display: flex;position: fixed;z-index: 99;bottom: 0;left: 0;right: 0;background-color: #de6315;}-->
+        <!--.app-bottom-nav-item {flex: 1;}-->
+        <!--.app-bottom-nav-item a {display: block;text-align: center;}-->
+        <!--.app-bottom-nav-item a img {width: 24px;vertical-align: top;padding: 5px 0;margin: 0 auto;}-->
+        <!--.app-bottom-nav-item a span {font-size: 14px;color: #ffffff;width: 100%;display: block;padding-bottom: 2px;}-->
+    <!--</style>-->
+    <!--<div class="app-bottom-nav">-->
+        <!--<div class="app-bottom-nav-item">-->
+            <!--<a href="tel:15058582712">-->
+                <!--<img src="icon/icon-tel.png" alt="">-->
+                <!--<span>联系我们</span>-->
+            <!--</a>-->
+        <!--</div>-->
+        <!--<div class="app-bottom-nav-item">-->
+            <!--<a href="javascript:;">-->
+                <!--<img src="icon/icon-chat.png" alt="">-->
+                <!--<span>在线咨询</span>-->
+            <!--</a>-->
+        <!--</div>-->
+        <!--<div class="app-bottom-nav-item">-->
+            <!--<a href="javascript:;">-->
+                <!--<img src="icon/icon-qq.png" alt="">-->
+                <!--<span>QQ咨询</span>-->
+            <!--</a>-->
+        <!--</div>-->
+        <!--<div class="app-bottom-nav-item">-->
+            <!--<a href="sms:15058582712">-->
+                <!--<img src="icon/icon-sms.png" alt="">-->
+                <!--<span>短信咨询</span>-->
+            <!--</a>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!---->
+    <div class="popup-section popup-search">
+
+        <div class="popup-container">
+            <div class="search-form">
+                <input type="text" placeholder="Search for Products, Brands or News" class="input-form" style="width: 0;">
+                <div class="search-result">
+                    <div class="search-result-item"></div>
+                    <div class="search-result-item"></div>
+                    <div class="search-result-item"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="popup-brand">
+        <div class="brand-list">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <div class="slider-image">
+                                <div class="background-image" style="background-image: url('/static/images/brand_swiper_01.jpg')"></div>
+                            </div>
+                            <div class="slider-title">Alexander Lamont</div>
+                            <div class="slider-hr"></div>
+                            <div class="slider-category">Furniture</div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <div class="slider-image">
+                                <div class="background-image" style="background-image: url('/static/images/brand_swiper_02.jpg')"></div>
+                            </div>
+                            <div class="slider-title">Alexander Lamont</div>
+                            <div class="slider-hr"></div>
+                            <div class="slider-category">Furniture</div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <div class="slider-image">
+                                <div class="background-image" style="background-image: url('/static/images/brand_swiper_01.jpg')"></div>
+                            </div>
+                            <div class="slider-title">Alexander Lamont</div>
+                            <div class="slider-hr"></div>
+                            <div class="slider-category">Furniture</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </div>
+    <!--公用-->
+
+
+    <script>
+        $('.inside-banner').height($(window).height())
+        $(function () {
+            if(true){
+                $('.inside-banner').addClass('active')
+            }
+        })
+        let posdata = {
+            default: 0,
+            list:[
+                {
+                    img:['/static/images/inside/pos/small.jpg','/static/images/inside/pos/large.jpg','/static/images/inside/pos/large_anim.jpg'],
+                    name:'瓮安（王俊）',
+                    contxt:'2005年，在朋友介绍下回乡创业，接触建材行业。2006-2010年，经营建材品类超市，品类丰富，竞争大，盈利少，2011年，去贵阳考察接触到索菲尼洛，被吸引并开始销售索菲尼洛复式吊顶；2012年，独立门店经营索菲尼洛产品，2013年，店面扩大为双门面； 2014年底，关闭其他建材品类项目，索菲尼洛店面扩大为四门面，建设高标准SI形象店面，打造高规格服务团队。2015年，成为瓮安中高端全房吊顶第一品牌，年度销售额突破500万大关。 2020年疫情期间，签订多个大单值。'
+                },{
+                    img:['/static/images/inside/pos/small2.jpg','/static/images/inside/pos/large2.jpg','/static/images/inside/pos/large2_anim.jpg'],
+                    name:'瓮安（王俊）',
+                    contxt:'2005年，在朋友介绍下回乡创业，接触建材行业。2006-2010年，经营建材品类超市，品类丰富，竞争大，盈利少，2011年，去贵阳考察接触到索菲尼洛，被吸引并开始销售索菲尼洛复式吊顶；2012年，独立门店经营索菲尼洛产品，2013年，店面扩大为双门面； 2014年底，关闭其他建材品类项目，索菲尼洛店面扩大为四门面，建设高标准SI形象店面，打造高规格服务团队。2015年，成为瓮安中高端全房吊顶第一品牌，年度销售额突破500万大关。 2020年疫情期间，签订多个大单值。'
+                },{
+                    img:['/static/images/inside/pos/small3.jpg','/static/images/inside/pos/large3.jpg','/static/images/inside/pos/large3_anim.jpg'],
+                    name:'瓮安（王俊）',
+                    contxt:'2005年，在朋友介绍下回乡创业，接触建材行业。2006-2010年，经营建材品类超市，品类丰富，竞争大，盈利少，2011年，去贵阳考察接触到索菲尼洛，被吸引并开始销售索菲尼洛复式吊顶；2012年，独立门店经营索菲尼洛产品，2013年，店面扩大为双门面； 2014年底，关闭其他建材品类项目，索菲尼洛店面扩大为四门面，建设高标准SI形象店面，打造高规格服务团队。2015年，成为瓮安中高端全房吊顶第一品牌，年度销售额突破500万大关。 2020年疫情期间，签订多个大单值。'
+                },{
+                    img:['/static/images/inside/pos/small.jpg','/static/images/inside/pos/large.jpg','/static/images/inside/pos/large_anim.jpg'],
+                    name:'瓮安（王俊）',
+                    contxt:'2005年，在朋友介绍下回乡创业，接触建材行业。2006-2010年，经营建材品类超市，品类丰富，竞争大，盈利少，2011年，去贵阳考察接触到索菲尼洛，被吸引并开始销售索菲尼洛复式吊顶；2012年，独立门店经营索菲尼洛产品，2013年，店面扩大为双门面； 2014年底，关闭其他建材品类项目，索菲尼洛店面扩大为四门面，建设高标准SI形象店面，打造高规格服务团队。2015年，成为瓮安中高端全房吊顶第一品牌，年度销售额突破500万大关。 2020年疫情期间，签订多个大单值。'
+                }
+            ]
+        }
+        var posBanner = function (data) {
+            let that = this;
+            this.current = data.default||0;
+            this.current = this.current>=0?this.current:0;
+            this.list = data.list;
+            let timeani_1='' ;
+            let timeani_2='' ;
+            this.anitarget = true;
+            this.init = ()=>{
+                let numstr = this.list.length<10?'0':'';
+                $('.pos-footer-counter-current span').eq(0).html(numstr +(this.current-0+1)).css({opacity:'1', top:0})
+                $('.pos-footer-counter-current span').eq(1).css({opacity:'0', top:0})
+                $('.pos-slide-info .pos-slide-title').html(this.list[this.current].name)
+                $('.pos-slide-info p').html(this.list[this.current].contxt)
+                $('.pos-footer-counter-all span').eq(0).html(numstr+ this.list.length)
+                this.ani()
+            }
+            this.ani2 = (type)=>{
+                if(this.anitarget){
+                    let n =0;
+                    $('.pos-slide-info').animate({opacity:0,bottom:'-100px'},300,'linear',()=>{
+
+                    })
+                    this.anitarget = false
+                    if(type == '' || type == undefined){
+                        type= 'next'
+                    }
+                    this.calcCurrent(type)
+                    $('.pos-slideBase').css({left:'0px',right:'auto'})
+
+                    $('.pos-footer-counter-current span').eq(1).html(this.current<9?'0'+(this.current-0+1):(this.current-0+1)).css({
+                        opacity:'0',
+                        top:'14px'
+                    })
+                    $('.pos-footer-counter-current span').eq(0).animate({opacity:'0', top:'-14px'},300,'swing',()=>{})
+                    $('.pos-footer-counter-current span').eq(1).animate({opacity:1, top:'0px'},300,'swing',()=>{
+                        $('.pos-footer-counter-current span').eq(0).html($('.pos-footer-counter-current span').eq(1).html()).css({opacity:'1',top:'0px'})
+                        $('.pos-footer-counter-current span').eq(1).css({opacity:'0',top:'0'})
+                    })
+
+                    $('.pos-slide-PersonImg-container').animate({left:'-100%'},200,'swing',()=>{
+                        $('.pos-slide-PersonImg-container').css({left:'100%'})
+                    })
+                    $('.pos-slideBase').animate({width:'0%'},500,'linear',()=>{
+                        if(++n==$('.pos-slideBase').length){
+                            setTimeout(()=>{
+                                this.ani()
+                            },)
+                        }
+                    })
+                }
+
+            }
+            this.ani = ()=>{
+                    let m =0;
+                    let currentData = this.list[this.current];
+                    let prevData = this.current ==0 ?this.list[this.list.length - 1]:this.list[this.current - 1];
+                    let nextData = this.current == this.list.length-1 ? this.list[0]:this.list[this.current + 1];
+                    $('.pos-slide[data-position="left"] .pos-slide-PersonImg-container span').eq(0).css({
+                        'backgroundImage':'url('+prevData.img[0]+')'
+                    })
+                    $('.pos-slide[data-position="center"] .pos-slide-PersonImg-container span').eq(0).css({
+                        'backgroundImage':'url('+currentData.img[1]+')'
+                    })
+                    $('.pos-slide[data-position="center"] .pos-slide-PersonImg-container span').eq(1).css({
+                        'backgroundImage':'url('+currentData.img[2]+')',
+                        opacity:'0%'
+                    })
+
+                    $('.pos-slide[data-position="right"] .pos-slide-PersonImg-container span').eq(0).css({
+                        'backgroundImage':'url('+nextData.img[0]+')'
+                    })
+                    $('.pos-slideBase').css({left:'auto',right:'0'})
+                    $('.pos-slideBase').animate({width: '100%'},300,'linear',()=>{
+                        if(++m==$('.pos-slideBase').length){
+                            $('.pos-slide-info').animate({opacity:1,bottom:0},300,'linear',()=>{})
+                            this.anitarget = true
+                            $('.pos-footer-barInner').animate({left:0},5000,'linear',()=>{
+                                $('.pos-footer-barInner').css({left:'-100%'})
+                            })
+                            timeani_1 = setTimeout(()=>{
+                                this.ani2()
+                            },5000)
+                        }
+                    })
+                    // setTimeout(()=>{
+                        $('.pos-slide-PersonImg-container').animate({left:'0%'},300,'swing',()=>{
+                            timeani_2 = setTimeout(()=>{
+                                $('.pos-slide[data-position="center"] .pos-slide-PersonImg-container span').eq(1).css({opacity:'100%'})
+                            },1500)
+                        })
+                    // },150)
+
+
+            }
+            this.calcCurrent=(type)=>{
+                if(type == 'next'){
+                    this.current = this.current == this.list.length - 1 ? 0: ++this.current;
+                }else if(type == 'prev'){
+                    this.current = this.current == 0 ? this.list.length - 1: --this.current;
+                }else{
+                    alert('error: type error')
+                }
+
+            }
+            $('.pos-footer-btnContainer').on('click','.pos-footer-btn',function () {
+                let str = $(this).hasClass('pos-footer-prev')?'prev':'next';
+                $('.pos-footer-barInner').stop().css({left:'-100%'})
+                clearTimeout(timeani_1)
+                clearTimeout(timeani_2)
+                that.ani2(str)
+            })
+            Object.defineProperty(this,'anitarget',{
+                get:function () {
+                    return anitarget
+                },
+                set:(newValue)=>{
+                    anitarget = newValue;
+                    if(!newValue){
+                        $('.pos-footer-btnContainer').addClass('disactive')
+                    }else{
+                        $('.pos-footer-btnContainer').removeClass('disactive')
+                    }
+                }
+            })
+        }
+        var Mpos = new posBanner(posdata)
+        Mpos.init()
+
+
+    </script>
+</body>
+</html>

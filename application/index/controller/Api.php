@@ -1,25 +1,21 @@
 <?php
 
 
-namespace app\index\controller;
+namespace app\Index\controller;
 
 
 
 use think\Controller;
-use think\Exception;
-use think\exception\PDOException;
 use think\Request;
-use think\Db;
-use ZipArchive;
 
 class Api extends Controller
 {
     
     public function __construct(){        
         //使用父类的构造函数，也就是调用Controller类的构造函数
-       // parent::__construct(); 
+//        parent::__construct();
         $request = Request::instance();
-        // var_dump($request->method());
+//         var_dump($request->method());
         if(($request->action())!="login"&&($request->method()!='GET')){
             $token=input('token');
            if(!$token||empty($token)){
@@ -65,6 +61,173 @@ class Api extends Controller
        
     }
 
+    public function indexPart2Modify(){
+        if(input('title1')) $data['title1']=input('title1');
+        if(input('title2')) $data['title2']=input('title2');
+        if(input('title3')) $data['title3']=input('title3');
+        if(input('title4')) $data['title4']=input('title4');
+        if(input('content')) $data['content']=input('content');
+        if(input('id')) $id=input('id');
+        if(empty(input('id'))&&count($data)<1) return $this->jsonFail();
+        if(request()->file("pic_file1")){
+            $path=$this->upload("pic_file1");
+            $data['pic1'] = '/uploads' . DS . $path['save'];
+        }
+        if(request()->file("pic_file2")){
+            $path=$this->upload("pic_file2");
+            $data['pic2'] = '/uploads' . DS . $path['save'];
+        }
+
+        $res=db('admin_index_part2')->where('id',$id)->update($data);
+        if($res){
+            return $this->jsonSuccess();
+        }else{
+            return $this->jsonFail();
+        }
+
+    }
+
+    public function indexPart3Modify(){
+        if(input('str_1')) $data['str_1']=input('str_1');
+        if(input('str_2')) $data['str_2']=input('str_2');
+        if(input('str_3')) $data['str_3']=input('str_3');
+        if(input('str_4')) $data['str_4']=input('str_4');
+        if(input('str_5')) $data['str_5']=input('str_5');
+        if(input('str_6')) $data['str_6']=input('str_6');
+        if(input('id')) $id=input('id');
+        if(empty(input('id'))&&count($data)<1) return $this->jsonFail();
+        if(request()->file("pic_1")){
+            $path=$this->upload("pic_1");
+            $data['pic_1'] = '/uploads' . DS . $path['save'];
+        }
+        if(request()->file("pic_2")){
+            $path=$this->upload("pic_2");
+            $data['pic_2'] = '/uploads' . DS . $path['save'];
+        }
+        if(request()->file("pic_3")){
+            $path=$this->upload("pic_3");
+            $data['pic_3'] = '/uploads' . DS . $path['save'];
+        }
+        if(request()->file("pic_4")){
+            $path=$this->upload("pic_4");
+            $data['pic_4'] = '/uploads' . DS . $path['save'];
+        }
+        if(request()->file("pic_5")){
+            $path=$this->upload("pic_5");
+            $data['pic_5'] = '/uploads' . DS . $path['save'];
+        }
+        if(request()->file("pic_6")){
+            $path=$this->upload("pic_6");
+            $data['pic_6'] = '/uploads' . DS . $path['save'];
+        }
+        if(request()->file("video_1")){
+            $path=$this->upload("video_1");
+            $data['video_1'] = '/uploads' . DS . $path['save'];
+        }
+        if(request()->file("video_2")){
+            $path=$this->upload("video_2");
+            $data['video_2'] = '/uploads' . DS . $path['save'];
+        }
+        $res=db('admin_index_part3')->where('id',$id)->update($data);
+        if($res){
+            return $this->jsonSuccess();
+        }else{
+            return $this->jsonFail();
+        }
+
+    }
+
+    public function indexPart4Modify(){
+        if(input('str_1')) $data['str_1']=input('str_1');
+        if(input('str_2')) $data['str_2']=input('str_2');
+        if(input('str_3')) $data['str_3']=input('str_3');
+        if(input('str_4')) $data['str_4']=input('str_4');
+        if(input('str_5')) $data['str_5']=input('str_5');
+        if(input('id')) $id=input('id');
+        if(empty(input('id'))&&count($data)<1) return $this->jsonFail();
+        if(request()->file("pic_1")){
+            $path=$this->upload("pic_1");
+            $data['pic_1'] = '/uploads' . DS . $path['save'];
+        }
+        $res=db('admin_index_part4')->where('id',$id)->update($data);
+        if($res){
+            return $this->jsonSuccess();
+        }else{
+            return $this->jsonFail();
+        }
+
+    }
+
+    public function indexPart5Modify(){
+        if(input('str_1')) $data['str_1']=input('str_1');
+        if(input('str_2')) $data['str_2']=input('str_2');
+        if(input('str_3')) $data['str_3']=input('str_3');
+        if(input('str_4')) $data['str_4']=input('str_4');
+        if(input('str_5')) $data['str_5']=input('str_5');
+        if(input('id')) $id=input('id');
+        if(empty(input('id'))&&count($data)<1) return $this->jsonFail();
+        if(request()->file("pic_1")){
+            $path=$this->upload("pic_1");
+            $data['pic_1'] = '/uploads' . DS . $path['save'];
+        }
+        $res=db('admin_index_part5')->where('id',$id)->update($data);
+        if($res){
+            return $this->jsonSuccess();
+        }else{
+            return $this->jsonFail();
+        }
+
+    }
+
+    public function indexPart6Modify(){
+        if(input('str_1')) $data['str_1']=input('str_1');
+        if(input('str_2')) $data['str_2']=input('str_2');
+        if(input('str_3')) $data['str_3']=input('str_3');
+        if(input('str_4')) $data['str_4']=input('str_4');
+        if(input('id')) $id=input('id');
+        if(empty(input('id'))&&count($data)<1) return $this->jsonFail();
+        if(request()->file("pic_1")){
+            $path=$this->upload("pic_1");
+            $data['pic_1'] = '/uploads' . DS . $path['save'];
+        }
+        if(request()->file("pic_2")){
+            $path=$this->upload("pic_2");
+            $data['pic_2'] = '/uploads' . DS . $path['save'];
+        }
+        $res=db('admin_index_part6')->where('id',$id)->update($data);
+        if($res){
+            return $this->jsonSuccess();
+        }else{
+            return $this->jsonFail();
+        }
+
+    }
+
+    public function indexContactModify(){
+        if(input('str_1')) $data['str_1']=input('str_1');
+        if(input('str_2')) $data['str_2']=input('str_2');
+        if(input('str_3')) $data['str_3']=input('str_3');
+        if(input('str_4')) $data['str_4']=input('str_4');
+        if(input('id')) $id=input('id');
+        if(empty(input('id'))&&count($data)<1) return $this->jsonFail();
+        if(request()->file("pic_1")){
+            $path=$this->upload("pic_1");
+            $data['pic_1'] = '/uploads' . DS . $path['save'];
+        }
+        if(request()->file("pic_2")){
+            $path=$this->upload("pic_2");
+            $data['pic_2'] = '/uploads' . DS . $path['save'];
+        }
+        $res=db('admin_index_contact')->where('id',$id)->update($data);
+        if($res){
+            return $this->jsonSuccess();
+        }else{
+            return $this->jsonFail();
+        }
+
+    }
+
+
 
     private function upload($name)
     {
@@ -92,11 +255,9 @@ class Api extends Controller
     public function test(){
         // $token=input('token');
         // $arr=json_decode(base64_decode($token));
-       var_dump($request->method());
     }
 
     public function login(){
-
         $data=input('post.');
         $userInfo=db('admin_user')->where('username',$data['username'])->find();
         if($userInfo['username']!=$data['username']){
@@ -110,7 +271,7 @@ class Api extends Controller
         return $this->jsonSuccessData($token);
 
         // var_dump($data);
-        return json(['data'=>$userInfo]);
+//        return json(['data'=>$userInfo]);
     }
 
 
@@ -124,6 +285,90 @@ class Api extends Controller
             return $this->jsonSuccessData($info);
         }else{
             return $this->jsonFailMsg(2);
+        }
+
+    }
+
+    public function getIndexPart2(){
+        $id=input('id');
+        if(empty($id)){
+            return $this->jsonFail();
+        }
+        $info=db('admin_index_part2')->where('id',$id)->find();
+        if ($info) {
+            return $this->jsonSuccessData($info);
+        }else{
+            return $this->jsonFail();
+        }
+
+    }
+
+    public function getIndexPart3(){
+        $id=input('id');
+        if(empty($id)){
+            return $this->jsonFail();
+        }
+        $info=db('admin_index_part3')->where('id',$id)->find();
+        if ($info) {
+            return $this->jsonSuccessData($info);
+        }else{
+            return $this->jsonFail();
+        }
+
+    }
+
+    public function getIndexPart4(){
+        $id=input('id');
+        if(empty($id)){
+            return $this->jsonFail();
+        }
+        $info=db('admin_index_part4')->where('id',$id)->find();
+        if ($info) {
+            return $this->jsonSuccessData($info);
+        }else{
+            return $this->jsonFail();
+        }
+
+    }
+
+    public function getIndexPart5(){
+        $id=input('id');
+        if(empty($id)){
+            return $this->jsonFail();
+        }
+        $info=db('admin_index_part5')->where('id',$id)->find();
+        if ($info) {
+            return $this->jsonSuccessData($info);
+        }else{
+            return $this->jsonFail();
+        }
+
+    }
+
+    public function getIndexPart6(){
+        $id=input('id');
+        if(empty($id)){
+            return $this->jsonFail();
+        }
+        $info=db('admin_index_part6')->where('id',$id)->find();
+        if ($info) {
+            return $this->jsonSuccessData($info);
+        }else{
+            return $this->jsonFail();
+        }
+
+    }
+
+    public function getIndexContact(){
+        $id=input('id');
+        if(empty($id)){
+            return $this->jsonFail();
+        }
+        $info=db('admin_index_contact')->where('id',$id)->find();
+        if ($info) {
+            return $this->jsonSuccessData($info);
+        }else{
+            return $this->jsonFail();
         }
 
     }

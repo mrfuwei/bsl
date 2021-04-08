@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{include file="common/header"}
+    <title>宝仕龙</title>
+    <script src="js/modernizr-custom.js"></script>
+</head>
+<style>
+
+    /*该页面专属*/
+	.remould-section1{
+		padding: 80px 0;
+	}
+	.banner-switchbutton-left{
+		width: 15px;
+		height: 15px;
+		background-image:url(/static/images/l.png) ;
+		background-size: 10px 12px;
+		background-position: center;
+		background-repeat: no-repeat;
+		display: inline-block;
+		cursor: pointer;
+		padding: 10px;
+		outline: none;
+	}
+	.banner-switchbutton-right{
+		width: 15px;
+		height: 15px;
+		background-image:url(/static/images/l.png) ;
+		background-size: 10px 12px;
+		display: inline-block;
+		transform: rotate(180deg);
+		cursor: pointer;
+		background-position: center;
+		background-repeat: no-repeat;
+		padding: 10px;
+		outline: none;
+	}
+	.banner-switchbutton{
+		width: 70%;
+		margin: 0 auto;
+		display: flex;
+		justify-content: space-between;
+		padding: 15px 0;
+	}
+	.remould-container{
+		margin-top: 70px;
+	}
+	.remould-container .swiper-slide{
+		width: 70%;
+	}
+	.remould-text{
+		width: 70%;
+		margin: 0 auto;
+		display: flex;
+		padding: 15px 0;
+		color: #000;
+	}
+	.remould-text-left{
+		font-size: 16px;
+		margin-right: 60px;
+		font-weight: bold;
+		letter-spacing: 3px;
+	}
+	.remould-text-right p{
+		font-size: 12px;
+		line-height: 20px;
+		text-transform: uppercase;
+		color: #999;
+	}
+	.remould-section2-tit{
+		margin-left: 10%;
+	}
+	.remould-section2-title{
+		color: #000;
+		font-size: 20px;
+		letter-spacing: 2px;
+		font-weight: bold;
+	}
+	.remould-section2-list{
+		display: flex;
+		margin: 25px 0;
+	}
+	.remould-section2-item{
+		margin-right: 20px;
+		color: #999;
+		cursor: pointer;
+	}
+	.remould-section2-item.active{
+		position: relative;
+	}
+	.remould-section2-item.active:after{
+		position: absolute;
+		content: '';
+		width: 90%;
+		height: 2px;
+		background: #000;
+		left: 5%;
+		bottom: -5px;
+	}
+	.remould2-container{
+		padding-left: 10%;
+		display: none;
+	}
+	.remould2-container.active{
+		display: block;
+	}
+	.remould2-container .swiper-slide{
+		width:33%;
+	}
+	.remould2-container .swiper-slide .swiper-img{
+		width: 100%;
+		height: auto;
+		overflow: hidden;
+	}
+	.remould2-container .swiper-slide .swiper-img img{
+		width: 100%;
+		height: auto;
+		transition: all .8s linear;
+	}
+	.remould2-container .swiper-slide:hover .swiper-img img{
+		transform: scale(1.05);
+	}
+	.remould2-text{
+		display: flex;
+		justify-content: space-between;
+		margin: 15px 0 10px;
+	}
+	.remould2-text-left{
+		font-size: 22px;
+		color: #000;
+		position: relative;
+		line-height: 30px;
+	}
+	.remould2-text-left:after{
+		position: absolute;
+		content: '';
+		width: 40px;
+		height: 1px;
+		background: #999;
+		left: 50%;
+		bottom: -5px;
+		transform: translateX(-50%);
+	}
+	.remould2-text-right .h{
+		width: 25px;
+		height: 15px;
+		background-image:url(/static/images/h.png) ;
+		background-size: 25px 15px;
+		display: inline-block;
+		cursor: pointer;
+		background-position: center;
+		background-repeat: no-repeat;
+		outline: none;	
+		padding: 7.5px 10px;
+	}
+	.remould2-text-right span{
+		font-size: 18px;
+		line-height: 30px;
+		color: #999;
+	}
+	.remould-section3{
+		width: 75%;
+		margin: 80px auto;
+	}
+	.remould-section3-tit{
+		font-size: 20px;
+		color: #000;
+		font-weight: 400;
+		letter-spacing: 3px;
+	}
+	.remould-section3-text{
+		font-size: 14px;
+		line-height: 30px;
+		color: #000;
+		margin: 30px 0 0;
+		letter-spacing: 3px;
+	}
+	.remould-section3-bottom{
+		font-size: 14px;
+		line-height: 30px;
+		color: #000;
+		margin: 20px 0 0;
+	}
+	.remould-section3-container{
+		display: flex;
+		justify-content: space-between;
+	}
+	.remould-section3-imgBox{
+		width: 45%;
+		margin-top: 60px;
+	}
+	.remould-section3-img img{
+		width: 100%;
+		height: auto;
+	}
+	.remould-section3-imgText{
+		text-align: center;
+		color: #000;
+		font-size: 14px;
+		margin-top: 15px;
+		line-height: 30px;
+	}
+	.remould-section4{
+		margin: 60px 0;
+		width: 100%;
+	}
+	.remould-section4 img{
+		height: auto;
+		width: 70%;
+	}
+	.remould-section4 .remould-section3-titBox{
+		width: 80%;
+		margin: 40px auto 0;
+	}
+	.remould-section4-img{
+		width: 80%;
+		margin: 50px auto;
+		height: auto;
+	}
+	.remould-section5{
+		width: 85%;
+		margin: 0 auto 80px;
+	}
+	.remould-section5-top{
+		text-align: center;
+		color: #000;
+		font-size: 20px;
+		letter-spacing: 3px;
+	}
+	.remould-section5-top span{
+		width: 50px;
+		height: 60px;
+		margin: 0 5px;
+		display: inline-block;
+		color: #fff;
+		line-height: 60px;
+		text-align: center;
+		font-size: 25px;
+		background-color: #000;
+	}
+	.remould-section5-button{
+		background-color: #dfd2aa;
+		width: 163px;
+		height: 48px;
+		border-bottom: 9px solid #9a9073;
+		margin: 25px auto 35px;
+		cursor: pointer;
+		text-align: center;
+		line-height: 48px;
+		font-weight: bold;
+		letter-spacing: 2px;
+	}
+	.remould-section5-bottom-title{
+		text-align: center;
+		font-weight: bold;
+		letter-spacing: 3px;
+		font-size: 25px;
+	}
+	.remould-section5-bottom-list{
+		height: 340px;
+		overflow: hidden;
+	}
+	.remould-section5-bottom-table {
+		width:100%;
+		/* margin:15px 0; */
+		border:0;
+		white-space: nowrap;
+		animation: 10s wordsLoop linear infinite normal;
+	}
+	.remould-section5-bottom-table,.remould-section5-bottom-table th,.remould-section5-bottom-table td {
+		font-size:14px;
+		text-align:center;
+		padding:10px;
+		border-collapse:collapse;
+	}
+	.remould-section5-bottom-list1 {
+		color:#7a7774;
+		border-top:1px solid #999 ;
+		border-bottom:1px solid #999 ;
+		font-size: 20px;
+		padding: 20px 0;
+		font-size:0.95em;
+		text-align:center;
+		display:flex ;
+		width: 100%;
+		margin-top: 50px;
+	}
+	.remould-section5-bottom-item {
+		width: calc(100% / 6);
+	}
+	.remould-section5-bottom-table tr {
+		border-bottom: 1px dashed   #999;
+		color: #aaa;
+	}
+	.remould-section5-bottom-table td {
+		text-align:center;
+		width: calc(100% / 6);
+	}
+	.remould-section5-bottom-table .color{
+		color: #ed4465;
+	}
+	@keyframes wordsLoop {
+	     0% {
+	             transform: translateY(0%);
+	             -webkit-transform: translateY(0);
+	      }
+	     100% {
+	            transform: translateY(-100%);
+	            -webkit-transform: translateY(-100%);
+	      }
+	}
+	@-webkit-keyframes wordsLoop {
+	     0% {
+	             transform: translateY(0%);
+	             -webkit-transform: translateY(0);
+	      }
+	     100% {
+	            transform: translateY(-100%);
+	            -webkit-transform: translateY(-100%);
+	      }
+	}
+</style>
+<body>
+
+{include file='common/daohang'}
+    <div class="main">
+		<div class="inside-banner">
+		    <div class="banner_img hid_xs" style="background:url(/static/images/remould1.png) no-repeat center center;background-size:cover;"></div>
+		    <div class="banner_img vis_xs" style="background:url(/static/images/remould1.png) no-repeat center center;background-size:cover;"></div>
+		    <div class="banner_zz"></div>
+		    <div class="banner_left"></div>
+		    <div class="banner_right"></div>
+		    <div class="banner_contair">
+		        <div class="inside-banner-heading">
+		            <div class="sub-heading">
+		                <h2 class="inside-banner-title">"老破小"旧房改造</h2>
+		            </div>
+		        </div> 
+		    </div>
+		    <div class="shadows">
+		        <img src="/static/images/common/shadow.png" alt="" class="shadow shadow-left">
+		        <img src="/static/images/common/shadow.png" alt="" class="shadow shadow-right">
+		    </div>
+		</div>
+       <div class="container">
+		   <div class="remould-section1">
+			   <div class="sub-tit">
+					<div class="en">reform</div>
+					<div class="cn">旧屋改造</div>
+					<div class="line"></div>
+			   </div>
+			   <div class="remould-container swiper-container">
+				   <div class="swiper-wrapper">
+					   <div class="swiper-slide">
+						   <img src="/static/images/remould1.png" alt="">
+					   </div>
+					   <div class="swiper-slide">
+						   <img src="/static/images/remould1.png" alt="">
+					   </div>
+					   <div class="swiper-slide">
+							<img src="/static/images/remould1.png" alt="">
+					   </div>
+				   </div>
+				   <div class="banner-switchbutton">
+					   <div class="banner-left">
+						  <span class="realIndex">  </span>
+						  <span>/</span>
+						  <span class="indexLength">  </span>
+					   </div>
+					   <div class="banner-right">
+						   <span class="banner-switchbutton-left"> </span>
+						   <span class="banner-switchbutton-right"> </span>
+						</div>
+				   </div>
+				   <div class="remould-text">
+					   <div class="remould-text-left wow fadeInUp animated">一切为了您的舒适体验</div>
+					   <div class="remould-text-right wow fadeInUp animated">
+						   <p>用量身定制的方式打造更舒适的房间</p>
+						   <p>With A Aailored Way to Create A More Comfortable Room</p>
+					   </div>
+				   </div>
+			   </div>
+		   </div>
+		   <div class="remould-section2">
+			   <div class="remould-section2-tit">
+				   <div class="remould-section2-title">旧家换新颜案例</div>
+				   <div class="remould-section2-list">
+				   		<div class="remould-section2-item active">卧室</div>
+						<div class="remould-section2-item">客厅</div>
+						<div class="remould-section2-item">卧室</div>
+						<div class="remould-section2-item">客厅</div>
+						<div class="remould-section2-item">卧室</div>
+						<div class="remould-section2-item">客厅</div>
+						<div class="remould-section2-item">卧室</div>
+						<div class="remould-section2-item">客厅</div>
+				   </div>
+			   </div>
+			   <div class="remould2-container-list wow fadeInRight animated">
+					<div class="remould2-container swiper-container active">
+					   <div class="swiper-wrapper">
+						   <a href="remould-detail.html" class="swiper-slide">
+							   <div class="swiper-img">
+								   <img src="/static/images/remould10.png" alt="">
+							   </div>
+							   <div class="remould2-text">
+								   <div class="remould2-text-left">
+									   上海-星湖小区
+								   </div>
+								   <div class="remould2-text-right">
+									   <span class="h"></span>
+									   <span class="remould2-text-right-num">58</span>
+								   </div>
+							   </div>
+						   </a>
+						   <a href="remould-detail.html"  class="swiper-slide">
+							   <div class="swiper-img">
+							   		<img src="/static/images/remould23.png" alt="">
+							   </div>
+							   <div class="remould2-text">
+								   <div class="remould2-text-left">
+									   杭州-东湖花苑
+								   </div>
+								   <div class="remould2-text-right">
+									   <span class="h"></span>
+									   <span class="remould2-text-right-num">60</span>
+								   </div>
+							   </div>
+						   </a>
+						   <a href="remould-detail.html"  class="swiper-slide">
+								<div class="swiper-img">
+									<img src="/static/images/remould24.png" alt="">
+								</div>
+								<div class="remould2-text">
+								   <div class="remould2-text-left">
+									   宁波-海蓝花园
+								   </div>
+								   <div class="remould2-text-right">
+									   <span class="h"></span>
+									   <span class="remould2-text-right-num">58</span>
+								   </div>
+								</div>
+						   </a>
+						   <a href="remould-detail.html"  class="swiper-slide">
+								<div class="swiper-img">
+									<img src="/static/images/remould10.png" alt="">
+								</div>
+								<div class="remould2-text">
+								   <div class="remould2-text-left">
+									   上海-星湖小区
+								   </div>
+								   <div class="remould2-text-right">
+									   <span class="h"></span>
+									   <span class="remould2-text-right-num">58</span>
+								   </div>
+								</div>
+						   </a>
+					   </div>
+					</div>
+					<div class="remould2-container swiper-container">
+					   <div class="swiper-wrapper">
+						   <a href="remould-detail.html"  class="swiper-slide">
+								<div class="swiper-img">
+									<img src="/static/images/remould24.png" alt="">
+								</div>
+								<div class="remould2-text">
+								   <div class="remould2-text-left">
+									   宁波-海蓝花园
+								   </div>
+								   <div class="remould2-text-right">
+									   <span class="h"></span>
+									   <span class="remould2-text-right-num">58</span>
+								   </div>
+								</div>
+						   </a>
+					   </div>
+					</div>
+			   </div>
+		   </div>
+		   <div class="remould-section3">
+			   <div class="remould-section3-titBox">
+				   <div class="remould-section3-tit wow fadeInUp animated">
+					老房翻新 旧家换新颜
+				   </div>
+				   <div class="remould-section3-text wow fadeInUp animated">
+					   小王今年30岁，大学毕业就选择留在了宁波，一直奋斗至今，梦想就是能在宁波拥有一套属于自己的房子，去年终于通过努力购置了一套房子，虽然是旧房子，但对小王而言是承载着希望和梦想的居所，俗话说房子可以旧，但生活不能，小王在多方比对之下，选择了宝仕龙，小王直言自己最看重的是设计，而老房改造的关键之处就在于设计，好的设计能让枯木逢春，对于设计的追求让小王选择了宝仕龙，宝仕龙也从客户需求出发，打造出一个让小王满意的家！
+				   </div>
+				   <div class="remould-section3-bottom wow fadeInUp animated">
+					   ——————————   from   宁波的小王
+				   </div>
+			   </div>
+			   <div class="remould-section3-container">
+				   <div class="remould-section3-imgBox">
+					   <div class="remould-section3-img">
+						   <img src="/static/images/remould18.png" alt="">
+					   </div>
+					   <div class="remould-section3-imgText">
+						   改造前
+					   </div>
+				   </div>
+				   <div class="remould-section3-imgBox">
+					   <div class="remould-section3-img">
+						   <img src="/static/images/remould19.png" alt="">
+					   </div>
+					   <div class="remould-section3-imgText">
+						   改造后
+					   </div>
+				   </div>
+			   </div>
+			   
+			</div>
+			<div class="remould-section4">
+				<img src="/static/images/remould100.png" alt="" class="  wow fadeInLeft animated">
+				<div class="remould-section3-titBox">
+				   <div class="remould-section3-tit wow fadeInUp animated">
+						设计理念
+				   </div>
+				   <div class="remould-section3-text wow fadeInUp animated">
+					   宝仕龙定制吊顶采用柔性定制一体化设计，实现空间定制、风格定制、功能定制、色彩定制、尺寸定制等多样个性化定制，完美呈现石膏板任意造型，1:1还原设计效果，将顶上空间与全屋环境和谐统一，相交辉映。
+						<br/>以点定线，以线定面，以面定型，照构而制，宝仕龙定制吊顶不仅是还原设计，更是一种新的艺术，对设计空间的创造性和独特性有极高的造诣，每一方顶都像一副风景，承载着对家的向往，这就是宝仕龙所追求和坚持的意匠精神。
+				   </div>				
+				</div>
+				<img src="/static/images/join303.png" alt="" class="remould-section4-img">
+			</div>
+			<div class="remould-section5">
+				<div class="remould-section5-top">
+					目前仅剩<span>8</span><span>2</span><span>0</span>席
+				</div>
+				<div class="remould-section5-button">马上预约</div>
+				<div class="remould-section5-bottom">
+					<div class="remould-section5-bottom-title">最新申请免费设计业主</div>
+					<ul class="remould-section5-bottom-list1">
+						<li class="remould-section5-bottom-item">姓名</li>
+						<li class="remould-section5-bottom-item">手机号</li>
+						<li class="remould-section5-bottom-item">城市</li>
+						<li class="remould-section5-bottom-item">小区</li>
+						<li class="remould-section5-bottom-item">时间</li>
+						<li class="remould-section5-bottom-item">状态</li>
+					</ul>
+					<div class="remould-section5-bottom-list">
+						<table class="remould-section5-bottom-table">
+							<tr>
+								<td>张女士</td><td>134****2446</td><td>上海</td><td>绿地玉兰</td><td>2019-05-28</td><td class="color">设计状态</td>
+							</tr>
+							<tr>
+								<td>张女士</td><td>134****2446</td><td>上海</td><td>绿地玉兰</td><td>2019-05-28</td><td class="color">设计状态</td>
+							</tr>
+							<tr>
+								<td>张女士</td><td>134****2446</td><td>上海</td><td>绿地玉兰</td><td>2019-05-28</td><td class="color">设计状态</td>
+							</tr>
+							<tr>
+								<td>张女士</td><td>134****2446</td><td>上海</td><td>绿地玉兰</td><td>2019-05-28</td><td class="color">设计状态</td>
+							</tr>
+							<tr>
+								<td>张女士</td><td>134****2446</td><td>上海</td><td>绿地玉兰</td><td>2019-05-28</td><td class="color">设计状态</td>
+							</tr>
+							<tr>
+								<td>张女士</td><td>134****2446</td><td>上海</td><td>绿地玉兰</td><td>2019-05-28</td><td class="color">设计状态</td>
+							</tr>
+							<tr>
+								<td>张女士</td><td>134****2446</td><td>上海</td><td>绿地玉兰</td><td>2019-05-28</td><td class="color">设计状态</td>
+							</tr>
+							<tr>
+								<td>张女士</td><td>134****2446</td><td>上海</td><td>绿地玉兰</td><td>2019-05-28</td><td class="color">设计状态</td>
+							</tr>
+						</table>
+							<table class="remould-section5-bottom-table">
+								<tr>
+									<td>张1女士</td><td>134****2446</td><td>上海</td><td>绿地玉兰</td><td>2019-05-28</td><td class="color">设计状态</td>
+								</tr>
+								<tr>
+									<td>张女士</td><td>134****2446</td><td>上海</td><td>绿地玉兰</td><td>2019-05-28</td><td class="color">设计状态</td>
+								</tr>
+								<tr>
+									<td>张女士</td><td>134****2446</td><td>上海</td><td>绿地玉兰</td><td>2019-05-28</td><td class="color">设计状态</td>
+								</tr>
+								<tr>
+									<td>张女士</td><td>134****2446</td><td>上海</td><td>绿地玉兰</td><td>2019-05-28</td><td class="color">设计状态</td>
+								</tr>
+								<tr>
+									<td>张女士</td><td>134****2446</td><td>上海</td><td>绿地玉兰</td><td>2019-05-28</td><td class="color">设计状态</td>
+								</tr>
+								<tr>
+									<td>张女士</td><td>134****2446</td><td>上海</td><td>绿地玉兰</td><td>2019-05-28</td><td class="color">设计状态</td>
+								</tr>
+								<tr>
+									<td>张女士</td><td>134****2446</td><td>上海</td><td>绿地玉兰</td><td>2019-05-28</td><td class="color">设计状态</td>
+								</tr>
+								<tr>
+									<td>张女士</td><td>134****2446</td><td>上海</td><td>绿地玉兰</td><td>2019-05-28</td><td class="color">设计状态</td>
+								</tr>
+							</table>	
+					</div>
+				</div>
+	   </div>
+
+    </div>
+
+
+		{include file="common/footer"}
+	
+	    <div class="popup-section popup-navigation">
+	        <div class="popup-container">
+	            <div class="navigation-left">
+	                <div class="navigation-item">
+	                    <div class="navigation-span">
+	                        <a href="index.html">
+	                            <span>首页</span>
+	                        </a>
+	                    </div>
+	                </div>
+	                <div class="navigation-item">
+	                    <div class="navigation-span">
+	                        <a href="../application/index/view/index/brand.html">
+	                            <span>走进宝仕龙</span>
+	                        </a>
+	                    </div>
+	                </div>
+	<!--                <div class="navigation-item">
+	                    <div class="navigation-span">
+	                        <a href="brandWitness.html">
+	                            <span>品牌见证</span>
+	                        </a>
+	                    </div>
+	                </div> -->
+	                <div class="navigation-item">
+	                    <div class="navigation-span">
+	                        <a href="../application/index/view/index/eight.html">
+	                            <span>八大空间</span>
+	                        </a>
+	                    </div>
+	                </div>
+	                <div class="navigation-item">
+	                    <div class="navigation-span">
+	                        <a href="live_museum.html">
+	                            <span>百套案例</span>
+	                        </a>
+	                    </div>
+	                </div>
+	                <div class="navigation-item">
+	                    <div class="navigation-span">
+	                        <a href="pos.html">
+	                            <span>大商样板</span>
+	                        </a>
+	                    </div>
+	                </div>
+	                <div class="navigation-item">
+	                    <div class="navigation-span">
+	                        <a href="cooperate-people.html">
+	                            <span>商学院</span>
+	                        </a>
+	                    </div>
+	                </div>
+	                <div class="navigation-item">
+	                    <div class="navigation-span">
+	                        <a href="contact.html">
+	                            <span>联系我们</span>
+	                        </a>
+	                    </div>
+	                </div>
+	                <div class="navigation-item">
+	                    <div class="navigation-span">
+	                        <a href="productSearch.html">
+	                            <span>防伪查询</span>
+	                        </a>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="navigation-right">
+	
+	                <div class="navigation-add">
+	                    <div class="navigation-add-line"></div>
+	                    <div class="address">
+	                        Jl. Duren Tiga Raya No. 33<br>
+	                        Jakarta Selatan - 12760 <br>
+	                        Indonesia
+	                    </div>
+	                    <p></p>
+	                    +62 21 799 1521
+	                    <br>
+	                    +62 21 722 5003
+	                    <br>
+	                    info@prodotti-id.com
+	                    <p></p>
+	                    <div class="socials">
+	                        <div class="icon">
+	                            <a href="javascript:;">
+	                                <img src="/static/images/logo-facebook.svg" alt="">
+	                            </a>
+	                        </div>
+	                        <div class="icon">
+	                            <a href="javascript:;">
+	                                <img src="/static/images/logo-instagram.svg" alt="">
+	                            </a>
+	                        </div>
+	                        <div class="icon">
+	                            <a href="javascript:;">
+	                                <img src="/static/images/logo-youtube.svg" alt="">
+	                            </a>
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="navigation-add">
+	                    <div class="navigation-add-line"></div>
+	                    <div>
+	                        Monday - Friday<br>
+	                        09.00 A.M - 06.00 P.M<br><p></p>
+	                        Saturday - Sunday<br>
+	                        Appointment Only<br>
+	                    </div>
+	                    <div class="navigation-bottom">
+	                        <div class="navigation-bottom-item">
+	                            <a href="javascript:;">
+	                                <span>Privacy & Cookie Policy</span>
+	                            </a>
+	                        </div>
+	                    </div>
+	
+	                </div>
+	
+	            </div>
+	        </div>
+	    </div>
+    <div class="measure-container measure-common">
+    	<div class="measure-tit">免费设计</div>
+    	<div class="measure-tit1">专业设计师1对1家装指导</div>
+    	<form action="" method="" class="measure">
+    		<div class="measure-item">
+    			<label><img src="/static/images/people.png" alt=""></label>
+    			<input class="mul_input" placeholder="您的姓名"> 
+    		</div>
+    		<div class="measure-item">
+    			<label><img src="/static/images/phone.png" alt=""></label>
+    			<input class="mul_input"  placeholder="联系方式"> 
+    		</div>
+    		<div class="measure-item">
+    			<label><img src="/static/images/add.png" alt=""></label>
+    			<input class="mul_input" placeholder="所在楼盘"> 
+    		</div>
+    		<div class="button">
+    			<input type="button" value="立即申请">
+    		</div>
+    	</form>
+    </div>
+
+    <div class="popup-section popup-search">
+
+        <div class="popup-container">
+            <div class="search-form">
+                <input type="text" placeholder="Search for Products, Brands or News" class="input-form" style="width: 0;">
+                <div class="search-result">
+                    <div class="search-result-item"></div>
+                    <div class="search-result-item"></div>
+                    <div class="search-result-item"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="popup-brand">
+        <div class="brand-list">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <div class="slider-image">
+                                <div class="background-image" style="background-image: url('/static/images/brand_swiper_01.jpg')"></div>
+                            </div>
+                            <div class="slider-title">Alexander Lamont</div>
+                            <div class="slider-hr"></div>
+                            <div class="slider-category">Furniture</div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <div class="slider-image">
+                                <div class="background-image" style="background-image: url('/static/images/brand_swiper_02.jpg')"></div>
+                            </div>
+                            <div class="slider-title">Alexander Lamont</div>
+                            <div class="slider-hr"></div>
+                            <div class="slider-category">Furniture</div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <div class="slider-image">
+                                <div class="background-image" style="background-image: url('/static/images/brand_swiper_01.jpg')"></div>
+                            </div>
+                            <div class="slider-title">Alexander Lamont</div>
+                            <div class="slider-hr"></div>
+                            <div class="slider-category">Furniture</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </div>
+    <style>
+    	.tell_consultation_box {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, .5);
+	z-index: 10;
+	display: none;
+}
+
+.tell_consultation_box .tell_consultation {
+	width: 600px;
+	height: 400px;
+	background: #fff;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-left: -300px;
+	margin-top: -180px;
+	padding: 0 35px;
+	position: relative;
+	z-index: 11;
+
+}
+
+.tell_consultation_box .tell_consultation .close_btn {
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	top: 40px;
+	right: 35px;
+	cursor: pointer;
+}
+
+.tell_consultation_box .tell_consultation p {
+	font-size: 16px;
+	line-height: 100px;
+	color: #333;
+	text-align: left;
+}
+
+.tell_consultation_box .tell_consultation .tell_box {
+	width: 100%;
+	height: 58px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-bottom: 6px;
+}
+
+.tell_consultation_box .tell_consultation  input {
+	line-height: 57px;
+	border: none;
+	border-bottom: 1px solid #000;
+	font-size: 12px;
+	width: 320px;
+	margin-right: 36px;
+	outline: none;
+}
+
+.tell_consultation_box .tell_consultation  .tell_submit {
+	width: 190px;
+	line-height: 58px;
+	background: #2c2828;
+	border: none;
+	color: #fff;
+	font-size: 16px;
+	display: inline-block;
+	text-align: center;
+}
+
+.tell_consultation_box .tell_consultation .btn_box {
+	margin-bottom: 6px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.tell_consultation_box .tell_consultation .btn_box span {
+	display: block;
+	width: 246px;
+	line-height: 56px;
+	text-align: center;
+	background: #333333;
+	color: #fff;
+	font-size: 20px;
+	cursor: pointer;
+}
+
+.tell_consultation_box .tell_consultation .btn_box span a {
+	display: block;
+	width: 100%;
+	line-height: 56px;
+	color: #fff;
+	font-size: 20px;
+}
+
+@media only screen and (max-width: 620px) {
+	.tell_consultation_box .tell_consultation {
+		width: 95%;
+		margin-left: -47.5%;
+		padding-top: 5%;
+	}
+	.tell_consultation_box .tell_consultation p {
+		line-height: 34px;
+		padding: 3% 0 5%;
+	}
+	.tell_consultation_box .tell_consultation .btn_box span {
+		width: 45%;
+	}
+}
+    </style>
+    <div class="tell_consultation_box">
+                <div class="tell_consultation">
+                    <img src="/static/images/close_btn.png" class="close_btn">
+                    <form action="">
+                        <p>输入您的电话，我们即刻给您回电</p>
+                        <div class="tell_box">
+                            <input type="text" placeholder="请输入您的姓名">
+                            <input type="text" placeholder="请输入您的电话">
+                        </div>
+                        <div class="tell_box">
+                            <input type="text" placeholder="请输入您的地址">
+                            <a  href="javascript:;" class="tell_submit">我要报名</a>
+                        </div>
+                    </form>
+
+                    <p>您也可直接拨打24小时：400-8877-831 或线上咨询</p>
+                    <div class="btn_box">
+                        <!--<span class="shangqiaobtn">在线咨询</span>-->
+                        <span>
+                            <a href="javascript:;">
+                                qq咨询
+                            </a>
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+    <!--公用-->
+
+    <script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/swiper.min.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/imagesloaded.pkgd.min.js"></script>
+    <script src="js/masonry.pkgd.min.js"></script>
+    <script src="js/classie.js"></script>
+    <script src="js/grid.js"></script>
+    <script src="js/commen.js"></script>
+    <script src="js/iconfont.js"></script>
+	<script src="js/wow.min.js"></script>
+	<script src="js/fixed.js"></script>
+    <script>
+		new WOW().init();
+		
+        var l=$('.remould-container .swiper-slide').length;
+		var left_swiper = new Swiper(".remould-container", {
+			speed: 1000,
+			slidesPerView: 'auto',
+			centeredSlides: true,
+			loop:true,
+			spaceBetween : 60,
+			autoplay: {
+				delay: 5000,
+				stopOnLastSlide: false,
+				disableOnInteraction: false,
+			},
+			navigation: {
+				prevEl: '.banner-switchbutton-left',
+				nextEl: '.banner-switchbutton-right',
+			},
+			pagination: {
+				clickable: true,
+			},
+			on: {
+				slideChangeTransitionStart: function () {
+					$(".realIndex").html((this.realIndex+1));
+					$(".indexLength").html(l);
+				}
+			},
+		})
+		var remould2_swiper = new Swiper(".remould2-container.active", {
+			speed: 1000,
+			slidesPerView: 'auto',
+			spaceBetween : 60,
+			// centeredSlides: true,
+			freeMode: true,
+			pagination: {
+				clickable: true,
+			},
+		})
+		$('.remould-section2-list .remould-section2-item').on('click',function(){
+			var idx=$(this).index();
+			$(this).addClass('active').siblings().removeClass('active');
+			$('.remould2-container-list .remould2-container').eq(idx).addClass('active').siblings().removeClass('active')
+			var remould2_swiper = new Swiper(".remould2-container.active", {
+				speed: 1000,
+				slidesPerView: 'auto',
+				spaceBetween : 60,
+				// centeredSlides: true,
+				freeMode: true,
+				pagination: {
+					clickable: true,
+				},
+			})
+		})
+		$('.remould-section5-button').on('click',function(){
+			$('.tell_consultation_box').css("display","block")
+		})
+		$('.tell_consultation_box .tell_consultation .close_btn').on('click',function(){
+			$('.tell_consultation_box').css("display","none")
+		})
+    </script>
+</body>
+</html>
+
+</html>

@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {include file="common/header"}
+    <title>宝仕龙</title>
+</head>
+<style>
+    .inside-banner .banner_left{position:absolute;width:50%;height:100%;overflow:hidden;right:50%;background:#fff;z-index:10;}
+    .inside-banner .banner_right{position:absolute;left:50%;width:50%;height:100%;overflow:hidden;background:#fff;z-index:10;}
+    .inside-banner.active .banner_left{right:100%;transition:all 0.85s cubic-bezier(1, 0.08, 0.94, 0.71);-webkit-transition:all 0.85s cubic-bezier(1, 0.08, 0.94, 0.71);-moz-transition:all 0.85s cubic-bezier(1, 0.08, 0.94, 0.71);-ms-transition:all 0.85s cubic-bezier(1, 0.08, 0.94, 0.71);-o-transition:all 0.85s cubic-bezier(1, 0.08, 0.94, 0.71);}
+    .inside-banner.active .banner_right{left:100%;transition:all 0.85s cubic-bezier(1, 0.08, 0.94, 0.71);-webkit-transition:all 0.85s cubic-bezier(1, 0.08, 0.94, 0.71);-moz-transition:all 0.85s cubic-bezier(1, 0.08, 0.94, 0.71);-ms-transition:all 0.85s cubic-bezier(1, 0.08, 0.94, 0.71);-o-transition:all 0.85s cubic-bezier(1, 0.08, 0.94, 0.71);}
+    .inside-banner .banner_video {position: absolute;top: 0;width: 100%;height: 100%;}
+    .inside-banner .banner_video video{object-fit:cover;width:100%;height:100%;}
+    .inside-banner {overflow: hidden;position: relative;height: 100vh;}
+    .inside-banner .banner_img{width:100%;height:100%;position:absolute;top:0;left:0;}
+    .inside-banner.active .banner_video,.inside-banner.active .banner_img{transform:scale(1.02);-webkit-transform:scale(1.02);-moz-transform:scale(1.02);-ms-transform:scale(1.02);-o-transform:scale(1.02);transform-origin:center center;transition:all 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);-webkit-transition:all 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);-moz-transition:all 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);-ms-transition:all 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);-o-transition:all 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);}
+    .inside-banner .banner_zz{position:absolute;top:0;width:100%;height:100%;background:linear-gradient(to bottom, rgba(178, 154, 116, 0.25) 10%, rgba(2,130,172,0) 100%);background: -moz-linear-gradient(to bottom, rgba(178, 154, 116, 0.25) 10%, rgba(2,130,172,0) 100%);background: -webkit-linear-gradient(to bottom, rgba(178, 154, 116, 0.25) 10%, rgba(2,130,172,0) 100%);filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3FB29A74',endColorstr='#000099cb',GradientType=0);}
+    /*此样式在移动端时设置为block*/
+    .vis_xs{display:none;}
+    .inside-banner .shadows {position: absolute;z-index: 3;left: 50%;top: 0;bottom: 0;width: 0px;max-width: 320px;border-left: 1px solid #000;border-right: 1px solid #000;opacity: 0;-webkit-transform: translateX(-50%);transform: translateX(-50%);-webkit-transition: opacity .75s,visibility .75s,width .75s;transition: opacity .75s,visibility .75s,width .75s;-webkit-transition-delay: .8s;transition-delay: .8s;pointer-events: none;}
+    .inside-banner.active .shadows {width: 320px;opacity: 0.25;}
+    .inside-banner .shadow {position: absolute;width: 47px;height: 100%;}
+    .inside-banner .shadow.shadow-left {right: 100%;-webkit-transform: scale(-1);transform: scale(-1);}
+    .inside-banner .shadow.shadow-right {left: 100%;}
+    .inside-banner .banner_contair {width: 100%;height: 100%; display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-pack: center;-ms-flex-pack: center;justify-content: center;-webkit-box-align: center;-ms-flex-align: center;align-items: center;}
+    .inside-banner .inside-banner-heading {-webkit-transition:none;transition:none;-webkit-transform:translate3d(0,50px,0);transform:translate3d(0,50px,0)}
+    .inside-banner.active .inside-banner-heading {pointer-events: none;-webkit-transform: translateZ(0);transform: translateZ(0);-webkit-transition: -webkit-transform 1.6s cubic-bezier(.32,.32,0,.99) 0s;transition: -webkit-transform 1.6s cubic-bezier(.32,.32,0,.99) 0s;transition: transform 1.6s cubic-bezier(.32,.32,0,.99) 0s;transition: transform 1.6s cubic-bezier(.32,.32,0,.99) 0s,-webkit-transform 1.6s cubic-bezier(.32,.32,0,.99) 0s;-webkit-transition-delay: 0.85s;transition-delay: 0.85s;display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-orient: vertical;-webkit-box-direction: normal;-ms-flex-direction: column;flex-direction: column;-webkit-box-pack: center;-ms-flex-pack: center;justify-content: center;-webkit-box-align: center;-ms-flex-align: center;align-items: center;}
+    .inside-banner .sub-heading {visibility:hidden;opacity:0;-webkit-transform:translateY(20px);transform:translateY(20px)}
+    .inside-banner.active .sub-heading {color: #fff;display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-orient: vertical;-webkit-box-direction: normal;-ms-flex-direction: column;flex-direction: column;-webkit-box-pack: center;-ms-flex-pack: center;justify-content: center;-webkit-box-align: center;-ms-flex-align: center;align-items: center;opacity: 1;visibility: inherit;-webkit-transition: opacity 1.5s,visibility 1.5s,-webkit-transform 1.5s;transition: opacity 1.5s,visibility 1.5s,-webkit-transform 1.5s;transition: transform 1.5s,opacity 1.5s,visibility 1.5s;transition: transform 1.5s,opacity 1.5s,visibility 1.5s,-webkit-transform 1.5s;-webkit-transition-delay: 0.85s;transition-delay: 0.85s;}
+    .inside-banner-heading h2 {line-height: 80px;}
+    .inside-banner-heading h2.inside-banner-title {font-size: 50px;}
+    .inside-banner-heading h2.inside-banner-title2 {font-size: 25px;}
+
+	.znOne {
+		position: relative;
+		padding-top: 38%;
+		margin-top:30px;
+	}
+	.znOne video, .znOne img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		object-fit: cover;
+	}
+	.abTeam_ico {
+		z-index: 7;
+		background: url(/static/images/btnPlay.png) no-repeat;
+		height: 75px;
+		width: 75px;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		margin: 0 auto;
+		cursor: pointer;
+	}
+	.znList_stop{
+		display: none;
+	}
+	.znList_play.abTeam_ico {
+		background: url(/static/images/stop.png) no-repeat;
+	}
+	.abTeam_ico::before {
+		content: '';
+		position: absolute;
+		background: url(/static/images/btnPlayRo.png);
+		background-size: cover;
+		height: 103px;
+		width: 103px;
+		left: 50%;
+		top: 50%;
+		margin-left: -51.5px;
+		margin-top: -51.5px;
+		cursor: pointer;
+		-webkit-animation: palyAnimate 2s ease infinite;
+		animation: palyAnimate 2s ease infinite;
+	}
+	@keyframes palyAnimate {
+		0% {
+			-webkit-transform: rotate(0deg)
+		}
+
+		100% {
+			-webkit-transform: rotate(360deg)
+		}
+	}
+
+	@-webkit-keyframes palyAnimate {
+		0% {
+			-webkit-transform: rotate(0deg)
+		}
+
+		100% {
+			-webkit-transform: rotate(360deg)
+		}
+	}
+    .cooperation-section {
+    }
+	.inner {width: 80%;margin: 0 auto;max-width: 1520px;}
+	.topshop-content {}
+	.topshop-content * {font-family: SourceHanSansCN;}
+	.topshop-content .topshop-content-inner {padding-bottom: 90px;}
+	.topshop-maincenter {width: 95%;max-width: 1780px;margin: 0 auto;}
+	.topshop-bsl {padding-top: 8vw;}
+	.topshop-bslinner {box-sizing: border-box;display: flex;flex-direction: row}
+	.topshop-bslinner .topshop-bsl-txt {padding: 0 6.8vw;position: relative;flex: 1}
+	.topshop-bslinner .topshop-bsl-txt h2 {font-size: 37px;line-height: 45px;}
+	.topshop-bslinner .topshop-bsl-txt p {font-size: 22px;line-height: 45px;padding-top: 3.125vw;}
+	.topshop-bslinner .topshop-bsl-img {width: 50vw;display: block;padding-right: 6.8vw;box-sizing: content-box}
+
+	.topshop-center {position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);width: calc(100% - 13.6vw);}
+	.topshop-bsl-txt>span {position: absolute;bottom: 0;left: 6.8vw;}
+	.topshop-bsl-swiper {margin-left: 2.5vw;width: 97.5%;}
+	.topshop-bsl-swiper .topshop-bslinner {flex-direction: row-reverse}
+	.topshop-bsl-swiper .topshop-bslinner .topshop-center {width: calc(100% - 20.4vw);
+	
+		left: 6.8vw;transform: translateY(-50%)}
+		.topshop-bslinner .topshop-bsl-txt h3 {
+    font-size: 25px;
+    line-height: 45px;
+    padding-top: 3.125vw;
+    font-weight: 400;
+}
+	.topshop-bsl-swiper .topshop-bslinner .topshop-bsl-img {padding-right: 0;}
+	.topshop-bsl-swiper .topshop-bslinner .topshop-bsl-txt {padding-right: 13.6vw;}
+	.topshop-bsl-swiper .topshop-bsl {width: calc(100% - 7.5vw);}
+	.topshop-swiper-btnbox {
+		position: absolute;
+		z-index: 9;
+		bottom: 1px;
+		right: 10vw;display: flex}
+	.topshop-swiper-btnbox img {
+		margin-left: 20px;cursor: pointer;
+		opacity: 0.3;transition: all .3s ease-in}
+	.topshop-swiper-btnbox img:hover {opacity: 1;}
+	.topshop-swiper-btnbox img.topshop-swiper-btnbox-next {transform: rotate(180deg)}
+	.topshop-footer {margin-left: 10.5vw;margin-right: 0;padding-top: 8vw;}
+	.topshop-footer-inner {display: flex;}
+	.topshop-footer-inner img {width: 50%;}
+	.topshop-footer-inner .topshop-footer-txt {flex: 1;}
+
+	.topshop-footer-txt {padding: 0 5.7vw;box-sizing: border-box}
+	.topshop-footer-txt ul {display: flex;flex-wrap: wrap;
+		position: relative;
+		top: 50%;transform: translateY(-50%);
+		}
+	.topshop-footer-txt ul li{width: 50%;float: left;margin-bottom: 1.865vw;}
+	.topshop-footer-txt ul li:last-child,.topshop-footer-txt ul li:nth-last-child(2){margin-bottom: 0;}
+	.topshop-footer-txt li p{color: #aaaaaa;}
+	.topshop-footer-txt li p:first-child{font-size: 22px;margin-bottom: .1vw;}
+	.topshop-footer-txt li p:last-child{font-size: 24px;color: #666666;}
+	.topshop-footer-txt li p span {font-size: 44px}
+
+	.topshop-history {display: flex;justify-content: space-between;
+		margin-right: 2.5vw;width: 97.5%;}
+	.topshop-history-handle-content {position: relative;display: inline-block;vertical-align: top}
+	.topshop-history-handle-content img{vertical-align: top}
+	.topshop-history-handle-content .topshop-history-handlebox {position: absolute;z-index: 2;top: 0;bottom: 0;left: 0;right: 0;}
+	.topshop-history-handlebox span{width: 20px;height: 20px;background-color: #000000;opacity: .6;cursor: pointer;position: absolute;right: 25%;transition: all .3s ease-in;border-radius: 50%;}
+	.topshop-history-handlebox span:hover{opacity: 1;}
+	.topshop-history-handlebox span:focus {outline: none}
+	.topshop-history-handlebox p {font-size: 36px;color: #c0c0c0;line-height: 64px;position: absolute;right: -8.36%;top: 52.16%;text-transform: uppercase;font-weight: 700}
+	.topshop-history-handlebox i {position: absolute;font-size: 22px;color: #000000;left: 30%;top: 36%;}
+	.topshop-history-handlebox .topshop-history-prev{top: 10.28%;}
+	.topshop-history-handlebox .topshop-history-next{bottom: 10.28%;}
+	.topshop-history .swiper-container{max-width: 40vw;margin: unset;margin-right: 0;
+		height: 60vh;
+		position: relative;
+		top: 37.5vh;transform: translateY(-50%)}
+	.topshop-history .swiper-container .swiper-slide {width: unset;display:flex}
+	.topshop-history .swiper-container .swiper-slide .swiper-slide-img1{width:70%;}
+	.topshop-history .swiper-container .swiper-slide .swiper-slide-img2{width:calc(30% - 5px);margin-left:5px;}
+</style>
+<body>
+
+<div class="header">
+	<div class="header1">
+		<div class="nav-container">
+			<div class="logo"><a href="index.html"><img src="/static/images/common/logo-top-white.png" alt="" width="155"></a></div>
+			<a href="javascript:;">
+				<div class="left-header mshow">
+					<div class="navbar">
+						<span class="nav"></span>
+						<span class="nav"></span>
+						<span class="nav"></span>
+					</div>
+					<div class="search nav-item">
+						<!--<img src="/static/images/icon-search.png" alt="">-->
+						<i class="iconfont icon-iconsearch"></i>
+						<span>SEARCH</span>
+					</div>
+				</div>
+			</a>
+			<a href="javascript:;">
+				<div class="right-header mshow">
+					<div class="nav-item">
+						<a href="../application/index/view/index/eight.html">
+							<i class="iconfont icon-fenlei"></i>
+							<!--<img src="/static/images/icon-brands.png" alt="">-->
+							<span>八大空间</span>
+						</a>
+
+					</div>
+					<div class="nav-item">
+						<a href="/index/index/join.html">
+							<i class="iconfont icon-lock"></i>
+							<!--<img src="/static/images/icon-stock.png" alt="">-->
+							<span>加盟合作</span>
+						</a>
+
+					</div>
+				</div>
+			</a>
+			<div class="nav-item close mhidden">
+				<img src="/static/images/icon-close.png" alt="">
+				<span>CLOSE</span>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="header2">
+		<div class="nav-container">
+			<div class="logo"><a href="index.html"><img src="/static/images/common/logo-top-white.png" alt="" width="155"></a></div>
+			<a href="javascript:;">
+				<div class="left-header mshow">
+					<div class="navbar">
+						<span class="nav"></span>
+						<span class="nav"></span>
+						<span class="nav"></span>
+					</div>
+					<div class="search nav-item">
+						<!--<img src="/static/images/icon-search.png" alt="">-->
+						<i class="iconfont icon-iconsearch"></i>
+						<span>SEARCH</span>
+					</div>
+				</div>
+			</a>
+			<div class="nav_t nav_t1">
+				<ul class="clearfix">
+					<li>
+						<a href="index.html">首页</a>
+					</li>
+					<li>
+						<a href="../application/index/view/index/brand.html">走进宝仕龙</a>
+						<div class="header2-comboBox">
+							<a href="../application/index/view/index/brand.html" class="comboBox-list">走进宝仕龙</a>
+							<a href="../application/index/view/index/brand.html" class="comboBox-list">品牌文化</a>
+							<a href="topshop.html" class="comboBox-list">工厂1号店</a>
+							<a href="museum.html" class="comboBox-list">吊顶博物馆</a>
+						</div>
+					</li>
+					<li>
+						<a href="../application/index/view/index/eight.html">定制生活馆</a>
+						<div class="header2-comboBox">
+							<a href="../application/index/view/index/eight.html" class="comboBox-list">生活DIY</a>
+							<!-- <a href="javascript:;" class="comboBox-list" >设计理念</a> -->
+							<a href="live_museum.html" class="comboBox-list">百套案例</a>
+							<a href="live_museum.html" class="comboBox-list">万城万景</a>
+							<a href="remould.html" class="comboBox-list">旧屋改造</a>
+						</div>
+					</li>
+					<li>
+						<a href="news.html" >新闻中心</a>
+						<div class="header2-comboBox">
+							<a href="news.html"  class="comboBox-list">企业新闻</a>
+							<a href="news.html"  class="comboBox-list">市场新闻</a>
+							<a href="news_video.html" class="comboBox-list">企业视频</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="nav_t nav_t2">
+				<ul class="clearfix">
+					<li>
+						<a href="javascript:;" >品牌见证</a>
+						<div class="header2-comboBox">
+							<a href="brandWitness1.html" class="comboBox-list">设计师</a>
+							<a href="cooperation.html" class="comboBox-list">大咖品推官</a>
+							<a href="say.html" class="comboBox-list">TA有话说</a>
+						</div>
+					</li>
+					<li>
+						<a href="service.html" >服务中心</a>
+						<div class="header2-comboBox">
+							<a href="service.html#customer" class="comboBox-list">客服中心</a>
+							<a href="service.html#need" class="comboBox-list">客户中心</a>
+							<a href="contact.html" class="comboBox-list">我要反馈</a>
+						</div>
+					</li>
+					<li>
+						<a href="join.html" >招商合作</a>
+						<div class="header2-comboBox">
+							<a href="join.html"  class="comboBox-list">加盟共赢</a>
+							<a href="franchisee.html"  class="comboBox-list">加盟流程</a>
+							<a href="cooperate-people.html"  class="comboBox-list">商学院</a>
+							<a href="pos.html"  class="comboBox-list">大商样板</a>
+							<a href="live_grid_sketch.html" class="comboBox-list">大单分享</a>
+						</div>
+					</li>
+					<li>
+						<a href="contact.html" >联系我们</a>
+						<div class="header2-comboBox">
+							<a href="recruit.html"   class="comboBox-list">招贤纳士</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<a href="javascript:;">
+				<div class="right-header mshow">
+					<div class="nav-item">
+						<a href="../application/index/view/index/eight.html">
+							<i class="iconfont icon-fenlei"></i>
+							<!--<img src="/static/images/icon-brands.png" alt="">-->
+							<span>八大空间</span>
+						</a>
+					</div>
+					<div class="nav-item">
+						<a href="join.html">
+							<i class="iconfont icon-lock"></i>
+							<!--<img src="/static/images/icon-stock.png" alt="">-->
+							<span>加盟合作</span>
+						</a>
+					</div>
+				</div>
+			</a>
+			<div class="nav-item close mhidden">
+				<img src="/static/images/icon-close.png" alt="">
+				<span>CLOSE</span>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+    <div class="main">
+        <div class="inside-banner">
+            <div class="banner_img hid_xs" style="background:url(/static/images/topshop/banner-topshop.jpg) no-repeat center center;background-size:cover;"></div>
+            <div class="banner_img vis_xs" style="background:url(/static/images/topshop/banner-topshop.jpg) no-repeat center center;background-size:cover;"></div>
+            <div class="banner_zz"></div>
+            <div class="banner_left"></div>
+            <div class="banner_right"></div>
+            <div class="banner_contair">
+                <div class="inside-banner-heading">
+                    <div class="sub-heading">
+                        <h2 class="inside-banner-title">人·物·居 相融共生</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="shadows">
+                <img src="/static/images/common/shadow.png" alt="" class="shadow shadow-left">
+                <img src="/static/images/common/shadow.png" alt="" class="shadow shadow-right">
+            </div>
+
+        </div>
+        <div class="cooperation-section topshop-content">
+			<div class="topshop-content-inner">
+				<div class="sub-tit wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;margin: 70px auto;">
+					<div class="en">factory</div>
+					<div class="cn">工厂1号店</div>
+				</div>
+				<div class="topshop-video topshop-maincenter">
+					<div class="znOne wow animated1 fadeInUp1">
+						<video autoplay="" loop="" muted="" playsinline="" id="tmkVideo" class="video-sign" preload="auto" src="/static/banners.mp4" poster="/static/images/coo.png">
+							您的浏览器不支持 video 标签。
+						</video>
+						<div class="abTeam_ico znList_stop"></div>
+						<div class="abTeam_ico znList_play"></div>
+					</div>
+				</div>
+				<div class="topshop-bsl topshop-maincenter">
+					<div class="topshop-bslinner">
+						<div class="topshop-bsl-txt wow animated1 fadeInRight">
+							<div class="topshop-center">
+								<h2>宝仕龙</h2>
+								<p>2400㎡的1号工厂店，以国际化视野从企业文化到产品诠释，从搭配方案到风格演绎，将品牌、设计、艺术、生活四个层次进行全方位融合。</p>
+							</div>
+							<span>2020</span>
+						</div>
+
+						<div class="fadeInlefImgBox wow animated">
+							<img src="/static/images/topshop/topshop-bsl.jpg" alt="" class="section1-left-img fadeInlefImg">
+							<div class="fadeInleftImgMask wow animated3s">
+								<div class="wow animated3s"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="topshop-bsl-swiper wow animated1 fadeInDown">
+					<div class="swiper-container">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide topshop-bsl">
+								<div class="topshop-bslinner">
+									<div class="topshop-bsl-txt">
+										<div class="topshop-center">
+											<h2>宝仕龙</h2>
+											<h3>细致的体验</h3>
+											<p>以颠覆行业的高度，细致的让客户全面体验，形成穹顶之下，一方天地，感受宝仕龙对人文文化的深厚造诣和独到理解。</p>
+										</div>
+									</div>
+									<img src="/static/images/topshop/topshop-bsl1.jpg" alt="" class="topshop-bsl-img">
+								</div>
+							</div>
+							<div class="swiper-slide topshop-bsl">
+								<div class="topshop-bslinner">
+									<div class="topshop-bsl-txt">
+										<div class="topshop-center">
+											<h2>宝仕龙</h2>
+											<h3>细致的体验</h3>
+											<p>以颠覆行业的高度，细致的让客户全面体验，形成穹顶之下，一方天地，感受宝仕龙对人文文化的深厚造诣和独到理解。</p>
+										</div>
+									</div>
+									<img src="/static/images/topshop/topshop-bsl1.jpg" alt="" class="topshop-bsl-img">
+								</div>
+							</div>
+						</div>
+						<div class="topshop-swiper-btnbox">
+							<img src="/static/images/topshop/topshop-swiper-btn.png" class="topshop-swiper-btnbox-prev" alt="">
+							<img src="/static/images/topshop/topshop-swiper-btn.png" class="topshop-swiper-btnbox-next" alt="">
+						</div>
+					</div>
+				</div>
+				<div class="topshop-history topshop-bsl">
+					<div class="topshop-history-handle-content wow animated1 fadeInRight">
+						<img src="/static/images/topshop/topshop-ty.png"style="height: 75vh;" alt="">
+						<div class="topshop-history-handlebox">
+							<i>2020</i>
+							<p>Factory shop <br>one</p>
+							<span class="topshop-history-prev"></span>
+							<span class="topshop-history-next"></span>
+						</div>
+					</div>
+
+					<div class="swiper-container fadeInlefImgBox wow animated">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide">
+								<div class="swiper-slide-img1">
+									<img src="/static/images/topshop/topshop-bsl2.jpg" alt="" />
+								</div>
+								<div class="swiper-slide-img2">
+									<img src="/static/images/topshop/topshop-bsl3.jpg" alt="" />
+								</div>
+								
+							</div>
+							<!--<div class="swiper-slide"></div>-->
+						</div>
+						<div class="fadeInleftImgMask wow animated3s">
+							<div class="wow animated3s"></div>
+						</div>
+					</div>
+				</div>
+				<div class="topshop-footer wow animated1 fadeInUp1">
+					<div class="topshop-footer-inner">
+						<div class="fadeInlefImgBox wow animated">
+							<img src="/static/images/topshop/topshop-footer.jpg" alt="" class="section1-left-img fadeInlefImg" style="width: 100%;">
+							<div class="fadeInleftImgMask wow animated3s">
+								<div class="wow animated3s"></div>
+							</div>
+						</div>
+						<div class="topshop-footer-txt">
+							<ul>
+								<li>
+									<p>智能产业园</p>
+									<p><span class="num1">68000</span>m²</p>
+								</li>
+								<li>
+									<p>品牌荣誉</p>
+									<p><span class="num2">214</span>项</p>
+								</li>
+								<li>
+									<p>柔性定制生产线</p>
+									<p><span class="num3">3000</span>条</p>
+								</li>
+								<li>
+									<p>专利技术</p>
+									<p><span class="num4">319</span>项</p>
+								</li>
+								<li>
+									<p>全国网点分布</p>
+									<p><span class="num5">653</span>家</p>
+								</li>
+								<li>
+									<p>定制软件·神工系统</p>
+									<p><span class="num6">500</span>万</p>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+        </div>
+    </div>
+
+    <div class="measure-container measure-common">
+    	<div class="measure-tit">免费设计</div>
+    	<div class="measure-tit1">专业设计师1对1家装指导</div>
+    	<form action="" method="" class="measure">
+    		<div class="measure-item">
+    			<label><img src="/static/images/people.png" alt=""></label>
+    			<input class="mul_input" placeholder="您的姓名"> 
+    		</div>
+    		<div class="measure-item">
+    			<label><img src="/static/images/phone.png" alt=""></label>
+    			<input class="mul_input"  placeholder="联系方式"> 
+    		</div>
+    		<div class="measure-item">
+    			<label><img src="/static/images/add.png" alt=""></label>
+    			<input class="mul_input" placeholder="所在楼盘"> 
+    		</div>
+    		<div class="button">
+    			<input type="button" value="立即申请">
+    		</div>
+    	</form>
+    </div>
+
+
+    <!--公用-->
+    {include file='common/footer'}
+    
+	<div class="popup-section popup-navigation">
+            <div class="popup-container">
+                <div class="navigation-left">
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="index.html">
+                                <span>首页</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="../application/index/view/index/brand.html">
+                                <span>走进宝仕龙</span>
+                            </a>
+                        </div>
+                    </div>
+    <!--                <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="brandWitness.html">
+                                <span>品牌见证</span>
+                            </a>
+                        </div>
+                    </div> -->
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="../application/index/view/index/eight.html">
+                                <span>八大空间</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="live_museum.html">
+                                <span>百套案例</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="pos.html">
+                                <span>大商样板</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="cooperate-people.html">
+                                <span>商学院</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="contact.html">
+                                <span>联系我们</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="productSearch.html">
+                                <span>防伪查询</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="navigation-right">
+    
+                    <div class="navigation-add">
+                        <div class="navigation-add-line"></div>
+                        <div class="address">
+                            Jl. Duren Tiga Raya No. 33<br>
+                            Jakarta Selatan - 12760 <br>
+                            Indonesia
+                        </div>
+                        <p></p>
+                        +62 21 799 1521
+                        <br>
+                        +62 21 722 5003
+                        <br>
+                        info@prodotti-id.com
+                        <p></p>
+                        <div class="socials">
+                            <div class="icon">
+                                <a href="javascript:;">
+                                    <img src="/static/images/logo-facebook.svg" alt="">
+                                </a>
+                            </div>
+                            <div class="icon">
+                                <a href="javascript:;">
+                                    <img src="/static/images/logo-instagram.svg" alt="">
+                                </a>
+                            </div>
+                            <div class="icon">
+                                <a href="javascript:;">
+                                    <img src="/static/images/logo-youtube.svg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="navigation-add">
+                        <div class="navigation-add-line"></div>
+                        <div>
+                            Monday - Friday<br>
+                            09.00 A.M - 06.00 P.M<br><p></p>
+                            Saturday - Sunday<br>
+                            Appointment Only<br>
+                        </div>
+                        <div class="navigation-bottom">
+                            <div class="navigation-bottom-item">
+                                <a href="javascript:;">
+                                    <span>Privacy & Cookie Policy</span>
+                                </a>
+                            </div>
+                        </div>
+    
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+    <div class="popup-section popup-search">
+
+        <div class="popup-container">
+            <div class="search-form">
+                <input type="text" placeholder="Search for Products, Brands or News" class="input-form" style="width: 0;">
+                <div class="search-result">
+                    <div class="search-result-item"></div>
+                    <div class="search-result-item"></div>
+                    <div class="search-result-item"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="popup-brand">
+        <div class="brand-list">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <div class="slider-image">
+                                <div class="background-image" style="background-image: url('images/brand_swiper_01.jpg')"></div>
+                            </div>
+                            <div class="slider-title">Alexander Lamont</div>
+                            <div class="slider-hr"></div>
+                            <div class="slider-category">Furniture</div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <div class="slider-image">
+                                <div class="background-image" style="background-image: url('images/brand_swiper_02.jpg')"></div>
+                            </div>
+                            <div class="slider-title">Alexander Lamont</div>
+                            <div class="slider-hr"></div>
+                            <div class="slider-category">Furniture</div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <div class="slider-image">
+                                <div class="background-image" style="background-image: url('images/brand_swiper_01.jpg')"></div>
+                            </div>
+                            <div class="slider-title">Alexander Lamont</div>
+                            <div class="slider-hr"></div>
+                            <div class="slider-category">Furniture</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </div>
+    <!--公用-->
+
+
+    <script>
+		(function ($) {
+			$.fn.numberRock = function (options) {
+				var defaults = {speed: 1000, count: 100};
+				var opts = $.extend({}, defaults, options);
+				var div_by = 100, count = opts["count"], speed = Math.floor(count / div_by), sum = 0, $display = this,
+						run_count = 1, int_speed = opts["speed"];
+				var int = setInterval(function () {
+					if (run_count <= div_by && speed != 0) {
+						$display.text(sum = speed * run_count);
+						run_count++;
+					} else if (sum < count) {
+						$display.text(++sum);
+					} else {
+						clearInterval(int);
+					}
+				}, int_speed);
+			}
+		})(jQuery);
+		new WOW().init();
+		
+        $('.inside-banner').height($(window).height())
+        $(function () {
+            if(true){
+                $('.inside-banner').addClass('active')
+            }
+        })
+		$('.abTeam_ico').on('click',function(){
+			if($('.znList_stop').css("display")=='none'){
+				$('.znList_stop').css("display","block");
+				$('.znList_play').css("display","none");
+				$('#tmkVideo')[0].pause();
+			}else if($('.znList_play').css("display")=='none'){
+				$('.znList_stop').css("display","none");
+				$('.znList_play').css("display","block");
+				$('#tmkVideo')[0].play();
+			}
+		})
+
+		var topshop_swiper = new Swiper(".topshop-bsl-swiper .swiper-container", {
+			speed: 1000,
+			slidesPerView: 'auto',
+			// autoplay:true,
+			loop:true,
+			navigation: {
+				nextEl: '.topshop-swiper-btnbox .topshop-swiper-btnbox-next',
+				prevEl: '.topshop-swiper-btnbox .topshop-swiper-btnbox-prev',
+			},
+		});
+		var topshop_hisswiper = new Swiper(".topshop-history .swiper-container", {
+			speed: 1000,
+			slidesPerView: '1',
+			// autoplay:true,
+			loop:true,
+			navigation: {
+				nextEl: '.topshop-history .topshop-history-next',
+				prevEl: '.topshop-history .topshop-history-prev',
+			},
+		});
+
+		var l=$('.znList_thr-container .swiper-slide').length;
+		var left_swiper = new Swiper(".znList_thr-container", {
+			speed: 1000,
+			slidesPerView: '1',
+			loop:true,
+			spaceBetween : 40,
+			navigation: {
+				prevEl: '.banner-switchbutton-left',
+				nextEl: '.banner-switchbutton-right',
+			},
+			pagination: {
+				clickable: true,
+			},
+			on: {
+				slideChangeTransitionStart: function () {
+					$(".realIndex").html("0"+(this.realIndex+1));
+					$(".indexLength").html("0"+l);				
+				}
+			},
+		});
+		var target=true;
+		$(window).scroll(function(){
+			if((($('.topshop-footer').offset().top - $(document).scrollTop())<$(window).height())&&target){
+				target=false;
+				$(".num1").numberRock({
+					speed:10,
+					count:68000
+				})
+				$(".num2").numberRock({
+					speed:10,
+					count:314
+				})
+				$(".num3").numberRock({
+					speed:10,
+					count:3000
+				})
+				$(".num4").numberRock({
+					speed:10,
+					count:319
+				})
+				$(".num5").numberRock({
+					speed:10,
+					count:653
+				})
+				$(".num6").numberRock({
+					speed:10,
+					count:500
+				})
+			}
+		})
+
+    </script>
+</body>
+</html>

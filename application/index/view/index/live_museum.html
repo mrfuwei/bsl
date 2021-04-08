@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{include file="common/header"}
+    <title>宝仕龙</title>
+
+</head>
+<style>
+
+    .live-banner {height: 100vh;}
+    .live-banner .live-container {position: relative;height: 100%;}
+    .live-banner .live-bg {position: absolute;background-size: cover;background-repeat: no-repeat;background-position: center center;}
+    .live-banner .live-bg1 {top: 0;left: 0;width: 30%;height: 35%;background-image: url("/static/images/inside/live-museum/live-bg01.jpg")}
+    .live-banner .live-bg2 {top: 35%;left: 0;width: 30%;height: 65%;background-image: url("/static/images/inside/live-museum/live-bg02.jpg")}
+    .live-banner .live-bg3 {top: 0%;left: 30%;width: 70%;height: 65%;background-image: url("/static/images/inside/live-museum/live-bg03.jpg")}
+    .live-banner .live-bg4 {top: 65%;left: 30%;width: 70%;height: 35%;background-image: url("/static/images/inside/live-museum/live-bg04.jpg")}
+    .live-banner .live-bg2 p {color: #ffffff;font-size: 20px;letter-spacing: 3px;position: absolute;right: 53px;bottom: 53px;cursor: pointer;}
+    .live-banner .live-bg2 i {font-size: 20px;vertical-align: middle;}
+    .live-banner h2 {position: absolute;top: 50%;left: 50%;font-size: 40px;color: #ffffff;font-weight: 100;letter-spacing: 60px;transform: translate(-50%,-50%);width: 100%;text-align: center;}
+    .live-banner .live-bg:before { content:''; display:block; position:absolute; top:0; left:0; width:0%; height:100%; background:rgba(0,0,0,0.5);}
+    .live-banner .live-bg:after { content:''; display:block; position:absolute; top:0; left:0; width:0%; height:100%; background:#fff;}
+    .live-banner.on .live-bg1:before { animation:sec01_1 .9s ease-in-out .3s both;}
+    .live-banner.on .live-bg1:after { animation:sec01_1 1s ease-in-out both;}
+    .live-banner.on .live-bg2:before { animation:sec01_1 .9s ease-in-out .5s both;}
+    .live-banner.on .live-bg2:after { animation:sec01_1 1s ease-in-out .2s both;}
+    .live-banner.on .live-bg3:before { animation:sec01_1 .9s ease-in-out .4s both;}
+    .live-banner.on .live-bg3:after { animation:sec01_1 1s ease-in-out .1s both;}
+    .live-banner.on .live-bg4:before { animation:sec01_1 .9s ease-in-out .6s both;}
+    .live-banner.on .live-bg4:after { animation:sec01_1 1s ease-in-out .3s both;}
+
+    @keyframes sec01_1 {
+        0% {left:0; width:100%;}
+        100% {left:100%; width:0%;}
+    }
+    @keyframes sec01_2 {
+        0% { transform:scale(1) rotate(0deg);}
+        100% { transform:scale(1.05) rotate(.001deg)}
+    }
+
+    .live-S {padding: 100px 0;}
+    .live-S-inner {width: 100%;margin: 0 auto}
+    .live-titbox {}
+    .live-titbox h2 {color: #000000;line-height: 1;}
+    .live-titbox h2.en {font-size: 26px;margin-bottom: 20px;}
+    .live-titbox h2.cn {font-size: 18px;}
+    .live-more {margin: 35px 0;padding: 12px 0;overflow: hidden;width: 200px;border: 1px solid #eeeeee;display: block;color: #000000;}
+    .live-more span {float: left;font-size: 12px;margin-left: 25px;}
+    .live-more i {float: right;margin-right: 25px}
+    .live-S-mian {display: flex;flex-direction: row;padding:80px 60px;}
+	.live-S-mian-right{width: 100%;overflow: hidden;}
+	.live-S-mian-right-box{width: 100%;overflow: hidden;}
+    .live-S-mian .live-S-mian-item {width: calc((100% - 40px) / 3);margin-right: 20px;margin-bottom:40px;float: left;}
+	.live-S-mian .live-S-mian-item:nth-child(3n){margin-right: 0px;}
+	.live-S-item-img{overflow: hidden;}
+    .live-S-item-img img {width: 100%;height: auto;vertical-align: top;-webkit-transition: all 600ms ease-in-out;-moz-transition: all 600ms ease-in-out;-ms-transition: all 600ms ease-in-out;-o-transition: all 600ms ease-in-out;transition: all 600ms ease-in-out;}
+    .live-S-item-img img:hover {transform: scale(1.1)}
+    .live-S-item-info {padding: 10px 0px}
+    .live-S-item-info .tit {display: flex;justify-content: space-between;line-height: 1;font-size: 14px;}
+    .live-S-item-info .tit .type {color: #000;font-weight: bold}
+    .live-S-item-info .tit .icon {width: 15px;margin-left: 10px;
+		height: 15px;
+		background-image:url(/static/images/y.png) ;
+		background-size: 15px auto;
+		display: inline-block;
+		cursor: pointer;
+		background-position: center center;
+		background-repeat: no-repeat;
+		outline: none;	
+		padding: 7.5px 10px;}
+		.live-S-item-info .tit .icon.icon1 {
+			background-image:url(/static/images/h.png) ;
+		}
+		.live-S-item-info .tit .icon.icon2 {;
+			background-image:url(/static/images/q.png) ;
+		}
+    .live-S-item-info .item-con {line-height: 1;font-size: 12px;}
+    .live-S-item-info .item-con-item {display: flex;margin-bottom: 10px}
+    .live-S-item-info .item-con-item .item-k {color: #000000;font-weight: bold;}
+    .live-S-item-info .item-con-item .item-value {}
+    .live-S-text{
+		text-align: center;
+		font-size: 14px;
+		letter-spacing: 3px;
+		color: #000;
+		margin-top: 30px;
+	}
+.filter-product {
+    width: 233px;
+    padding-right: 10px;
+	display: inline-block;
+	vertical-align: top;
+}
+.filter-product .item {
+    margin-bottom: 22px;
+}
+.filter-product span {
+    font-family: "CenturyGothicBold";
+    display: block;
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 26px;
+    color: #333;
+    text-transform: uppercase;
+	font-weight: bold;
+}
+.filter-product .check-label {
+    margin-bottom: 4px;
+	/* display: none; */
+}
+/* .filter-product .item.show .check-label {
+    display: block;
+} */
+.check-label label {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+}
+.check-label label i {
+    display: block;
+    width: 12px;
+    height: 12px;
+    background-color: #dcdcdc;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -6px;
+}
+.check-label label i:after {
+    transition: all .4s ease;
+    content: "";
+    opacity: 0;
+    visibility: hidden;
+    display: block;
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    background-color: #000;
+}
+.check-label input:checked + label i:after {
+    opacity: 1;
+    visibility: visible;
+}
+.check-label label i {
+    top: 7px;
+    margin-top: 0;
+}
+.check-label p {
+    font-size: 14px;
+    line-height: 26px;
+    color: #666;
+	text-transform: uppercase;
+}
+.filter-product .check-label p {
+    padding-left: 30px;
+}
+.check-label input {
+    display: none;
+}
+.item span:nth-child(1) {
+  cursor: pointer;
+}
+.item.check-label-none  {
+  height: 26px;
+}
+ul.pagination {
+		display: flex;
+		justify-content: center;
+		padding: 80px 0;
+	}
+	
+	ul.pagination li {display: inline;}
+	
+	ul.pagination li a {
+	    color: black;
+	    float: left;
+		width:60px;
+		height: 30px;
+		color: #000;
+		font-size: 12px;
+	    /* padding: 8px 16px; */
+	    text-decoration: none;
+		padding: 0;
+		text-align: center;
+		line-height: 27px;
+		background-color: #e5e5e5;
+	}
+</style>
+<body>
+
+{include file='common/daohang'}
+    <div class="main">
+
+        <div class="live-banner">
+            <div class="live-container">
+                <div class="live-bg live-bg1"></div>
+                <div class="live-bg live-bg2">
+                    <!--<p>形象厅 <i class="iconfont icon-right"></i></p>-->
+                </div>
+                <div class="live-bg live-bg3"></div>
+                <div class="live-bg live-bg4"></div>
+                <h2>人·物·居  相融共生</h2>
+            </div>
+        </div>
+
+        <div class="live-sketch live-S">
+            <div class="live-S-inner">
+
+                <div class="sub-tit">
+					<div class="en">design sketch</div>
+					<div class="cn">百套效果图</div>
+					<div class="line"></div>
+                </div>
+                <div class="live-S-text">
+					意从心，匠从手，自然生态与城市文明，顶上空间与全屋环境和谐统一，交相辉映
+				</div>
+                <div class="live-S-mian">
+					<div class="filter-product">
+						<form action="" >
+							<div class="box">		
+								<div class="item">
+									<span>类别</span>
+									<div class="check-label">
+										<input type="radio" id="a99" value="" name="f1" checked="">
+										<label for="a99">
+											<a href="javascript:;">
+											<i></i>
+											<p>
+												所有
+											</p>
+											</a>
+										</label>
+									</div>
+									<div class="check-label">
+										<input type="radio" id="a37" value="37" name="f1">
+										<label for="a37">
+											<i></i>
+											<p>
+												住宅
+											</p>
+										</label>
+									</div>
+									<div class="check-label">
+										<input type="radio" id="a38" value="38" name="f1">
+										<label for="a38">
+											<i></i>
+											<p>
+												商业
+											</p>
+										</label>
+									</div>
+								</div>	
+								<div class="item">
+                  <span class="item-span">空间</span>
+                  <div class="item-child">
+                    <div class="check-label">
+                      <input type="radio" id="a991" value="991" name="f1">
+                      <label for="a991">
+                        <i></i>
+                        <p>
+                          Living room <br> |客厅|
+                        </p>
+                      </label>
+                    </div>
+                    <div class="check-label">
+                      <input type="radio" id="a371" value="371" name="f1">
+                      <label for="a371">
+                        <i></i>
+                        <p>
+							Restaurant <br> |餐厅|
+                        </p>
+                      </label>
+                    </div>
+                    <div class="check-label">
+                      <input type="radio" id="a381" value="381" name="f1">
+                      <label for="a381">
+                        <i></i>
+                        <p>
+							Kitchen <br> |厨房|
+                        </p>
+                      </label>
+                    </div>
+                    <div class="check-label">
+                      <input type="radio" id="a992" value="992" name="f1">
+                      <label for="a992">
+                        <i></i>
+                        <p>
+							Bathroom <br> |卫浴|
+                        </p>
+                      </label>
+                    </div>
+                    <div class="check-label">
+                      <input type="radio" id="a993" value="993" name="f1">
+                      <label for="a993">
+                        <i></i>
+                        <p>
+							Bedroom <br> |卧室|
+                        </p>
+                      </label>
+                    </div>
+                    <div class="check-label">
+                      <input type="radio" id="a372" value="372" name="f1">
+                      <label for="a372">
+                        <i></i>
+                        <p>
+                          Study room <br> |书房|
+                        </p>
+                      </label>
+                    </div>
+					  <div class="check-label">
+						  <input type="radio" id="a382" value="382" name="f1">
+						  <label for="a382">
+							  <i></i>
+							  <p>
+								  Aisle<br> |过道|
+							  </p>
+						  </label>
+					  </div>
+					  <div class="check-label">
+						  <input type="radio" id="a3812" value="3812" name="f1">
+						  <label for="a3812">
+							  <i></i>
+							  <p>
+								  Balcony<br> |阳台|
+							  </p>
+						  </label>
+					  </div>
+                  </div>
+								</div>
+								<div class="item">
+									<span>产品</span>
+								</div>	
+								<div class="item">
+									<span>公装</span>
+								</div>	
+								<div class="item">
+									<span>改造</span>
+								</div>	
+								<div class="item">
+									<span>新品</span>
+								</div>
+								<div class="item">
+									<span>风格</span>
+								</div>
+								<!--<div class="item">-->
+								<!--	<span>风格</span>-->
+								<!--</div>-->
+							</div>															
+						</form>
+					</div>
+					<div class="live-S-mian-right">
+						<div class="live-S-mian-right-box">
+							<div class="live-S-mian-item">
+						    <div class="live-S-item-img">
+						        <img src="/static/images/1.jpg" alt="">
+						    </div>
+						    <div class="live-S-item-info">
+						        <div class="tit">
+									<div class="type">全屋</div>
+									<div class="iconBox"><span class="icon"></span><span class="num1">58</span><span class="icon1 icon"></span><span class="num1 num2">58</span><span class="icon2 icon"></span><span class="num1 num3">58</span></div>	
+								</div>
+						    </div>
+						</div>
+							<div class="live-S-mian-item">
+							    <div class="live-S-item-img">
+							        <img src="/static/images/2.jpg" alt="">
+							    </div>
+							    <div class="live-S-item-info">
+							        <div class="tit">
+										<div class="type">全屋</div>
+										<div class="iconBox"><span class="icon"></span><span class="num1">58</span><span class="icon1 icon"></span><span class="num1 num2">58</span><span class="icon2 icon"></span><span class="num1 num3">58</span></div>	
+									</div>
+							    </div>
+							</div>
+							<div class="live-S-mian-item">
+							    <div class="live-S-item-img">
+							        <img src="/static/images/3.jpg" alt="">
+							    </div>
+							    <div class="live-S-item-info">
+							        <div class="tit">
+										<div class="type">全屋</div>
+										<div class="iconBox"><span class="icon"></span><span class="num1">58</span><span class="icon1 icon"></span><span class="num1 num2">58</span><span class="icon2 icon"></span><span class="num1 num3">58</span></div>	
+									</div>
+							    </div>
+							</div>
+							<div class="live-S-mian-item">
+							    <div class="live-S-item-img">
+							        <img src="/static/images/4.jpg" alt="">
+							    </div>
+							    <div class="live-S-item-info">
+							        <div class="tit">
+										<div class="type">全屋</div>
+										<div class="iconBox"><span class="icon"></span><span class="num1">58</span><span class="icon1 icon"></span><span class="num1 num2">58</span><span class="icon2 icon"></span><span class="num1 num3">58</span></div>	
+									</div>
+							    </div>
+							</div>
+							<div class="live-S-mian-item">
+							    <div class="live-S-item-img">
+							        <img src="/static/images/5.jpg" alt="">
+							    </div>
+							    <div class="live-S-item-info">
+							        <div class="tit">
+										<div class="type">全屋</div>
+										<div class="iconBox"><span class="icon"></span><span class="num1">58</span><span class="icon1 icon"></span><span class="num1 num2">58</span><span class="icon2 icon"></span><span class="num1 num3">58</span></div>	
+									</div>
+							    </div>
+							</div>
+							<div class="live-S-mian-item">
+							    <div class="live-S-item-img">
+							        <img src="/static/images/6.jpg" alt="">
+							    </div>
+							    <div class="live-S-item-info">
+							        <div class="tit">
+										<div class="type">全屋</div>
+										<div class="iconBox"><span class="icon"></span><span class="num1">58</span><span class="icon1 icon"></span><span class="num1 num2">58</span><span class="icon2 icon"></span><span class="num1 num3">58</span></div>	
+									</div>
+							    </div>
+							</div>
+						</div>
+						<div class="pagination-box">
+							<ul class="pagination">
+							  <li><a href="#">首页</a></li>
+							  <li><a href="#">上一页</a></li>
+							  <li><a href="#">1</a></li>
+							  <li><a class="active" href="#">2</a></li>
+							  <li><a href="#">3</a></li>
+							  <li><a href="#">4</a></li>
+							  <li><a href="#">下一页</a></li>
+							  <li><a href="#">末页</a></li>
+							</ul>
+						</div>
+					</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="measure-container measure-common">
+    	<div class="measure-tit">免费设计</div>
+    	<div class="measure-tit1">专业设计师1对1家装指导</div>
+    	<form action="" method="" class="measure">
+    		<div class="measure-item">
+    			<label><img src="/static/images/people.png" alt=""></label>
+    			<input class="mul_input" placeholder="您的姓名"> 
+    		</div>
+    		<div class="measure-item">
+    			<label><img src="/static/images/phone.png" alt=""></label>
+    			<input class="mul_input"  placeholder="联系方式"> 
+    		</div>
+    		<div class="measure-item">
+    			<label><img src="/static/images/add.png" alt=""></label>
+    			<input class="mul_input" placeholder="所在楼盘"> 
+    		</div>
+    		<div class="button">
+    			<input type="button" value="立即申请">
+    		</div>
+    	</form>
+    </div>
+{include file="common/footer"}
+    
+        <div class="popup-section popup-navigation">
+            <div class="popup-container">
+                <div class="navigation-left">
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="index.html">
+                                <span>首页</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="../application/index/view/index/brand.html">
+                                <span>走进宝仕龙</span>
+                            </a>
+                        </div>
+                    </div>
+    <!--                <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="brandWitness.html">
+                                <span>品牌见证</span>
+                            </a>
+                        </div>
+                    </div> -->
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="../application/index/view/index/eight.html">
+                                <span>八大空间</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="live_museum.html">
+                                <span>百套案例</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="pos.html">
+                                <span>大商样板</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="cooperate-people.html">
+                                <span>商学院</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="contact.html">
+                                <span>联系我们</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="productSearch.html">
+                                <span>防伪查询</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="navigation-right">
+    
+                    <div class="navigation-add">
+                        <div class="navigation-add-line"></div>
+                        <div class="address">
+                            Jl. Duren Tiga Raya No. 33<br>
+                            Jakarta Selatan - 12760 <br>
+                            Indonesia
+                        </div>
+                        <p></p>
+                        +62 21 799 1521
+                        <br>
+                        +62 21 722 5003
+                        <br>
+                        info@prodotti-id.com
+                        <p></p>
+                        <div class="socials">
+                            <div class="icon">
+                                <a href="javascript:;">
+                                    <img src="/static/images/logo-facebook.svg" alt="">
+                                </a>
+                            </div>
+                            <div class="icon">
+                                <a href="javascript:;">
+                                    <img src="/static/images/logo-instagram.svg" alt="">
+                                </a>
+                            </div>
+                            <div class="icon">
+                                <a href="javascript:;">
+                                    <img src="/static/images/logo-youtube.svg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="navigation-add">
+                        <div class="navigation-add-line"></div>
+                        <div>
+                            Monday - Friday<br>
+                            09.00 A.M - 06.00 P.M<br><p></p>
+                            Saturday - Sunday<br>
+                            Appointment Only<br>
+                        </div>
+                        <div class="navigation-bottom">
+                            <div class="navigation-bottom-item">
+                                <a href="javascript:;">
+                                    <span>Privacy & Cookie Policy</span>
+                                </a>
+                            </div>
+                        </div>
+    
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+    <div class="popup-section popup-search">
+
+        <div class="popup-container">
+            <div class="search-form">
+                <input type="text" placeholder="Search for Products, Brands or News" class="input-form" style="width: 0;">
+                <div class="search-result">
+                    <div class="search-result-item"></div>
+                    <div class="search-result-item"></div>
+                    <div class="search-result-item"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="popup-brand">
+        <div class="brand-list">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <div class="slider-image">
+                                <div class="background-image" style="background-image: url('/static/images/brand_swiper_01.jpg')"></div>
+                            </div>
+                            <div class="slider-title">Alexander Lamont</div>
+                            <div class="slider-hr"></div>
+                            <div class="slider-category">Furniture</div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <div class="slider-image">
+                                <div class="background-image" style="background-image: url('/static/images/brand_swiper_02.jpg')"></div>
+                            </div>
+                            <div class="slider-title">Alexander Lamont</div>
+                            <div class="slider-hr"></div>
+                            <div class="slider-category">Furniture</div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <div class="slider-image">
+                                <div class="background-image" style="background-image: url('/static/images/brand_swiper_01.jpg')"></div>
+                            </div>
+                            <div class="slider-title">Alexander Lamont</div>
+                            <div class="slider-hr"></div>
+                            <div class="slider-category">Furniture</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </div>
+    <!--公用-->
+
+
+    <script>
+    $(function () {
+			$('.live-banner').addClass('on')
+      // 点击 item 标题 隐藏 子标题
+      $('.item-span').on('click',function(){
+        $(this).next('.item-child').slideToggle(800)
+      })
+		})
+    $('.item-span').on('click',function(){
+      // if($(this).parent('.item').has('show')){
+      //   $(this).parent('.item').removeClass('show')
+      // }else{
+      //   console.log(1111)
+      //   $(this).parent('.item').addClass('show')
+      // }
+    })
+    </script>
+</body>
+</html>
