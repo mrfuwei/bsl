@@ -1,0 +1,136 @@
+﻿<!doctype html>
+<html>
+<head>
+    {include file="common/header"}
+    <style>
+        #version_update {
+            background: #62b5d7;
+        }
+        table tr td{
+            border:1px solid white;
+            white-space: nowrap;/*控制单行显示*/
+            overflow: hidden;/*超出隐藏*/
+            text-overflow: ellipsis;/*隐藏的字符用省略号表示   IE*/
+            -moz-text-overflow: ellipsis;/*隐藏的字符用省略号表示  火狐*/
+        }
+    </style>
+</head>
+<body>
+
+{include file="common/daohang"}
+<div class="right">
+    <div class="layui-frome">
+        <span>版本更新</span>
+
+        <HR>
+
+        <div class="layui-layout layui-layout-admin">
+            <form class="layui-form" action="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">上传安装包</label>
+                    <div class="layui-input-block">
+                        <button type="button" class="layui-btn" id="uapk">
+                            <i class="layui-icon">&#xe67c;</i>上传apk
+                        </button>
+<!--                        <input type="text" name="title" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">-->
+                    </div>
+
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">下载链接</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="download_link" id="download_link"  autocomplete="off" class="layui-input" readonly>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">版本号</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="version_no" required  lay-verify="required" placeholder="版本号" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+
+
+
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">强制更新</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="is_force" value="1" title="是">
+                        <input type="radio" name="is_force" value="0" title="否" checked>
+                    </div>
+                </div>
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">更新信息</label>
+                    <div class="layui-input-block">
+                        <textarea name="remarks" placeholder="请输入内容" class="layui-textarea"></textarea>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    {include file="common/footer"}
+    <script src="__STATIC__/layui/layui.js"></script>
+
+    <script>
+        layui.use('form', function(){
+            var form = layui.form;
+
+            //监听提交
+            form.on('submit(formDemo)', function(data){
+                // layer.msg(JSON.stringify(data.field));
+                $.post("{:url('index/version_add_submit')}",$(data.form).serialize(),function(res){
+                    if (res.code === 0) {
+                        layer.alert("提交成功");
+                        // location.href = "chakan.html?id=" + res.code;
+                    } else {
+                        layer.alert(res.msg);
+                    }
+                });
+                return false;
+            });
+        });
+        layui.use(['layedit', 'laydate'], function () {
+            var form = layui.form
+                , layer = layui.layer
+                , layedit = layui.layedit
+                , laydate = layui.laydate;
+        });
+        var layer = layui.layer;
+
+        layui.use('upload', function(){
+            var upload = layui.upload;
+
+            //执行实例
+            var uploadInst =upload.render({
+                elem: '#uapk' //绑定元素
+                ,url: '{:url("api/apk_upload")}' //上传接口
+                ,exts:'apk'
+                ,size:307200
+                ,accept:'file'
+                ,done: function(res){
+                    console.log(res);
+                    //上传完毕回调
+                    let filePath = 'http://'+res.data.host +'/nianka_v2/public/uploads/apk/'+ res.data.save;
+                    $('#download_link').val(filePath);
+                    layer.msg("上传apk成功");
+                }
+                ,error: function(){
+                    //请求异常回调
+                }
+            });
+        });
+
+
+
+    </script>
+
+
+</body>
+</html>

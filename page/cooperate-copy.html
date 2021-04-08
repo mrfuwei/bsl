@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <title>宝仕龙</title>
+    <link href="images/logo.png" rel="shortcut icon">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/my_animate.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <link rel="stylesheet" href="css/common.css">
+</head>
+<style>
+    .inside-banner .banner_left{position:absolute;width:50%;height:100%;overflow:hidden;right:50%;background:#fff;z-index:10;}
+    .inside-banner .banner_right{position:absolute;left:50%;width:50%;height:100%;overflow:hidden;background:#fff;z-index:10;}
+    .inside-banner.active .banner_left{right:100%;transition:all 0.85s cubic-bezier(1, 0.08, 0.94, 0.71);-webkit-transition:all 0.85s cubic-bezier(1, 0.08, 0.94, 0.71);-moz-transition:all 0.85s cubic-bezier(1, 0.08, 0.94, 0.71);-ms-transition:all 0.85s cubic-bezier(1, 0.08, 0.94, 0.71);-o-transition:all 0.85s cubic-bezier(1, 0.08, 0.94, 0.71);}
+    .inside-banner.active .banner_right{left:100%;transition:all 0.85s cubic-bezier(1, 0.08, 0.94, 0.71);-webkit-transition:all 0.85s cubic-bezier(1, 0.08, 0.94, 0.71);-moz-transition:all 0.85s cubic-bezier(1, 0.08, 0.94, 0.71);-ms-transition:all 0.85s cubic-bezier(1, 0.08, 0.94, 0.71);-o-transition:all 0.85s cubic-bezier(1, 0.08, 0.94, 0.71);}
+    .inside-banner .banner_video {position: absolute;top: 0;width: 100%;height: 100%;}
+    .inside-banner .banner_video video{object-fit:cover;width:100%;height:100%;}
+    .inside-banner {overflow: hidden;position: relative;height: 100vh;}
+    .inside-banner .banner_img{width:100%;height:100%;position:absolute;top:0;left:0;}
+    .inside-banner.active .banner_video,.inside-banner.active .banner_img{transform:scale(1.02);-webkit-transform:scale(1.02);-moz-transform:scale(1.02);-ms-transform:scale(1.02);-o-transform:scale(1.02);transform-origin:center center;transition:all 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);-webkit-transition:all 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);-moz-transition:all 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);-ms-transition:all 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);-o-transition:all 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);}
+    .inside-banner .banner_zz{position:absolute;top:0;width:100%;height:100%;background:linear-gradient(to bottom, rgba(178, 154, 116, 0.25) 10%, rgba(2,130,172,0) 100%);background: -moz-linear-gradient(to bottom, rgba(178, 154, 116, 0.25) 10%, rgba(2,130,172,0) 100%);background: -webkit-linear-gradient(to bottom, rgba(178, 154, 116, 0.25) 10%, rgba(2,130,172,0) 100%);filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3FB29A74',endColorstr='#000099cb',GradientType=0);}
+    /*此样式在移动端时设置为block*/
+    .vis_xs{display:none;}
+    .inside-banner .shadows {position: absolute;z-index: 3;left: 50%;top: 0;bottom: 0;width: 0px;max-width: 320px;border-left: 1px solid #000;border-right: 1px solid #000;opacity: 0;-webkit-transform: translateX(-50%);transform: translateX(-50%);-webkit-transition: opacity .75s,visibility .75s,width .75s;transition: opacity .75s,visibility .75s,width .75s;-webkit-transition-delay: .8s;transition-delay: .8s;pointer-events: none;}
+    .inside-banner.active .shadows {width: 320px;opacity: 0.25;}
+    .inside-banner .shadow {position: absolute;width: 47px;height: 100%;}
+    .inside-banner .shadow.shadow-left {right: 100%;-webkit-transform: scale(-1);transform: scale(-1);}
+    .inside-banner .shadow.shadow-right {left: 100%;}
+    .inside-banner .banner_contair {width: 100%;height: 100%; display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-pack: center;-ms-flex-pack: center;justify-content: center;-webkit-box-align: center;-ms-flex-align: center;align-items: center;}
+    .inside-banner .inside-banner-heading {-webkit-transition:none;transition:none;-webkit-transform:translate3d(0,50px,0);transform:translate3d(0,50px,0)}
+    .inside-banner.active .inside-banner-heading {pointer-events: none;-webkit-transform: translateZ(0);transform: translateZ(0);-webkit-transition: -webkit-transform 1.6s cubic-bezier(.32,.32,0,.99) 0s;transition: -webkit-transform 1.6s cubic-bezier(.32,.32,0,.99) 0s;transition: transform 1.6s cubic-bezier(.32,.32,0,.99) 0s;transition: transform 1.6s cubic-bezier(.32,.32,0,.99) 0s,-webkit-transform 1.6s cubic-bezier(.32,.32,0,.99) 0s;-webkit-transition-delay: 0.85s;transition-delay: 0.85s;display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-orient: vertical;-webkit-box-direction: normal;-ms-flex-direction: column;flex-direction: column;-webkit-box-pack: center;-ms-flex-pack: center;justify-content: center;-webkit-box-align: center;-ms-flex-align: center;align-items: center;}
+    .inside-banner .sub-heading {visibility:hidden;opacity:0;-webkit-transform:translateY(20px);transform:translateY(20px)}
+    .inside-banner.active .sub-heading {color: #fff;display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-orient: vertical;-webkit-box-direction: normal;-ms-flex-direction: column;flex-direction: column;-webkit-box-pack: center;-ms-flex-pack: center;justify-content: center;-webkit-box-align: center;-ms-flex-align: center;align-items: center;opacity: 1;visibility: inherit;-webkit-transition: opacity 1.5s,visibility 1.5s,-webkit-transform 1.5s;transition: opacity 1.5s,visibility 1.5s,-webkit-transform 1.5s;transition: transform 1.5s,opacity 1.5s,visibility 1.5s;transition: transform 1.5s,opacity 1.5s,visibility 1.5s,-webkit-transform 1.5s;-webkit-transition-delay: 0.85s;transition-delay: 0.85s;}
+    .inside-banner-heading h2 {line-height: 80px;}
+    .inside-banner-heading h2.inside-banner-title {font-size: 50px;}
+    .inside-banner-heading h2.inside-banner-title2 {font-size: 25px;}
+
+
+    .partner-section {padding: 160px 0 0;background: #000 url(images/inside/cooperate/partner-bg.jpg) top center no-repeat;background-size: cover;text-align: center;color: #fff;min-height: 950px;position: relative;box-sizing: border-box;}
+    .partner-container {}
+    .partner-box {min-width: 1200px;padding: 0 100px;margin: 0 auto;position: relative;-webkit-transition: all .5s;-moz-transition: all .5s;transition: all .5s;box-sizing: border-box;overflow: hidden;}
+    .partner-box .swiper-container {width: 560px;margin: 0;}
+    .partner-box .swiper-slide {}
+    .partner-box .partner-img {margin-bottom: 30px;display: block;width: 100%;overflow: hidden;border-radius: 5px;}
+    .partner-box .partner-info {}
+    .partner-box .partner-info h3 {font-size: 24px;font-weight: 400;}
+    .partner-box .partner-info p {line-height: 1.8;margin-top: 10px;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;overflow: hidden;}
+
+    .partner-bsl {width: 1230px;height: 680px;position: absolute;right: 0;bottom: 0;z-index: 7;background: url(images/inside/cooperate/partner-line-bg.png) center bottom no-repeat;}
+    .partner-bsl ul {width: 100%;height: 100%;position: relative;}
+    .partner-bsl li {width: 80px;position: absolute;left: 40px;bottom: 120px;text-align: left;}
+    .partner-bsl-img {display: block;width: 80px;height: 80px;background: #999;border-radius: 50%;overflow: hidden;cursor: pointer;-webkit-transition: all .5s;-moz-transition: all .5s;transition: all .5s;}
+    .partner-bsl-img img {display: block;width: 100%;border: none;transform: translateZ(0);-webkit-transform: translateZ(0);max-width: 100%;transform: scale(1.001);-webkit-transform: scale(1.001);}
+    .partner-bsl li p {position: absolute;white-space: pre;bottom: 0px;right: 0;pointer-events: none;transform: translate(25%,100%)}
+    .partner-bsl li:hover,.partner-bsl li.act {}
+    .partner-bsl li:hover .partner-bsl-img,.partner-bsl li.act .partner-bsl-img {}
+
+    .partner-bsl li:nth-child(2){bottom: 250px;left: 120px;}
+
+    .partner-bsl li:nth-child(3){bottom: 370px;left: 220px;}
+
+    .partner-bsl li:nth-child(4){bottom: 470px;left: 350px;}
+
+    .partner-bsl li:nth-child(5){bottom: 545px;left: 500px;}
+
+    .partner-bsl li:nth-child(6){bottom: 590px;left: 650px;}
+
+    .partner-bsl li:nth-child(7){bottom: 600px;left: 850px;}
+
+    .partner-bsl li:nth-child(8){bottom: 570px;left: 1050px;}
+
+    .partner-bsl li:nth-child(6) .txt,.partner-bsl li:nth-child(5) .txt,.partner-bsl li:nth-child(7) .txt{left: 70px;top: 80px;}
+
+    .partner-bsl li:nth-child(8) .txt{top: 100px;left: -50px;}
+
+
+</style>
+<body>
+
+    <div class="header">
+    <div class="header1">
+        <div class="nav-container">
+            <div class="logo"><a href="javascript:;"><img src="images/logo.png" alt="" width="150"></a></div>
+            <a href="javascript:;">
+                <div class="left-header mshow">
+                    <div class="navbar">
+                        <span class="nav"></span>
+                        <span class="nav"></span>
+                        <span class="nav"></span>
+                    </div>
+                    <div class="search nav-item">
+                        <!--<img src="images/icon-search.png" alt="">-->
+                        <i class="iconfont icon-iconsearch"></i>
+                        <span>SEARCH</span>
+                    </div>
+                </div>
+            </a>
+            <a href="javascript:;">
+                <div class="right-header mshow">
+                    <div class="nav-item">
+                        <i class="iconfont icon-fenlei"></i>
+                        <!--<img src="images/icon-brands.png" alt="">-->
+                        <span>八大空间</span>
+                    </div>
+                    <div class="nav-item">
+                        <i class="iconfont icon-lock"></i>
+                        <!--<img src="images/icon-stock.png" alt="">-->
+                        <span>加盟合作</span>
+                    </div>
+                </div>
+            </a>
+            <div class="nav-item close mhidden">
+                <img src="images/icon-close.png" alt="">
+                <span>CLOSE</span>
+            </div>
+
+        </div>
+    </div>
+    <div class="header2">
+        <div class="nav-container">
+            <div class="logo"><a href="javascript:;"><img src="images/logo.png" alt="" width="150"></a></div>
+            <a href="javascript:;">
+                <div class="left-header mshow">
+                    <div class="navbar">
+                        <span class="nav"></span>
+                        <span class="nav"></span>
+                        <span class="nav"></span>
+                    </div>
+                    <div class="search nav-item">
+                        <!--<img src="images/icon-search.png" alt="">-->
+                        <i class="iconfont icon-iconsearch"></i>
+                        <span>SEARCH</span>
+                    </div>
+                </div>
+            </a>
+            <div class="nav_t nav_t1">
+                <ul class="clearfix">
+                    <li>
+                        <a href="javascript:;">首页</a>
+                        <!--<div class="header2-comboBox">-->
+                        <!--<a href="javascript:;" class="comboBox-list"></a>-->
+                        <!--<a href="javascript:;" class="comboBox-list"></a>-->
+                        <!--<a href="javascript:;" class="comboBox-list"></a>-->
+                        <!--<a href="javascript:;" class="comboBox-list"></a>-->
+                        <!--</div>-->
+                    </li>
+                    <li>
+                        <a href="brand.html">走进宝仕龙</a>
+                        <div class="header2-comboBox">
+                            <a href="brand.html" class="comboBox-list">品牌文化</a>
+                            <a href="news.html" class="comboBox-list">企业新闻</a>
+                            <a href="video.html" class="comboBox-list">企业视频</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="javascript:;">品牌见证</a>
+                        <div class="header2-comboBox">
+                            <a href="brandWitness.html" class="comboBox-list">设计师</a>
+                            <a href="brandWitness.html" class="comboBox-list">大咖</a>
+                            <a href="brandWitness.html" class="comboBox-list">消费者</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="nav_t nav_t2">
+                <ul class="clearfix">
+                    <li>
+                        <a href="javascript:;">定制生活馆</a>
+                        <div class="header2-comboBox">
+                            <a href="eight.html" class="comboBox-list">定制生活空间DIY</a>
+                            <a href="live_museum.html" class="comboBox-list">形象厅</a>
+                            <a href="live-grid.html" class="comboBox-list">百套效果图</a>
+                            <a href="live-grid.html" class="comboBox-list">万城万景</a>
+
+                        </div>
+                    </li>
+                    <li>
+                        <a href="javascript:;">招商加盟</a>
+                        <div class="header2-comboBox">
+                            <a href="pos.html" class="comboBox-list">大商样板</a>
+                            <a href="cooperate-people.html" class="comboBox-list">商学院</a>
+                            <a href="cooperate.html" class="comboBox-list">加盟合作</a>
+                            <a href="" class="comboBox-list"></a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="contact.html">联系我们</a>
+                        <div class="header2-comboBox">
+                            <a href="contact.html" class="comboBox-list">联系我们</a>
+                            <a href="productSearch.html" class="comboBox-list">防伪查询</a>
+
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <a href="javascript:;">
+                <div class="right-header mshow">
+                    <div class="nav-item">
+                        <i class="iconfont icon-fenlei"></i>
+                        <!--<img src="images/icon-brands.png" alt="">-->
+                        <span>八大空间</span>
+                    </div>
+                    <div class="nav-item">
+                        <i class="iconfont icon-lock"></i>
+                        <!--<img src="images/icon-stock.png" alt="">-->
+                        <span>加盟合作</span>
+                    </div>
+                </div>
+            </a>
+            <div class="nav-item close mhidden">
+                <img src="images/icon-close.png" alt="">
+                <span>CLOSE</span>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+    <div class="main">
+        <div class="inside-banner">
+            <div class="banner_img hid_xs" style="background:url(http://www.southbedding.com/Public/Home/images/about.jpg) no-repeat center center;background-size:cover;"></div>
+            <div class="banner_img vis_xs" style="background:url(http://www.southbedding.com/Public/Home/images/about_1.jpg) no-repeat center center;background-size:cover;"></div>
+            <div class="banner_zz"></div>
+            <div class="banner_left"></div>
+            <div class="banner_right"></div>
+            <div class="banner_contair">
+                <div class="inside-banner-heading">
+                    <div class="sub-heading">
+                        <h2 class="inside-banner-title">相信品牌的力量</h2>
+                        <h2 class="inside-banner-title2">快来和我们一起创造下一个互联网奇迹</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="shadows">
+                <img src="images/common/shadow.png" alt="" class="shadow shadow-left">
+                <img src="images/common/shadow.png" alt="" class="shadow shadow-right">
+            </div>
+
+        </div>
+
+        <div class="partner-section">
+
+            <div class="partner-container">
+
+                <div class="partner-box">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+
+                            <div class="swiper-slide">
+
+                                <div class="partner-img">
+                                    <img src="images/inside/cooperate/partner-item-bg.jpg" alt="">
+                                </div>
+                                <div class="partner-info">
+                                    <h3>广告支持</h3>
+                                    <p>这里是简介 最多可以显示2行的内容</p>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="partner-bsl">
+                    <ul>
+                        <li>
+                            <div class="partner-bsl-img">
+                                <img src="images/inside/cooperate/" alt="">
+                            </div>
+                            <p>专卖店装修设计指导支持</p>
+                        </li>
+                        <li>
+                            <div class="partner-bsl-img">
+                                <img src="images/inside/cooperate/" alt="">
+                            </div>
+                            <p>专卖店装修设计指导支持</p>
+                        </li>
+                        <li>
+                            <div class="partner-bsl-img">
+                                <img src="images/inside/cooperate/" alt="">
+                            </div>
+                            <p>专卖店装修设计指导支持</p>
+                        </li>
+                        <li>
+                            <div class="partner-bsl-img">
+                                <img src="images/inside/cooperate/" alt="">
+                            </div>
+                            <p>专卖店装修设计指导支持</p>
+                        </li>
+                        <li>
+                            <div class="partner-bsl-img">
+                                <img src="images/inside/cooperate/" alt="">
+                            </div>
+                            <p>专卖店装修设计指导支持</p>
+                        </li>
+                        <li>
+                            <div class="partner-bsl-img">
+                                <img src="images/inside/cooperate/" alt="">
+                            </div>
+                            <p>专卖店装修设计指导支持</p>
+                        </li>
+                        <li>
+                            <div class="partner-bsl-img">
+                                <img src="images/inside/cooperate/" alt="">
+                            </div>
+                            <p>专卖店装修设计指导支持</p>
+                        </li>
+                        <li>
+                            <div class="partner-bsl-img">
+                                <img src="images/inside/cooperate/" alt="">
+                            </div>
+                            <p>专卖店装修设计指导支持</p>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="cause-section">
+            <div class="cause-container">
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <!--公用-->
+    <div class="footer">
+        <div class="top">
+            <div class="footer-l">
+                <img src="images/logo-footer.png" alt="" class="footer-logo">
+                <p>嘉兴宝仕龙集成家居有限公司</p>
+                <p>JIAXING BAO SHI LONG INTEGRATED HOME LTD</p>
+                <ul class="logo1">
+                    <li>
+                        <img src="images/common/qq.png" alt="">
+                    </li>
+                    <li>
+                        <img src="images/common/wx.png" alt="">
+                    </li>
+                    <li>
+                        <img src="images/common/wb.png" alt="">
+                    </li>
+                    <li>
+                        <p>f</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-c">
+                <p class="c-title">联系</p>
+                <p class="c-txt">tel：4008877831</p>
+                <p class="c-txt">fax：0573-86788519</p>
+                <p class="c-txt">email：sales@jxbsl.com</p>
+                <p class="c-title">地址</p>
+                <p class="c-txt">浙江省海盐经济开发区百步新区</p>
+            </div>
+            <div class="footer-r">
+                <div class="wx">
+                    <img src="images/common/r-wx.jpg" alt=""class="r-logo">
+                    <p class="p">官方微信</p>
+                </div>
+                <div class="wb">
+                    <img src="images/common/r-wb.jpg" alt=""class="r-logo">
+                    <p class="p">官方微博</p>
+                </div>
+            </div>
+        </div>
+        <div class="bottom">
+            <p class="bottom-p">COPYRIGHTS 2020 BOSLON AL RIGHTS RESERVED. 浙ICP备09002255号-1    技术支持：PERSONAL TAILOR </p>
+        </div>
+    </div>
+
+    <div class="popup-section popup-navigation">
+        <div class="popup-container">
+            <div class="navigation-left">
+                <div class="navigation-item">
+                    <div class="navigation-span">
+                        <a href="javascript:;">
+                            <span>首页</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="navigation-item">
+                    <div class="navigation-span">
+                        <a href="javascript:;">
+                            <span>产品中心</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="navigation-item">
+                    <div class="navigation-span">
+                        <a href="javascript:;">
+                            <span>品牌文化</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="navigation-item">
+                    <div class="navigation-span">
+                        <a href="javascript:;">
+                            <span>新闻动态</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="navigation-item">
+                    <div class="navigation-span">
+                        <a href="javascript:;">
+                            <span>关于先行</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="navigation-item">
+                    <div class="navigation-span">
+                        <a href="javascript:;">
+                            <span>加盟中心</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="navigation-item">
+                    <div class="navigation-span">
+                        <a href="javascript:;">
+                            <span>联系我们</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="navigation-right">
+
+                <div class="navigation-add">
+                    <div class="navigation-add-line"></div>
+                    <div class="address">
+                        Jl. Duren Tiga Raya No. 33<br>
+                        Jakarta Selatan - 12760 <br>
+                        Indonesia
+                    </div>
+                    <p></p>
+                    +62 21 799 1521
+                    <br>
+                    +62 21 722 5003
+                    <br>
+                    info@prodotti-id.com
+                    <p></p>
+                    <div class="socials">
+                        <div class="icon">
+                            <a href="javascript:;">
+                                <img src="images/logo-facebook.svg" alt="">
+                            </a>
+                        </div>
+                        <div class="icon">
+                            <a href="javascript:;">
+                                <img src="images/logo-instagram.svg" alt="">
+                            </a>
+                        </div>
+                        <div class="icon">
+                            <a href="javascript:;">
+                                <img src="images/logo-youtube.svg" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="navigation-add">
+                    <div class="navigation-add-line"></div>
+                    <div>
+                        Monday - Friday<br>
+                        09.00 A.M - 06.00 P.M<br><p></p>
+                        Saturday - Sunday<br>
+                        Appointment Only<br>
+                    </div>
+                    <div class="navigation-bottom">
+                        <div class="navigation-bottom-item">
+                            <a href="javascript:;">
+                                <span>Privacy & Cookie Policy</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="popup-section popup-search">
+
+        <div class="popup-container">
+            <div class="search-form">
+                <input type="text" placeholder="Search for Products, Brands or News" class="input-form" style="width: 0;">
+                <div class="search-result">
+                    <div class="search-result-item"></div>
+                    <div class="search-result-item"></div>
+                    <div class="search-result-item"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="popup-brand">
+        <div class="brand-list">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <div class="slider-image">
+                                <div class="background-image" style="background-image: url('images/brand_swiper_01.jpg')"></div>
+                            </div>
+                            <div class="slider-title">Alexander Lamont</div>
+                            <div class="slider-hr"></div>
+                            <div class="slider-category">Furniture</div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <div class="slider-image">
+                                <div class="background-image" style="background-image: url('images/brand_swiper_02.jpg')"></div>
+                            </div>
+                            <div class="slider-title">Alexander Lamont</div>
+                            <div class="slider-hr"></div>
+                            <div class="slider-category">Furniture</div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <div class="slider-image">
+                                <div class="background-image" style="background-image: url('images/brand_swiper_01.jpg')"></div>
+                            </div>
+                            <div class="slider-title">Alexander Lamont</div>
+                            <div class="slider-hr"></div>
+                            <div class="slider-category">Furniture</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </div>
+    <!--公用-->
+
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/commen.js"></script>
+    <script src="js/swiper.min.js"></script>
+    <script src="js/iconfont.js"></script>
+    <script>
+        $('.inside-banner').height($(window).height())
+        $(function () {
+            if(true){
+                $('.inside-banner').addClass('active')
+            }
+        })
+
+
+    </script>
+</body>
+</html>

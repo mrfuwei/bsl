@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+<head>
+{include file="common/header"}
+<link rel="stylesheet" href="__STATIC__/css/bumen.css">
+</head>
+<style>
+#bumen{background:#62b5d7}
+span{line-height: 42px;}
+</style>
+<body>
+           
+{include file="common/daohang"}
+ <div class="right" style="height:700px;">
+
+    <div class="layui-frome">
+        <h1>新增部门</h1>
+        <HR>
+        <div>
+          <span>I&nbsp;&nbsp;D：<input type="text" id="id" placeholder="ID请勿重复"></span><br />
+          <span>部门：<input type="text" id="bm" placeholder="请填写部门名称" ></span><br />
+          <span><button id="submit"  style="margin-top:15px;background:#1E9FFF;border:1px solid #1E9FFF;margin-bottom:30px;color:#fff;padding:5px 30px;">提交</button></span>
+          
+        </div>
+    </div>
+ </div>
+
+{include file="common/footer"}
+
+<script type="text/javascript">
+$('.allChoose').click(function(){
+    if(this.checked){   
+        $("input:checkbox").prop("checked", true);  
+    }else{   
+        $("input:checkbox").prop("checked", false);
+    }  
+});
+
+$('#delRow').click(function(){
+    var ids = '';
+    $(".delusers").each(function() {
+    if ($(this).is(':checked')) {
+      ids += ',' + $(this).val(); //逐个获取id
+      }
+    });
+    ids = ids.substring(1); // 对id进行处理，去除第一个逗号
+    //alert(ids);
+    if (ids.length == 0) {
+      alert('请选择要删除的选项');
+    } else {
+      if (confirm("您确定要删除这些吗？删除后将无法恢复。")) {
+
+        //url = "action=del_call_record&ids=" + ids;
+        $.ajax({
+          type: "post",
+          url: "delbumen.html",
+          data:{"id":ids},
+          dataType:'json',
+          success: function(data) {
+            // alert(data);
+            if (parseInt(data) > 0) {
+              alert("删除成功！");
+              location.reload();
+            } else {
+              alert("删除失败！");
+            }
+          }
+          // error: function(XMLHttpRequest, textStatus) {
+          //   alert("页面请求错误，请检查重试或联系管理员！\n" + textStatus);
+          // }
+        });
+      }
+    }
+
+});
+
+
+$('#submit').click(function(){
+  var bumen,id;
+  id=$('#id').val();
+  bumen=$('#bm').val();
+  // alert(id);
+  // exit();
+  // alert(bumen);
+  $.ajax({
+    url:"?",
+    type:"POST",
+    data:{id:id,bumen:bumen},
+    dataType:"json",
+    success:function(data){
+      //alert(data);
+      //exit();
+      if (data.rest==1) {
+        alert(data.msg);
+        location.href='bumen.html';
+      }else{
+        alert(data.msg);
+      }
+    },
+    error:function(e){
+      console.log(e);
+      alert('出错了，请勿填写重复ID号');
+    }
+  });
+});
+</script>
+</body>
+</html>

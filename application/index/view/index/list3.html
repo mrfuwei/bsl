@@ -1,0 +1,183 @@
+﻿<!doctype html>
+<html>
+<head>
+{include file="common/header"}
+</head>
+<style>
+#list2{background:#62b5d7}
+</style>
+<script>
+$(function(){
+    $("input[type=button]").click(function(){
+      var txt=$("input[type=text]").val();
+      if($.trim(txt)!=""){
+ 
+        $("table tr:not('#theader')").hide().filter(":contains('"+txt+"')").show().css("background","#63b5d7");
+      }else{
+        $("table tr:not('#theader')").css("background","#fff").show();
+      }
+    });
+  })
+  </script>
+<body>
+{include file="common/daohang"}
+ <div class="right">
+  <div class="layui-frome">
+     <h1>过期会员</h1>
+	 
+	 <HR>
+	 <div style="float:RIGHT;">
+     <input type="text"></input>
+     <input type="button" value="搜索"></input>
+     </div>
+ <div class="layui-form" class="table">
+  <table class="layui-table" id="myTable">
+ 
+    <colgroup>
+      <col width="50">
+    <!--  <col width="200">
+      <col width="200">
+      <col width="200">
+	  <col width="200">
+	  <col width="200">
+	  <col width="200">
+	  <col width="200">
+      <col>
+	  -->
+    </colgroup>
+ 	
+     <thead>
+      <tr id="theader">
+        <th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose"></th>
+        <th>ID</th>
+        <th>姓名</th>
+        <th>类别</th>
+        <th>卡号</th>
+		<th>手机/电话</th>
+		<th>开始~终止日期</th>
+		<th>状态</th>
+		<th>详情</th>
+      </tr> 
+  </thead>
+   
+      <tr>
+        <td><input type="checkbox" name="" lay-skin="primary"></td>
+        <td>112</td>
+        <td>李文</td>
+        <td>成人卡</td>
+        <td>123456789</td>
+		<td>123456789</td>
+		<td>2006.7-2017.6</td>
+		<td>过期</td>
+		<td><a href="javascript:"><img src="images/face/xiang.png"></a></td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" name="" lay-skin="primary"></td>
+        <td>112</td>
+        <td>李文</td>
+        <td>成人卡</td>
+        <td>123456789</td>
+		<td>123456789</td>
+		<td>2006.7-2017.6</td>
+		<td>过期</td>
+		<td><a href="javascript:"><img src="images/face/xiang.png"></a></td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" name="" lay-skin="primary"></td>
+        <td>111</td>
+        <td>李文</td>
+        <td>成人卡</td>
+        <td>123456789</td>
+		<td>123456789</td>
+		<td>2006.7-2017.6</td>
+		<td>过期</td>
+		<td><a href="javascript:"><img src="images/face/xiang.png"></a></td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" name="" lay-skin="primary"></td>
+        <td>112</td>
+        <td>李文</td>
+        <td>成人卡</td>
+        <td>123456789</td>
+		<td>123456789</td>
+		<td>2006.7-2017.6</td>
+		<td>过期</td>
+		<td><a href="javascript:"><img src="images/face/xiang.png"></a></td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" name="" lay-skin="primary"></td>
+        <td>112</td>
+        <td>李文</td>
+        <td>成人卡</td>
+        <td>123456789</td>
+		<td>123456789</td>
+		<td>2006.7-2017.6</td>
+		<td>过期</td>
+		<td><a href="javascript:"><img src="images/face/xiang.png"></a></td>
+      </tr>
+    
+  </table>
+<!--分页-->
+  <div id="demo1"></div>
+
+<button class="layui-btn layui-btn-dange layui-btn-normal" id="delRow"><i class="layui-icon"></i> 删除</button>
+ </div>
+
+ 
+{include file="common/footer"}
+
+<script>
+
+layui.use(['layedit', 'laydate'], function(){
+  var form = layui.form()
+  ,layer = layui.layer
+  ,layedit = layui.layedit
+  ,laydate = layui.laydate; 
+});
+
+layui.use('form', function(){
+ var $ = layui.jquery, form = layui.form();
+  
+  //全选
+  form.on('checkbox(allChoose)', function(data){
+   var child = $(data.elem).parents('table').find('tbody input[type="checkbox"]');
+   child.each(function(index, item){
+    item.checked = data.elem.checked;
+   });
+    form.render('checkbox');
+  });
+  
+});
+
+//分页
+layui.use(['laypage', 'layer'], function(){
+  var laypage = layui.laypage
+  ,layer = layui.layer;
+  
+  //调用分页
+laypage({
+    cont: 'demo1'
+    ,pages: 100 //总页数
+    ,groups: 5 //连续显示分页数
+  });
+  
+});
+
+//删除
+ var doc = document,
+     myTable = doc.getElementById("myTable"),
+     selectBox = myTable.getElementsByTagName("input");
+    
+ doc.getElementById("delRow").onclick = function(){
+    for(var i=selectBox.length-1; i>=0; i--){
+        if(selectBox[i].checked){
+           myTable.deleteRow(i);
+        }
+    }
+}
+
+</script>
+
+
+</body>
+</html>

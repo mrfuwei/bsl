@@ -1,0 +1,58 @@
+﻿<!doctype html>
+<html>
+<head>
+    {include file="common/header"}
+</head>
+<style>
+    .dom li {
+        width: 500px;
+        height: 350px;
+        margin: 10px;
+        display: inline-block;
+        text-align: center;
+    }
+
+    .dom li img {
+        width: 455px;
+        height: 307PX;
+        border-radius: 10px;
+        box-shadow: 2px 2px 2px #676767;
+        margin-bottom: 10px;
+    }
+
+    #home {
+        background: #62b5d7
+    }
+</style>
+
+<body>
+{include file="common/daohang"}
+<div class="right">
+    <div class="layui-frome">
+        <h1>年卡管理</h1>
+        <HR>
+        <div class="dom">
+            <ul>
+                {volist name="cardinfo" id="vo"}
+                <li>
+                    {switch name="$vo.cardname"}
+                    {case value="儿童年卡"}<a href="addcards.html?id={$vo.cardid}">{/case}
+                    {case value="成人年卡"}<a href="addcards.html?id={$vo.cardid}">{/case}
+                    {case value="家庭年卡A"}<a href="addcards.html?id={$vo.cardid}">{/case}
+                    {case value="家庭年卡B"}<a href="addcards.html?id={$vo.cardid}">{/case}
+                    {/switch}
+                                <img src="data:images/jpg;base64,{$vo.cardimage}">
+                                <p>{$vo.cardname}</p>
+                            </a>
+                </li>
+                {/volist}
+
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+{include file="common/footer"}
+</body>
+</html>

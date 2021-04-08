@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <title>宝仕龙</title>
+    <link href="images/logo.png" rel="shortcut icon">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common.css">
+    <script src="js/modernizr-custom.js"></script>
+</head>
+<style>
+
+    .liveGrid-section {pointer-events: none; overflow-x: hidden;padding-top: 90px;}
+    .liveGrid-container {}
+    .grid {position: relative;margin: 0 auto;padding-bottom: 15px;box-sizing: content-box;}
+    .js .grid::after {content: '';position: absolute;width: 100%;height: 100%;top: 0;left: 0;pointer-events: none;background: #252323 url(images/common/loading.svg) no-repeat 50% 75px;background-size: 60px auto;-webkit-transition: opacity 0.3s;transition: opacity 0.3s;}
+    .js .grid--loaded::after {opacity: 0;}
+    .grid__item {width: 270px;padding: 10px;box-sizing: border-box}
+    .grid__item:hover {}
+    .grid__item--current {opacity: 0 !important;}
+    .img-wrap {display: block;}
+    .img-wrap:focus,.img-wrap:hover {outline: none;}
+    .img-wrap img {display: block;max-width: 100%;-webkit-filter: grayscale(1);filter: gray;filter: grayscale(1);-webkit-transition: all 600ms ease-in-out;-moz-transition: all 600ms ease-in-out;-ms-transition: all 600ms ease-in-out;-o-transition: all 600ms ease-in-out;transition: all 600ms ease-in-out;}
+    .img-wrap img:hover {transform: scale(1.1)}
+    .preview {position: fixed;z-index: 1000;top: 0;left: 0;display: -ms-flex;display: -webkit-flex;display: flex;-ms-flex-pack: center;-webkit-justify-content: center;justify-content: center;-ms-flex-line-pack: center;-webkit-align-content: center;align-content: center;-ms-flex-align: center;-webkit-align-items: center;align-items: center;width: 50%;height: 100%;pointer-events: none;}
+    .preview::before {content: '';position: fixed;top: 0;left: 0;width: 100%;height: 100%;opacity: 0;background: #1f1d1d;-webkit-transition: opacity 0.6s;transition: opacity 0.6s;}
+    .preview--open {pointer-events: auto;}
+    .preview--open::before {opacity: 1;}
+    .clone {position: fixed;z-index: 110;-webkit-transition: -webkit-transform 0.5s;transition: transform 0.5s;-webkit-backface-visibility: hidden;}
+    .original {position: relative;z-index: 120;display: block;object-fit: contain;-webkit-transition: opacity 0.2s;transition: opacity 0.2s;-webkit-backface-visibility: hidden;}
+    .preview--open .animate { /* open */-webkit-transition: -webkit-transform 0.6s, opacity 0.2s;transition: transform 0.6s, opacity 0.2s;}
+    .animate { /* close */-webkit-transition: -webkit-transform 0.3s, opacity 0.2s;transition: transform 0.3s, opacity 0.2s;}
+    .description {color: #fff;}
+    .js .description--grid {display: none;}
+    .description--preview {font-size: 2em;position: absolute;z-index: 140;width: 100%;left: 100%;top: 0;height: 100%;padding: 0 1em;display: -ms-flex;display: -webkit-flex;display: flex;-ms-flex-direction: column;-webkit-flex-direction: column;flex-direction: column;-ms-flex-pack: center;-webkit-justify-content: center;justify-content: center;-ms-flex-align: start;-webkit-align-items: flex-start;align-items: flex-start;opacity: 0;-webkit-transition: opacity 1s, -webkit-transform 1s;transition: opacity 1s, transform 1s;-webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);-webkit-transform: translate3d(0, 30px, 0);transform: translate3d(0, 30px, 0);}
+    .preview--open .description--preview {opacity: 1;-webkit-transition-delay: 0.2s;transition-delay: 0.2s;-webkit-transform: translate3d(0, 0, 0);transform: translate3d(0, 0, 0);}
+    .description--preview h3 {font-weight: normal;margin: 0;}
+    .description--preview p {font-size: 0.65em;max-width: 100%;}
+
+    .description--preview p em {color: #5D5D5D;display: block;padding: 10px 0 0 0;}
+
+
+    /* Details */
+
+    .details {max-width: 100%;}
+    .details ul {line-height: 1;position: relative;margin: 0;padding: 0;list-style: none;}
+    .details ul li {font-size: 0.5em;position: relative;display: inline-block;margin: 0 1em 0 0;padding: 0.15em 0;white-space: nowrap;opacity: 0;color: #9d9d9d;-webkit-transition: -webkit-transform 1s, opacity 1s;transition: transform 1s, opacity 1s;-webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);-webkit-transform: translate3d(0, 20px, 0);transform: translate3d(0, 20px, 0);}
+    .preview--open .details ul li {opacity: 1;-webkit-transform: translate3d(0, 0, 0);transform: translate3d(0, 0, 0);}
+    .preview--open .details ul li:nth-child(1) {-webkit-transition-delay: 0.2s;transition-delay: 0.2s;}
+    .preview--open .details ul li:nth-child(2) {-webkit-transition-delay: 0.3s;transition-delay: 0.3s;}
+    .preview--open .details ul li:nth-child(3) {-webkit-transition-delay: 0.4s;transition-delay: 0.4s;}
+    .preview--open .details ul li:nth-child(4) {-webkit-transition-delay: 0.5s;transition-delay: 0.5s;}
+    .preview--open .details ul li:nth-child(5) {-webkit-transition-delay: 0.6s;transition-delay: 0.6s;}
+    .details ul li:first-child {font-weight: bold;color: #909090;}
+    .icon + span {margin-left: 5px;vertical-align: middle;}
+    .details .icon {margin-right: 5px;color: #77d45b;}
+
+
+    /* Close button */
+    .action {font-size: 18px;margin: 0;padding: 0;cursor: pointer;vertical-align: top;color: #6bd68a;border: none;background: none;}
+    .action:hover, .action:focus {color: #6bd68a;outline: none;}
+    .action--close {position: fixed;z-index: 150;top: 0;right: 0;padding: 1em;opacity: 0;-webkit-transition: opacity 0.3s, -webkit-transform 0.3s;transition: opacity 0.3s, transform 0.3s;-webkit-transform: scale3d(0.6, 0.6, 1);transform: scale3d(0.6, 0.6, 1);}
+    .preview--image-loaded .action--close {opacity: 1;-webkit-transform: scale3d(1, 1, 1);transform: scale3d(1, 1, 1);}
+    .text-hidden {position: absolute;display: block;overflow: hidden;width: 0;height: 0;color: transparent;}
+
+    /*@media screen and (max-width: 40em) {*/
+        /*.description--preview h3 {*/
+            /*font-size: 0.5em;*/
+        /*}*/
+        /*.description--preview p,*/
+        /*.details {*/
+            /*display: none;*/
+        /*}*/
+    /*}*/
+
+    .txt-img {position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%)}
+    .txt-img .txt-imgbox {height: 50px;position: relative;overflow: hidden}
+    .txt-img .txt-imgbox img {height: 100%;max-width: unset}
+    .txt-img .txt-imgbox img:first-child {padding: 0 1px;}
+    .txt-img .txt-imgbox img:last-child {position: absolute;top: 0;right: 0;max-width: unset;height: 100%;}
+
+
+    /*该页面专属*/
+    .header1 .navbar .nav {background-color: #3e3c3b;}
+    .header1 .nav-item {color: #3e3c3b;}
+</style>
+<body>
+
+<div class="header">
+    <div class="header1">
+        <div class="nav-container">
+            <div class="logo"><a href="index.html"><img src="images/common/logo-top-white.png" alt="" width="155"></a></div>
+            <a href="javascript:;">
+                <div class="left-header mshow">
+                    <div class="navbar">
+                        <span class="nav"></span>
+                        <span class="nav"></span>
+                        <span class="nav"></span>
+                    </div>
+                    <div class="search nav-item">
+                        <!--<img src="images/icon-search.png" alt="">-->
+                        <i class="iconfont icon-iconsearch"></i>
+                        <span>SEARCH</span>
+                    </div>
+                </div>
+            </a>
+            <a href="javascript:;">
+                <div class="right-header mshow">
+                    <div class="nav-item">
+                        <a href="eight.html">
+                            <i class="iconfont icon-fenlei"></i>
+                            <!--<img src="images/icon-brands.png" alt="">-->
+                            <span>八大空间</span>
+                        </a>
+
+                    </div>
+                    <div class="nav-item">
+                        <a href="join.html">
+                            <i class="iconfont icon-lock"></i>
+                            <!--<img src="images/icon-stock.png" alt="">-->
+                            <span>加盟合作</span>
+                        </a>
+
+                    </div>
+                </div>
+            </a>
+            <div class="nav-item close mhidden">
+                <img src="images/icon-close.png" alt="">
+                <span>CLOSE</span>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="header2">
+        <div class="nav-container">
+            <div class="logo"><a href="index.html"><img src="images/common/logo-top-white.png" alt="" width="155"></a></div>
+            <a href="javascript:;">
+                <div class="left-header mshow">
+                    <div class="navbar">
+                        <span class="nav"></span>
+                        <span class="nav"></span>
+                        <span class="nav"></span>
+                    </div>
+                    <div class="search nav-item">
+                        <!--<img src="images/icon-search.png" alt="">-->
+                        <i class="iconfont icon-iconsearch"></i>
+                        <span>SEARCH</span>
+                    </div>
+                </div>
+            </a>
+            <div class="nav_t nav_t1">
+                <ul class="clearfix">
+                    <li>
+                        <a href="index.html">首页</a>
+                    </li>
+                    <li>
+                        <a href="brand.html">走进宝仕龙</a>
+                        <div class="header2-comboBox">
+                            <a href="brand.html" class="comboBox-list">走进宝仕龙</a>
+                            <a href="brand.html" class="comboBox-list">品牌文化</a>
+                            <a href="topshop.html" class="comboBox-list">工厂1号店</a>
+                            <a href="museum.html" class="comboBox-list">吊顶博物馆</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="eight.html">定制生活馆</a>
+                        <div class="header2-comboBox">
+                            <a href="eight.html"  class="comboBox-list">生活DIY</a>
+                            <!-- <a href="javascript:;" class="comboBox-list" >设计理念</a> -->
+                            <a href="live_museum.html" class="comboBox-list">百套案例</a>
+                            <a href="live_museum.html" class="comboBox-list">万城万景</a>
+                            <a href="remould.html" class="comboBox-list">旧屋改造</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="news.html" >新闻中心</a>
+                        <div class="header2-comboBox">
+                            <a href="news.html"  class="comboBox-list">企业新闻</a>
+                            <a href="news.html"  class="comboBox-list">市场新闻</a>
+                            <a href="news-video.html"  class="comboBox-list">企业视频</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="nav_t nav_t2">
+                <ul class="clearfix">
+                    <li>
+                        <a href="javascript:;" >品牌见证</a>
+                        <div class="header2-comboBox">
+                            <a href="brandWitness1.html" class="comboBox-list">设计师</a>
+                            <a href="cooperation.html" class="comboBox-list">大咖品推官</a>
+                            <a href="say.html" class="comboBox-list">TA有话说</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="service.html" >服务中心</a>
+                        <div class="header2-comboBox">
+                            <a href="service.html#customer" class="comboBox-list">客服中心</a>
+                            <a href="service.html#need" class="comboBox-list">客户中心</a>
+                            <a href="contact.html" class="comboBox-list">我要反馈</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="join.html" >招商合作</a>
+                        <div class="header2-comboBox">
+                            <a href="join.html"  class="comboBox-list">加盟共赢</a>
+                            <a href="franchisee.html"  class="comboBox-list">加盟流程</a>
+                            <a href="cooperate-people.html"  class="comboBox-list">商学院</a>
+                            <a href="pos.html"  class="comboBox-list">大商样板</a>
+                            <a href="live-grid-sketch.html"  class="comboBox-list">大单分享</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="contact.html" >联系我们</a>
+                        <div class="header2-comboBox">
+                            <a href="recruit.html"   class="comboBox-list">招贤纳士</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <a href="javascript:;">
+                <div class="right-header mshow">
+                    <div class="nav-item">
+                        <a href="eight.html">
+                            <i class="iconfont icon-fenlei"></i>
+                            <!--<img src="images/icon-brands.png" alt="">-->
+                            <span>八大空间</span>
+                        </a>
+                    </div>
+                    <div class="nav-item">
+                        <a href="join.html">
+                            <i class="iconfont icon-lock"></i>
+                            <!--<img src="images/icon-stock.png" alt="">-->
+                            <span>加盟合作</span>
+                        </a>
+                    </div>
+                </div>
+            </a>
+            <div class="nav-item close mhidden">
+                <img src="images/icon-close.png" alt="">
+                <span>CLOSE</span>
+            </div>
+
+        </div>
+    </div>
+</div>
+    <div class="main">
+        <div class="liveGrid-section">
+
+            <div class="liveGrid-container">
+                <!--<div class="txt-bg">-->
+                    <!--<p>powerhouse</p>-->
+                <!--</div>-->
+                <div class="txt-img">
+                    <div class="txt-imgbox">
+                        <img src="images/inside/grid/grid-font.png" alt="">
+                        <img src="images/inside/grid/grid-mask.png" class="txt-imgbox-mask" alt="">
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="grid__item" data-size="1280x857">
+                        <a href="images/inside/grid/cityscape/1.jpg" class="img-wrap"><img src="images/inside/grid/cityscape/1.jpg" alt="img01" />
+                            <div class="description description--grid">
+                                <h3>Mother's Love</h3>
+                                <p>Every time you drink a glass of milk or eat a piece of cheese, you harm a mother. Please go vegan. <em>&mdash; Gary L. Francione</em></p>
+                                <div class="details">
+                                    <ul>
+                                        <li><i class="icon icon-camera"></i><span>Canon PowerShot S95</span></li>
+                                        <li><i class="icon icon-focal_length"></i><span>22.5mm</span></li>
+                                        <li><i class="icon icon-aperture"></i><span>&fnof;/5.6</span></li>
+                                        <li><i class="icon icon-exposure_time"></i><span>1/1000</span></li>
+                                        <li><i class="icon icon-iso"></i><span>80</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="1280x1280">
+                        <a href="images/inside/grid/cityscape/2.jpg" class="img-wrap"><img src="images/inside/grid/cityscape/2.jpg" alt="img02" />
+                            <div class="description description--grid">
+                                <h3>Silent Killer</h3>
+                                <p>Cows’ milk protein may be the single most significant chemical carcinogen to which humans are exposed. <em>&mdash; T. Colin Campbell</em></p>
+                                <div class="details">
+                                    <ul>
+                                        <li><i class="icon icon-camera"></i><span>Canon PowerShot S95</span></li>
+                                        <li><i class="icon icon-focal_length"></i><span>22.5mm</span></li>
+                                        <li><i class="icon icon-aperture"></i><span>&fnof;/5.6</span></li>
+                                        <li><i class="icon icon-exposure_time"></i><span>1/1000</span></li>
+                                        <li><i class="icon icon-iso"></i><span>80</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="1280x853">
+                        <a href="images/inside/grid/cityscape/3.jpg" class="img-wrap"><img src="images/inside/grid/cityscape/3.jpg" alt="img03" />
+                            <div class="description description--grid">
+                                <h3>Senseless Suffering</h3>
+                                <p>The question is not, 'Can they reason?' nor, 'Can they talk?' but rather, 'Can they suffer?' <em>&mdash; Jeremy Bentham</em></p>
+                                <div class="details">
+                                    <ul>
+                                        <li><i class="icon icon-camera"></i><span>Canon PowerShot S95</span></li>
+                                        <li><i class="icon icon-focal_length"></i><span>22.5mm</span></li>
+                                        <li><i class="icon icon-aperture"></i><span>&fnof;/5.6</span></li>
+                                        <li><i class="icon icon-exposure_time"></i><span>1/1000</span></li>
+                                        <li><i class="icon icon-iso"></i><span>80</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="865x1280">
+                        <a href="images/inside/grid/cityscape/4.jpg" class="img-wrap"><img src="images/inside/grid/cityscape/4.jpg" alt="img04" />
+                            <div class="description description--grid">
+                                <h3>Rabbit Intelligence</h3>
+                                <p>If a rabbit defined intelligence the way man does, then the most intelligent animal would be a rabbit, followed by the animal most willing to obey the commands of a rabbit. <em>&mdash; Robert Brault</em></p>
+                                <div class="details">
+                                    <ul>
+                                        <li><i class="icon icon-camera"></i><span>Canon PowerShot S95</span></li>
+                                        <li><i class="icon icon-focal_length"></i><span>22.5mm</span></li>
+                                        <li><i class="icon icon-aperture"></i><span>&fnof;/5.6</span></li>
+                                        <li><i class="icon icon-exposure_time"></i><span>1/1000</span></li>
+                                        <li><i class="icon icon-iso"></i><span>80</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="1280x1280">
+                        <a href="images/inside/grid/cityscape/5.jpg" class="img-wrap"><img src="images/inside/grid/cityscape/5.jpg" alt="img5" />
+                            <div class="description description--grid">
+                                <h3>Friendly Terms</h3>
+                                <p>Man is the only animal that can remain on friendly terms with the victims he intends to eat until he eats them. <em>&mdash; Samuel Butler</em></p>
+                                <div class="details">
+                                    <ul>
+                                        <li><i class="icon icon-camera"></i><span>Canon PowerShot S95</span></li>
+                                        <li><i class="icon icon-focal_length"></i><span>22.5mm</span></li>
+                                        <li><i class="icon icon-aperture"></i><span>&fnof;/5.6</span></li>
+                                        <li><i class="icon icon-exposure_time"></i><span>1/1000</span></li>
+                                        <li><i class="icon icon-iso"></i><span>80</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="1280x850">
+                        <a href="images/inside/grid/cityscape/6.jpg" class="img-wrap"><img src="images/inside/grid/cityscape/6.jpg" alt="img6" />
+                            <div class="description description--grid">
+                                <h3>Murder of Men</h3>
+                                <p>The time will come when men such as I will look upon the murder of animals as they now look upon the murder of men.<em>&mdash; Leonardo Da Vinci</em></p>
+                                <div class="details">
+                                    <ul>
+                                        <li><i class="icon icon-camera"></i><span>Canon PowerShot S95</span></li>
+                                        <li><i class="icon icon-focal_length"></i><span>22.5mm</span></li>
+                                        <li><i class="icon icon-aperture"></i><span>&fnof;/5.6</span></li>
+                                        <li><i class="icon icon-exposure_time"></i><span>1/1000</span></li>
+                                        <li><i class="icon icon-iso"></i><span>80</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="1280x853">
+                        <a href="images/inside/grid/cityscape/7.jpg" class="img-wrap"><img src="images/inside/grid/cityscape/7.jpg" alt="img07" />
+                            <div class="description description--grid">
+                                <h3>Highest Ethics</h3>
+                                <p>Non-violence leads to the highest ethics, which is the goal of all evolution. Until we stop harming all other living beings, we are still savages <em>&mdash; Thomas Edison</em></p>
+                                <div class="details">
+                                    <ul>
+                                        <li><i class="icon icon-camera"></i><span>Canon PowerShot S95</span></li>
+                                        <li><i class="icon icon-focal_length"></i><span>22.5mm</span></li>
+                                        <li><i class="icon icon-aperture"></i><span>&fnof;/5.6</span></li>
+                                        <li><i class="icon icon-exposure_time"></i><span>1/1000</span></li>
+                                        <li><i class="icon icon-iso"></i><span>80</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="958x1280">
+                        <a href="images/inside/grid/cityscape/8.jpg" class="img-wrap"><img src="images/inside/grid/cityscape/8.jpg" alt="img08" />
+                            <div class="description description--grid">
+                                <h3>Pleasure, Amusement &amp; Convenience</h3>
+                                <p>We do not need to eat animals, wear animals, or use animals for entertainment purposes, and our only defense of these uses is our pleasure, amusement, and convenience.<em>&mdash; Gary L. Francione</em></p>
+                                <div class="details">
+                                    <ul>
+                                        <li><i class="icon icon-camera"></i><span>Canon PowerShot S95</span></li>
+                                        <li><i class="icon icon-focal_length"></i><span>22.5mm</span></li>
+                                        <li><i class="icon icon-aperture"></i><span>&fnof;/5.6</span></li>
+                                        <li><i class="icon icon-exposure_time"></i><span>1/1000</span></li>
+                                        <li><i class="icon icon-iso"></i><span>80</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="837x1280">
+                        <a href="images/inside/grid/cityscape/9.jpg" class="img-wrap"><img src="images/inside/grid/cityscape/9.jpg" alt="img09" />
+                            <div class="description description--grid">
+                                <h3>Dinner</h3>
+                                <p>We all love animals. Why do we call some 'pets' and others 'dinner'? <em>&mdash; K.D. Lang</em></p>
+                                <div class="details">
+                                    <ul>
+                                        <li><i class="icon icon-camera"></i><span>Canon PowerShot S95</span></li>
+                                        <li><i class="icon icon-focal_length"></i><span>22.5mm</span></li>
+                                        <li><i class="icon icon-aperture"></i><span>&fnof;/5.6</span></li>
+                                        <li><i class="icon icon-exposure_time"></i><span>1/1000</span></li>
+                                        <li><i class="icon icon-iso"></i><span>80</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="1280x961">
+                        <a href="images/inside/grid/cityscape/10.jpg" class="img-wrap"><img src="images/inside/grid/cityscape/10.jpg" alt="img10" />
+                            <div class="description description--grid">
+                                <h3>Appetite or Suffering?</h3>
+                                <p>Could you look an animal in the eyes and say to it, 'My appetite is more important than your suffering'? <em>&mdash; Moby</em></p>
+                                <div class="details">
+                                    <ul>
+                                        <li><i class="icon icon-camera"></i><span>Canon PowerShot S95</span></li>
+                                        <li><i class="icon icon-focal_length"></i><span>22.5mm</span></li>
+                                        <li><i class="icon icon-aperture"></i><span>&fnof;/5.6</span></li>
+                                        <li><i class="icon icon-exposure_time"></i><span>1/1000</span></li>
+                                        <li><i class="icon icon-iso"></i><span>80</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="1280x1131">
+                        <a href="images/inside/grid/cityscape/11.jpg" class="img-wrap"><img src="images/inside/grid/cityscape/11.jpg" alt="img11" />
+                            <div class="description description--grid">
+                                <h3>The Corpse</h3>
+                                <p>Recognize meat for what it really is: the antibiotic- and pesticide-laden corpse of a tortured animal. <em>&mdash; Ingrid Newkirk</em></p>
+                                <div class="details">
+                                    <ul>
+                                        <li><i class="icon icon-camera"></i><span>Canon PowerShot S95</span></li>
+                                        <li><i class="icon icon-focal_length"></i><span>22.5mm</span></li>
+                                        <li><i class="icon icon-aperture"></i><span>&fnof;/5.6</span></li>
+                                        <li><i class="icon icon-exposure_time"></i><span>1/1000</span></li>
+                                        <li><i class="icon icon-iso"></i><span>80</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="1280x857">
+                        <a href="images/inside/grid/cityscape/12.jpg" class="img-wrap"><img src="images/inside/grid/cityscape/12.jpg" alt="img12" />
+                            <div class="description description--grid">
+                                <h3>Mother's Love</h3>
+                                <p>Every time you drink a glass of milk or eat a piece of cheese, you harm a mother. Please go vegan. <em>&mdash; Gary L. Francione</em></p>
+                                <div class="details">
+                                    <ul>
+                                        <li><i class="icon icon-camera"></i><span>Canon PowerShot S95</span></li>
+                                        <li><i class="icon icon-focal_length"></i><span>22.5mm</span></li>
+                                        <li><i class="icon icon-aperture"></i><span>&fnof;/5.6</span></li>
+                                        <li><i class="icon icon-exposure_time"></i><span>1/1000</span></li>
+                                        <li><i class="icon icon-iso"></i><span>80</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="1280x1280">
+                        <a href="images/inside/grid/cityscape/13.jpg" class="img-wrap"><img src="images/inside/grid/cityscape/13.jpg" alt="img13" />
+                            <div class="description description--grid">
+                                <h3>Silent Killer</h3>
+                                <p>Cows’ milk protein may be the single most significant chemical carcinogen to which humans are exposed. <em>&mdash; T. Colin Campbell</em></p>
+                                <div class="details">
+                                    <ul>
+                                        <li><i class="icon icon-camera"></i><span>Canon PowerShot S95</span></li>
+                                        <li><i class="icon icon-focal_length"></i><span>22.5mm</span></li>
+                                        <li><i class="icon icon-aperture"></i><span>&fnof;/5.6</span></li>
+                                        <li><i class="icon icon-exposure_time"></i><span>1/1000</span></li>
+                                        <li><i class="icon icon-iso"></i><span>80</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="1280x853">
+                        <a href="images/inside/grid/cityscape/14.jpg" class="img-wrap"><img src="images/inside/grid/cityscape/14.jpg" alt="img14" />
+                            <div class="description description--grid">
+                                <h3>Senseless Suffering</h3>
+                                <p>The question is not, 'Can they reason?' nor, 'Can they talk?' but rather, 'Can they suffer?' <em>&mdash; Jeremy Bentham</em></p>
+                                <div class="details">
+                                    <ul>
+                                        <li><i class="icon icon-camera"></i><span>Canon PowerShot S95</span></li>
+                                        <li><i class="icon icon-focal_length"></i><span>22.5mm</span></li>
+                                        <li><i class="icon icon-aperture"></i><span>&fnof;/5.6</span></li>
+                                        <li><i class="icon icon-exposure_time"></i><span>1/1000</span></li>
+                                        <li><i class="icon icon-iso"></i><span>80</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="865x1280">
+                        <a href="images/inside/grid/cityscape/15.jpg" class="img-wrap"><img src="images/inside/grid/cityscape/15.jpg" alt="img15" />
+                            <div class="description description--grid">
+                                <h3>Rabbit Intelligence</h3>
+                                <p>If a rabbit defined intelligence the way man does, then the most intelligent animal would be a rabbit, followed by the animal most willing to obey the commands of a rabbit. <em>&mdash; Robert Brault</em></p>
+                                <div class="details">
+                                    <ul>
+                                        <li><i class="icon icon-camera"></i><span>Canon PowerShot S95</span></li>
+                                        <li><i class="icon icon-focal_length"></i><span>22.5mm</span></li>
+                                        <li><i class="icon icon-aperture"></i><span>&fnof;/5.6</span></li>
+                                        <li><i class="icon icon-exposure_time"></i><span>1/1000</span></li>
+                                        <li><i class="icon icon-iso"></i><span>80</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="1280x1280">
+                        <a href="images/inside/grid/cityscape/16.jpg" class="img-wrap"><img src="images/inside/grid/cityscape/16.jpg" alt="img16" />
+                            <div class="description description--grid">
+                                <h3>Friendly Terms</h3>
+                                <p>Man is the only animal that can remain on friendly terms with the victims he intends to eat until he eats them. <em>&mdash; Samuel Butler</em></p>
+                                <div class="details">
+                                    <ul>
+                                        <li><i class="icon icon-camera"></i><span>Canon PowerShot S95</span></li>
+                                        <li><i class="icon icon-focal_length"></i><span>22.5mm</span></li>
+                                        <li><i class="icon icon-aperture"></i><span>&fnof;/5.6</span></li>
+                                        <li><i class="icon icon-exposure_time"></i><span>1/1000</span></li>
+                                        <li><i class="icon icon-iso"></i><span>80</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="1280x850">
+                        <a href="images/inside/grid/cityscape/17.jpg" class="img-wrap"><img src="images/inside/grid/cityscape/17.jpg" alt="img17" />
+                            <div class="description description--grid">
+                                <h3>Murder of Men</h3>
+                                <p>The time will come when men such as I will look upon the murder of animals as they now look upon the murder of men.<em>&mdash; Leonardo Da Vinci</em></p>
+                                <div class="details">
+                                    <ul>
+                                        <li><i class="icon icon-camera"></i><span>Canon PowerShot S95</span></li>
+                                        <li><i class="icon icon-focal_length"></i><span>22.5mm</span></li>
+                                        <li><i class="icon icon-aperture"></i><span>&fnof;/5.6</span></li>
+                                        <li><i class="icon icon-exposure_time"></i><span>1/1000</span></li>
+                                        <li><i class="icon icon-iso"></i><span>80</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="1280x853">
+                        <a href="images/inside/grid/cityscape/18.jpg" class="img-wrap"><img src="images/inside/grid/cityscape/18.jpg" alt="img18" />
+                            <div class="description description--grid">
+                                <h3>Highest Ethics</h3>
+                                <p>Non-violence leads to the highest ethics, which is the goal of all evolution. Until we stop harming all other living beings, we are still savages <em>&mdash; Thomas Edison</em></p>
+                                <div class="details">
+                                    <ul>
+                                        <li><i class="icon icon-camera"></i><span>Canon PowerShot S95</span></li>
+                                        <li><i class="icon icon-focal_length"></i><span>22.5mm</span></li>
+                                        <li><i class="icon icon-aperture"></i><span>&fnof;/5.6</span></li>
+                                        <li><i class="icon icon-exposure_time"></i><span>1/1000</span></li>
+                                        <li><i class="icon icon-iso"></i><span>80</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="958x1280">
+                        <a href="images/inside/grid/cityscape/19.jpg" class="img-wrap"><img src="images/inside/grid/cityscape/19.jpg" alt="img19" />
+                            <div class="description description--grid">
+                                <h3>Pleasure, Amusement &amp; Convenience</h3>
+                                <p>We do not need to eat animals, wear animals, or use animals for entertainment purposes, and our only defense of these uses is our pleasure, amusement, and convenience.<em>&mdash; Gary L. Francione</em></p>
+                                <div class="details">
+                                    <ul>
+                                        <li><i class="icon icon-camera"></i><span>Canon PowerShot S95</span></li>
+                                        <li><i class="icon icon-focal_length"></i><span>22.5mm</span></li>
+                                        <li><i class="icon icon-aperture"></i><span>&fnof;/5.6</span></li>
+                                        <li><i class="icon icon-exposure_time"></i><span>1/1000</span></li>
+                                        <li><i class="icon icon-iso"></i><span>80</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="837x1280">
+                        <a href="images/inside/grid/cityscape/20.jpg" class="img-wrap"><img src="images/inside/grid/cityscape/20.jpg" alt="img20" />
+                            <div class="description description--grid">
+                                <h3>Dinner</h3>
+                                <p>We all love animals. Why do we call some 'pets' and others 'dinner'? <em>&mdash; K.D. Lang</em></p>
+                                <div class="details">
+                                    <ul>
+                                        <li><i class="icon icon-camera"></i><span>Canon PowerShot S95</span></li>
+                                        <li><i class="icon icon-focal_length"></i><span>22.5mm</span></li>
+                                        <li><i class="icon icon-aperture"></i><span>&fnof;/5.6</span></li>
+                                        <li><i class="icon icon-exposure_time"></i><span>1/1000</span></li>
+                                        <li><i class="icon icon-iso"></i><span>80</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="1280x961">
+                        <a href="images/inside/grid/cityscape/21.jpg" class="img-wrap"><img src="images/inside/grid/cityscape/21.jpg" alt="img21" />
+                            <div class="description description--grid">
+                                <h3>Appetite or Suffering?</h3>
+                                <p>Could you look an animal in the eyes and say to it, 'My appetite is more important than your suffering'? <em>&mdash; Moby</em></p>
+                                <div class="details">
+                                    <ul>
+                                        <li><i class="icon icon-camera"></i><span>Canon PowerShot S95</span></li>
+                                        <li><i class="icon icon-focal_length"></i><span>22.5mm</span></li>
+                                        <li><i class="icon icon-aperture"></i><span>&fnof;/5.6</span></li>
+                                        <li><i class="icon icon-exposure_time"></i><span>1/1000</span></li>
+                                        <li><i class="icon icon-iso"></i><span>80</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="1280x1131">
+                        <a href="images/inside/grid/cityscape/22.jpg" class="img-wrap"><img src="images/inside/grid/cityscape/22.jpg" alt="img22" />
+                            <div class="description description--grid">
+                                <h3>The Corpse</h3>
+                                <p>Recognize meat for what it really is: the antibiotic- and pesticide-laden corpse of a tortured animal. <em>&mdash; Ingrid Newkirk</em></p>
+                                <div class="details">
+                                    <ul>
+                                        <li><i class="icon icon-camera"></i><span>Canon PowerShot S95</span></li>
+                                        <li><i class="icon icon-focal_length"></i><span>22.5mm</span></li>
+                                        <li><i class="icon icon-aperture"></i><span>&fnof;/5.6</span></li>
+                                        <li><i class="icon icon-exposure_time"></i><span>1/1000</span></li>
+                                        <li><i class="icon icon-iso"></i><span>80</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="1280x857">
+                        <a href="images/inside/grid/cityscape/1.jpg" class="img-wrap"><img src="images/inside/grid/cityscape/1.jpg" alt="img01" />
+                            <div class="description description--grid">
+                                <h3>Mother's Love</h3>
+                                <p>Every time you drink a glass of milk or eat a piece of cheese, you harm a mother. Please go vegan. <em>&mdash; Gary L. Francione</em></p>
+                                <div class="details">
+                                    <ul>
+                                        <li><i class="icon icon-camera"></i><span>Canon PowerShot S95</span></li>
+                                        <li><i class="icon icon-focal_length"></i><span>22.5mm</span></li>
+                                        <li><i class="icon icon-aperture"></i><span>&fnof;/5.6</span></li>
+                                        <li><i class="icon icon-exposure_time"></i><span>1/1000</span></li>
+                                        <li><i class="icon icon-iso"></i><span>80</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="1280x857">
+                        <a href="images/inside/grid/cityscape/1.jpg" class="img-wrap"><img src="images/inside/grid/cityscape/1.jpg" alt="img01" />
+                            <div class="description description--grid">
+                                <h3>Mother's Love</h3>
+                                <p>Every time you drink a glass of milk or eat a piece of cheese, you harm a mother. Please go vegan. <em>&mdash; Gary L. Francione</em></p>
+                                <div class="details">
+                                    <ul>
+                                        <li><i class="icon icon-camera"></i><span>Canon PowerShot S95</span></li>
+                                        <li><i class="icon icon-focal_length"></i><span>22.5mm</span></li>
+                                        <li><i class="icon icon-aperture"></i><span>&fnof;/5.6</span></li>
+                                        <li><i class="icon icon-exposure_time"></i><span>1/1000</span></li>
+                                        <li><i class="icon icon-iso"></i><span>80</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="grid__item" data-size="1280x1280">
+                        <a href="images/inside/grid/cityscape/16.jpg" class="img-wrap"><img src="images/inside/grid/cityscape/16.jpg" alt="img16" />
+                            <div class="description description--grid">
+                                <h3>Friendly Terms</h3>
+                                <p>Man is the only animal that can remain on friendly terms with the victims he intends to eat until he eats them. <em>&mdash; Samuel Butler</em></p>
+                                <div class="details">
+                                    <ul>
+                                        <li><i class="icon icon-camera"></i><span>Canon PowerShot S95</span></li>
+                                        <li><i class="icon icon-focal_length"></i><span>22.5mm</span></li>
+                                        <li><i class="icon icon-aperture"></i><span>&fnof;/5.6</span></li>
+                                        <li><i class="icon icon-exposure_time"></i><span>1/1000</span></li>
+                                        <li><i class="icon icon-iso"></i><span>80</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="preview">
+                    <button class="action action--close"><i class="iconfont icon-close"></i><span class="text-hidden">Close</span></button>
+                    <div class="description description--preview"></div>
+                </div>
+
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+    <div class="mutual on">
+        <ul class="list">
+            <li>
+                <a href="javascript:;">
+                    <div class="mutualIco">
+                        <img src="images/common/s_tel.png" alt="">
+                    </div>
+                    <span class="txt1">400-887-7831 / 0573-86788519</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <div class="mutualIco">
+                        <img src="images/common/s_wx.png" alt="">
+                    </div>
+
+                    <span class="txt1">
+                        扫描二维码与销售顾问咨询
+                        <img src="images/common/r-wx.jpg" alt="">
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1994611292&site=qq&menu=yes" class="vid-play-btn">
+                    <div class="mutualIco">
+                        <img src="images/common/s_ly.png" alt="">
+                    </div>
+
+                    <span class="txt1">在线沟通</span>
+                </a>
+            </li>
+
+            <li class="backtoTop">
+                <a href="javascript:;">
+                    <div class="mutualIco">
+                        <img src="images/common/s_top.png" alt="">
+                    </div>
+
+
+                    <span class="txt1">返回顶部</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!--公用-->
+    <div class="footer">
+        <div class="top">
+            <div class="footer-l">
+                <img src="images/logo-footer.png" alt="" class="footer-logo">
+                <p>嘉兴宝仕龙集成家居有限公司</p>
+                <p>JIAXING BAO SHI LONG INTEGRATED HOME LTD</p>
+                <ul class="logo1">
+                    <li>
+                        <img src="images/common/qq.png" alt="">
+                    </li>
+                    <li>
+                        <img src="images/common/wx.png" alt="">
+                    </li>
+                    <li>
+                        <img src="images/common/wb.png" alt="">
+                    </li>
+                    <li>
+                        <p>f</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-c">
+                <p class="c-title">联系</p>
+                <p class="c-txt">tel：4008877831</p>
+                <p class="c-txt">fax：0573-86788519</p>
+                <p class="c-txt">email：sales@jxbsl.com</p>
+                <p class="c-title">地址</p>
+                <p class="c-txt">浙江省海盐经济开发区百步新区</p>
+            </div>
+            <div class="footer-r">
+                <div class="wx">
+                    <img src="images/common/r-wx.jpg" alt=""class="r-logo">
+                    <p class="p">官方微信</p>
+                </div>
+                <div class="wb">
+                    <img src="images/common/r-wb.jpg" alt=""class="r-logo">
+                    <p class="p">官方微博</p>
+                </div>
+            </div>
+        </div>
+        <div class="bottom">
+            <p class="bottom-p">COPYRIGHTS 2020 BOSLON AL RIGHTS RESERVED. 浙ICP备09002255号-1    技术支持：PERSONAL TAILOR </p>
+        </div>
+    </div>
+
+    <div class="popup-section popup-navigation">
+        <div class="popup-container">
+            <div class="navigation-left">
+                <div class="navigation-item">
+                    <div class="navigation-span">
+                        <a href="index.html">
+                            <span>首页</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="navigation-item">
+                    <div class="navigation-span">
+                        <a href="brand.html">
+                            <span>走进宝仕龙</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="navigation-item">
+                    <div class="navigation-span">
+                        <a href="brandWitness.html">
+                            <span>品牌见证</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="navigation-item">
+                    <div class="navigation-span">
+                        <a href="eight.html">
+                            <span>八大空间</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="navigation-item">
+                    <div class="navigation-span">
+                        <a href="live_museum.html">
+                            <span>形象厅</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="navigation-item">
+                    <div class="navigation-span">
+                        <a href="pos.html">
+                            <span>大商样板</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="navigation-item">
+                    <div class="navigation-span">
+                        <a href="cooperate-people.html">
+                            <span>商学院</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="navigation-item">
+                    <div class="navigation-span">
+                        <a href="contact.html">
+                            <span>联系我们</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="navigation-item">
+                    <div class="navigation-span">
+                        <a href="productSearch.html">
+                            <span>防伪查询</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="navigation-right">
+
+                <div class="navigation-add">
+                    <div class="navigation-add-line"></div>
+                    <div class="address">
+                        浙江省海盐经济开发区百步新区
+                    </div>
+                    <p></p>
+                    400-887-7831
+                    <br>
+                    0573-86788519
+                    <br>
+                    sales@jxbsl.com
+                    <p></p>
+                    <div class="socials">
+                        <div class="icon">
+                            <a href="javascript:;">
+                                <img src="images/logo-facebook.svg" alt="">
+                            </a>
+                        </div>
+                        <div class="icon">
+                            <a href="javascript:;">
+                                <img src="images/logo-instagram.svg" alt="">
+                            </a>
+                        </div>
+                        <div class="icon">
+                            <a href="javascript:;">
+                                <img src="images/logo-youtube.svg" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="navigation-add">
+                    <div class="navigation-add-line"></div>
+                    <div>
+                        Monday - Friday<br>
+                        09.00 A.M - 06.00 P.M<br><p></p>
+                        Saturday - Sunday<br>
+                        Appointment Only<br>
+                    </div>
+                    <div class="navigation-bottom">
+                        <div class="navigation-bottom-item">
+                            <a href="javascript:;">
+                                <span>Privacy & Cookie Policy</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="popup-section popup-search">
+
+        <div class="popup-container">
+            <div class="search-form">
+                <input type="text" placeholder="Search for Products, Brands or News" class="input-form" style="width: 0;">
+                <div class="search-result">
+                    <div class="search-result-item"></div>
+                    <div class="search-result-item"></div>
+                    <div class="search-result-item"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="popup-brand">
+        <div class="brand-list">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <div class="slider-image">
+                                <div class="background-image" style="background-image: url('images/brand_swiper_01.jpg')"></div>
+                            </div>
+                            <div class="slider-title">Alexander Lamont</div>
+                            <div class="slider-hr"></div>
+                            <div class="slider-category">Furniture</div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <div class="slider-image">
+                                <div class="background-image" style="background-image: url('images/brand_swiper_02.jpg')"></div>
+                            </div>
+                            <div class="slider-title">Alexander Lamont</div>
+                            <div class="slider-hr"></div>
+                            <div class="slider-category">Furniture</div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <div class="slider-image">
+                                <div class="background-image" style="background-image: url('images/brand_swiper_01.jpg')"></div>
+                            </div>
+                            <div class="slider-title">Alexander Lamont</div>
+                            <div class="slider-hr"></div>
+                            <div class="slider-category">Furniture</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </div>
+    <!--公用-->
+
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/imagesloaded.pkgd.min.js"></script>
+    <script src="js/masonry.pkgd.min.js"></script>
+    <script src="js/classie.js"></script>
+    <script src="js/grid.js"></script>
+    <script src="js/commen.js"></script>
+    <script src="js/iconfont.js"></script>
+    <script>
+        $('.main').addClass('js');
+        $('.grid__item').css({opacity:0});
+
+        // (function () {
+        //     let current = $('.header1 .logo img');
+        //     current.animate({opacity:0},500,'linear',function () {
+        //         current.attr('src',$('.header2 .logo img').attr('src'));
+        //         current.animate({opacity:1},500,'linear',function () {
+        //
+        //         })
+        //     })
+        // })();
+
+        $(function () {
+            (function() {
+                var support = { transitions: Modernizr.csstransitions },
+                    // transition end event name
+                    transEndEventNames = { 'WebkitTransition': 'webkitTransitionEnd', 'MozTransition': 'transitionend', 'OTransition': 'oTransitionEnd', 'msTransition': 'MSTransitionEnd', 'transition': 'transitionend' },
+                    transEndEventName = transEndEventNames[ Modernizr.prefixed( 'transition' ) ],
+                    onEndTransition = function( el, callback ) {
+                        var onEndCallbackFn = function( ev ) {
+                            if( support.transitions ) {
+                                if( ev.target != this ) return;
+                                this.removeEventListener( transEndEventName, onEndCallbackFn );
+                            }
+                            if( callback && typeof callback === 'function' ) { callback.call(this); }
+                        };
+                        if( support.transitions ) {
+                            el.addEventListener( transEndEventName, onEndCallbackFn );
+                        }
+                        else {
+                            onEndCallbackFn();
+                        }
+                    };
+
+                new GridFx(document.querySelector('.grid'), {
+                    imgPosition : {
+                        x : -0.5,
+                        y : 1
+                    },
+                    onOpenItem : function(instance, item) {
+                        instance.items.forEach(function(el) {
+                            if(item != el) {
+                                var delay = Math.floor(Math.random() * 50);
+                                el.style.WebkitTransition = 'opacity .5s ' + delay + 'ms cubic-bezier(.7,0,.3,1), -webkit-transform .5s ' + delay + 'ms cubic-bezier(.7,0,.3,1)';
+                                el.style.transition = 'opacity .5s ' + delay + 'ms cubic-bezier(.7,0,.3,1), transform .5s ' + delay + 'ms cubic-bezier(.7,0,.3,1)';
+                                el.style.WebkitTransform = 'scale3d(0.1,0.1,1)';
+                                el.style.transform = 'scale3d(0.1,0.1,1)';
+                                el.style.opacity = 0;
+                            }
+                        });
+                    },
+                    onCloseItem : function(instance, item) {
+                        instance.items.forEach(function(el) {
+                            if(item != el) {
+                                el.style.WebkitTransition = 'opacity .4s, -webkit-transform .4s';
+                                el.style.transition = 'opacity .4s, transform .4s';
+                                el.style.WebkitTransform = 'scale3d(1,1,1)';
+                                el.style.transform = 'scale3d(1,1,1)';
+                                el.style.opacity = 1;
+
+                                onEndTransition(el, function() {
+                                    el.style.transition = 'none';
+                                    el.style.WebkitTransform = 'none';
+                                });
+                            }
+                        });
+                    }
+                },function () {
+                    $('.txt-img .txt-imgbox').animate({height:'100px'},3000,'linear',()=>{})
+                    $('.txt-img .txt-imgbox-mask').animate({right:'-120%'},2000,'linear',()=>{
+                        $('.liveGrid-section').css({pointerEvents:'unset'})
+
+                        $(".grid__item").each(function(){
+                            d = Math.random()*1000;
+                            $(this).delay(d).animate({opacity: .95}, {
+                                step: function(n){
+                                    //rotating the images on the Y axis from 360deg to 0deg
+                                    console.log(n)
+                                    ry = (.95-n)*720;
+                                    //translating the images from 1000px to 0px
+                                    tz = (.95-n)*1000;
+                                    //applying the transformation
+                                    $(this).css("transform", "rotateY("+ry+"deg) translateZ("+tz+"px)");
+                                },
+                                duration: 6000,
+                                //some easing fun. Comes from the jquery easing plugin.
+                                easing: 'easeOutQuint',
+                            })
+                        })
+                    })
+                });
+            })();
+
+
+
+        })
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+﻿<!doctype html>
+<html>
+<head>
+    {include file="common/header"}
+    <style>
+        #push_record {
+            background: #62b5d7;
+        }
+        table tr td{
+            border:1px solid white;
+            white-space: nowrap;/*控制单行显示*/
+            overflow: hidden;/*超出隐藏*/
+            text-overflow: ellipsis;/*隐藏的字符用省略号表示   IE*/
+            -moz-text-overflow: ellipsis;/*隐藏的字符用省略号表示  火狐*/
+        }
+    </style>
+</head>
+<body>
+
+{include file="common/daohang"}
+<div class="right">
+    <div class="layui-frome">
+        <span>推送记录</span>
+
+        <HR>
+
+        <div class="layui-layout layui-layout-admin">
+
+
+            <div class="layui-form" style="margin-top:40px;">
+
+                <table class="layui-table" id="myTable" style="table-layout:fixed" >
+
+                    <colgroup>
+                        <col width="50">
+                        <col width="200">
+                        <col width="900">
+                        <col width="100">
+                        <col width="150">
+
+                    </colgroup>
+
+                    <thead>
+                    <tr id="theader" class="layui-table-col-special">
+                        <th>ID</th>
+                        <th>推送对象</th>
+                        <th>推送内容</th>
+                        <th>推送状态</th>
+                        <th>推送时间</th>
+                    </tr>
+                    </thead>
+                    {volist name="recordInfo" id="record"}
+                    <tr>
+                        <td>{$record.id}</td>
+                        <td>{$record.uid}</td>
+                        <td onmousemove="removeClassType(this)">{$record.message}</td>
+                        <td>{switch name="$record.status"}{case value="0"}失败{/case}{case value="1"}成功{/case}{default /}未知{/switch}</td>
+                        <td>{$record.create_at}</td>
+                    </tr>
+                    {/volist}
+
+                </table>
+                <!--分页-->
+                <div>{$recordInfo->render()}</div>
+
+            </div>
+        </div>
+    </div>
+
+    {include file="common/footer"}
+    <script src="__STATIC__/layui/layui.js"></script>
+
+    <script>
+
+        layui.use(['layedit', 'laydate'], function () {
+            var form = layui.form
+                , layer = layui.layer
+                , layedit = layui.layedit
+                , laydate = layui.laydate;
+        });
+
+
+        layui.use('form', function () {
+            var $ = layui.jquery, form = layui.form;
+
+            //全选
+            form.on('checkbox(allChoose)', function (data) {
+                var child = $(data.elem).parents('table').find('tbody input[type="checkbox"]');
+                child.each(function (index, item) {
+                    item.checked = data.elem.checked;
+                });
+                form.render('checkbox');
+            });
+        });
+
+
+        $('#delRow').click(function () {
+            var ids = '';
+            $(".delusers").each(function () {
+                if ($(this).is(':checked')) {
+                    ids += ',' + $(this).val(); //逐个获取id
+                }
+            });
+            ids = ids.substring(1); // 对id进行处理，去除第一个逗号
+            //alert(ids);
+            if (ids.length == 0) {
+                alert('请选择要删除的选项');
+            } else {
+                layer.confirm("您确定要删除这些吗？删除后将无法恢复。", {
+                        btn: ['确定', '取消'],
+                    }, function (index, layero) {
+                        url = "action=del_call_record&ids=" + ids;
+                        $.ajax({
+                            type: "post",
+                            url: "delcarduser.html",
+                            data: {"id": ids},
+                            dataType: 'json',
+                            success: function (res) {
+                                // alert(data);
+                                if (res===true) {
+                                    layer.msg("删除成功！", {time: 5000});
+                                    location.reload();
+                                } else {
+                                    layer.msg("删除失败！");
+                                }
+                            }
+                            // error: function(XMLHttpRequest, textStatus) {
+                            //   alert("页面请求错误，请检查重试或联系管理员！\n" + textStatus);
+                            // }
+                        });
+
+                    }, function (index) {
+                        layer.close(index);
+                    }
+                );
+
+            }
+
+
+        });
+        function removeClassType($this) {
+            $($this).attr("title",$this.innerText);
+        }
+    </script>
+
+
+</body>
+</html>

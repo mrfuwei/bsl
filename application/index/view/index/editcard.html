@@ -1,0 +1,335 @@
+﻿<!doctype html>
+<html>
+<head>
+    {include file="common/header"}
+</head>
+<style>
+    #list {
+        background: #62b5d7
+    }
+
+    select {
+        width: 100%;
+        height: 38px;
+        border: 1px solid #e6e6e6;
+    }
+</style>
+
+<body>
+{include file="common/daohang"}
+<div class="right layui-main layui-tab layui-tab-brief" style="min-height:700px;padding:15px;margin-top:0px;">
+    <form class="layui-form layui-form-pane">
+        <div style="padding:15px;">
+            <h1>年卡详情</h1>
+        </div>
+        <HR>
+        <input type="hidden" name="cardid" value="{$clubxx.cardid}">
+        <input type="hidden" name="cardno" value="{$clubxx.cardno}">
+        <div>
+            <div class="layui-form-item">
+                <div class="layui-col-md5">
+                    <div class="site-groupphoto-flow">
+                        <input type="hidden" name="groupphoto" value="" >
+                        <img src="__ROOT__{$clubxx.photo}">
+                        <video autoplay="" width="591" height="345" style="display: none"></video>
+                        <canvas style="display: none;margin:auto;margin-bottom:2px;">预览</canvas>
+                        <button type="button" class="layui-btn snap" style="margin-top:10px;">点击拍制卡照</button>
+                    </div>
+                </div>
+                <div class="layui-col-md5">
+                    <div class="layui-row" style="margin:50px auto 50px;">
+                        <label class="layui-form-label">卡类型</label>
+                        <div class="layui-col-md6">
+                            <select name="card_type" lay-verify="required">
+                                <option value="1" {if condition="$clubxx.card_type eq 1"}selected{/if}>工作日卡</option>
+                                <option value="2" {if condition="$clubxx.card_type eq 2"}selected{/if}>非节假日卡</option>
+                                <option value="3" {if condition="$clubxx.card_type eq 3"}selected{/if}>畅玩卡</option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-row" style="margin:50px auto;">
+                        <label class="layui-form-label">开始日期：</label>
+                        <div class="layui-col-md7">
+                            <input class="layui-input" name="starttime" id="start" type="text" placeholder="年-月-日"
+                                   value="{$clubxx.startdate}" readonly lay-filter="*">
+                        </div>
+                    </div>
+
+                    <div class="layui-row">
+                        <label class="layui-form-label">终止日期：</label>
+                        <div class="layui-col-md7">
+                            <input class="layui-input" name="endtime" id="end" type="text" placeholder="年-月-日"
+                                   value="{$clubxx.enddate}" readonly lay-filter="*">
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            {volist name="memberxx" id="vo" key="k"}
+
+            <div class="layui-form-item" style="margin-bottom:80px;">
+                <input type="hidden" name="id[]"  value="{$vo.id}">
+                <div class="layui-col-md5">
+                    <div class="site-photo-flow" style="width:360px;height:240px;">
+                        <input type="hidden" name="photo[]"  value="">
+                        <img src="__ROOT__{$vo.photo}" alt="" style="width: 100%;height:100%;">
+                        <video autoplay="" width="360" height="240" style="display: none"></video>
+                        <canvas style="display: none;margin:auto;margin-bottom:2px;">预览</canvas>
+                        <button type="button" class="layui-btn snap"  style="margin-top:10px;">点击拍摄个人照</button>
+                    </div>
+                </div>
+                <div class="layui-col-md5">
+                    <div class="layui-row" style="margin-bottom: 15px;margin-top:25px;">
+                        <label class="layui-form-label">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</label>
+                        <div class="layui-col-md7">
+                            <input name="username[]"  autocomplete="off" placeholder="请输入姓名"
+                                   class="layui-input" type="text"  value="{$vo.membername}" lay-filter="*">
+                        </div>
+                    </div>
+                    <div class="layui-row" style="margin-bottom: 15px;">
+                        <label class="layui-form-label">身份证号：</label>
+                        <div class="layui-col-md7">
+                            <input name="shenfenz[]" id="shenfenz"  placeholder="" autocomplete="off"
+                                   class="layui-input" type="text" value="{$vo.idnumber}" lay-filter="*">
+                        </div>
+                    </div>
+                    <div class="layui-row" style="margin-bottom: 15px;">
+                        <label class="layui-form-label">手&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机：</label>
+                        <div class="layui-col-md7">
+                            <input name="phone[]" id="phone"  autocomplete="off" class="layui-input"
+                                   type="tel" value={$vo.phone} lay-filter="*">
+                        </div>
+                    </div>
+                    <div class="layui-row" style="margin-bottom: 15px;margin-top:25px;">
+                        <label class="layui-form-label">人脸特征：</label>
+                        <div class="layui-col-md7">
+                            <input  class="layui-input" type="hidden" name="is_get_features[]"  value="{$vo.is_get_features}">
+                            <input  class="layui-input"  disabled value="{if condition="$vo.is_get_features eq 1"}提取成功{else}提取失败{/if}">
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            {/volist}
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+        <div id="bott" class="layui-row" style="margin-bottom:30px;">
+            <div class="layui-col-md5" style="text-align: center;">
+                <button class="layui-btn layui-btn-normal layui-btn-radius" type="reset" id="submit" lay-submit lay-filter="modify" >修改</button>
+            </div>
+            <div class="layui-col-md3" style="text-align: center;">
+                <button class="layui-btn layui-btn-big layui-btn-radius"
+                        id="godayin">去打印
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+    {include file="common/footer"}
+    <script type="text/javascript" src="__STATIC__/jeDate/jedate.js" charset="utf-8"></script>
+    <script src="__STATIC__/layui/layui.js"></script>
+    <script>
+        layui.use(['form', 'layedit', 'laydate'], function () {
+            var form = layui.form
+                , layer = layui.layer
+                , layedit = layui.layedit
+                , laydate = layui.laydate;
+
+
+            //自定义验证规则
+            form.verify({
+                username: function (value) {
+                    if (value.length < 2) {
+                        return '姓名至少得2个字符啊';
+                    }
+                },
+
+
+
+            });
+            form.on('submit(modify)', function(data){
+                // console.log(data.form); //被执行提交的form对象，一般在存在form标签时才会返回
+                // console.log($(data.form).serialize()); //当前容器的全部表单字段，名值对形式：{name: value}
+                $.post("{:url('index/modifycard')}",$(data.form).serialize(),function(res){
+                    if (res===true){
+                        layer.msg("修改成功");
+                    }else{
+                        layer.msg("修改失败");
+                    }
+                });
+                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+            });
+
+        });
+        jeDate({
+            dateCell: "#start",
+            // isinitVal:true,
+            format: "YYYY-MM-DD",
+            isTime: false,
+            choosefun: function (val) {
+                var bs = shijianjiajian(val, 'y', 1);
+                var end = shijianjiajian(bs, 'd', -1);
+                $('#end').val(end);
+            }
+        });
+        jeDate({
+            dateCell: "#end",
+            // isinitVal:true,
+            format: "YYYY-MM-DD",
+            isTime: false
+        });
+
+
+        $('#godayin').click(function () {
+            window.location.href = "chakan.html?id=" + {$clubxx.cardno};
+            return false;
+        });
+    </script>
+    <script>
+        // const width = 200;
+        // const height = 200;
+        var xvideo, vwidth, vheight, xcanvas, docvideo, doccanvas, ative;
+        var mediaStreamTrack = null;
+        var visplay = false;
+        var mphoto = [];
+        //访问摄像头
+        if (navigator.mediaDevices.getUserMedia || navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia) {
+
+            //调用用户媒体设备, 访问摄像头
+            // getUserMedia({video: {width: 200, height: 200}}, success, error);
+        } else {
+            alert('不支持访问用户媒体');
+        }
+
+        //访问用户媒体设备的兼容方法
+        function getUserMedia(constraints, success, error) {
+            if (navigator.mediaDevices.getUserMedia) {
+                //最新的标准API
+                navigator.mediaDevices.getUserMedia(constraints).then(success).catch(error);
+            } else if (navigator.webkitGetUserMedia) {
+                //webkit核心浏览器
+                navigator.webkitGetUserMedia(constraints, success, error)
+            } else if (navigator.mozGetUserMedia) {
+                //firfox浏览器
+                navigator.mozGetUserMedia(constraints, success, error);
+            } else if (navigator.getUserMedia) {
+                //旧版API
+                navigator.getUserMedia(constraints, success, error);
+            }
+        }
+
+        //成功回调
+        function success(stream) {
+            //兼容webkit核心浏览器
+            var CompatibleURL = window.URL || window.webkitURL;
+            //将视频流设置为video元素的源
+            // console.log(stream);
+            // docvideo.src = CompatibleURL.createObjectURL(stream);
+            docvideo.srcObject = stream;
+            mediaStreamTrack = stream.getTracks()[0];
+            // console.log(mediaStreamTrack);
+            // console.log(xvideo);
+            docvideo.play();
+        }
+
+        //失败回调
+        function error(error) {
+            console.log(error);
+            console.log("访问用户媒体设备失败");
+        }
+
+        function funClose() {
+            mediaStreamTrack.stop();
+        }
+
+        $('.snap').click(function () {
+            ative = $(this);
+            xvideo = $(this).siblings("video");
+            docvideo = $(this).siblings("video").get(0);
+            xcanvas = $(this).siblings('canvas');
+            doccanvas = $(this).siblings('canvas').get(0);
+            vwidth = xvideo.width();
+            vheight = xvideo.height();
+            if (visplay === false) {
+                $(this).siblings("img").hide();
+                xvideo.show();
+                xcanvas.hide();
+                getUserMedia({video: {width: vwidth, height: vheight}}, success, error);
+                visplay = true;
+                $(this).text("点击拍摄");
+            } else {
+                drawCanvasImage();
+            }
+        });
+
+        function drawCanvasImage() {
+            let num=<?=count($memberxx)?>;
+            const photo = xcanvas.siblings("input");
+            const context = doccanvas.getContext('2d');
+            doccanvas.width = vwidth;
+            doccanvas.height = vheight;
+            context.drawImage(docvideo, 0, 0, vwidth, vheight, 0, 0, vwidth, vheight);
+            //获取图片，数据格式为base64
+            const imageData = doccanvas.toDataURL("image/jpeg");
+            const imgStr = imageData.substr(23);
+
+            $.post('{:url("api/verifyfaces")}', {faces: imgStr, membernum: num},function (data) {
+                if (data.error_code != 0) {
+                    photo.val("");
+                    layer.alert("图片不通过," + data.error_msg);
+                    isremake(0);
+                } else {
+                    layer.msg("图片通过");
+                    photo.val(imgStr);
+                    isremake(1);
+                }
+            });
+
+        }
+
+        function isremake(num) {
+            if (num == 1) {
+                xvideo.hide();
+                ative.text("重拍");
+                xcanvas.show();
+                funClose();
+                visplay = false;
+            }
+        }
+
+
+        //重置输入框
+        $('#reset').click(function () {
+            $('#username').val("");
+            $('#shenfenz').val("");
+            $('#phone').val("");
+            $('#start').val("");
+            $('#end').val("");
+        });
+
+
+
+
+
+    </script>
+
+
+</body>
+</html>

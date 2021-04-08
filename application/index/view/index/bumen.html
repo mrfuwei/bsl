@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+{include file="common/header"}
+<link rel="stylesheet" href="__STATIC__/css/bumen.css">
+</head>
+<style>
+#bumen{background:#62b5d7}
+</style>
+<body>
+           
+{include file="common/daohang"}
+ <div class="right" style="min-height:700px;height:auto;">
+
+    <div class="layui-frome">
+       <h1>部门管理</h1>
+     <HR>
+
+
+    <table>
+    
+    <tr>
+      <th><input type="checkbox" name="" class="allChoose" lay-skin="primary" lay-filter="allChoose"></th>
+      <th>ID</th>
+      <th>部门</th>
+    </tr>
+    {volist name="lists" id="vo"}
+    <tr>
+      <td><input type="checkbox" id="{$vo.orgid}" value="{$vo.orgid}" class="delusers" name="" lay-skin="primary"></td>
+      <td>{$vo.orgid}</td>
+      <td>{$vo.orgname}</td>
+    </tr>
+    {/volist}
+
+    </table>
+    <div style="float:right;margin-top:20px;margin-bottom:30px;">
+      <a href="addbumen.html"><button class="layui-btn" target="_blank"><i class="layui-icon"></i>增加</button></a>
+      <button class="layui-btn layui-btn-dange layui-btn-normal" id="delRow"><i class="layui-icon"></i> 删除</button>
+
+    </div>
+      
+  </div>
+ </div>
+
+{include file="common/footer"}
+<style type="text/css">
+ 
+</style>
+
+<script type="text/javascript">
+$('.allChoose').click(function(){
+    if(this.checked){   
+        $("input:checkbox").prop("checked", true);  
+    }else{   
+        $("input:checkbox").prop("checked", false);
+    }  
+});
+
+$('#delRow').click(function(){
+    var ids = '';
+    $(".delusers").each(function() {
+    if ($(this).is(':checked')) {
+      ids += ',' + $(this).val(); //逐个获取id
+      }
+    });
+    ids = ids.substring(1); // 对id进行处理，去除第一个逗号
+    //alert(ids);
+    if (ids.length == 0) {
+      alert('请选择要删除的选项');
+    } else {
+      if (confirm("您确定要删除这些吗？删除后将无法恢复。")) {
+
+        //url = "action=del_call_record&ids=" + ids;
+        $.ajax({
+          type: "post",
+          url: "delbumen.html",
+          data:{"id":ids},
+          dataType:'json',
+          success: function(data) {
+            // alert(data);
+            if (parseInt(data) > 0) {
+              alert("删除成功！");
+              location.reload();
+            } else {
+              alert("删除失败！");
+            }
+          }
+          // error: function(XMLHttpRequest, textStatus) {
+          //   alert("页面请求错误，请检查重试或联系管理员！\n" + textStatus);
+          // }
+        });
+      }
+    }
+
+});
+</script>
+</body>
+</html>

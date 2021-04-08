@@ -1,0 +1,321 @@
+﻿<!doctype html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=10"/>
+{include file="common/header"}
+<link rel="stylesheet" href="__STATIC__/css/children.css">
+</head>
+<style>
+#home{background:#62b5d7}
+select{width:100%;height:38px;border:1px solid #e6e6e6;}
+</style>
+
+<body>            
+{include file="common/daohang"}
+ <div class="right" style="min-height:700px;">
+  <div class="layui-frome">
+     <h1>年卡详情</h1>
+	 <HR>
+    <div class="con4" style="float:LEFT;text-align:center;">
+     <img width="260" height="260" style="margin-top:30px;" src="data:image/jpeg;base64,{$clubxx.PHOTO}">
+	  </div>
+    <div class="right-main">
+	  <div class="cot">
+	     <div class="layui-form-item">
+            <div class="layui-inline">
+    <label class="layui-form-label">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</label>
+    <div class="layui-input-inline">
+      <input name="username" lay-verify="username" autocomplete="off" placeholder="请输入姓名" class="layui-input" type="text" id="username" disabled="" value="{$clubxx.MEMBERNAME}">
+    </div>
+  </div>
+			
+         <!-- <div class="layui-inline">
+           <label class="layui-form-label">固定电话：</label>
+             <div class="layui-input-inline">
+               <input name="tel" id="tel" lay-verify="tel" autocomplete="off" class="layui-input" type="text">
+             </div>
+         </div> -->
+       </div>
+	     <div class="layui-form-item">
+          <div class="layui-inline">
+           <label class="layui-form-label">个&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;体：</label>
+             <div class="layui-input-inline">
+              <input type="hidden" name="zhonglei" value="2" id="zhonglei">
+              <input type="text" class="layui-input" value="<?php if($cardxx['CARDNAME']=="家庭年卡A"){echo "成人";}elseif($cardxx['CARDNAME']=="家庭年卡B"){
+                  echo "成人";
+                }elseif ($cardxx['CARDNAME']=="成人年卡") {
+                  echo "成人";
+                }else{
+                  echo "儿童";
+                }
+
+                ?>" disabled="">
+		    </div>
+	      </div>
+		  <div class="layui-inline">
+           <label class="layui-form-label">卡&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：</label>
+             <div class="layui-input-inline">
+               <input name="kahao" id="kahao" lay-verify="ID" autocomplete="off" class="layui-input" type="text" value="{$clubxx.CARDNO}">
+               <input type="hidden" id="oidid" value="{$clubxx.CARDNO}">
+             </div>
+         </div>
+	    </div>
+        
+		<div class="layui-form-item">
+		  <div class="layui-inline">
+             <label class="layui-form-label">身份证号：</label>
+             <div class="layui-input-inline">
+              <input name="shenfenz" id="shenfenz" lay-verify="identity" placeholder="" autocomplete="off" class="layui-input" type="text" disabled="" value="{$clubxx.IDNUMBER}">
+             </div>
+          </div>
+		   <div class="layui-inline">
+             <label class="layui-form-label">开始日期：</label>
+           <div class="layui-input-block">
+             <input class="layui-input" name="starttime" id="start" type="text" placeholder="年-月-日" value="{$clubxx.STARTDATE}" disabled=""  readonly>
+           </div>
+          </div>
+		</div>
+	   <div class="layui-form-item">
+	     <div class="layui-inline">
+      <label class="layui-form-label">手&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机：</label>
+      <div class="layui-input-inline">
+        <input name="phone" id="phone" lay-verify="phone" autocomplete="off" class="layui-input" type="tel" disabled="" value="{$clubxx.PHONE}">
+      </div>
+    </div>
+	      <div class="layui-inline">
+             <label class="layui-form-label">终止日期：</label>
+           <div class="layui-input-block">
+             <input class="layui-input" name="endtime" id="end" type="text" placeholder="年-月-日" value="{$clubxx.ENDDATE}" disabled=""  readonly>
+           </div>
+          </div>
+	   </div>
+<!-- 	   <div class="layui-form-item">
+	    <div class="layui-inline">
+      <label class="layui-form-label">固定电话：</label>
+      <div class="layui-input-inline">
+        <input name="phone" lay-verify="phone" autocomplete="off" class="layui-input" type="tel">
+      </div>
+    </div> -->
+<!-- 	<div class="layui-inline">
+    <label class="layui-form-label">登记设备：</label>
+    <div class="layui-input-inline">
+      <input name="title" lay-verify="title" autocomplete="off" placeholder="请输入设备" class="layui-input" type="text">
+    </div>
+  </div> -->
+	   </div>
+	   <div class="layui-form-item">
+    <label class="layui-form-label address">地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：</label>
+    <div class="layui-input-block">
+      <input name="add" id="addr" lay-verify="title" autocomplete="off" placeholder="请输入地址" disabled="" class="layui-input" type="text" value="{$clubxx.ADDR}">
+    </div>
+       </div>
+      <?php 
+
+      for ($i=0; $i < count($memberxx); $i++) { 
+          if ($memberxx[$i]['ISSUB']=="1") {
+            # code...
+      
+       ?>
+	  <div class="layui-form-item">
+	   <label class="layui-form-label zhiwen" style="margin-top:10px;">指&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;纹：</label>
+     <span>
+	   <?php 
+          if ($memberxx[$i]['FINGERIMAGE1']!='') {
+            echo "指纹1已采集";
+          }else{
+            echo "指纹1未采集";
+          }
+          
+      ?>
+      </span>
+      <br />
+      <span>
+      <?php 
+          
+          if ($memberxx[$i]['FINGERIMAGE2']!='') {
+            echo "指纹2已采集";
+          }else{
+            echo "指纹2未采集";
+          }
+      ?>
+      </span>
+      <?php
+        }
+      }
+      ?>
+	
+	  </div>
+ 
+	  </div>
+
+  <?php
+  $a=1; 
+  for ($i=0; $i <count($memberxx) ; $i++) { 
+
+      if ($memberxx[$i]['ISSUB']=="0") {
+        $a++;
+   ?>       
+<div style="clear:both;">
+   <span>家庭成员<?=$a?></span>
+    <hr>
+    <div class="con4" style="float:LEFT;text-align:center;">
+    <img src="/nianka/public/static/images/face/ren.jpg"> </div>
+    <div class="right-main">
+    <div class="cot">
+       <div class="layui-form-item">
+            <div class="layui-inline">
+    <label class="layui-form-label">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</label>
+    <div class="layui-input-inline">
+      <input name="username" lay-verify="username" autocomplete="off" placeholder="请输入姓名" class="layui-input" type="text" id="username2" value="<?=$memberxx[$i]['MEMBERNAME']?>" disabled="">
+    </div>
+  </div>
+    
+       </div>
+       <div class="layui-form-item">
+          <div class="layui-inline">
+           <label class="layui-form-label">个&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;体：</label>
+             <div class="layui-input-inline">
+              <input type="hidden" name="zhonglei" value="2" id="zhonglei2">
+              <input type="text" class="layui-input" value="<?php 
+                if ($memberxx[$i]['MEMBERTYPE']=="1") {
+                  echo "儿童";
+                }else{
+                  echo "成人";
+                }
+
+               ?>" disabled="">
+        </div>
+        </div>
+     
+      </div>
+        
+     </div>
+     
+      
+    <div class="layui-form-item">
+     <label class="layui-form-label zhiwen" style="margin-top:10px;">指&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;纹：</label>
+
+        <span>
+     <?php 
+          if ($memberxx[$i]['FINGERIMAGE1']!='') {
+            echo "指纹1已采集";
+          }else{
+            echo "指纹1未采集";
+          }
+          
+      ?>
+      </span>
+      <br />
+      <span>
+      <?php 
+          
+          if ($memberxx[$i]['FINGERIMAGE2']!='') {
+            echo "指纹2已采集";
+          }else{
+            echo "指纹2未采集";
+          }
+      ?>
+      </span>
+    </div>
+  
+    </div>
+ 
+
+
+  <?php
+      }
+  }
+
+
+   ?>
+
+
+  </div>
+
+
+
+
+	
+	   <div id="bott">
+	
+      <ul>
+        <li><button class="layui-btn layui-btn-normal layui-btn-radius" type="reset" id="submit">修改</button></li>
+        <li><button class="layui-btn layui-btn-big layui-btn-radius" lay-submit="" lay-filter="demo1" id="goback">返回</button></li>
+        <!-- <li><button class="layui-btn layui-btn-warm layui-btn-radius">打印</button></li> -->
+      </ul>
+	 
+    </div>
+	     
+  </div>
+ 
+
+{include file="common/footer"}
+<script type="text/javascript" src="__STATIC__/jeDate/jedate.js" charset="utf-8"></script>
+<script>
+layui.use(['form', 'layedit', 'laydate'], function(){
+  var form = layui.form()
+  ,layer = layui.layer
+  ,layedit = layui.layedit
+  ,laydate = layui.laydate;
+  
+
+  //自定义验证规则
+  form.verify({
+    username: function(value){
+      if(value.length < 2){
+        return '姓名至少得2个字符啊';
+      }
+    }
+    
+  });
+  
+  //监听提交
+  form.on('submit(demo1)', function(data){
+    layer.alert(JSON.stringify(data.field), {
+      title: '最终的提交信息'
+    })
+    return true;
+  });  
+});
+  jeDate({
+    dateCell:"#start",//isinitVal:true,
+    format:"YYYY-MM-DD",
+    isTime:false
+  })
+  jeDate({
+    dateCell:"#end",//isinitVal:true,
+    format:"YYYY-MM-DD",
+    isTime:false
+  })
+  $('#submit').click(function(){
+    var kahao=$('#kahao').val();
+    var oidid=$('#oidid').val();
+    var msg="";
+    if (kahao=="") {
+      msg="请填写卡号";
+    }
+    if(msg!=""){
+      alert(msg);
+      return false;
+    }
+    // alert(oidid);
+    // return false;
+    $.ajax({
+      url:"editcard.html",
+      type:"POST",
+      data:{oidid:oidid,id:kahao},
+      dataType:'JSON',
+      success:function(data){
+        alert(data);
+        window.location.href="chakan.html?id="+kahao;
+      }
+    });
+  });
+
+  $('#goback').click(function(){
+    history.back(-1);
+  });
+</script>
+
+
+</body>
+</html>

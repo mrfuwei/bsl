@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>圣华</title>
+    <meta name="keywords" content="圣华">
+    <meta name="description" content="圣华">
+    <meta name="author" content="圣华">
+    <meta name="copyright" content="圣华">
+    <meta name="robots" content="All">
+    <link href="" rel="shortcut icon" type="image/x-icon">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/product1.css">
+	<style>
+		.product-container{
+		    margin-bottom: 75px;
+		}
+		.product-section{
+		    width: 100%;
+		    margin-top: 90px;
+		}
+		.product-section .product-list{
+		    width: 100%;
+		    position: relative;
+		    display: block;
+		    /*height: 785px;*/
+		}
+		.product-section .product-list .product-item{
+		    width: 86.5%;
+		    height: 100%;
+		    background:#f2f2f2;
+		    position: absolute;
+		    right: 0;
+		    top: 0;
+		    clip-path: polygon(5% 0%,0% 100%,100% 100%, 100% 0%, 5% 0%);
+		}
+		.product-section:nth-child(2n) .product-list .product-item{
+		    left: 0;
+		    top: 0;
+		    right: unset;
+		    clip-path: polygon(0% 0%,0% 100%,100% 100%, 95% 0%, 0% 0%);
+		}
+		.product-section .product-list .product-child{
+		    width: 73%;
+		    /*height: 624px;*/
+		    position: absolute;
+		    left: -200px;
+		    top: 80px;
+		    clip-path: polygon(0% 0%,0% 100%,100% 100%, 95% 0%, 0% 0%);
+		    overflow: hidden;
+		    opacity: 0;
+		}
+		.product-section .product-list .product-child1{
+		    width: 73%;
+		    /*height: 624px;*/
+		    position: absolute;
+		    right: -200px;
+		    opacity: 0;
+		    top: 80px;
+		    clip-path: polygon(5% 0%,0% 100%,100% 100%, 100% 0%, 5% 0%);
+		    overflow: hidden;
+		}
+		/*.product-section:nth-child(2n) .product-list .product-child1{*/
+		    /*right: -200px;*/
+		    /*left: unset;*/
+		    /*clip-path: polygon(5% 0%,0% 100%,100% 100%, 100% 0%, 5% 0%);*/
+		/*}*/
+		.product-section .product-list .product-child img{
+		    /*height: 100%;*/
+		    width: 100%;
+		    /*object-fit: cover;*/
+		    height: auto;
+		}
+		.product-section .product-list .product-child1 img{
+		    /*height: 100%;*/
+		    width: 100%;
+		    /*object-fit: cover;*/
+		    height: auto;
+		}
+		.product-textBox{
+		    width: 38%;
+		    position: absolute;
+		    top: 250px;
+		    right: 0;
+		}
+		.product-section:nth-child(2n) .product-textBox{
+		    left: 0;
+		    right: unset;
+		}
+		.product-textBox .product-text-title{
+		    text-transform: uppercase;
+		    font-size: 65px;
+		    color: #e6e6e6;
+		    margin-left: 13px;
+		    letter-spacing: 3px;
+		    line-height: 1;
+		}
+		.product-section:nth-child(2n) .product-textBox .product-text-title{
+		    text-align: right;
+		    margin-right: 13px;
+		    margin-left: 0;
+		}
+		.product-textBox .product-txtBox{
+		    width: 100%;
+		    height: 100px;
+		    background-color: rgba(204,167,103,.7);
+		    clip-path: polygon(20px 0%,0% 100%,100% 100%, 100% 0%, 20px 0%);
+		    margin-top: -15px;
+		    padding-top: 18px;
+		    padding-left: 33px;
+		    box-sizing: border-box;
+		}
+		.product-section:nth-child(2n) .product-textBox .product-txtBox{
+		    clip-path: polygon(0% 0%,0% 100%,100% 100%, calc(100% - 20px) 0%, 0% 0%);
+		    padding-left: 0;
+		    padding-right: 33px;
+		}
+		.product-textBox .product-txtBox .pro-txt-title{
+		    font-size: 20px;
+		    color: #ffffff;
+		    position: relative;
+		}
+		.product-section:nth-child(2n) .product-textBox .product-txtBox .pro-txt-title{
+		    text-align: right;
+		}
+		.product-textBox .product-txtBox .pro-txt-title:after{
+		    width: calc(100% - 80px);
+		    position: absolute;
+		    right: 0;
+		    top: 50%;
+		    height: 1px;
+		    background: #fff;
+		    content: '';
+		}
+		.product-section:nth-child(2n) .product-textBox .product-txtBox .pro-txt-title:after{
+		    left: 0;
+		    right: unset;
+		}
+		.product-textBox .product-txtBox .pro-txt{
+		    color: #ffffff;
+		    font-size: 14px;
+		    margin-top: 10px;
+		    font-weight: lighter;
+		    letter-spacing: 2px;
+		}
+		.product-section:nth-child(2n) .product-textBox .product-txtBox .pro-txt{
+		    text-align: right;
+		}
+		@media screen and (max-width: 1280px){
+		    .product-textBox .product-text-title {
+		        font-size: 60px;
+		    }
+		}
+	</style>
+</head>
+<body>
+    <header class="">
+        <div class="body">
+            <div class="header-box">
+                <div class="logo">
+                    <img src="img/logo.png">
+                </div>
+                <div class="menu">
+                    <ul>
+                        <li><a href="index.html"><span>首页</span></a></li>
+                        <li><a href="about.html"><span>介绍</span></a></li>
+                        <li><a href="product1.html"><span>产品</span></a></li>
+                        <li><a href="news.html"><span>动态</span></a></li>
+                        <li><a href="service.html"><span>服务</span></a></li>
+                        <li><a href="join.html"><span>合作</span></a></li>
+                        <li><a href="contact.html"><span>联系</span></a></li>
+                    </ul>
+                    <style>
+                        /*.header-box>.menu>.button span:nth-child(2):hover i {*/
+                            /*background-image: url(img/icon/search2.png)!important;*/
+                        /*}*/
+
+                        /*.header-box>.menu>.button span:nth-child(3):hover i {*/
+                            /*background-image: url(img/icon/chat2.png)!important;*/
+                        /*}*/
+
+                        .header-box>.menu>.button span:hover i {
+                            background-image: url(img/icon/cart2.png)!important;
+                        }
+                    </style>
+                    <div class="button">
+                        <!--<span><a href="#">语言</a></span>-->
+
+                        <!--<span> <a href="#"><i class="menu-icon" style="background-image: url(img/icon/search.png);"></i></a></span></a>-->
+                        <!--<span> <a href="#"><i class="menu-icon" style="background-image: url(img/icon/chat.png);"></i></a></span></a>-->
+                        <span> <a href="#"><i class="menu-icon" style="background-image: url(img/icon/cart.png);"></i></a></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+    <div class="banner-section section1">
+        <div class="banner">
+            <img src="images/product-banner.jpg" alt="">
+        </div>
+        <!--<div class="banner-section-box">-->
+        <!--    <div class="banner-section-text">-->
+        <!--        产品中心-->
+        <!--    </div>-->
+        <!--    <div class="banner-section-img">-->
+        <!--        <img src="images/banner-arrow.png" alt="">-->
+        <!--    </div>-->
+        <!--</div>-->
+    </div>
+    <div class="product-container">
+        <div class="product-section productthree">
+            <a href="javascript:;" class="product-list">
+                <div class="product-item">
+
+                </div>
+                <div class="product-child">
+                    <img src="images/product-01.jpg" alt="">
+                </div>
+                <div class="product-textBox">
+                    <div class="product-text-title">
+                        brand
+                    </div>
+                    <div class="product-txtBox">
+                        <div class="pro-txt-title">品牌</div>
+                        <div class="pro-txt">京匠·精工·金品</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="product-section productone">
+            <a href="jizhi.html" class="product-list">
+                <div class="product-item">
+
+                </div>
+                <div class="product-child1">
+                    <img src="images/product-02.jpg" alt="">
+                </div>
+                <div class="product-textBox producttext">
+                    <div class="product-text-title">
+                        jizhi
+                    </div>
+                    <div class="product-txtBox">
+                        <div class="pro-txt-title">吉至</div>
+                        <div class="pro-txt">东方美学 雅舍生活</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="product-section producttwo">
+            <a href="javascript:;" class="product-list">
+                <div class="product-item">
+
+                </div>
+                <div class="product-child">
+                    <img src="images/product-03.jpg" alt="">
+                </div>
+                <div class="product-textBox producttwotext">
+                    <div class="product-text-title">
+                        oufach
+                    </div>
+                    <div class="product-txtBox">
+                        <div class="pro-txt-title">欧凡驰</div>
+                        <div class="pro-txt">北欧时尚设计</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="product-section productfour">
+            <a href="javascript:;" class="product-list">
+                <div class="product-item">
+
+                </div>
+                <div class="product-child1">
+                    <img src="images/product-04.jpg" alt="">
+                </div>
+                <div class="product-textBox productfourtext">
+                    <div class="product-text-title">
+                        iron forest
+                    </div>
+                    <div class="product-txtBox">
+                        <div class="pro-txt-title">铁森林</div>
+                        <div class="pro-txt">自然时尚实木</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="product-section productfive">
+            <a href="javascript:;" class="product-list">
+                <div class="product-item">
+
+                </div>
+                <div class="product-child">
+                    <img src="images/product-05.jpg" alt="">
+                </div>
+                <div class="product-textBox productfivetext">
+                    <div class="product-text-title">
+                        muzhizun
+                    </div>
+                    <div class="product-txtBox">
+                        <div class="pro-txt-title">木至尊</div>
+                        <div class="pro-txt">当代名仕风尚</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+    <div class="footer layout">
+        <div class="list">
+            <ul>
+                <li>
+                    <a href="about.html" class="title">关于圣华</a>
+                    <ul>
+                        <li>圣华简介</li>
+                        <li>发展历程</li>
+                        <li>企业荣誉</li>
+                        <li>社会责任</li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="product1.html" class="title">产品中心</a>
+                    <ul>
+                        <li><a href="jizhi.html">吉至</a></li>
+                        <li><a href="jizhi.html">欧凡驰</a></li>
+                        <li><a href="jizhi.html">铁森林</a></li>
+                        <li><a href="jizhi.html">木至尊</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="news.html" class="title">新闻中心</a>
+                    <ul>
+                        <li>企业动态</li>
+                        <li>行业资讯</li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="join.html" class="title">加入圣华</a>
+                    <ul>
+                        <li>社会招聘</li>
+                        <li>校园招聘</li>
+                        <li>实习生招聘</li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="service.html" class="title">服务中心</a>
+                    <ul>
+                        <li><a href="service.html">服务首页</a></li>
+                        <li><a href="service.html">服务政策</a></li>
+                        <li><a href="service.html">帮助中心</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="join.html" class="title">寻求合作</a>
+                    <ul>
+                        <li><a href="contact.html">联系我们</a></li>
+                        <li><a href="join.html">经商加盟</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+        <div class="bottom">
+            <div class="logo">
+                <img src="img/logo.png">
+            </div>
+            <div class="text">圣华国际. ICP备案编号：京ICP备1234567890号&nbsp;&nbsp;&nbsp;技术支持： PERSONAL TAILOR</div>
+            <div class="icon">
+                <img src="img/icon/footer_s_3_v2.png">
+                <img src="img/icon/logo4.png">
+                <img src="img/icon/footer_s_1_v2.png">
+                <img src="img/icon/footer_s_2_v2.png">
+            </div>
+            <div class="menu"><span>网站地图</span>丨<span>法律声明</span>丨<span>友情链接</span></div>
+        </div>
+    </div>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="http://gsgd.co.uk/sandbox/jquery/easing/jquery.easing.1.3.js"></script>
+<script>
+    $(window).load(function () {
+        $('.product-list').height($('.product-child img').height()+150)
+    })
+
+    $(window).load(function(){
+        setTimeout(function(){
+            scrollTop = $(window).scrollTop();
+        },1);
+        var _h = $('html').height()-$(window).innerHeight();
+        var t2=$('.productfourtext').css('top')
+        var t1=$('.productfivetext').css('top')
+        var t3=$('.producttext').css('top')
+        var t4=$('.producttwotext').css('top')
+        var t5=$('.product-textBox').css('top')
+        var scrollFunc = function (e) {
+            scrollTop = -e.wheelDelta/2+scrollTop;
+            if(scrollTop<=0||scrollTop>=_h){
+                scrollTop =  parseInt($(window).scrollTop());
+            }
+            if($(window).scrollTop()>($('.productthree').offset().top-$('.productthree').height()*1) && $(window).scrollTop()<($('.productthree').offset().top+$('.productthree').height()*1)){
+                var set3=$('.productthree').offset().top;
+                $('.product-textBox').stop().animate({top:parseInt(t5)+(scrollTop-set3)*0.2},1000,'swing');
+            }else{
+                $('.product-textBox').stop().animate({top:parseInt(t5)},1000,'swing');
+            }
+            if($(window).scrollTop()>($('.productone').offset().top-$('.productone').height()*1) && $(window).scrollTop()<($('.productone').offset().top+$('.productone').height()*1)){
+                var set2=$('.productone').offset().top;
+                $('.producttext').stop().animate({top:parseInt(t4)+(scrollTop-set2)*0.2},1000,'swing');
+            }else{
+                $('.producttext').stop().animate({top:parseInt(t4)},1000,'swing');
+            }
+            if($(window).scrollTop()>($('.producttwo').offset().top-$('.producttwo').height()*1) && $(window).scrollTop()<($('.producttwo').offset().top+$('.producttwo').height()*1)){
+                var set1=$('.producttwo').offset().top;
+                $('.producttwotext').stop().animate({top:parseInt(t3)+(scrollTop-set1)*0.3},1000,'swing');
+            }else{
+                $('.producttwotext').stop().animate({top:parseInt(t3)},1000,'swing');
+            }
+            if($(window).scrollTop()>($('.productfour').offset().top-$('.productfour').height()*1) && $(window).scrollTop()<($('.productfour').offset().top+$('.productfour').height()*1)){
+                var set4=$('.productfour').offset().top;
+                $('.productfourtext').stop().animate({top:parseInt(t2)+(scrollTop-set4)*0.2},1000,'swing');
+            }else{
+                $('.productfourtext').stop().animate({top:parseInt(t2)},1000,'swing');
+            }
+            if($(window).scrollTop()>($('.productfive').offset().top-$('.productfive').height()*1) && $(window).scrollTop()<($('.productfive').offset().top+$('.productfive').height()*1)){
+                var set5=$('.productfive').offset().top;
+                $('.productfivetext').stop().animate({top:parseInt(t1)+(scrollTop-set5)*0.3},1000,'swing');
+            }else{
+                $('.productfivetext').stop().animate({top:parseInt(t1)},1000,'swing');
+            }
+            // ScrollText(direct);
+        }
+        if (document.addEventListener) {
+            document.addEventListener('DOMMouseScroll', scrollFunc, false);
+        }
+        window.onmousewheel = document.onmousewheel = scrollFunc;
+    })
+    // $(window).ready(function(){
+    //     $(".product-child").delay(200).animate({"left":"0px","opacity":"1"},1000);
+    //     $(".product-child1.product-child").delay(200).animate({"right":"0px","left":"unset","opacity":"1"},1000,'easeOutExpo');
+    // })
+    $(window).scroll(function(){
+        if($(window).scrollTop()>($(".productthree").offset().top-300)){
+            $(".productthree .product-child").animate({"opacity":"1","left":"0px"},2000,'easeOutExpo')
+        }
+        if($(window).scrollTop()>($(".productone").offset().top-300)){
+            $(".productone .product-child1").animate({"opacity":"1","right":"0px"},2000,'easeOutExpo')
+        }
+        if($(window).scrollTop()>($(".producttwo").offset().top-300)){
+            $(".producttwo .product-child").animate({"opacity":"1","left":"0px"},2000,'easeOutExpo')
+        }
+        if($(window).scrollTop()>($(".productfour").offset().top-300)){
+            $(".productfour .product-child1").animate({"opacity":"1","right":"0px"},2000,'easeOutExpo')
+        }
+        if($(window).scrollTop()>($(".productfive").offset().top-300)){
+            $(".productfive .product-child").animate({"opacity":"1","left":"0px"},2000,'easeOutExpo')
+        }
+    })
+</script>
+</body>
+</html>

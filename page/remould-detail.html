@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <title>宝仕龙</title>
+    <link href="images/logo.png" rel="shortcut icon">
+	<link rel="stylesheet" href="css/swiper.min.css">
+	<link rel="stylesheet" href="css/animate.css">
+	<link rel="stylesheet" href="css/my_animate.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common.css">
+    <script src="js/modernizr-custom.js"></script>
+</head>
+<style>
+
+    /*该页面专属*/
+	.remould-detail-section1{
+		width: 80%;
+		margin: 80px auto;
+	}
+	.remould-detail-section1-top{
+		letter-spacing: 3px;
+	}
+	.remould-detail-section1-tit{
+		font-size: 25px;
+		color: #000;	
+		font-weight: bold;
+		display: inline-block;
+	}
+	.remould-detail-section1-list{
+		font-size: 14px;
+		color: #000;	
+		display: flex;
+		margin-top: 35px;
+	}
+	.remould-detail-section1-item{
+		margin-right: 25px;
+		line-height: 20px;
+	}
+	.remould-detail-section1-text1{
+		font-size: 16px;
+		color: #000;
+		line-height: 30px;
+		margin-top: 60px;
+	}
+	.remould-detail-section1-text2{
+		font-size: 14px;
+		color: #999;
+		line-height: 30px;
+		margin-top: 30px;
+	}
+	.remould-detail-section2{
+		width: 80%;
+		margin: 0 auto;
+	}
+	.remould-detail-section-img{
+		width: 85%;
+	}
+	.remould-detail-section-img img{
+		width: 100%;
+		height: auto;
+	}
+	.remould-detail-section-text{
+		color: #000;
+		width: 275px;
+	}
+	.remould-detail-section-text p:nth-child(1){
+		color: #000;
+		font-size: 15px;
+		font-weight: bold;
+		margin: 30px 0 20px;
+	}
+	.remould-detail-section-text p:nth-child(2){
+		color: #000;
+		font-size: 14px;
+		letter-spacing: 3px;
+		line-height: 25px;
+	}
+	.remould-detail-section3{
+		width: 80%;
+		margin: 60px auto;
+	}
+	.remould-detail-section3-list{
+		display: flex;
+		justify-content: space-between;
+	}
+	.remould-detail-section3-item{
+		width: 47%;
+	}
+	.remould-detail-section3-img{
+		position: relative;
+	}
+	.remould-detail-section3-img:after{
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%,-50%);
+		content: '';
+		width: 40px;
+		height: 40px;
+		background-image: url(images/remould-r.png);
+		background-size: 100% 100%;
+		z-index: 10;
+	}
+	.remould-detail-section3-img img{
+		height: auto;
+		width: 100%;
+	}
+	.remould-section2{
+		margin: 60px 0 80px;
+	}
+	.remould-section2-tit{
+		margin-left: 10%;
+	}
+	.remould-section2-title{
+		color: #000;
+		font-size: 20px;
+		letter-spacing: 2px;
+		font-weight: bold;
+	}
+	.remould2-container{
+		padding-left: 10%;
+		margin-top: 30px;
+	}
+	.remould2-container .swiper-slide{
+		width:33%;
+	}
+	.remould2-container .swiper-slide img{
+		width: 100%;
+		height: auto;
+	}
+	.remould2-text{
+		display: flex;
+		justify-content: space-between;
+		margin: 15px 0 10px;
+	}
+	.remould2-text-left{
+		font-size: 22px;
+		color: #000;
+		position: relative;
+		line-height: 30px;
+	}
+	.remould2-text-left:after{
+		position: absolute;
+		content: '';
+		width: 40px;
+		height: 1px;
+		background: #999;
+		left: 50%;
+		bottom: -5px;
+		transform: translateX(-50%);
+	}
+	.remould2-text-right .h{
+		width: 25px;
+		height: 15px;
+		background-image:url(images/h.png) ;
+		background-size: 25px 15px;
+		display: inline-block;
+		cursor: pointer;
+		background-position: center;
+		background-repeat: no-repeat;
+		outline: none;	
+		padding: 7.5px 10px;
+	}
+	.remould2-text-right .q{
+		width: 25px;
+		height: 15px;
+		background-image:url(images/q.png) ;
+		background-size: 25px 15px;
+		display: inline-block;
+		cursor: pointer;
+		background-position: center;
+		background-repeat: no-repeat;
+		outline: none;	
+		padding: 7.5px 10px;
+	}
+	.remould2-text-right span{
+		font-size: 18px;
+		line-height: 30px;
+		color: #999;
+	}
+</style>
+<body>
+
+    <div class="header">
+        <div class="header1">
+            <div class="nav-container">
+                <div class="logo"><a href="index.html"><img src="images/common/logo-top-white.png" alt="" width="155"></a></div>
+                <a href="javascript:;">
+                    <div class="left-header mshow">
+                        <div class="navbar">
+                            <span class="nav"></span>
+                            <span class="nav"></span>
+                            <span class="nav"></span>
+                        </div>
+                        <div class="search nav-item">
+                            <!--<img src="images/icon-search.png" alt="">-->
+                            <i class="iconfont icon-iconsearch"></i>
+                            <span>SEARCH</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="javascript:;">
+                    <div class="right-header mshow">
+                        <div class="nav-item">
+                            <a href="eight.html">
+                                <i class="iconfont icon-fenlei"></i>
+                                <!--<img src="images/icon-brands.png" alt="">-->
+                                <span>八大空间</span>
+                            </a>
+    
+                        </div>
+                        <div class="nav-item">
+                            <a href="join.html">
+                                <i class="iconfont icon-lock"></i>
+                                <!--<img src="images/icon-stock.png" alt="">-->
+                                <span>加盟合作</span>
+                            </a>
+    
+                        </div>
+                    </div>
+                </a>
+                <div class="nav-item close mhidden">
+                    <img src="images/icon-close.png" alt="">
+                    <span>CLOSE</span>
+                </div>
+    
+            </div>
+        </div>
+    	
+        <div class="header2">
+            <div class="nav-container">
+                <div class="logo"><a href="index.html"><img src="images/common/logo-top-white.png" alt="" width="155"></a></div>
+                <a href="javascript:;">
+                    <div class="left-header mshow">
+                        <div class="navbar">
+                            <span class="nav"></span>
+                            <span class="nav"></span>
+                            <span class="nav"></span>
+                        </div>
+                        <div class="search nav-item">
+                            <!--<img src="images/icon-search.png" alt="">-->
+                            <i class="iconfont icon-iconsearch"></i>
+                            <span>SEARCH</span>
+                        </div>
+                    </div>
+                </a>
+                <div class="nav_t nav_t1">
+                    <ul class="clearfix">
+                        <li>
+                            <a href="index.html">首页</a>
+                        </li>
+                        <li>
+                            <a href="brand.html">走进宝仕龙</a>
+                            <div class="header2-comboBox">
+    							<a href="brand.html" class="comboBox-list">走进宝仕龙</a>
+    							<a href="brand.html" class="comboBox-list">品牌文化</a>
+    							<a href="javascript:;" class="comboBox-list">工厂1号店</a>
+    							<a href="museum.html" class="comboBox-list">吊顶博物馆</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="eight.html">定制生活馆</a>
+                            <div class="header2-comboBox">
+                                <a href="eight.html"  class="comboBox-list">生活DIY</a>
+                                <!-- <a href="javascript:;" class="comboBox-list" >设计理念</a> -->
+                                <a href="live_museum.html" class="comboBox-list">百套案例</a>
+                                <a href="live_museum.html" class="comboBox-list">万城万景</a>
+                                <a href="remould.html" class="comboBox-list">旧屋改造</a>
+                            </div>
+                        </li>
+    					<li>
+    					    <a href="news.html" >新闻中心</a>
+    					    <div class="header2-comboBox">
+    					        <a href="news.html"  class="comboBox-list">企业新闻</a>
+    					        <a href="news.html"  class="comboBox-list">市场新闻</a>
+    					      <!--  <a href="video.html"  class="comboBox-list">企业视频</a> -->
+    					    </div>
+    					</li>
+                    </ul>
+                </div>
+                <div class="nav_t nav_t2">
+                    <ul class="clearfix">
+                        <li>
+                            <a href="javascript:;" >品牌见证</a>
+                            <div class="header2-comboBox">
+                               <a href="javascript:;" class="comboBox-list">设计师</a>
+                               <a href="cooperation.html" class="comboBox-list">大咖品推官</a>
+                               <a href="say.html" class="comboBox-list">TA有话说</a>
+                            </div>
+                        </li>
+    					<li>
+    					    <a href="service.html" >服务中心</a>
+    					    <div class="header2-comboBox">
+    					       <a href="service.html#customer" class="comboBox-list">客服中心</a>
+    					       <a href="service.html#need" class="comboBox-list">客户中心</a>
+    					       <a href="contact.html" class="comboBox-list">我要反馈</a>
+    					    </div>
+    					</li>
+                        <li>
+                            <a href="join.html" >招商合作</a>
+                            <div class="header2-comboBox">
+    							<a href="join.html"  class="comboBox-list">加盟共赢</a>
+    							<a href="cooperate-people.html"  class="comboBox-list">商学院</a>
+    							<a href="pos.html"  class="comboBox-list">大商样板</a>
+    							<a href="live-grid-sketch.html"  class="comboBox-list">大单分享</a>                         
+                            </div>
+                        </li>
+    					<li>
+    					    <a href="contact.html" >联系我们</a>
+    					    <div class="header2-comboBox">
+    							<a href="productSearch.html"   class="comboBox-list">防伪查询</a>
+    						</div>
+    					</li>
+                    </ul>
+                </div>
+                <a href="javascript:;">
+                    <div class="right-header mshow">
+                        <div class="nav-item">
+                            <a href="eight.html">
+                                <i class="iconfont icon-fenlei"></i>
+                                <!--<img src="images/icon-brands.png" alt="">-->
+                                <span>八大空间</span>
+                            </a>
+                        </div>
+                        <div class="nav-item">
+                            <a href="join.html">
+                                <i class="iconfont icon-lock"></i>
+                                <!--<img src="images/icon-stock.png" alt="">-->
+                                <span>加盟合作</span>
+                            </a>
+                        </div>
+                    </div>
+                </a>
+                <div class="nav-item close mhidden">
+                    <img src="images/icon-close.png" alt="">
+                    <span>CLOSE</span>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+
+    <div class="main">
+		<div class="inside-banner">
+		    <div class="banner_img hid_xs" style="background:url(images/remould-banner.png) no-repeat center center;background-size:cover;"></div>
+		    <div class="banner_contair">
+		        <div class="inside-banner-heading">
+		            <div class="sub-heading">
+		                <h2 class="inside-banner-title">"老破小"旧房改造</h2>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+       <div class="container">
+		   <div class="remould-detail-section1">
+			   <div class="remould-detail-top">
+				   <div class="remould-detail-section1-tit wow fadeInRight animated">宁波-东湖新苑</div>
+				   <div class="remould-detail-section1-list  wow fadeInUp animated">
+					   <div class="remould-detail-section1-item">面积：200㎡</div>
+					   <div class="remould-detail-section1-item">户型：小区</div>
+					   <div class="remould-detail-section1-item">业主姓名：金小姐</div>
+					   <div class="remould-detail-section1-item">风格：简约</div>
+				   </div>
+					<div class="remould-detail-section1-text1 wow fadeInUp animated">
+						以点定线，以线定面，以面定型，照构而制，宝仕龙定制吊顶不仅是还原设计，更是一种新的艺术对设计空间的创造性和独特性有极高的造诣，每一方顶都像一副风景，承载着对家的向往。
+					</div>
+					<div class="remould-detail-section1-text2 wow fadeInUp animated">
+						Baoshilong's customized ceiling is not only a restoration design, but also a new art. It has high attainments in the creativity and uniqueness of the design space. Each roof is like a landscape, carrying the yearning for home.
+					</div>
+			   </div>
+		   </div>
+		   <div class="remould-detail-section2">
+			   <div class="remould-detail-section-img wow fadeInUp animated">
+				   <img src="images/remould0002.png" alt="">
+			   </div>
+			   <div class="remould-detail-section-text wow fadeInUp animated">
+				   <p>客厅</p>
+				   <p>
+					   以点定线，以线定面，以面定型，照构而制，宝仕龙定制吊顶不仅是还原设计，更是一种新的艺术。
+				   </p>
+			   </div>
+		   </div>
+		   <div class="remould-detail-section3">
+			   <div class="remould-detail-section3-list ">
+				   <div class="remould-detail-section3-item">
+					   <div class="remould-detail-section3-img swiper-container wow fadeInUp animated">
+					      <div class="swiper-wrapper">
+							   <div class="swiper-slide">
+									<img src="images/remould10002.png" alt="">
+							   </div>
+							   <div class="swiper-slide">
+							   		<img src="images/remould10001.png" alt="">
+							   </div>
+					      </div>
+					   </div>
+					   <div class="remould-detail-section-text wow fadeInUp animated">
+						   <p>卧室</p>
+						   <p>
+							   全景顶是在厨卫吊顶基础上，通过科技创新和设计升级，针对材料、色彩、结构、功能等全面融合。
+						   </p>
+					   </div>
+				   </div>
+				   <div class="remould-detail-section3-item">
+					   <div class="remould-detail-section3-img swiper-container wow fadeInUp animated">
+						  <div class="swiper-wrapper">
+							   <div class="swiper-slide">
+									<img src="images/remould10002.png" alt="">
+							   </div>
+							   <div class="swiper-slide">
+									<img src="images/remould10003.png" alt="">
+							   </div>
+						  </div>
+					   </div>
+					   <div class="remould-detail-section-text wow fadeInUp animated">
+						   <p>餐厅</p>
+						   <p>
+							   坚持原创之美，营造家居设计之美，传达艺术生活理念，“人·物·居”相融共生，全景顶因美而生。
+						   </p>
+					   </div>
+				   </div>
+			   </div>
+		   </div>
+		   <div class="remould-detail-section2">
+			   <div class="remould-detail-section-img wow fadeInUp animated">
+				   <img src="images/remould325.png" alt="">
+			   </div>
+			   <div class="remould-detail-section-text wow fadeInUp animated">
+				   <p>书房</p>
+				   <p>
+					   坚持原创之美，营造家居设计之美，传达艺术生活理念，“人·物·居”相融共生，全景顶因美而生。
+				   </p>
+			   </div>
+		   </div>
+		   <div class="remould-section2">
+			   <div class="remould-section2-tit">
+				   <div class="remould-section2-title">推荐查看更多</div>
+			   </div>
+			   <div class="remould2-container-list wow fadeInRight animated">
+					<div class="remould2-container swiper-container">
+					   <div class="swiper-wrapper">
+						   <a href="remould-detail.html" class="swiper-slide">
+							   <img src="images/remould10.png" alt="">
+							   <div class="remould2-text">
+								   <div class="remould2-text-left">
+									   上海-星湖小区
+								   </div>
+								   <div class="remould2-text-right">
+									   <span class="h"></span>
+									   <span class="remould2-text-right-num">58</span>
+									   <span class="q"></span>
+									   <span class="remould2-text-right-num1">58</span>
+								   </div>
+							   </div>
+						   </a>
+						   <a href="remould-detail.html"  class="swiper-slide">
+							   <img src="images/remould23.png" alt="">
+							   <div class="remould2-text">
+								   <div class="remould2-text-left">
+									   杭州-东湖花苑
+								   </div>
+								   <div class="remould2-text-right">
+									   <span class="h"></span>
+									   <span class="remould2-text-right-num">60</span>
+									   <span class="q"></span>
+									   <span class="remould2-text-right-num1">58</span>
+								   </div>
+							   </div>
+						   </a>
+						   <a href="remould-detail.html"  class="swiper-slide">
+								<img src="images/remould24.png" alt="">
+								<div class="remould2-text">
+								   <div class="remould2-text-left">
+									   宁波-海蓝花园
+								   </div>
+								   <div class="remould2-text-right">
+									   <span class="h"></span>
+									   <span class="remould2-text-right-num">58</span>
+									   <span class="q"></span>
+									   <span class="remould2-text-right-num1">58</span>
+								   </div>
+								</div>
+						   </a>
+						   <a href="remould-detail.html"  class="swiper-slide">
+								<img src="images/remould10.png" alt="">
+								<div class="remould2-text">
+								   <div class="remould2-text-left">
+									   上海-星湖小区
+								   </div>
+								   <div class="remould2-text-right">
+									   <span class="h"></span>
+									   <span class="remould2-text-right-num">58</span>
+									   <span class="q"></span>
+									   <span class="remould2-text-right-num1">58</span>
+								   </div>
+								</div>
+						   </a>
+					   </div>
+					</div>
+			   </div>
+		   </div>
+		
+    </div>
+
+   <div class="measure-container measure-common">
+   	<div class="measure-tit">免费设计</div>
+   	<div class="measure-tit1">专业设计师1对1家装指导</div>
+   	<form action="" method="" class="measure">
+   		<div class="measure-item">
+   			<label><img src="images/people.png" alt=""></label>
+   			<input class="mul_input" placeholder="您的姓名"> 
+   		</div>
+   		<div class="measure-item">
+   			<label><img src="images/phone.png" alt=""></label>
+   			<input class="mul_input"  placeholder="联系方式"> 
+   		</div>
+   		<div class="measure-item">
+   			<label><img src="images/add.png" alt=""></label>
+   			<input class="mul_input" placeholder="所在楼盘"> 
+   		</div>
+   		<div class="button">
+   			<input type="button" value="立即申请">
+   		</div>
+   	</form>
+   </div>
+   <div class="mutual on">
+       <ul class="list">
+   		<li>
+   		    <a href="javascript:;">
+   		        <div class="mutualIco">
+   		            <img src="images/ico2.png" alt="">
+   					<div class="mutualIco-text">在线咨询</div>
+   		        </div>
+   		
+   		        <span class="txt1">
+   		            扫描二维码与销售顾问咨询
+   		            <img src="images/common/r-wx.jpg" alt="">
+   		        </span>
+   		    </a>
+   		</li>
+           <li>
+               <a target="_blank"  class="vid-play-btn">
+                   <div class="mutualIco">
+                       <img src="images/ico3.png" alt="">
+   					<div class="mutualIco-text">免费量房</div>
+                   </div>
+               </a>
+           </li>
+   		<li>
+   		    <a href="javascript:;">
+   		        <div class="mutualIco">
+   		            <img src="images/ico1.png" alt="">
+   					<div class="mutualIco-text">电话咨询</div>
+   		        </div>
+   		        <span class="txt1">400-887-7831 / 0573-86788519</span>
+   		    </a>
+   		</li>
+           <li class="backtoTop">
+               <a href="javascript:;">
+                   <div class="mutualIco">
+                       <img src="images/ico4.png" alt="">
+   					<div class="mutualIco-text">top</div>
+                   </div>
+               </a>
+           </li>
+       </ul>
+   </div>
+   <!--公用-->
+    <div class="footer">
+            <div class="footer-top">
+                <div class="top-list">
+            		<div class="top-item">
+            			<img src="images/ico01.png" alt="">
+            			<div class="top-item-txt">
+            				防伪查询
+            			</div>
+            		</div>
+            		<div class="top-item">
+            			<img src="images/ico02.png" alt="">
+            			<div class="top-item-txt">
+            				帮助中心
+            			</div>
+            		</div>
+            		<div class="top-item">
+            			<img src="images/ico05.png" alt="">
+            			<div class="top-item-txt">
+            				天猫官方直营店
+            			</div>
+            		</div>
+            		<div class="top-item">
+            			<img src="images/ico04.png" alt="">
+            			<div class="top-item-txt">
+            				宝仕龙商城
+            			</div>
+            		</div>
+            		<div class="top-item backtoTop">
+            			<img src="images/ico5.png" alt="">
+            		</div>
+            	</div>
+            </div>
+        	<div class="footer-center">
+        		<div class="footer-center-left">
+        			<div class="footer-center-left-list">
+        				<div class="footer-center-left-item">
+        					<a href="index.html" >首页</a>
+        				</div>
+        				<div class="footer-center-left-item">
+        					<a href="brand.html" >走进宝仕龙</a>
+        					<a href="brand.html" >品牌文化</a>
+        					<a href="javascript:;" >工厂1号店</a>
+        					<a href="museum.html" >吊顶博物馆</a>
+        				</div>
+        				<div class="footer-center-left-item">
+        					<a href="eight.html" >定制生活馆</a>
+        					<a href="eight.html" >生活DIY</a>
+        					<a href="live_museum.html">百套案例</a>
+        					<a href="live_museum.html">万城万景</a>
+        					<a href="remould.html">旧屋改造</a>
+        				</div>
+        				<div class="footer-center-left-item">
+        					<a href="news.html" >新闻中心</a>
+        					<a href="news.html" >企业新闻</a>
+        					<a href="news.html" >市场新闻</a>
+        				</div>
+        				<div class="footer-center-left-item">
+        					<a href="javascript:;" >品牌见证</a>
+        					<a href="javascript:;" >设计师</a>
+        					<a href="cooperation.html" >大咖品推官</a>
+        					<a href="say.html" >TA有话说</a>
+        				</div>
+        				<div class="footer-center-left-item">
+        					<a href="service.html" >服务中心</a>
+        					<a href="service.html#customer" >客服中心</a>
+        					<a href="service.html#need" >客户中心</a>
+        					<a href="contact.html" >我要反馈</a>
+        				</div>
+        				<div class="footer-center-left-item">
+        					<a href="join.html" >招商合作</a>
+        					<a href="join.html" >加盟共赢</a>
+        					<a href="cooperate-people.html" >商学院</a>
+        					<a href="pos.html" >大商样板</a>
+        					<a href="live-grid-sketch.html" >大单分享</a>
+        				</div>
+        				<div class="footer-center-left-item">
+        					<a href="contact.html" >联系我们</a>
+        					<a href="productSearch.html" >防伪查询</a>
+        				</div>
+        			</div>
+        		</div>
+        		<div class="footer-center-right">
+        			<div class="footer-center-txt1">关注我们</div>
+        			<div class="footer-center-txt2">全国客服电话</div>
+        			<div class="footer-center-txt3">400-8877-831</div>
+        			<div class="footer-center-txt4">邮箱：sales@jxbsl.com</div>
+        			<div class="footer-center-txt5">
+        				<img src="images/wb.png" alt="">
+        				<img src="images/wx.png" alt="">
+        			</div>
+        		</div>
+        	</div>
+            <div class="bottom">
+                <p class="bottom-p">COPYRIGHTS 2020 BOSLON AL RIGHTS RESERVED. 浙ICP备09002255号-1    技术支持：PERSONAL TAILOR </p>
+            </div>
+        </div>
+    
+        <div class="popup-section popup-navigation">
+            <div class="popup-container">
+                <div class="navigation-left">
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="index.html">
+                                <span>首页</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="brand.html">
+                                <span>走进宝仕龙</span>
+                            </a>
+                        </div>
+                    </div>
+    <!--                <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="brandWitness.html">
+                                <span>品牌见证</span>
+                            </a>
+                        </div>
+                    </div> -->
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="eight.html">
+                                <span>八大空间</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="live_museum.html">
+                                <span>百套案例</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="pos.html">
+                                <span>大商样板</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="cooperate-people.html">
+                                <span>商学院</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="contact.html">
+                                <span>联系我们</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="productSearch.html">
+                                <span>防伪查询</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="navigation-right">
+    
+                    <div class="navigation-add">
+                        <div class="navigation-add-line"></div>
+                        <div class="address">
+                            Jl. Duren Tiga Raya No. 33<br>
+                            Jakarta Selatan - 12760 <br>
+                            Indonesia
+                        </div>
+                        <p></p>
+                        +62 21 799 1521
+                        <br>
+                        +62 21 722 5003
+                        <br>
+                        info@prodotti-id.com
+                        <p></p>
+                        <div class="socials">
+                            <div class="icon">
+                                <a href="javascript:;">
+                                    <img src="images/logo-facebook.svg" alt="">
+                                </a>
+                            </div>
+                            <div class="icon">
+                                <a href="javascript:;">
+                                    <img src="images/logo-instagram.svg" alt="">
+                                </a>
+                            </div>
+                            <div class="icon">
+                                <a href="javascript:;">
+                                    <img src="images/logo-youtube.svg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="navigation-add">
+                        <div class="navigation-add-line"></div>
+                        <div>
+                            Monday - Friday<br>
+                            09.00 A.M - 06.00 P.M<br><p></p>
+                            Saturday - Sunday<br>
+                            Appointment Only<br>
+                        </div>
+                        <div class="navigation-bottom">
+                            <div class="navigation-bottom-item">
+                                <a href="javascript:;">
+                                    <span>Privacy & Cookie Policy</span>
+                                </a>
+                            </div>
+                        </div>
+    
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+    <div class="popup-section popup-search">
+
+        <div class="popup-container">
+            <div class="search-form">
+                <input type="text" placeholder="Search for Products, Brands or News" class="input-form" style="width: 0;">
+                <div class="search-result">
+                    <div class="search-result-item"></div>
+                    <div class="search-result-item"></div>
+                    <div class="search-result-item"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="popup-brand">
+        <div class="brand-list">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <div class="slider-image">
+                                <div class="background-image" style="background-image: url('images/brand_swiper_01.jpg')"></div>
+                            </div>
+                            <div class="slider-title">Alexander Lamont</div>
+                            <div class="slider-hr"></div>
+                            <div class="slider-category">Furniture</div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <div class="slider-image">
+                                <div class="background-image" style="background-image: url('images/brand_swiper_02.jpg')"></div>
+                            </div>
+                            <div class="slider-title">Alexander Lamont</div>
+                            <div class="slider-hr"></div>
+                            <div class="slider-category">Furniture</div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <div class="slider-image">
+                                <div class="background-image" style="background-image: url('images/brand_swiper_01.jpg')"></div>
+                            </div>
+                            <div class="slider-title">Alexander Lamont</div>
+                            <div class="slider-hr"></div>
+                            <div class="slider-category">Furniture</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </div>
+    <!--公用-->
+
+    <script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/swiper.min.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/imagesloaded.pkgd.min.js"></script>
+    <script src="js/masonry.pkgd.min.js"></script>
+    <script src="js/classie.js"></script>
+    <script src="js/grid.js"></script>
+    <script src="js/commen.js"></script>
+    <script src="js/iconfont.js"></script>
+	<script src="js/wow.min.js"></script>
+	<script src="js/fixed.js"></script>
+    <script>
+		new WOW().init();
+		
+		var left_swiper = new Swiper(".remould-detail-section3-img ", {
+			speed: 1000,
+			slidesPerView: 'auto',
+		})
+		var remould2_swiper = new Swiper(".remould2-container", {
+			speed: 1000,
+			slidesPerView: 'auto',
+			spaceBetween : 60,
+			// centeredSlides: true,
+			freeMode: true,
+			pagination: {
+				clickable: true,
+			},
+		})
+		
+    </script>
+</body>
+</html>
+
+</html>

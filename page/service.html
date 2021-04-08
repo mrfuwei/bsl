@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <title>宝仕龙</title>
+    <link href="images/logo.png" rel="shortcut icon">
+	<link rel="stylesheet" href="css/swiper.min.css">
+	<link rel="stylesheet" href="css/animate.css">
+	<link rel="stylesheet" href="css/my_animate.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common.css">
+    <script src="js/modernizr-custom.js"></script>
+</head>
+<style>
+	.inside-banner-heading h2.inside-banner-title{
+		font-size: 40px;
+		font-weight: 100;
+		letter-spacing: 60px;
+	}
+	.container{
+		width: 100%;
+	}
+	.service-box{
+		padding: 120px 0;
+	}
+	.view{
+		width: 1500px;
+		margin: 0 auto;
+		position: relative;
+	}
+	.service-box .about-con {
+	    text-align: center;
+	    width: 55%;
+	    margin: 7.5px auto 0;
+	}
+	.service-box .about-con p{
+		font-size: 12px;
+		color:#999;
+		line-height: 25px;
+	}
+	.service-box .img {
+	    margin-top: 60px;
+	}
+	.i-experience {
+	    position: relative;
+	}
+	.i-experience-box .bg-box {
+	    position: relative;
+	}
+	.i-experience-box .bg-box .left {
+	    position: absolute;
+	    left: 0;
+	    top: 0;
+	    width: 28%;
+	    height: 100%;
+	    box-sizing: border-box;
+	    padding: 75px 2.5% 0;
+	}
+	.i-experience-box .index-tit {
+	    text-align: left;
+	}
+	.i-experience-box .index-tit .cn {
+	    color: #fff;
+	    padding-left: 0;
+		font-size: 30px;
+		letter-spacing: 3px;
+		position: relative;
+	}
+	.i-experience-box .index-tit .cn span{
+		font-size: 50px;
+		font-weight: 100;
+		margin-left: 10px;
+		display: inline-block;
+		position: absolute;
+		bottom: 0px;
+		left: 160px;
+		
+	}
+	.i-experience-box .index-tit .cn:before {
+	    border-color: #fff;
+	}
+	.index-tit .line {
+	    width: 40px;
+	    height: 4px;
+	    background-color: #e6002d;
+	    margin: 18px auto 0;
+	}
+	.i-experience-box .index-tit .line {
+	    background-color: #ddd;
+	    margin: 20px 0 0;
+	}
+	.i-experience-box .bg-box .left .con {
+	    font-size: 12px;
+	    line-height: 30px;
+	    color: #fff;
+	    margin-top: 36px;
+	    opacity: .8;
+	    filter: alpha(opacity=80);
+	}
+	.index-more {
+	    display: block;
+	    width: 120px;
+	    height: 30px;
+	    border-radius: 15px;
+	    text-align: center;
+	    transition: all .2s;
+	}
+	.i-experience-box .index-more {
+	    opacity: .5;
+	    filter: alpha(opacity=50);
+	    border: 1px solid #fff;
+	    margin-top: 37.5px;
+	}
+	.index-more span {
+	    display: inline-block;
+	    *display: inline;
+	    zoom: 1;
+	    font-size: 12px;
+	    line-height:30px;
+	    color: #fffffe;
+	    padding-right: 33px;
+	    background-repeat: no-repeat;
+	    background-position: right center;
+	    background-size: 16px;
+	    transition: all .2s;
+	}
+	.i-experience-box .index-more span {
+	    background-image: url(images/i-product-arrow.png);
+	}
+	.i-experience-box .bg-box img {
+	    width: 100%;
+	}
+	.f-cb:after {
+	    display: block;
+	    height: 0;
+	    clear: both;
+	    visibility: hidden;
+	    overflow: hidden;
+	    content: ".";
+	}
+	.i-experience-box .list {
+	    position: absolute;
+	    left: 0;
+	    bottom: 22.5px;
+	    width: 100%;
+	    box-sizing: border-box;
+	    padding:0 22.5px;
+		overflow: hidden;
+	}
+	.i-experience-box .list .item {
+	    padding: 0 12px;
+	    box-sizing: border-box;
+	}
+	.col-sm-3 {
+	    width: 25%;
+		float: left;
+	}
+	.i-experience-box .list .con-box {
+	    background-color: #fff;
+	    padding: 25px 12px 50px;
+	    transition: all .2s;
+	    display: block;
+	}
+	.i-experience-box .list .con-box:hover {
+	    background-color: #e6002d;
+	}
+	.i-experience-box .list .line {
+	    float: left;
+	    width: 19px;
+	    height: 2px;
+	    background-color: #878787;
+	    margin-top: 15px;
+	    transition: all .2s;
+	}
+	.i-experience-box .list .con-box:hover .line {
+	    background-color: #fff;
+	}
+	.i-experience-box .list .icon {
+	    float: right;
+	    width: 32px;
+	    position: relative;
+	}
+	.i-experience-box .list .init {
+	    transition: all .2s;
+	}
+	.i-experience-box .list .con-box:hover .init {
+	    opacity: 0;
+	    filter: alpha(opacity=0);
+	}
+	.i-experience-box .list .icon img {
+	    width: 100%;
+	}
+	.i-experience-box .list .hover {
+	    position: absolute;
+	    left: 0;
+	    top: 0;
+	    width: 100%;
+	    opacity: 0;
+	    filter: alpha(opacity=0);
+	    transition: all .2s;
+	}
+	.i-experience-box .list .con-box:hover .hover {
+		opacity: 1;
+		filter: alpha(opacity=100);
+	}
+	.i-experience-box .list .tit {
+	    font-size: 14px;
+	    line-height: 16px;
+	    color: #090605;
+	    margin-top: 18px;
+	    transition: all .2s;
+	}
+	.i-experience-box .list .con-box:hover .tit {
+	    color: #fff;
+	}
+	.i-experience-box .list .con {
+	    font-size: 12px;
+	    line-height: 18px;
+	    color: #999;
+	    margin-top:12px;
+	    transition: all .2s;
+		min-height: 36px;
+	}
+	.i-experience-box .list .con-box:hover .con {
+	    color: #fff;
+	}
+	.text-bottom{
+		margin-top: 50px;
+		font-size: 12px;
+		color: #fff;
+		letter-spacing: 3px;
+	}
+	.text-bottom span{
+		font-size: 25px;
+	}
+	.need-box {
+	    padding:60px 0;
+	    background-color: #f9f9f9;
+	    border-top: 1px solid #e8e8e8;
+		margin: 120px 0 0;
+	}
+	.need-box .list {
+	    margin-top: 37px;
+		overflow: hidden;
+	}
+	.need-box .list .item {
+	    width:33.3%;
+	    box-sizing: border-box;
+	    float: left;
+	    padding: 0 20px;
+	}
+	.need-box .list .con-box {
+	    border: 1px solid #e8e8e8;
+	    border-radius: 3px;
+	    overflow: hidden;
+	    position: relative;
+	    transition: all .2s;
+	    border-radius: 5px;
+	}
+	.need-box .list .icon-box {
+	    height: 135px;
+	    position: relative;
+	    border-bottom: 1px solid #e8e8e8;
+	    transition: all .2s;
+	}
+	.need-box .list .icon {
+	    position: absolute;
+	    left: 50%;
+	    top: 50%;
+	    transform: translate(-50%,-50%);
+	    width: 38pxrem;
+	}
+	.need-box .list .icon .init {
+	    transition: all .2s;
+	}
+	.need-box .list .icon img {
+	    width: 100%;
+	}
+	.need-box .list .icon .hover {
+	    position: absolute;
+	    left: 0;
+	    top: 0;
+	    width: 100%;
+	    opacity: 0;
+	    filter: alpha(opacity=0);
+	    transition: all .2s;
+	}
+	.need-box .list .con-box:hover .icon-box {
+	    border-color: #fff;
+	}
+	.need-box .list .con-box:hover .tit{
+		color: #fff;
+	}
+	.need-box .list .text {
+	    text-align: center;
+	    padding: 12px 0;
+	}
+	.need-box .list .tit {
+	    font-size: 12px;
+	    line-height:15px;
+	    color: #666;
+	}
+	.need-box .list .tit span{
+		font-size: 20px;
+	}
+	/*.need-box .list .con-box:before {*/
+	/*    content: "";*/
+	/*    position: absolute;*/
+	/*    left: 0;*/
+	/*    bottom: 0;*/
+	/*    width: 0;*/
+	/*    height: 2px;*/
+	/*    background-color: #e6002d;*/
+	/*    transition: all .2s;*/
+	/*}*/
+	.need-box .list .con-box:hover:before {
+	    width: 100%;
+	}
+	.need-box .list .con-box:hover .icon-box {
+	    border-color: #fff;
+	}
+	.need-box .list .con-box:hover .init {
+	    opacity: 0;
+	    filter: alpha(opacity=0);
+	}
+	.need-box .list .con-box:hover .hover {
+	    opacity: 1;
+	    filter: alpha(opacity=100);
+	}
+	/*.need-box .list .con-box:hover {*/
+	/*    border-color: #e6002d;*/
+	/*}*/
+	.need-box .view{
+		width: 100%;
+		padding: 0 45px;
+	}
+	.process{
+		padding: 60px 0;
+	}
+	.process-box{
+	    width: 100%;
+	    margin:60px auto 0;
+	}
+	.process-list{
+	    display: flex;
+		flex-wrap: wrap;
+	    width: 100%;
+	}
+	.process-item{
+	    display: flex;
+	    width: calc(100% / 3);
+	    position: relative;
+	    margin-bottom: 90px;
+	}
+	.process-item-left{
+	    color: #bc9882;
+	    font-size: 95px;
+	    font-weight: lighter;
+	    font-style: italic;
+	    line-height: 1;
+	    width: 60px;
+	    text-align: center;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+	}
+	.process-item-right{
+	    width: 100%;
+		padding-left: 100px;
+	    font-size: 12px;
+	    line-height: 20px;
+		color: #999;
+	}
+	.process-item-right p{
+		font-size: 16px;
+		margin-bottom: 10px;
+		color: #000;
+	}
+	.row-list{
+		width: calc(50% - 80px);
+		border: 2px solid #000;
+		overflow:hidden;
+		margin: 0 40px;
+		padding: 30px 20px;
+	}
+	.list .row{
+		display: flex;
+		justify-content: ;
+	}
+	.need-box .list .row-list:nth-child(1) .item:nth-child(1) .con-box:hover{
+		background:url(images/s-bg1.png) no-repeat center center;background-size:cover;
+	}
+	.need-box .list .row-list:nth-child(1) .item:nth-child(2) .con-box:hover{
+		background:url(images/s-bg2.png) no-repeat center center;background-size:cover;
+	}
+	.need-box .list .row-list:nth-child(1) .item:nth-child(3) .con-box:hover{
+		background:url(images/s-bg3.png) no-repeat center center;background-size:cover;
+	}
+	.need-box .list .row-list:nth-child(2) .item:nth-child(1) .con-box:hover{
+		background:url(images/s-bg4.png) no-repeat center center;background-size:cover;
+	}
+	.need-box .list .row-list:nth-child(2) .item:nth-child(2) .con-box:hover{
+		background:url(images/s-bg5.png) no-repeat center center;background-size:cover;
+	}
+	.need-box .list .row-list:nth-child(2) .item:nth-child(3) .con-box:hover{
+		background:url(images/s-bg6.png) no-repeat center center;background-size:cover;
+	}
+	
+	@media screen and (max-width:1600px){
+		.view{
+			width:1200px;
+		}
+	}
+</style>
+<body>
+
+    <div class="header">
+        <div class="header1">
+            <div class="nav-container">
+                <div class="logo"><a href="index.html"><img src="images/common/logo-top-white.png" alt="" width="155"></a></div>
+                <a href="javascript:;">
+                    <div class="left-header mshow">
+                        <div class="navbar">
+                            <span class="nav"></span>
+                            <span class="nav"></span>
+                            <span class="nav"></span>
+                        </div>
+                        <div class="search nav-item">
+                            <!--<img src="images/icon-search.png" alt="">-->
+                            <i class="iconfont icon-iconsearch"></i>
+                            <span>SEARCH</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="javascript:;">
+                    <div class="right-header mshow">
+                        <div class="nav-item">
+                            <a href="eight.html">
+                                <i class="iconfont icon-fenlei"></i>
+                                <!--<img src="images/icon-brands.png" alt="">-->
+                                <span>八大空间</span>
+                            </a>
+    
+                        </div>
+                        <div class="nav-item">
+                            <a href="join.html">
+                                <i class="iconfont icon-lock"></i>
+                                <!--<img src="images/icon-stock.png" alt="">-->
+                                <span>加盟合作</span>
+                            </a>
+    
+                        </div>
+                    </div>
+                </a>
+                <div class="nav-item close mhidden">
+                    <img src="images/icon-close.png" alt="">
+                    <span>CLOSE</span>
+                </div>
+    
+            </div>
+        </div>
+    	
+        <div class="header2">
+            <div class="nav-container">
+                <div class="logo"><a href="index.html"><img src="images/common/logo-top-white.png" alt="" width="155"></a></div>
+                <a href="javascript:;">
+                    <div class="left-header mshow">
+                        <div class="navbar">
+                            <span class="nav"></span>
+                            <span class="nav"></span>
+                            <span class="nav"></span>
+                        </div>
+                        <div class="search nav-item">
+                            <!--<img src="images/icon-search.png" alt="">-->
+                            <i class="iconfont icon-iconsearch"></i>
+                            <span>SEARCH</span>
+                        </div>
+                    </div>
+                </a>
+                <div class="nav_t nav_t1">
+                    <ul class="clearfix">
+                        <li>
+                            <a href="index.html">首页</a>
+                        </li>
+                        <li>
+                            <a href="brand.html">走进宝仕龙</a>
+                            <div class="header2-comboBox">
+    							<a href="brand.html" class="comboBox-list">走进宝仕龙</a>
+    							<a href="brand.html" class="comboBox-list">品牌文化</a>
+    							<a href="javascript:;" class="comboBox-list">工厂1号店</a>
+    							<a href="museum.html" class="comboBox-list">吊顶博物馆</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="eight.html">定制生活馆</a>
+                            <div class="header2-comboBox">
+                                <a href="eight.html"  class="comboBox-list">生活DIY</a>
+                                <!-- <a href="javascript:;" class="comboBox-list" >设计理念</a> -->
+                                <a href="live_museum.html" class="comboBox-list">百套案例</a>
+                                <a href="live_museum.html" class="comboBox-list">万城万景</a>
+                                <a href="remould.html" class="comboBox-list">旧屋改造</a>
+                            </div>
+                        </li>
+    					<li>
+    					    <a href="news.html" >新闻中心</a>
+    					    <div class="header2-comboBox">
+    					        <a href="news.html"  class="comboBox-list">企业新闻</a>
+    					        <a href="news.html"  class="comboBox-list">市场新闻</a>
+    					      <!--  <a href="video.html"  class="comboBox-list">企业视频</a> -->
+    					    </div>
+    					</li>
+                    </ul>
+                </div>
+                <div class="nav_t nav_t2">
+                    <ul class="clearfix">
+                        <li>
+                            <a href="javascript:;" >品牌见证</a>
+                            <div class="header2-comboBox">
+                               <a href="javascript:;" class="comboBox-list">设计师</a>
+                               <a href="cooperation.html" class="comboBox-list">大咖品推官</a>
+                               <a href="say.html" class="comboBox-list">TA有话说</a>
+                            </div>
+                        </li>
+    					<li>
+    					    <a href="service.html" >服务中心</a>
+    					    <div class="header2-comboBox">
+    					       <a href="service.html#customer" class="comboBox-list">客服中心</a>
+    					       <a href="service.html#need" class="comboBox-list">客户中心</a>
+    					       <a href="contact.html" class="comboBox-list">我要反馈</a>
+    					    </div>
+    					</li>
+                        <li>
+                            <a href="join.html" >招商合作</a>
+                            <div class="header2-comboBox">
+    							<a href="join.html"  class="comboBox-list">加盟共赢</a>
+    							<a href="cooperate-people.html"  class="comboBox-list">商学院</a>
+    							<a href="pos.html"  class="comboBox-list">大商样板</a>
+    							<a href="live-grid-sketch.html"  class="comboBox-list">大单分享</a>                         
+                            </div>
+                        </li>
+    					<li>
+    					    <a href="contact.html" >联系我们</a>
+    					    <div class="header2-comboBox">
+    							<a href="recruit.html"   class="comboBox-list">招贤纳士</a>
+    						</div>
+    					</li>
+                    </ul>
+                </div>
+                <a href="javascript:;">
+                    <div class="right-header mshow">
+                        <div class="nav-item">
+                            <a href="eight.html">
+                                <i class="iconfont icon-fenlei"></i>
+                                <!--<img src="images/icon-brands.png" alt="">-->
+                                <span>八大空间</span>
+                            </a>
+                        </div>
+                        <div class="nav-item">
+                            <a href="join.html">
+                                <i class="iconfont icon-lock"></i>
+                                <!--<img src="images/icon-stock.png" alt="">-->
+                                <span>加盟合作</span>
+                            </a>
+                        </div>
+                    </div>
+                </a>
+                <div class="nav-item close mhidden">
+                    <img src="images/icon-close.png" alt="">
+                    <span>CLOSE</span>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+
+    <div class="main">
+		<div class="inside-banner">
+		    <div class="banner_img hid_xs" style="background:url(images/banner-service.png) no-repeat center center;background-size:cover;"></div>
+		    <div class="banner_contair">
+		        <div class="inside-banner-heading">
+		            <div class="sub-heading">
+		                <h2 class="inside-banner-title">相信品牌的力量</h2>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+       <div class="container">
+			<div class="service-box position" id="customer">
+				<div class="view">
+					<div class="sub-tit wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
+						<div class="en">37.5° service</div>
+						<div class="cn">37.5°服务体验</div>
+						<div class="line"></div>
+						<div class="desc">服务是品牌的支持！</div>
+					</div>
+					<div class="about-con wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
+						<p>宝仕龙一贯秉承专业的全方位保姆式服务理念，以市场为导向，制定全方位服务与管理体质，一对一贴心跟踪服务，第一时间解决客户的难题。满足不同客户人群的需求，注重每个细节的处理，让人足不出户便可享受周到的售前、售中、售后服务，让客户满意，使用者安心</p>				</div>
+					<div class="img wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
+						<img src="images/service01.png" alt="37.5°服务体验">
+					</div>
+				</div>
+			</div>
+			<div class="i-experience-box">
+				<div class="view">
+					<div class="i-experience f-cb wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
+						<div class="bg-box f-cb">
+							<div class="left" style="background-image: url(images/i-experience-bg.jpg)">
+								<div class="text">
+									<div class="index-tit">
+										<div class="cn">37.5°体验 <span>。</span></div>
+										<div class="line"></div>
+									</div>
+									<div class="con">
+										<p>北纬37.5°，最舒适的生活的温度区域；宝仕龙带给您同样的温暖感受;</p>
+									</div>
+									<a href="javascript:;" class="index-more"><span>查看更多</span></a>
+									<div class="text-bottom">
+										<span>400</span>全国免费客服中心
+									</div>
+								</div>
+							</div>
+							<div class="img" style="background-image: url(images/service-right.png)">
+								<img src="images/service-right.png" alt="37.5°体验">
+							</div>
+						</div>
+						<div class="list">
+							<div class="row f-cb">
+								<div class="item col-sm-3 col-xs-6">
+									<a href="javascript:;" class="con-box">
+										<div class="top-box f-cb">
+											<div class="line"></div>
+											<div class="icon">
+												<div class="init">
+													<img src="images/s-i-2.png" alt="预约量尺">
+												</div>
+												<div class="hover">
+													<img src="images/s-i-1.png" alt="预约量尺">
+												</div>
+											</div>
+										</div>
+										<div class="tit">预约量尺</div>
+										<div class="con">
+											<p>
+												<span style="white-space: normal;">电话免费预约上门精准测量空间尺</span>
+											</p>
+										</div>
+									</a>
+								</div>
+								<div class="item col-sm-3 col-xs-6">
+									<a href="javascript:;" class="con-box">
+										<div class="top-box f-cb">
+											<div class="line"></div>
+											<div class="icon">
+												<div class="init">
+													<img src="images/s-i-3.png" alt="量身设计">
+												</div>
+												<div class="hover">
+													<img src="images/s-i-4.png" alt="量身设计">
+												</div>
+											</div>
+										</div>
+										<div class="tit">量身设计</div>
+										<div class="con"><p>根据测量数据、客户个性需求，设计定制吊顶效果方案</p></div>
+									</a>
+								</div>
+								<div class="item col-sm-3 col-xs-6">
+									<a href="javascript:;" class="con-box">
+										<div class="top-box f-cb">
+											<div class="line"></div>
+											<div class="icon">
+												<div class="init">
+													<img src="images/s-i-5.png" alt="确认方案">
+												</div>
+												<div class="hover">
+													<img src="images/s-i-6.png" alt="确认方案">
+												</div>
+											</div>
+										</div>
+										<div class="tit">确认方案</div>
+										<div class="con"><p><span style="white-space: normal;">设计师出具设计图纸及报价，客户确认设计方案</span></p></div>
+									</a>
+								</div>
+								<div class="item col-sm-3 col-xs-6">
+									<a href="javascript:;" class="con-box">
+										<div class="top-box f-cb">
+											<div class="line"></div>
+											<div class="icon">
+												<div class="init">
+													<img src="images/s-i-7.png" alt="定制订单">
+												</div>
+												<div class="hover">
+													<img src="images/s-i-8.png" alt="定制订单">
+												</div>
+											</div>
+										</div>
+										<div class="tit">定制订单</div>
+										<div class="con"><p>自动发送至总部制造中心，安排定制生产</p></div>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="need-box position" id="need">
+				<div class="view">
+					<div class="sub-tit wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
+						<div class="en">Gold medal service</div>
+						<div class="cn">金牌服务 品质保障</div>
+						<div class="line"></div>
+					</div>
+					<div class="list">
+						<div class="row f-cb">
+							<div class="row-list">
+								<div class="item wow fadeInRight animated" data-wow-delay="0s" style="visibility: visible; animation-delay: 0s; animation-name: fadeInRight;">
+								<div class="con-box">
+									<div class="icon-box">
+										<div class="icon">
+											<div class="init">
+												<img src="images/s-1-1.png">
+											</div>
+											<div class="hover">
+												<img src="images/s-1.png">
+											</div>
+										</div>
+									</div>
+									<div class="text">
+										<div class="tit"><span>48</span>道淬炼工序</div>
+									</div>
+								</div>
+							</div>
+							<div class="item wow fadeInRight animated" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInRight;">
+								<div class="con-box">
+									<div class="icon-box">
+										<div class="icon">
+											<div class="init">
+												<img src="images/s-2-1.png">
+											</div>
+											<div class="hover">
+												<img src="images/s-2.png">
+											</div>
+										</div>
+									</div>
+									<div class="text">
+										<div class="tit"><span>100%</span>全检出品</div>
+				
+									</div>
+								</div>
+							</div>
+							<div class="item wow fadeInRight animated" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInRight;">
+								<div class="con-box">
+									<div class="icon-box">
+										<div class="icon">
+											<div class="init">
+												<img src="images/s-3-1.png">
+											</div>
+											<div class="hover">
+												<img src="images/s-3.png">
+											</div>
+										</div>
+									</div>
+									<div class="text">
+										<div class="tit"><span>30</span>年寿命长达</div>
+									</div>
+								</div>
+							</div>
+							</div>
+							<div class="row-list">
+								<div class="item wow fadeInRight animated" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInRight;">
+								<div class="con-box">
+									<div class="icon-box">
+										<div class="icon">
+											<div class="init">
+												<img src="images/s-4-1.png">
+											</div>
+											<div class="hover">
+												<img src="images/s-4.png" >
+											</div>
+										</div>
+									</div>
+									<div class="text">
+										<div class="tit"><span>3</span>天温馨回访</div>
+									</div>
+								</div>
+							</div>
+							<div class="item wow fadeInRight animated" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInRight;">
+								<div class="con-box">
+									<div class="icon-box">
+										<div class="icon">
+											<div class="init">
+												<img src="images/s-5-1.png">
+											</div>
+											<div class="hover">
+												<img src="images/s-5.png">
+											</div>
+										</div>
+									</div>
+									<div class="text">
+										<div class="tit"><span>1</span>年免费清洗</div>
+									</div>
+								</div>
+							</div>
+							<div class="item wow fadeInRight animated" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInRight;">
+								<div class="con-box">
+									<div class="icon-box">
+										<div class="icon">
+											<div class="init">
+												<img src="images/s-6-1.png">
+											</div>
+											<div class="hover">
+												<img src="images/s-6.png">
+											</div>
+										</div>
+									</div>
+									<div class="text">
+										<div class="tit"><span>终身维护</span></div>
+									</div>
+								</div>
+							</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="section4 process">
+				<div class="view">
+					<div class="sub-tit wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
+						<div class="en">Purchase process</div>
+						<div class="cn">定制吊顶选购流程</div>
+						<div class="line"></div>
+					</div>
+					<div class="process-box">
+					    <div class="process-list">
+					        <div class="process-item">
+					            <div class="process-item-left">1</div>
+					            <div class="process-item-right">
+									<p>预约量尺</p>
+									电话免费预约上门精准测量空间尺
+								</div>
+					        </div>
+					        <div class="process-item">
+					            <div class="process-item-left">2</div>
+					            <div class="process-item-right">
+									<p>量身设计</p>
+									根据测量数据、客户个性需求，设计定制吊顶效果方案
+								</div>
+					        </div>
+					        <div class="process-item">
+					            <div class="process-item-left">3</div>
+					            <div class="process-item-right">
+									<p>确认方案</p>
+									设计师出具设计图纸及报价，客户确认设计方案
+								</div>
+					        </div>
+					        <div class="process-item">
+					            <div class="process-item-left">4</div>
+					            <div class="process-item-right">
+									<p>定制订单</p>
+									自动发送至总部制造中心，安排定制生产
+								</div>
+					        </div>
+					        <div class="process-item">
+					            <div class="process-item-left">5</div>
+					            <div class="process-item-right">
+									<p>预约安装</p>
+									专车配送上门，全屋施工一般只需3天
+								</div>
+					        </div>
+					        <div class="process-item">
+					            <div class="process-item-left">6</div>
+					            <div class="process-item-right">
+									<p>总部设立</p>
+									全国400免费服务热线，实地验收、3天回访、一年清洗、3年免费检
+								</div>
+					        </div>
+					    </div>
+					</div>
+				</div>
+			</div>
+	   </div>
+
+    </div>
+<div class="measure-container measure-common">
+    	<div class="measure-tit">免费设计</div>
+    	<div class="measure-tit1">专业设计师1对1家装指导</div>
+    	<form action="" method="" class="measure">
+    		<div class="measure-item">
+    			<label><img src="images/people.png" alt=""></label>
+    			<input class="mul_input" placeholder="您的姓名"> 
+    		</div>
+    		<div class="measure-item">
+    			<label><img src="images/phone.png" alt=""></label>
+    			<input class="mul_input"  placeholder="联系方式"> 
+    		</div>
+    		<div class="measure-item">
+    			<label><img src="images/add.png" alt=""></label>
+    			<input class="mul_input" placeholder="所在楼盘"> 
+    		</div>
+    		<div class="button">
+    			<input type="button" value="立即申请">
+    		</div>
+    	</form>
+    </div>
+    <div class="mutual on">
+        <ul class="list">
+    		<li>
+    		    <a href="javascript:;">
+    		        <div class="mutualIco">
+    		            <img src="images/ico2.png" alt="">
+    					<div class="mutualIco-text">在线咨询</div>
+    		        </div>
+    		
+    		        <span class="txt1">
+    		            扫描二维码与销售顾问咨询
+    		            <img src="images/common/r-wx.jpg" alt="">
+    		        </span>
+    		    </a>
+    		</li>
+            <li>
+                <a target="_blank"  class="vid-play-btn">
+                    <div class="mutualIco">
+                        <img src="images/ico3.png" alt="">
+    					<div class="mutualIco-text">免费量房</div>
+                    </div>
+                </a>
+            </li>
+    		<li>
+    		    <a href="javascript:;">
+    		        <div class="mutualIco">
+    		            <img src="images/ico1.png" alt="">
+    					<div class="mutualIco-text">电话咨询</div>
+    		        </div>
+    		        <span class="txt1">400-887-7831 / 0573-86788519</span>
+    		    </a>
+    		</li>
+            <li class="backtoTop">
+                <a href="javascript:;">
+                    <div class="mutualIco">
+                        <img src="images/ico4.png" alt="">
+    					<div class="mutualIco-text">top</div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!--公用-->
+    <div class="footer">
+            <div class="footer-top">
+                <div class="top-list">
+            		<div class="top-item">
+            			<img src="images/ico01.png" alt="">
+            			<div class="top-item-txt">
+            				防伪查询
+            			</div>
+            		</div>
+            		<div class="top-item">
+            			<img src="images/ico02.png" alt="">
+            			<div class="top-item-txt">
+            				帮助中心
+            			</div>
+            		</div>
+            		<div class="top-item">
+            			<img src="images/ico05.png" alt="">
+            			<div class="top-item-txt">
+            				天猫官方直营店
+            			</div>
+            		</div>
+            		<div class="top-item">
+            			<img src="images/ico04.png" alt="">
+            			<div class="top-item-txt">
+            				宝仕龙商城
+            			</div>
+            		</div>
+            		<div class="top-item backtoTop">
+            			<img src="images/ico5.png" alt="">
+            		</div>
+            	</div>
+            </div>
+        	<div class="footer-center">
+        		<div class="footer-center-left">
+        			<div class="footer-center-left-list">
+        				<div class="footer-center-left-item">
+        					<a href="index.html" >首页</a>
+        				</div>
+        				<div class="footer-center-left-item">
+        					<a href="brand.html" >走进宝仕龙</a>
+        					<a href="brand.html" >品牌文化</a>
+        					<a href="javascript:;" >工厂1号店</a>
+        					<a href="museum.html" >吊顶博物馆</a>
+        				</div>
+        				<div class="footer-center-left-item">
+        					<a href="eight.html" >定制生活馆</a>
+        					<a href="eight.html" >生活DIY</a>
+        					<a href="live_museum.html">百套案例</a>
+        					<a href="live_museum.html">万城万景</a>
+        					<a href="remould.html">旧屋改造</a>
+        				</div>
+        				<div class="footer-center-left-item">
+        					<a href="news.html" >新闻中心</a>
+        					<a href="news.html" >企业新闻</a>
+        					<a href="news.html" >市场新闻</a>
+        				</div>
+        				<div class="footer-center-left-item">
+        					<a href="javascript:;" >品牌见证</a>
+        					<a href="javascript:;" >设计师</a>
+        					<a href="cooperation.html" >大咖品推官</a>
+        					<a href="say.html" >TA有话说</a>
+        				</div>
+        				<div class="footer-center-left-item">
+        					<a href="service.html" >服务中心</a>
+        					<a href="service.html#customer" >客服中心</a>
+        					<a href="service.html#need" >客户中心</a>
+        					<a href="contact.html" >我要反馈</a>
+        				</div>
+        				<div class="footer-center-left-item">
+        					<a href="join.html" >招商合作</a>
+        					<a href="join.html" >加盟共赢</a>
+        					<a href="cooperate-people.html" >商学院</a>
+        					<a href="pos.html" >大商样板</a>
+        					<a href="live-grid-sketch.html" >大单分享</a>
+        				</div>
+        				<div class="footer-center-left-item">
+        					<a href="contact.html" >联系我们</a>
+        					<a href="productSearch.html" >防伪查询</a>
+        				</div>
+        			</div>
+        		</div>
+        		<div class="footer-center-right">
+        			<div class="footer-center-txt1">关注我们</div>
+        			<div class="footer-center-txt2">全国客服电话</div>
+        			<div class="footer-center-txt3">400-8877-831</div>
+        			<div class="footer-center-txt4">邮箱：sales@jxbsl.com</div>
+        			<div class="footer-center-txt5">
+        				<img src="images/wb.png" alt="">
+        				<img src="images/wx.png" alt="">
+        			</div>
+        		</div>
+        	</div>
+            <div class="bottom">
+                <p class="bottom-p">COPYRIGHTS 2020 BOSLON AL RIGHTS RESERVED. 浙ICP备09002255号-1    技术支持：PERSONAL TAILOR </p>
+            </div>
+        </div>
+    
+        <div class="popup-section popup-navigation">
+            <div class="popup-container">
+                <div class="navigation-left">
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="index.html">
+                                <span>首页</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="brand.html">
+                                <span>走进宝仕龙</span>
+                            </a>
+                        </div>
+                    </div>
+    <!--                <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="brandWitness.html">
+                                <span>品牌见证</span>
+                            </a>
+                        </div>
+                    </div> -->
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="eight.html">
+                                <span>八大空间</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="live_museum.html">
+                                <span>百套案例</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="pos.html">
+                                <span>大商样板</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="cooperate-people.html">
+                                <span>商学院</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="contact.html">
+                                <span>联系我们</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="productSearch.html">
+                                <span>防伪查询</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="navigation-right">
+    
+                    <div class="navigation-add">
+                        <div class="navigation-add-line"></div>
+                        <div class="address">
+                            Jl. Duren Tiga Raya No. 33<br>
+                            Jakarta Selatan - 12760 <br>
+                            Indonesia
+                        </div>
+                        <p></p>
+                        +62 21 799 1521
+                        <br>
+                        +62 21 722 5003
+                        <br>
+                        info@prodotti-id.com
+                        <p></p>
+                        <div class="socials">
+                            <div class="icon">
+                                <a href="javascript:;">
+                                    <img src="images/logo-facebook.svg" alt="">
+                                </a>
+                            </div>
+                            <div class="icon">
+                                <a href="javascript:;">
+                                    <img src="images/logo-instagram.svg" alt="">
+                                </a>
+                            </div>
+                            <div class="icon">
+                                <a href="javascript:;">
+                                    <img src="images/logo-youtube.svg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="navigation-add">
+                        <div class="navigation-add-line"></div>
+                        <div>
+                            Monday - Friday<br>
+                            09.00 A.M - 06.00 P.M<br><p></p>
+                            Saturday - Sunday<br>
+                            Appointment Only<br>
+                        </div>
+                        <div class="navigation-bottom">
+                            <div class="navigation-bottom-item">
+                                <a href="javascript:;">
+                                    <span>Privacy & Cookie Policy</span>
+                                </a>
+                            </div>
+                        </div>
+    
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+    <div class="popup-section popup-search">
+
+        <div class="popup-container">
+            <div class="search-form">
+                <input type="text" placeholder="Search for Products, Brands or News" class="input-form" style="width: 0;">
+                <div class="search-result">
+                    <div class="search-result-item"></div>
+                    <div class="search-result-item"></div>
+                    <div class="search-result-item"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="popup-brand">
+        <div class="brand-list">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <div class="slider-image">
+                                <div class="background-image" style="background-image: url('images/brand_swiper_01.jpg')"></div>
+                            </div>
+                            <div class="slider-title">Alexander Lamont</div>
+                            <div class="slider-hr"></div>
+                            <div class="slider-category">Furniture</div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <div class="slider-image">
+                                <div class="background-image" style="background-image: url('images/brand_swiper_02.jpg')"></div>
+                            </div>
+                            <div class="slider-title">Alexander Lamont</div>
+                            <div class="slider-hr"></div>
+                            <div class="slider-category">Furniture</div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <div class="slider-image">
+                                <div class="background-image" style="background-image: url('images/brand_swiper_01.jpg')"></div>
+                            </div>
+                            <div class="slider-title">Alexander Lamont</div>
+                            <div class="slider-hr"></div>
+                            <div class="slider-category">Furniture</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </div>
+    <!--公用-->
+
+    <script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/swiper.min.js"></script>
+	<script src="js/wow.min.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/imagesloaded.pkgd.min.js"></script>
+    <script src="js/masonry.pkgd.min.js"></script>
+    <script src="js/classie.js"></script>
+    <script src="js/grid.js"></script>
+    <script src="js/commen.js"></script>
+    <script src="js/iconfont.js"></script>
+	<script src="js/wow.min.js"></script>
+	<script src="js/fixed.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+</body>
+</html>
+
+</html>

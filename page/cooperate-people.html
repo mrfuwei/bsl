@@ -1,0 +1,1577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <title>宝仕龙</title>
+    <link href="images/logo.png" rel="shortcut icon">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/my_animate.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <link rel="stylesheet" href="css/common.css">
+</head>
+<style>
+	 html{font-size:40px;}
+    .cooPeople-section1{
+		width: 82%;
+		margin: 100px auto 0;
+		max-width: 1550px;
+	}
+	.cooPeople-section1-tit{
+		position: relative;
+		height: 120px;
+		color: #E6002D;
+		font-size: 30px;
+		line-height: 120px;
+	}
+	.cooPeople-section1-tit .circle{
+		width: 120px;
+		height: 120px;
+		border-radius: 50%;
+		background-color: #f4f5f7;
+		position: absolute;
+		left: -50px;
+		z-index: -1;
+		transform-origin: 50% 50%;
+		top: 45%;
+		transform: translateY(-50%);
+		animation: effect3 2s ease-in-out infinite;
+	}
+	@keyframes effect3 {
+	    0% {top: 45%;} 
+	    25%{top:50%;}
+		50%{top:55%;}
+	    75% {top: 50%;}
+		100% {top: 45%;}
+	}
+	.cooPeople-section1-txt{
+		margin-top: 10px;
+		font-size: 16px;
+		line-height: 30px;
+	}
+	.n-service{
+		background-color: #f8f8f9;
+		margin: 100px 0 150px;
+	}
+	.n-warp-bg {
+	    padding-left: 5rem;
+	}
+	.w1280 {
+	    width: 90%;
+	    margin-left: 2.75rem;
+	}
+	.n-warp-bg .lista {
+	    background: #fff;
+	    padding-top: 40px;
+	}
+	.n-service .lista .bg1 {
+	    width: 8.5rem;
+	    height: 18.2rem;
+	    top: 10%;
+	    right: 0;
+	    position: absolute;
+	    z-index: 1;
+	}
+	.por {
+	    position: relative;
+	}
+	.n-service .lista .ul-sub {
+	    width: 115px;
+	    font-size: 18px;
+	    color: #333;
+	    position: absolute;
+	    left: 0;
+	    top: 7.75rem;
+	}
+	.n-service .lista .ul-sub .li {
+	    padding-left: 35px;
+	    position: relative;
+	    margin-bottom: .8rem;
+	    -webkit-transition: all .8s ease;
+	    transition: all .8s ease;
+	    cursor: pointer;
+	}
+	.n-service .lista .ul-sub .li.cur {
+	    padding-left: 60px;
+	}
+	.n-service .lista .ul-sub .li:before {
+	    content: "";
+	    position: absolute;
+	    width: 22px;
+	    height: 1px;
+	    background: #bebdc2;
+	    top: 50%;
+	    left: 0;
+	    -webkit-transition: all .8s ease;
+	    transition: all .8s ease;
+	}
+	.n-service .lista .ul-sub .li.cur:before {
+	    background: #333;
+	    height: 3px;
+	    top: 50%;
+	    width: 40px;
+	    margin-top: -1.5px;
+	}
+	.n-service .lista .img-qiebox {
+		margin: 2.8rem auto 2.8rem;
+		width: 21.2rem;
+		height: 21.5rem;
+	    background: url(images/pic35.png) no-repeat center center;
+	    background-size: cover;
+	}
+	.n-service .lista .img-qiebox .li {
+	    width: 47px;
+	    height: 47px;
+	    cursor: pointer;
+	    position: absolute;
+	    z-index: 4;
+	}
+	.n-service .lista .img-qiebox .li1 {
+	    left: -.5rem;
+	    top: 9.8rem;
+	}
+	.n-service .lista .img-qiebox .li2 {
+	    left: 9.8rem;
+	    top: -.5rem;
+	}
+	.n-service .lista .img-qiebox .li3 {
+	    left: 20.4rem;
+	    top: 9.8rem;
+	}
+	.n-service .lista .img-qiebox .li.cur {
+	    -webkit-animation: main-animation2 1s 2s ease-in-out infinite;
+	    animation: main-animation2 1s 2s ease-in-out infinite;
+	}
+	.n-service .lista .img-qiebox .li4 {
+	    left: 9.8rem;
+	    top: 20.8rem;
+	}
+	.n-service .lista .img-qiebox .svgquan {
+	    width: 100%;
+	    height: 100%;
+	    position: absolute;
+	    left: 0;
+	    top: 0;
+	    z-index: 3;
+	}
+	.n-service .lista .img-qiebox .ajax-img {
+	    position: absolute;
+	    left: 50%;
+	    top: 50%;
+	    margin-top: -45%;
+	    margin-left: -45%;
+	    width: 90%;
+	    height: 90%;
+
+	}
+	.n-service .lista .img-qiebox .ajax-img .imga {
+	    width: 100%;
+	    height: 100%;
+		position: absolute;
+		left: 0;
+		top: 0;
+	}
+	.n-service .lista .img-qiebox .ajax-img img.cur{
+	    opacity: 1;
+		z-index: 2;
+		-webkit-transition: all .5s ease .5s;
+		-o-transition: all .5s ease .5s;
+		transition: all .5s ease .5s;
+	}
+	.n-service .lista .img-qiebox .ajax-img img{
+		opacity: 0;
+		/* -webkit-transition: all .5s ease;
+		-o-transition: all .5s ease;
+		transition: all .5s ease; */
+	}
+	svg:not(:root) {
+	    overflow: hidden;
+	}
+	.n-service .lista .img-qiebox .quan-line.animate.cur {
+	    stroke-dasharray: 4800;
+	    stroke-dashoffset: 0;
+	    fill: #0e0e0e;
+	    stroke-linejoin: round;
+	    stroke-linecap: round;
+	    -webkit-animation: dash2 5s linear 1;
+	    animation: dash2 5s linear 1;
+	    stroke: #060606;
+	    stroke-width: .5;
+	}
+	.n-service .lista .big-bg {
+	    background: url(images/pic32.png) no-repeat center 30%;
+	    background-size: 95% auto;
+		padding: 200px 0;
+	}
+	.cooPeople-section-img{
+		width: 100%;
+	}
+	.cooPeople-section-img img{
+		width: 100%;
+		height: auto;
+	}
+	.bg_effect1 {
+		overflow: hidden;
+		width: 660px;
+		height: 660px;
+		border-radius: 330px;
+		background-color: #f2f4f6;
+		display: inline-block;
+		position: absolute;
+		top: -190px;
+		left: -80px;
+		z-index: -1;
+		transform-origin: 50% 50%;
+		animation: effect1 2s ease-in-out infinite;
+	}
+	.wid8{
+		width: 80%;
+		margin: 0 auto;
+	}
+	@keyframes effect1 {
+	    0% {top: -215px;}
+	    50% {top: -190px;}
+	    100% {top: -215px;}
+	}
+	.cs_section.inner2 {
+	    padding: 200px 0 70px;
+	    background: #fafafb url(../img/company/bg_cs.png) no-repeat center center;
+	    background-size: cover;
+	    overflow: hidden;
+	    z-index: 7;
+	    position: relative;
+		margin-top: 150px;
+		
+	}
+	.cs_section.inner2 .title {
+	    color: #e6002d;
+	    font-weight: 500;
+	    font-size:30px;
+		padding-left: 5rem;
+	}
+	.cs_section-list{
+		display: flex;
+		justify-content: space-between;
+		width:100%;
+		max-width: 1000px;
+		margin: 0 auto;
+		flex-wrap: wrap;
+	}
+	.cs_section-item{
+		width: calc(45%);
+		margin-bottom: 60px;
+	}
+	.cs_section-item img{
+		margin: 0 auto;
+	}
+	.cs_section-tit{
+		text-align: center;
+		font-size: 16px;
+		line-height: 40px;
+		font-weight: bold;
+	}
+	.cs_section-txt{
+		text-align: center;
+		font-size: 14px;
+		line-height: 30px;
+	}
+	.cs_section.inner3 {
+		background-color: #2a184b;
+		padding: 200px 0;
+		padding-left: 5rem;
+		position: relative;
+	}
+	.cs_section.inner3 .title {
+	    color: #fff;
+	}
+	.cs_histroy {
+	    margin: 60px auto 0;
+	}
+	.parallaxUp{
+		display: flex;
+		flex-wrap: wrap;
+		width: 780px;
+	}
+	.parallaxUp-item{
+		width: 33%;
+		font-size: 14px;
+		padding-left: 20px;
+		position: relative;
+		color: #fff;
+		margin-bottom: 30px;
+	}
+	.parallaxUp-item:after{
+		position: absolute;
+		content: '';
+		width: 4px;
+		height: 4px;
+		border-radius: 50%;
+		background-color: #fff;
+		left: 0;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+	.parallaxUp-item1{
+		width:50%;
+		margin-bottom: 40px;
+	}
+	.parallaxUp-item1-img{
+		width: 60px;
+		height: 60px;
+		border: 1px #999 solid;
+		margin: 0 auto;
+		border-radius: 50%;
+		position: relative;
+	}
+	.parallaxUp-item1-img img{
+		width:40px;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%,-50%);
+		position: absolute;
+	}
+	.parallaxUp-item1-txt{
+		margin-top: 10px;
+		font-size: 14px;
+		color: #fff;
+		text-align: center;
+	}
+	.title_3_2{
+		margin-top: 160px;
+	}
+	.cspic.pic_02 {
+	    top: 100px;
+	    right: 5rem;
+		width: 35%;
+	}
+	.cspic.pic_02, .cspic.pic_03 {
+	    border-radius: 1000px;
+	    overflow: hidden;
+	    z-index: 10;
+	}
+	.cspic.pic_03 {
+	    bottom: 210px;
+	    left: 50%;
+		width: 15%;
+	}
+	.cspic {
+	    position: absolute;
+	    display: inline-block;
+	}
+	.bg_effect3 {
+	    overflow: hidden;
+	    width: 250px;
+	    height: 250px;
+	    border-radius: 250px;
+	    background-color: #231244;
+	    display: inline-block;
+	    position: absolute;
+	    top: 50%;
+	    right: 5rem;
+	    z-index: 9;
+	    transform-origin: 50% 50%;
+	    animation: effect2 2s ease-in-out infinite;
+	}
+	.banner-switchbutton-left{
+		padding: 0 7px;
+		cursor: pointer;
+		font-weight: 100;
+		outline: none
+	}
+	.banner-switchbutton-right{
+		padding: 0 7px;
+		cursor: pointer;
+		font-weight: 100;
+		outline: none;
+	}
+	.banner-right{
+		font-size: 12px;
+		font-weight: bold;
+		float: right;
+	}
+	.banner-switchbutton{
+		width: 100%;
+		margin: 10px auto;
+		overflow: hidden;
+	}
+	.znList_thr{
+		margin: 60px 0;
+	}
+	.znList_thr .swiper-slide {
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+	}
+	.znList_thr .swiper-slide .swiper-img{
+		width: 50%;
+	}
+	.znList_thr .swiper-slide .swiper-text{
+		width: 50%;
+		padding: 5rem;
+	}
+	.znList_thr .swiper-slide .swiper-text .swiper-tit{
+		font-size: 25px;
+		margin-bottom: 20px;
+		line-height: 35px;
+	}
+	.znList_thr .swiper-slide .swiper-text .swiper-txt{
+		font-size: 16px;
+		line-height: 35px;
+	}
+	.znList_thr .swiper-slide .swiper-img img{
+		width: 100%;
+		height: auto;
+	}
+	.banner-switchbutton1{
+		display: flex;
+		justify-content: center;
+		position: relative;
+		padding: 60px 0;
+	}
+	.banner-switchbutton-left1,.banner-switchbutton-right1{
+		position: relative;		
+		font-size:12px ;
+		margin: 0 40px;
+/* 		line-height: 20px;
+		height: 20px; */
+	}
+	.banner-switchbutton-left1:after,.banner-switchbutton-right1:after{
+		background-position: center center;
+		position: absolute;
+		content: '';
+		background-image: url(images/syg.png);
+		background-size: contain;
+		width: 77px;
+		height: 20px;
+		right: 0;
+		bottom: -10px;
+		background-repeat: no-repeat;
+	}
+	.banner-switchbutton1 .banner-switchbutton-right1:after{
+		background-position: center center;
+		position: absolute;
+		content: '';
+		background-image: url(images/xyg.png);
+		background-size: contain;
+		width: 77px;
+		height: 20px;
+		left: 0;
+		bottom: -10px;
+		background-repeat: no-repeat;
+	}
+	.banner-switchbutton1:after{
+		position: absolute;
+		content: '';
+		height: 30px;
+		width: 1px;
+		background-color: #E6002D;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%,-50%);
+	}
+	.cooPeople-section-container-tit{
+		color: #E6002D;
+		font-size: 30px;
+		font-weight: 100;
+		letter-spacing: 2px;
+		margin-top: 10px;
+	}
+	.cooPeople-section-container-tit .cooPeople-section-big{
+		font-size: 60px;
+		font-weight: 100;
+		padding-right: 20px;
+	}
+	.cooPeople-section-container-txt{
+		font-size: 12px;
+		color: #999;
+		margin-top: 10px;
+		letter-spacing: 3px;
+		line-height: 30px;
+	}
+	.cooPeople-section-container{
+		margin-top: -50px;
+		margin-left: 5rem;
+		position: relative;
+	}
+	 .cooPeople-section-container .cooPeople-section-container-img {
+		 background-color: #000;}
+	 .cooPeople-section-container .cooPeople-section-container-img img {opacity:0.6; filter: alpha(opacity=60);transition: all .3s ease-in}
+	 .cooPeople-section-container .cooPeople-section-container-img:hover img {opacity:1; filter: alpha(opacity=100);}
+
+	.cooPeople-section2{
+		padding:100px 0;
+		text-align: center;
+	}
+	.cooPeople-section2 .cooPeople-section2-tit{
+		text-transform: uppercase;
+		font-size: 25px;
+		letter-spacing: 2px;
+		font-weight: 100;
+	}
+	.cooPeople-section2 .cooPeople-section2-tit1{
+		font-size: 25px;
+		letter-spacing: 2px;
+		margin: 30px 0 50px;
+	}
+	.cooPeople-section2 .cooPeople-section2-txt{
+		font-size: 25px;
+		letter-spacing: 2px;
+		font-size: 14px;
+		line-height: 30px;
+	}
+	.section5{
+	    position: relative;
+	    /*margin-top: 15%;*/
+	    z-index: 1;
+	}
+	.section5 ul{
+	    display: flex;
+	    justify-content: flex-start;
+	    flex-direction: row;
+	}
+	.section5 ul li{
+	    width: 50%;
+	}
+	/* .section5 ul li:nth-child(2){
+	    border-left: 1px solid #5f5f5f;
+	    box-sizing: content-box;;
+	} */
+	.section5 ul li {
+	    position: relative;
+	    display: block;
+	    height: auto;
+	    color: #FFF;
+	    overflow: hidden;
+	    z-index: 1;
+	    width: 100%;
+	}
+	.section5 ul li img{
+	    transition: all 1s ease;
+	}
+	.section5-txt01{
+	    position: absolute;
+	    top: 40%;
+	    left: 50%;
+	    font-size: 20px;
+		transform: translate(-50%,-50%);
+	}
+	.section5-txt02{
+	    position: absolute;
+	    top: 60%;
+	    left: 50%;
+	    transform: translate(-50%,-50%);
+	    font-size: 14px;
+		width: 150px;
+		height: 30px;
+		border: 1px solid #b4995a;
+		text-align: center;
+		border-radius: 15px;
+		line-height: 30px;
+	}
+	.section5 ul li:hover img{
+	    transform: scale(1.1);
+	}
+	.section5 ul li:nth-child(2) .section5-txt02{
+	    width: 250px;
+	}
+	@keyframes effect2 {
+	    0% {top: 51%;}
+	    50% {top: 50%;}
+	    100% {top: 51%;}
+	}
+	@media (max-width: 767px) {
+	  html {
+	    font-size: 26px !important;
+	  }
+	}
+	@media (max-width: 479px) {
+	  html {
+	    font-size: 24px !important;
+	  }
+	}
+	@media screen and (max-width: 320px) {
+	  html {
+	    font-size: 20px !important;
+	  }
+	}
+	@media (min-width: 768px) {
+	  html {
+	    font-size: 28px !important;
+	  }
+	}
+	@media (min-width: 1200px) {
+	  html {
+	    font-size: 30px !important;
+	  }
+	}
+	@media (min-width: 1440px) {
+	  html {
+	    font-size: 34px !important;
+	  }
+	}
+	@media (min-width: 1680px) {
+	  html {
+	    font-size: 40px !important;
+	  }
+	}
+	@media (max-width: 1570px){
+		.w1280 {
+			width: 90%;
+		}
+		.parallaxUp{
+			display: flex;
+			flex-wrap: wrap;
+			width: 40%;
+		}
+	}
+	@media (max-width: 1366px){
+		.n-warp-bg {
+		    padding-left: 3rem;
+		}
+	}
+</style>
+<body>
+
+<div class="header">
+	<div class="header1">
+		<div class="nav-container">
+			<div class="logo"><a href="index.html"><img src="images/common/logo-top-white.png" alt="" width="155"></a></div>
+			<a href="javascript:;">
+				<div class="left-header mshow">
+					<div class="navbar">
+						<span class="nav"></span>
+						<span class="nav"></span>
+						<span class="nav"></span>
+					</div>
+					<div class="search nav-item">
+						<!--<img src="images/icon-search.png" alt="">-->
+						<i class="iconfont icon-iconsearch"></i>
+						<span>SEARCH</span>
+					</div>
+				</div>
+			</a>
+			<a href="javascript:;">
+				<div class="right-header mshow">
+					<div class="nav-item">
+						<a href="eight.html">
+							<i class="iconfont icon-fenlei"></i>
+							<!--<img src="images/icon-brands.png" alt="">-->
+							<span>八大空间</span>
+						</a>
+
+					</div>
+					<div class="nav-item">
+						<a href="join.html">
+							<i class="iconfont icon-lock"></i>
+							<!--<img src="images/icon-stock.png" alt="">-->
+							<span>加盟合作</span>
+						</a>
+
+					</div>
+				</div>
+			</a>
+			<div class="nav-item close mhidden">
+				<img src="images/icon-close.png" alt="">
+				<span>CLOSE</span>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="header2">
+		<div class="nav-container">
+			<div class="logo"><a href="index.html"><img src="images/common/logo-top-white.png" alt="" width="155"></a></div>
+			<a href="javascript:;">
+				<div class="left-header mshow">
+					<div class="navbar">
+						<span class="nav"></span>
+						<span class="nav"></span>
+						<span class="nav"></span>
+					</div>
+					<div class="search nav-item">
+						<!--<img src="images/icon-search.png" alt="">-->
+						<i class="iconfont icon-iconsearch"></i>
+						<span>SEARCH</span>
+					</div>
+				</div>
+			</a>
+			<div class="nav_t nav_t1">
+				<ul class="clearfix">
+					<li>
+						<a href="index.html">首页</a>
+					</li>
+					<li>
+						<a href="brand.html">走进宝仕龙</a>
+						<div class="header2-comboBox">
+							<a href="brand.html" class="comboBox-list">走进宝仕龙</a>
+							<a href="brand.html" class="comboBox-list">品牌文化</a>
+							<a href="topshop.html" class="comboBox-list">工厂1号店</a>
+							<a href="museum.html" class="comboBox-list">吊顶博物馆</a>
+						</div>
+					</li>
+					<li>
+						<a href="eight.html">定制生活馆</a>
+						<div class="header2-comboBox">
+							<a href="eight.html"  class="comboBox-list">生活DIY</a>
+							<!-- <a href="javascript:;" class="comboBox-list" >设计理念</a> -->
+							<a href="live_museum.html" class="comboBox-list">百套案例</a>
+							<a href="live_museum.html" class="comboBox-list">万城万景</a>
+							<a href="remould.html" class="comboBox-list">旧屋改造</a>
+						</div>
+					</li>
+					<li>
+						<a href="news.html" >新闻中心</a>
+						<div class="header2-comboBox">
+							<a href="news.html"  class="comboBox-list">企业新闻</a>
+							<a href="news.html"  class="comboBox-list">市场新闻</a>
+							<a href="news-video.html"  class="comboBox-list">企业视频</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="nav_t nav_t2">
+				<ul class="clearfix">
+					<li>
+						<a href="javascript:;" >品牌见证</a>
+						<div class="header2-comboBox">
+							<a href="brandWitness1.html" class="comboBox-list">设计师</a>
+							<a href="cooperation.html" class="comboBox-list">大咖品推官</a>
+							<a href="say.html" class="comboBox-list">TA有话说</a>
+						</div>
+					</li>
+					<li>
+						<a href="service.html" >服务中心</a>
+						<div class="header2-comboBox">
+							<a href="service.html#customer" class="comboBox-list">客服中心</a>
+							<a href="service.html#need" class="comboBox-list">客户中心</a>
+							<a href="contact.html" class="comboBox-list">我要反馈</a>
+						</div>
+					</li>
+					<li>
+						<a href="join.html" >招商合作</a>
+						<div class="header2-comboBox">
+							<a href="join.html"  class="comboBox-list">加盟共赢</a>
+							<a href="franchisee.html"  class="comboBox-list">加盟流程</a>
+							<a href="cooperate-people.html"  class="comboBox-list">商学院</a>
+							<a href="pos.html"  class="comboBox-list">大商样板</a>
+							<a href="live-grid-sketch.html"  class="comboBox-list">大单分享</a>
+						</div>
+					</li>
+					<li>
+						<a href="contact.html" >联系我们</a>
+						<div class="header2-comboBox">
+							<a href="recruit.html"   class="comboBox-list">招贤纳士</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<a href="javascript:;">
+				<div class="right-header mshow">
+					<div class="nav-item">
+						<a href="eight.html">
+							<i class="iconfont icon-fenlei"></i>
+							<!--<img src="images/icon-brands.png" alt="">-->
+							<span>八大空间</span>
+						</a>
+					</div>
+					<div class="nav-item">
+						<a href="join.html">
+							<i class="iconfont icon-lock"></i>
+							<!--<img src="images/icon-stock.png" alt="">-->
+							<span>加盟合作</span>
+						</a>
+					</div>
+				</div>
+			</a>
+			<div class="nav-item close mhidden">
+				<img src="images/icon-close.png" alt="">
+				<span>CLOSE</span>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+    <div class="main">
+        <div class="inside-banner">
+            <div class="banner_img hid_xs" style="background:url(images/inside/cooPeople/cooperple-banner.jpg) no-repeat center center;background-size:cover;"></div>
+            <div class="banner_img vis_xs" style="background:url(images/inside/cooPeople/cooperple-banner.jpg) no-repeat center center;background-size:cover;"></div>
+            <div class="banner_zz"></div>
+            <div class="banner_left"></div>
+            <div class="banner_right"></div>
+            <div class="banner_contair">
+                <div class="inside-banner-heading">
+                    <div class="sub-heading">
+                        <h2 class="inside-banner-title">宝仕龙5G商学院</h2>
+                        <!--<p class="inside0banner-txt" style="max-width: 285px;font-size: 12px;color: #f5f5f5;text-align: justify;">系统赋能 思维升级 系统升级</p>-->
+                    </div>
+                </div>
+            </div>
+            <div class="shadows">
+                <img src="images/common/shadow.png" alt="" class="shadow shadow-left">
+                <img src="images/common/shadow.png" alt="" class="shadow shadow-right">
+            </div>
+
+        </div>
+
+
+        <div class="cooPeople-section">
+			<div class="cooPeople-section1">
+				<div class="cooPeople-section1-top">
+					<div class="cooPeople-section1-tit">
+						<div class="circle"></div>
+						宝仕龙5G商学院
+					</div>
+					<div class="cooPeople-section1-txt">
+						育商/扶商/造大商，
+						<br>为终端提供全方面服务
+					</div>
+				</div>	
+			</div>
+			<div class="n-service js-m js-m-top animate" style="display: none;">
+				<div class="n-warp-bg">
+					<div class="lista">
+						<div class="w1280 por" id="a1">
+							<img src="images/pic31.png " alt="" class="bg1" style="transform: translate(0px, -41.9px);">
+							<div class="big-bg por z2">
+								<div class="ul-sub z2">
+									<div class="li cur" data-id="28">宝仕龙2021</div>
+									<div class="li" data-id="27">团队学习</div>
+									<div class="li" data-id="26">关键人才</div>
+									<div class="li" data-id="25">行动学习</div>																		
+								</div>
+								<div class="img-qiebox por">
+									<div class="li li1" data-id="28">
+										<img src="images/pic34.png" alt="">
+									</div>
+									<div class="li li2" data-id="27">
+										<img src="images/pic34.png" alt="">
+									</div>
+									<div class="li li3 cur" data-id="26">
+										<img src="images/pic34.png" alt="">
+									</div>
+									<div class="li li4" data-id="25">
+										<img src="images/pic34.png" alt="">
+									</div>
+									<div class="ajax-img z2">
+										<img src="images/1606901257592oy2t.png " alt="" class="imga cur">
+										<img src="images/16068991651297wjsku.png " alt="" class="imga">
+										<img src="images/16069005991176rjuz0.png " alt="" class="imga">
+									</div>
+									<svg version="1.1" class="svgquan" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="621.336px" height="630.229px" viewBox="0 0 621.336 630.229" enable-background="new 0 0 621.336 630.229" xml:space="preserve">
+										<path class="quan-line js-m cur animate" d="M298.892,629.915c-7.75,0-14.107-0.237-14.226-0.241c-0.094-0.01-5.518-0.646-16.056-0.507
+										c-10.634,0.152-27.992-3.85-28.166-3.89c-0.21-0.054-20.057-5.118-35.772-6.894c-16.125-1.818-36.027-7.635-38.975-9.721
+										l-0.358-0.254c-2.724-1.932-5.54-3.929-13.289-6.801c-8.116-3.006-20.625-11.472-20.751-11.557
+										c-19.354-16.462-58.243-55.092-58.634-55.48c-0.012-0.01-3.191-2.859-6.761-7.154c-2.011-2.415-8.817-13.113-14.822-22.553
+										c-4.748-7.463-9.233-14.513-10.313-15.835c-2.47-3.021-12.207-21.304-12.62-22.081c-0.142-0.324-12.411-28.877-15.748-40.42
+										c-3.335-11.556-9.791-53.09-11.682-66.927c-1.349-9.896,0.451-31.386,2.402-46.781l0.992,0.126
+										c-1.943,15.335-3.739,36.72-2.403,46.52c1.888,13.816,8.331,55.277,11.652,66.784c3.32,11.483,15.564,39.979,15.688,40.266
+										c0.083,0.151,10.085,18.934,12.493,21.88c1.118,1.368,5.411,8.117,10.383,15.931c5.989,9.414,12.777,20.084,14.747,22.45
+										c3.519,4.234,6.646,7.039,6.678,7.066c0.41,0.406,39.271,39.009,58.553,55.413c0.081,0.052,12.491,8.45,20.494,11.414
+										c7.872,2.917,10.743,4.953,13.519,6.923l0.357,0.253c2.805,1.984,22.827,7.775,38.51,9.543c15.785,1.783,35.698,6.865,35.897,6.916
+										c0.162,0.037,17.411,4.016,27.916,3.861c10.606-0.14,16.093,0.504,16.147,0.511c0.183,0.005,22.572,0.84,34.583-0.646
+										c12.064-1.491,37.543-3.507,37.799-3.526c0.27,0.015,18.911,1.559,41.977-11.152l10.624-4.658c0.064-0.049,13.36-8.593,16.75-12.896
+										c3.058-3.891,7.903-4.784,10.799-5.317c0.491-0.091,0.918-0.169,1.256-0.25c1.795-0.433,18.048-4.632,35.365-18.668
+										c0.917-0.627,12.598-8.061,19.305-10.961c6.193-2.681,14.378-9.019,18.037-15.947c3.782-7.151,17.351-20.615,26.954-27.874
+										c10.396-7.861,24.84-24.557,26.416-29.517c1.535-4.82,2.648-7.09,2.863-7.51c0.151-0.769,1.404-6.635,4.865-9.542
+										c3.387-2.846,8.231-16.747,8.28-16.888c0.08-0.163,4.999-9.339,11.404-16.14c6.313-6.7,14.234-31.371,14.377-34.256
+										c0.146-3.089,8.979-51.692,9.354-53.761c0.008-0.08,1.231-11.612-0.588-18.914c-2.065-8.254-0.097-16.542,2.101-23.562
+										c2.478-7.924,0.599-23.211,0.579-23.365c-0.013-0.076-1.557-9.69,0.979-20.663c2.431-10.511,1.96-18.921-1.866-33.331
+										c-3.688-13.899-15.127-43.924-15.242-44.226c-0.037-0.055-6.789-12.091-10.162-16.103c-5.52-6.584-10-14.461-13.696-24.082l0,0
+										c-0.006,0-2.486-4.36-7.535-10.056c-2.788-3.146-4.897-6.114-6.937-8.984c-1.761-2.478-3.424-4.819-5.412-7.124
+										c-4.303-4.993-9.982-15.292-10.04-15.396c-0.001,0.001-2.358-3.481-7.789-6.826c-5.599-3.442-14.952-12.723-15.348-13.116
+										c-0.094-0.054-16.359-11.179-21.883-14.259c-5.576-3.106-23.524-16.505-24.285-17.074c-0.232-0.167-24.09-17.286-46.755-24.614
+										c-0.19-0.042-5.657-1.343-9.517-4.286c-3.747-2.862-8.48-3.842-17.072-5.623c-2.006-0.415-4.472-0.83-7.082-1.269
+										c-9.092-1.53-20.406-3.434-25.276-7.35c-5.971-4.799-28.865-5.705-29.096-5.713l-33.87-0.425c-0.389-0.044-33.895-4.047-55.889-0.12
+										c-51.128,9.138-83.093,22.625-92.438,39.003l-0.074,0.13l-0.134,0.068c-0.336,0.17-33.93,17.38-64.03,49.927
+										c-3.54,3.828-7.002,7.541-10.372,11.156c-25.688,27.556-45.978,49.32-55.2,72.367c-1.844,4.607-3.729,9.177-5.553,13.596
+										c-8.467,20.521-16.465,39.904-17.446,56.403c-0.403,6.775-0.761,14.756-1.106,22.474c-0.705,15.753-1.371,30.633-2.419,36.814
+										c-0.326,1.925-0.731,4.756-1.142,7.971l-0.992-0.127c0.412-3.228,0.82-6.073,1.148-8.011c1.038-6.121,1.733-21.662,2.406-36.692
+										c0.345-7.722,0.703-15.707,1.107-22.489c0.99-16.666,9.019-36.124,17.52-56.725c1.823-4.417,3.707-8.984,5.549-13.586
+										c9.292-23.22,29.638-45.045,55.397-72.677c3.369-3.614,6.83-7.326,10.369-11.152c29.26-31.638,61.816-48.847,64.179-50.072
+										c9.588-16.585,41.758-30.194,93.057-39.363c22.141-3.955,55.793,0.066,56.131,0.107l33.827,0.422
+										c0.968,0.036,23.471,0.928,29.698,5.934c4.666,3.752,15.839,5.632,24.815,7.143c2.62,0.441,5.095,0.857,7.119,1.275
+										c8.735,1.81,13.548,2.807,17.476,5.807c3.687,2.811,9.124,4.106,9.179,4.119c22.856,7.389,46.838,24.598,47.078,24.771
+										c0.192,0.144,18.662,13.932,24.18,17.006c5.563,3.103,21.867,14.253,22.031,14.366c0.166,0.154,9.737,9.65,15.237,13.032
+										c5.634,3.47,8.021,7.011,8.12,7.16c0.077,0.138,5.708,10.347,9.942,15.26c2.019,2.34,3.694,4.699,5.47,7.197
+										c2.023,2.849,4.117,5.795,6.869,8.9c5.14,5.796,7.665,10.25,7.689,10.294c3.688,9.582,8.112,17.366,13.56,23.863
+										c3.434,4.083,10.021,15.825,10.3,16.323c0.146,0.368,11.604,30.442,15.306,44.392c3.873,14.589,4.346,23.122,1.874,33.813
+										c-2.492,10.781-0.98,20.199-0.965,20.293c0.083,0.655,1.928,15.677-0.613,23.807c-2.156,6.887-4.091,15.007-2.085,23.021
+										c1.862,7.477,0.658,18.821,0.606,19.3c-0.097,0.541-9.201,50.642-9.346,53.665c-0.166,3.372-8.181,28.031-14.646,34.894
+										c-6.314,6.705-11.171,15.763-11.219,15.854c-0.171,0.511-4.955,14.232-8.552,17.254c-3.356,2.819-4.527,8.972-4.539,9.033
+										l-0.05,0.145c-0.012,0.021-1.185,2.25-2.829,7.411c-1.758,5.53-17.017,22.64-26.766,30.011c-9.521,7.197-22.95,20.505-26.673,27.544
+										c-3.943,7.465-12.367,13.733-18.525,16.398c-6.641,2.871-18.228,10.247-19.105,10.845c-17.454,14.149-33.909,18.4-35.728,18.839
+										c-0.353,0.084-0.796,0.166-1.308,0.261c-2.757,0.508-7.37,1.358-10.194,4.952c-3.494,4.435-16.514,12.803-17.066,13.156
+										l-10.652,4.675c-23.305,12.847-42.235,11.267-42.425,11.253c-0.171,0.021-25.627,2.034-37.669,3.522
+										C313.763,629.729,305.777,629.915,298.892,629.915z"></path>
+									</svg>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="cooPeople-section-img wid8">
+				<img src="images/peo.png" alt="">
+			</div>
+			<div class="cs_section inner2">
+				<div class="title title_2_1 wow fadeInUp1 animated1">B2倍增计划</div>
+				<div class="cs_section-list">
+					<div class="cs_section-item">
+						<img src="images/rq.png" alt="" class=" wow fadeInUp1 animated1">
+						<div class="cs_section-tit  wow fadeInUp1 animated1">20位金牌讲师团</div>
+						<div class="cs_section-txt wow fadeInUp1 animated1">打造定制家居MAX <br>终端盈利系统</div>
+					</div>
+					<div class="cs_section-item">
+						<img src="images/jl.png" alt="" class=" wow fadeInUp1 animated1">
+						<div class="cs_section-tit wow fadeInUp1 animated1">每年不低于</div>
+						<div class="cs_section-txt wow fadeInUp1 animated1">6场全国性
+							<br>市场交流会
+						</div>
+					</div>
+					<div class="cs_section-item">
+						<img src="images/hd.png" alt="" class=" wow fadeInUp1 animated1">
+						<div class="cs_section-tit wow fadeInUp1 animated1">10场大型</div>
+						<div class="cs_section-txt wow fadeInUp1 animated1">促销活动</div>
+					</div>
+					<div class="cs_section-item">
+						<img src="images/px.png" alt="" class=" wow fadeInUp1 animated1">
+						<div class="cs_section-tit wow fadeInUp1 animated1">20场封闭式培训</div>
+						<div class="cs_section-txt wow fadeInUp1 animated1">匹配“抢”“扩”
+							<br>“策”趋势情感营销
+						</div>
+					</div>
+				</div>
+				<div class="bg_effect1"></div>
+			</div>
+			<div class="cs_section inner3">
+				<div class="title title_3_1 wow fadeInUp1 animated1">名师育人团  知识倾囊相授</div>
+				<div class="cs_histroy">
+					<ul class="parallaxUp">
+						<li class="parallaxUp-item wow fadeInUp1 animated1">
+							新商特训营
+						</li>
+						<li class="parallaxUp-item wow fadeInUp1 animated1">
+							精英特训营
+						</li>
+						<li class="parallaxUp-item wow fadeInUp1 animated1">
+							超级店长培训班
+						</li>
+						<li class="parallaxUp-item wow fadeInUp1 animated1">
+							设计师培训班
+						</li>
+						<li class="parallaxUp-item wow fadeInUp1 animated1">
+							安装训练班
+						</li>
+						<li class="parallaxUp-item wow fadeInUp1 animated1">
+							CAD设计特练营
+						</li>
+						<li class="parallaxUp-item wow fadeInUp1 animated1">
+							打造样板市场
+						</li>
+						<li class="parallaxUp-item wow fadeInUp1 animated1">
+							促销活动帮扶
+						</li>
+						<li class="parallaxUp-item wow fadeInUp1 animated1">
+							全国游学会
+						</li>
+					</ul>
+				</div>
+				<div class="title title_3_1 title_3_2 wow fadeInUp1 animated1">大销售全技巧培训</div>
+				<!-- his -->
+				<div class="cs_histroy">
+					<ul class="parallaxUp">
+						<li class="parallaxUp-item1">
+							<div class="parallaxUp-item1-img wow fadeInUp1 animated1">
+								<img src="images/cp1.png" alt="">
+							</div>
+							<div class="parallaxUp-item1-txt wow fadeInUp1 animated1">
+								品牌认知
+							</div>
+						</li>
+						<li class="parallaxUp-item1">
+							<div class="parallaxUp-item1-img wow fadeInUp1 animated1">
+								<img src="images/cp2.png" alt="">
+							</div>
+							<div class="parallaxUp-item1-txt wow fadeInUp1 animated1">
+								产品知识
+							</div>
+						</li>
+						<li class="parallaxUp-item1">
+							<div class="parallaxUp-item1-img wow fadeInUp1 animated1">
+								<img src="images/cp3.png" alt="">
+							</div>
+							<div class="parallaxUp-item1-txt wow fadeInUp1 animated1">
+								运营管理
+							</div>
+						</li>
+						<li class="parallaxUp-item1">
+							<div class="parallaxUp-item1-img wow fadeInUp1 animated1">
+								<img src="images/cp4.png" alt="">
+							</div>
+							<div class="parallaxUp-item1-txt wow fadeInUp1 animated1">
+								销售流程
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="cspic pic_02 wow fadeInUp1 animated1"><img src="images/cs_photo_02.png" alt=""></div>
+				<div class="cspic pic_03 wow fadeInUp1 animated1"><img src="images/cs_photo_01.png" alt=""></div>
+				<div class="bg_effect3 wow fadeInUp1 animated1"></div>
+			</div>
+			<div class="znList_thr">
+				<div class="inner">
+					<div class="znList_thr-container swiper-container">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide">
+								<div class="swiper-text">
+									<div class="swiper-tit">线上线下相结合的<br>
+									全方位培训方式</div>
+									<div class="swiper-txt">
+										商学院帮扶终端<br>
+										门店活动支持
+									</div>
+								</div>
+								<div class="swiper-img">
+									<img src="images/coo11.png" alt="">
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="swiper-text">
+									<div class="swiper-tit">线上线下相结合的<br>
+									全方位培训方式</div>
+									<div class="swiper-txt">
+										商学院帮扶终端<br>
+										门店活动支持1
+									</div>
+								</div>
+								<div class="swiper-img">
+									<img src="images/coo11.png" alt="">
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="swiper-text">
+									<div class="swiper-tit">线上线下相结合的<br>
+									全方位培训方式</div>
+									<div class="swiper-txt">
+										商学院帮扶终端<br>
+										门店活动支持2
+									</div>
+								</div>
+								<div class="swiper-img">
+									<img src="images/coo11.png" alt="">
+								</div>
+							</div>
+						</div>
+						<div class="banner-switchbutton">
+							<div class="banner-right">
+							   <span class="banner-switchbutton-left">◀ </span>
+							   <span class="realIndex">  </span>
+							   <span>/</span>
+							   <span class="indexLength">  </span>
+							   <span class="banner-switchbutton-right"> ▶</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="cooPeople-section-img">
+				<img src="images/coop123.png" alt="">
+			</div>
+			<div class="cooPeople-section-container swiper-container  wow fadeInRight animated">
+				<div class="swiper-wrapper">
+					<a href="cooperate-people-detail.html" class="swiper-slide">
+						<div class="cooPeople-section-container-img">
+							<img src="images/coo07.png" alt="">
+						</div>
+						<div class="cooPeople-section-container-text">
+							<div class="cooPeople-section-container-tit">
+								<span class="cooPeople-section-big">01</span>设计师培训班
+							</div>
+							<div class="cooPeople-section-container-txt">每年开展20场，专业设计师特训，把握客户的需求落地到装修方案。</div>
+						</div>
+					</a>
+					<a href="cooperate-people-detail.html"  class="swiper-slide">
+						<div class="cooPeople-section-container-img">
+							<img src="images/coo08.png" alt="">
+						</div>
+						<div class="cooPeople-section-container-text">
+							<div class="cooPeople-section-container-tit">
+								<span class="cooPeople-section-big">02</span>CAD设计特练营
+							</div>
+							<div class="cooPeople-section-container-txt">每年开展20场，CAD设计师特训，提高家装布局能力，1:1还原装修构造。</div>
+						</div>
+					</a>
+					<a href="cooperate-people-detail.html"  class="swiper-slide">
+						<div class="cooPeople-section-container-img">
+							<img src="images/coo09.png" alt="">
+						</div>
+						<div class="cooPeople-section-container-text">
+							<div class="cooPeople-section-container-tit">
+								<span class="cooPeople-section-big">03</span>全国游学会
+							</div>
+							<div class="cooPeople-section-container-txt">全国各区域不定期开展30场实战派会议交流，公司高层坐镇主持，答疑解惑。</div>
+						</div>
+					</a>
+				</div>
+				<div class="banner-switchbutton1">
+				   <span class="banner-switchbutton-left1">上一个</span>
+				   <span class="banner-switchbutton-right1"> 下一个</span>
+				</div>
+			</div>
+			<div class="cooPeople-section-img">
+				<img src="images/coop1000.png" alt="">
+			</div>
+			<div class="cooPeople-section2">
+				<div class="cooPeople-section2-tit">Ten thousand stores and ten million strategies</div>
+				<div class="cooPeople-section2-tit1">千店千万战略</div>
+				<div class="cooPeople-section2-txt">
+					<p>三年内打造1000家行业内极具影响力和竞争力的宝仕龙大板全景顶专卖店，</p>
+					<p>锻造出100 家营业面积达1000平米、</p>
+					<p>1000万元的宝仕龙大板全景顶旗舰店。</p>
+				</div>
+			</div>
+			<div class="section section5">
+				<ul>
+					<li>
+						<div class="brand mousein ">
+							<img src="images/223.jpg">
+							<p class="section5-txt01">加入我们 倍增计划 精准帮扶 坐享其成</p>
+							<a href="javascript:;" class="section5-txt02">点击资讯</a>
+						</div>
+					</li>
+					<li>
+						<div class="si mousein">
+							<img src="images/323.jpg" alt="">
+							<p class="section5-txt01">系统赋能 思维升级 系统提升</p>
+							<a href="javascript:;" class="section5-txt02">点击资讯</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+        </div>
+
+
+	</div>
+
+    <div class="measure-container measure-common">
+    	<div class="measure-tit">免费设计</div>
+    	<div class="measure-tit1">专业设计师1对1家装指导</div>
+    	<form action="" method="" class="measure">
+    		<div class="measure-item">
+    			<label><img src="images/people.png" alt=""></label>
+    			<input class="mul_input" placeholder="您的姓名"> 
+    		</div>
+    		<div class="measure-item">
+    			<label><img src="images/phone.png" alt=""></label>
+    			<input class="mul_input"  placeholder="联系方式"> 
+    		</div>
+    		<div class="measure-item">
+    			<label><img src="images/add.png" alt=""></label>
+    			<input class="mul_input" placeholder="所在楼盘"> 
+    		</div>
+    		<div class="button">
+    			<input type="button" value="立即申请">
+    		</div>
+    	</form>
+    </div>
+    <div class="mutual on">
+        <ul class="list">
+    		<li>
+    		    <a href="javascript:;">
+    		        <div class="mutualIco">
+    		            <img src="images/ico2.png" alt="">
+    					<div class="mutualIco-text">在线咨询</div>
+    		        </div>
+    		
+    		        <span class="txt1">
+    		            扫描二维码与销售顾问咨询
+    		            <img src="images/common/r-wx.jpg" alt="">
+    		        </span>
+    		    </a>
+    		</li>
+            <li>
+                <a target="_blank"  class="vid-play-btn">
+                    <div class="mutualIco">
+                        <img src="images/ico3.png" alt="">
+    					<div class="mutualIco-text">免费量房</div>
+                    </div>
+                </a>
+            </li>
+    		<li>
+    		    <a href="javascript:;">
+    		        <div class="mutualIco">
+    		            <img src="images/ico1.png" alt="">
+    					<div class="mutualIco-text">电话咨询</div>
+    		        </div>
+    		        <span class="txt1">400-887-7831 / 0573-86788519</span>
+    		    </a>
+    		</li>
+            <li class="backtoTop">
+                <a href="javascript:;">
+                    <div class="mutualIco">
+                        <img src="images/ico4.png" alt="">
+    					<div class="mutualIco-text">top</div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!--公用-->
+    <div class="footer">
+            <div class="footer-top">
+                <div class="top-list">
+            		<div class="top-item">
+            			<img src="images/ico01.png" alt="">
+            			<div class="top-item-txt">
+            				防伪查询
+            			</div>
+            		</div>
+            		<div class="top-item">
+            			<img src="images/ico02.png" alt="">
+            			<div class="top-item-txt">
+            				帮助中心
+            			</div>
+            		</div>
+            		<div class="top-item">
+            			<img src="images/ico05.png" alt="">
+            			<div class="top-item-txt">
+            				天猫官方直营店
+            			</div>
+            		</div>
+            		<div class="top-item">
+            			<img src="images/ico04.png" alt="">
+            			<div class="top-item-txt">
+            				宝仕龙商城
+            			</div>
+            		</div>
+            		<div class="top-item backtoTop">
+            			<img src="images/ico5.png" alt="">
+            		</div>
+            	</div>
+            </div>
+        	<div class="footer-center">
+        		<div class="footer-center-left">
+        			<div class="footer-center-left-list">
+        				<div class="footer-center-left-item">
+        					<a href="index.html" >首页</a>
+        				</div>
+        				<div class="footer-center-left-item">
+        					<a href="brand.html" >走进宝仕龙</a>
+        					<a href="brand.html" >品牌文化</a>
+        					<a href="javascript:;" >工厂1号店</a>
+        					<a href="museum.html" >吊顶博物馆</a>
+        				</div>
+        				<div class="footer-center-left-item">
+        					<a href="eight.html" >定制生活馆</a>
+        					<a href="eight.html" >生活DIY</a>
+        					<a href="live_museum.html">百套案例</a>
+        					<a href="live_museum.html">万城万景</a>
+        					<a href="remould.html">旧屋改造</a>
+        				</div>
+        				<div class="footer-center-left-item">
+        					<a href="news.html" >新闻中心</a>
+        					<a href="news.html" >企业新闻</a>
+        					<a href="news.html" >市场新闻</a>
+        				</div>
+        				<div class="footer-center-left-item">
+        					<a href="javascript:;" >品牌见证</a>
+        					<a href="javascript:;" >设计师</a>
+        					<a href="cooperation.html" >大咖品推官</a>
+        					<a href="say.html" >TA有话说</a>
+        				</div>
+        				<div class="footer-center-left-item">
+        					<a href="service.html" >服务中心</a>
+        					<a href="service.html#customer" >客服中心</a>
+        					<a href="service.html#need" >客户中心</a>
+        					<a href="contact.html" >我要反馈</a>
+        				</div>
+        				<div class="footer-center-left-item">
+        					<a href="join.html" >招商合作</a>
+        					<a href="join.html" >加盟共赢</a>
+        					<a href="cooperate-people.html" >商学院</a>
+        					<a href="pos.html" >大商样板</a>
+        					<a href="live-grid-sketch.html" >大单分享</a>
+        				</div>
+        				<div class="footer-center-left-item">
+        					<a href="contact.html" >联系我们</a>
+        					<a href="productSearch.html" >防伪查询</a>
+        				</div>
+        			</div>
+        		</div>
+        		<div class="footer-center-right">
+        			<div class="footer-center-txt1">关注我们</div>
+        			<div class="footer-center-txt2">全国客服电话</div>
+        			<div class="footer-center-txt3">400-8877-831</div>
+        			<div class="footer-center-txt4">邮箱：sales@jxbsl.com</div>
+        			<div class="footer-center-txt5">
+        				<img src="images/wb.png" alt="">
+        				<img src="images/wx.png" alt="">
+        			</div>
+        		</div>
+        	</div>
+            <div class="bottom">
+                <p class="bottom-p">COPYRIGHTS 2020 BOSLON AL RIGHTS RESERVED. 浙ICP备09002255号-1    技术支持：PERSONAL TAILOR </p>
+            </div>
+        </div>
+    
+        <div class="popup-section popup-navigation">
+            <div class="popup-container">
+                <div class="navigation-left">
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="index.html">
+                                <span>首页</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="brand.html">
+                                <span>走进宝仕龙</span>
+                            </a>
+                        </div>
+                    </div>
+    <!--                <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="brandWitness.html">
+                                <span>品牌见证</span>
+                            </a>
+                        </div>
+                    </div> -->
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="eight.html">
+                                <span>八大空间</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="live_museum.html">
+                                <span>百套案例</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="pos.html">
+                                <span>大商样板</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="cooperate-people.html">
+                                <span>商学院</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="contact.html">
+                                <span>联系我们</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="productSearch.html">
+                                <span>防伪查询</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="navigation-right">
+    
+                    <div class="navigation-add">
+                        <div class="navigation-add-line"></div>
+                        <div class="address">
+                            Jl. Duren Tiga Raya No. 33<br>
+                            Jakarta Selatan - 12760 <br>
+                            Indonesia
+                        </div>
+                        <p></p>
+                        +62 21 799 1521
+                        <br>
+                        +62 21 722 5003
+                        <br>
+                        info@prodotti-id.com
+                        <p></p>
+                        <div class="socials">
+                            <div class="icon">
+                                <a href="javascript:;">
+                                    <img src="images/logo-facebook.svg" alt="">
+                                </a>
+                            </div>
+                            <div class="icon">
+                                <a href="javascript:;">
+                                    <img src="images/logo-instagram.svg" alt="">
+                                </a>
+                            </div>
+                            <div class="icon">
+                                <a href="javascript:;">
+                                    <img src="images/logo-youtube.svg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="navigation-add">
+                        <div class="navigation-add-line"></div>
+                        <div>
+                            Monday - Friday<br>
+                            09.00 A.M - 06.00 P.M<br><p></p>
+                            Saturday - Sunday<br>
+                            Appointment Only<br>
+                        </div>
+                        <div class="navigation-bottom">
+                            <div class="navigation-bottom-item">
+                                <a href="javascript:;">
+                                    <span>Privacy & Cookie Policy</span>
+                                </a>
+                            </div>
+                        </div>
+    
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+    <div class="popup-section popup-search">
+
+        <div class="popup-container">
+            <div class="search-form">
+                <input type="text" placeholder="Search for Products, Brands or News" class="input-form" style="width: 0;">
+                <div class="search-result">
+                    <div class="search-result-item"></div>
+                    <div class="search-result-item"></div>
+                    <div class="search-result-item"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="popup-brand">
+        <div class="brand-list">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <div class="slider-image">
+                                <div class="background-image" style="background-image: url('images/brand_swiper_01.jpg')"></div>
+                            </div>
+                            <div class="slider-title">Alexander Lamont</div>
+                            <div class="slider-hr"></div>
+                            <div class="slider-category">Furniture</div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <div class="slider-image">
+                                <div class="background-image" style="background-image: url('images/brand_swiper_02.jpg')"></div>
+                            </div>
+                            <div class="slider-title">Alexander Lamont</div>
+                            <div class="slider-hr"></div>
+                            <div class="slider-category">Furniture</div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <div class="slider-image">
+                                <div class="background-image" style="background-image: url('images/brand_swiper_01.jpg')"></div>
+                            </div>
+                            <div class="slider-title">Alexander Lamont</div>
+                            <div class="slider-hr"></div>
+                            <div class="slider-category">Furniture</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </div>
+    <!--公用-->
+
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/commen.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/rellax.min.js"></script>
+	<script src="js/swiper.min.js"></script>
+    <script src="js/iconfont.js"></script>
+	<script src="js/fixed.js"></script>
+    <script>
+		new WOW().init();
+		
+        $('.inside-banner').height($(window).height())
+        // scroll position
+        let docScroll = window.pageYOffset || document.documentElement.scrollTop;
+        // for scroll speed calculation
+        let lastScroll;
+        let scrollingSpeed = 0;
+        // scroll position update function
+        const getPageYScroll = () => docScroll = window.pageYOffset || document.documentElement.scrollTop;
+        window.addEventListener('scroll', getPageYScroll);
+
+        $(function () {
+            if(true){
+                $('.inside-banner').addClass('active')
+            }
+
+            $(window).on('scroll',function (e) {
+                console.log(docScroll)
+
+            })
+            var rellax = new Rellax('.rellax');
+
+        })
+		$('.ul-sub .li').on('click',function(){
+			var idx = $(this).index();
+			$(this).addClass('cur').siblings().removeClass('cur');
+			$('.ajax-img img').eq(idx).addClass('cur').siblings().removeClass('cur')
+		})
+		// $(window).scroll(function(){
+		//         var windowTop=jQuery(window).scrollTop();
+		//         var top = $(this).scrollTop()*0.1
+		//         $(".i-lista .bg1").stop().css({y: -top});
+		//         $(".n-service .lista .bg1").stop().css({y: -top});
+		//         $(".i-listc .bg1,.n-college .lista .ul .bg1").stop().css({x: top})
+		//     });
+			var l=$('.znList_thr-container .swiper-slide').length;
+			var left_swiper = new Swiper(".znList_thr-container", {
+				speed: 1000,
+				slidesPerView: '1',
+				loop:true,
+				spaceBetween : 40,
+				navigation: {
+					prevEl: '.banner-switchbutton-left',
+					nextEl: '.banner-switchbutton-right',
+				},
+				pagination: {
+					clickable: true,
+				},
+				on: {
+					slideChangeTransitionStart: function () {
+						$(".realIndex").html("0"+(this.realIndex+1));
+						$(".indexLength").html("0"+l);				
+					}
+				},
+			});
+			var left_swiper1 = new Swiper(".cooPeople-section-container", {
+				speed: 1000,
+				slidesPerView: '3',
+				loop:true,
+				spaceBetween : 40,
+				navigation: {
+					prevEl: '.banner-switchbutton-left1',
+					nextEl: '.banner-switchbutton-right1',
+				},
+				pagination: {
+					clickable: true,
+				},
+			});
+    </script>
+</body>
+</html>

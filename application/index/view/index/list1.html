@@ -1,0 +1,174 @@
+﻿<!doctype html>
+<html>
+<head>
+    {include file="common/header"}
+    <style>
+        #list1 {
+            background: #62b5d7;
+        }
+    </style>
+</head>
+
+<script>
+    //搜索
+    $(function () {
+        $("input[type=button]").click(function () {
+            var txt = $("input[type=text]").val();
+            if ($.trim(txt) != "") {
+
+                $("table tr:not('#theader')").hide().filter(":contains('" + txt + "')").show().css("background", "#63b5d7");
+            } else {
+                $("table tr:not('#theader')").css("background", "#fff").show();
+            }
+        });
+    })
+</script>
+<body>
+
+{include file="common/daohang"}
+<div class="right">
+    <div class="layui-frome">
+        <span>年卡列表</span>
+
+        <HR>
+
+        <div class="layui-layout layui-layout-admin">
+
+
+            <div class="layui-form" style="margin-top:40px;">
+
+                <table class="layui-table" id="myTable">
+
+                    <colgroup>
+                        <col width="50">
+                        <col width="200">
+                        <col width="200">
+                        <col width="200">
+                        <col width="200">
+                        <col width="200">
+                        <col width="200">
+                        <col width="200">
+                        <col width="200">
+
+                    </colgroup>
+
+                    <thead>
+                    <tr id="theader" class="layui-table-col-special">
+                        <th class="layui-table-col-special"><input type="checkbox" name="" lay-skin="primary"
+                                                                   lay-filter="allChoose"></th>
+                        <th>姓名</th>
+                        <th>类别</th>
+                        <th>卡号</th>
+                        <th>手机/电话</th>
+                        <th>开始日期</th>
+                        <th>终止日期</th>
+                        <th>卡类型</th>
+                        <th>详情</th>
+                    </tr>
+                    </thead>
+                    {volist name="list" id="user"}
+                    <tr>
+                        <td><input id="{$user.cardno}" value="{$user.cardno}" class="delusers" type="checkbox" name=""
+                                   lay-skin="primary"></td>
+                        <td>{$user.membername}</td>
+                        <td>{$user.cardname}</td>
+                        <td>{$user.cardno}</td>
+                        <td>{$user.phone}</td>
+                        <td>{$user.startdate}</td>
+                        <td>{$user.enddate}</td>
+                        <td>{switch name="$user.card_type"}{case value="1"}工作日卡{/case}{case value="2"}非工作日卡{/case}{case value="3"}畅玩卡{/case}{default /}未知卡{/switch}</td>
+                        <td><a href="chakan.html?id={$user.cardno}" class="layui-btn layui-btn-xs">查看</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="editcard.html?id={$user.cardno}"
+                               class="layui-btn layui-btn-danger layui-btn-xs">编辑</a></td>
+                    </tr>
+                    {/volist}
+
+                </table>
+                <!--分页-->
+                <div>{$list->render()}</div>
+
+
+                <span style="display:block;text-align:center;"><button
+                        class="layui-btn layui-btn-dange layui-btn-normal"
+                        id="delRow"><i
+                        class="layui-icon"></i> 删除</button></span>
+            </div>
+        </div>
+    </div>
+
+    {include file="common/footer"}
+    <script src="__STATIC__/layui/layui.js"></script>
+
+    <script>
+
+        layui.use(['layedit', 'laydate'], function () {
+            var form = layui.form
+                , layer = layui.layer
+                , layedit = layui.layedit
+                , laydate = layui.laydate;
+        });
+
+
+        layui.use('form', function () {
+            var $ = layui.jquery, form = layui.form;
+
+            //全选
+            form.on('checkbox(allChoose)', function (data) {
+                var child = $(data.elem).parents('table').find('tbody input[type="checkbox"]');
+                child.each(function (index, item) {
+                    item.checked = data.elem.checked;
+                });
+                form.render('checkbox');
+            });
+        });
+
+
+        $('#delRow').click(function () {
+            var ids = '';
+            $(".delusers").each(function () {
+                if ($(this).is(':checked')) {
+                    ids += ',' + $(this).val(); //逐个获取id
+                }
+            });
+            ids = ids.substring(1); // 对id进行处理，去除第一个逗号
+            //alert(ids);
+            if (ids.length == 0) {
+                alert('请选择要删除的选项');
+            } else {
+                layer.confirm("您确定要删除这些吗？删除后将无法恢复。", {
+                        btn: ['确定', '取消'],
+                    }, function (index, layero) {
+                        url = "action=del_call_record&ids=" + ids;
+                        $.ajax({
+                            type: "post",
+                            url: "delcarduser.html",
+                            data: {"id": ids},
+                            dataType: 'json',
+                            success: function (res) {
+                                // alert(data);
+                                if (res===true) {
+                                    layer.msg("删除成功！", {time: 5000});
+                                    location.reload();
+                                } else {
+                                    layer.msg("删除失败！");
+                                }
+                            }
+                            // error: function(XMLHttpRequest, textStatus) {
+                            //   alert("页面请求错误，请检查重试或联系管理员！\n" + textStatus);
+                            // }
+                        });
+
+                    }, function (index) {
+                        layer.close(index);
+                    }
+                );
+
+            }
+
+
+        });
+    </script>
+
+
+</body>
+</html>

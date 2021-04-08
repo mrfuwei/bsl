@@ -1,0 +1,193 @@
+﻿<!doctype html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=10"/>
+    {include file="common/header"}
+
+</head>
+<style>
+    #home {
+        background: #62b5d7
+    }
+
+    select {
+        width: 100%;
+        height: 38px;
+        border: 1px solid #e6e6e6;
+    }
+</style>
+
+<body>
+{include file="common/daohang"}
+<div class="right layui-main layui-tab layui-tab-brief" style="min-height:700px;margin-top:0;">
+    <div class="layui-from layui-form-pane">
+        <div style="padding:10px;">
+            <h1>{$cardxx.cardname}详情</h1>
+        </div>
+        <HR>
+
+
+        <div>
+            <div class="layui-form-item">
+                <div class="layui-row">
+                    <div class="layui-col-md5">
+                        <div class="site-groupphoto-flow">
+                            <img style="margin-top:30px;" src="__ROOT__{$clubxx.photo}">
+                        </div>
+                    </div>
+                    <div class="layui-col-md5">
+                        <div class="layui-row" style="margin:50px auto 50px;">
+                            <label class="layui-form-label">年卡类型</label>
+                            <div class="layui-col-md6">
+                                <select name="card_type" lay-verify="required" disabled="disabled">
+                                    {switch name="$clubxx.card_type"}
+                                    {case value="1"}
+                                    <option value="1">工作日卡</option>
+                                    {/case}
+                                    {case value="2"}
+                                    <option value="2">非节假日卡</option>
+                                    {/case}
+                                    {case value="3"}
+                                    <option value="3">畅玩卡</option>
+                                    {/case}
+                                    {/switch}
+
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-row" style="margin:50px auto 50px;">
+                            <label class="layui-form-label">开始日期：</label>
+                            <div class="layui-col-md7">
+                                <input class="layui-input" name="starttime" id="start" type="text" placeholder="年-月-日"
+                                       value="{$clubxx.startdate}" disabled="" readonly>
+                            </div>
+                        </div>
+                        <div class="layui-row">
+                            <label class="layui-form-label">终止日期：</label>
+                            <div class="layui-col-md7">
+                                <input class="layui-input" name="endtime" id="end" type="text" placeholder="年-月-日"
+                                       value="{$clubxx.enddate}" disabled="" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+            {volist name="memberxx" id="vo"}
+            <div class="layui-form-item">
+                <div class="layui-col-md5">
+                    <div class="site-photo-flow" style="width: 360px;height:240px;">
+                        <img src="__ROOT__{$vo.photo}" alt="" style="width:100%;height:100%;">
+                    </div>
+                </div>
+                <div class="layui-col-md5" style="margin-bottom:100px;">
+                    <div class="layui-row" style="margin-bottom: 15px;margin-top:5px;">
+                        <label class="layui-form-label">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</label>
+                        <div class="layui-col-md7">
+                            <input name="username" lay-verify="username" autocomplete="off" placeholder="请输入姓名"
+                                   class="layui-input" type="text" id="username" disabled="" value="{$vo.membername}">
+                        </div>
+                    </div>
+                    <div class="layui-row" style="margin-bottom: 15px;margin-top:25px;">
+                        <label class="layui-form-label">身份证号：</label>
+                        <div class="layui-col-md7">
+                            <input name="shenfenz" id="shenfenz" lay-verify="identity" placeholder="" autocomplete="off"
+                                   class="layui-input" type="text" disabled="" value="{$vo.idnumber}">
+                        </div>
+                    </div>
+                    <div class="layui-row" style="margin-bottom: 15px;margin-top:25px;">
+                        <label class="layui-form-label">手&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机：</label>
+                        <div class="layui-col-md7">
+                            <input name="phone" id="phone" lay-verify="phone" autocomplete="off" class="layui-input"
+                                   type="tel" disabled="" value="{$vo.phone}">
+                        </div>
+                    </div>
+                    <div class="layui-row" style="margin-bottom: 15px;margin-top:25px;">
+                        <label class="layui-form-label">人脸特征：</label>
+                        <div class="layui-col-md7">
+                            <input  autocomplete="off" class="layui-input"
+                                   type="tel" disabled="disabled" value="{if condition="$vo.is_get_features eq 1"}提取成功{else}提取失败{/if}">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-col-md5">
+
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-col-md5">
+
+                </div>
+
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-col-md5">
+
+                </div>
+
+            </div>
+
+            {/volist}
+        </div>
+
+
+
+
+    </div>
+    <div class="layui-form-item">
+
+        {volist name="memberxx" id="vo"}
+
+        {/volist}
+    </div>
+
+
+    <div id="bott" class="layui-row" style="margin-bottom:30px;">
+        <div class="layui-col-md5" style="text-align: center;">
+            <button class="layui-btn layui-btn-normal layui-btn-radius" href="" id="dayin">打印</button>
+        </div>
+        <div class="layui-col-md3" style="text-align: center;">
+            <!--        <li style="width:33%"><button class="layui-btn layui-btn-normal layui-btn-radius" href="" id="dayin2">打印老卡</button></li>-->
+            <button class="layui-btn layui-btn-big layui-btn-radius" lay-submit="" lay-filter="demo1" id="goback">返回
+            </button>
+        </div>
+    </div>
+    <!-- <li><button class="layui-btn layui-btn-warm layui-btn-radius">打印</button></li> -->
+
+
+</div>
+
+
+{include file="common/footer"}
+<script type="text/javascript" src="__STATIC__/jeDate/jedate.js" charset="utf-8"></script>
+<script>
+
+
+    $('#goback').click(function () {
+        history.back(-1);
+    });
+
+
+    $('#dayin').click(function () {
+
+        var kahao = $('#kahao').val();
+        //alert(kahao);
+        window.location.href = 'dayin.html?id=' + {$clubxx.cardno};
+    });
+    $('#dayin2').click(function () {
+
+        var kahao = $('#kahao').val();
+        //alert(kahao);
+        window.location.href = 'dayin2.html?id=' + kahao;
+    });
+
+</script>
+
+
+</body>
+</html>

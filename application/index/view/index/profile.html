@@ -1,0 +1,189 @@
+﻿<!doctype html>
+<html>
+<head>
+{include file="common/header"}
+<link rel="stylesheet" href="__STATIC__/css/profile.css"  media="all">
+<style>
+  #role{background:#62b5d7}
+</style>
+</head>
+<body>
+{include file="common/daohang"}
+ <div class="right">
+  <div class="layui-frome">
+     <h1><?php if(@$_GET['username']){echo "编辑用户";}else{echo "新增用户";} ?></h1>
+	 <HR>
+	 <!--
+	 <div class="dom">
+	  <img src="images/face/chile.jpg"/>  
+	  <img src="images/face/chile.jpg"/> 
+	  <img src="images/face/chile.jpg"/> 
+	  <img src="images/face/chile.jpg"/> 
+	 </div>
+	 -->
+	 <form class="layui-form" action="adduser.html" method="post">
+     
+	  <div class="cot">
+    <div class="main">
+	 <div class="layui-form-item">
+      <div class="layui-inline">
+          <label class="layui-form-label">用&nbsp;&nbsp;户&nbsp;名：</label>
+        <div class="layui-input-inline">
+      <input name="username" id="username" lay-verify="username" autocomplete="off" placeholder="请输入用户名" class="layui-input" type="text" value="<?php if(isset($userxx['userid'])){echo  $userxx['userid'];} ?>">
+    </div>
+      </div>
+      <div class="layui-inline">
+          <label class="layui-form-label">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
+      <div class="layui-input-inline">
+          <input name="password" id="password" lay-verify="passowrd" autocomplete="off" class="layui-input" type="text" placeholder="请输入密码" value="123456">
+      </div>
+      </div>
+  </div>
+   <div class="layui-form-item">
+      <div class="layui-inline">
+          <label class="layui-form-label">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</label>
+        <div class="layui-input-inline">
+          <input name="name" id="name" lay-verify="name" autocomplete="off" placeholder="请输入姓名" class="layui-input" type="text" value="<?php if(isset($userxx['username'])){echo  $userxx['username'];} ?>">
+        </div>
+      </div>
+      <div class="layui-inline">
+          <label class="layui-form-label">角色备注：</label>
+        <div class="layui-input-inline">
+          <input name="juesebeizhu" id="juesebeizhu"  lay-verify="juesebeizhu" autocomplete="off" placeholder="请输入角色备注" class="layui-input" type="text" value="<?php if(isset($userxx['userrole'])){echo  $userxx['userrole'];} ?>">
+        </div>
+      </div>
+
+   </div>
+   <div class="layui-form-item">
+      
+        <div class="layui-inline">
+            <label class="layui-form-label">所属部门：</label>
+               <div class="layui-input-inline">
+                  <select name="suoshubumen" id="suoshubumen" lay-filter="aihao">
+                  {if condition="isset($userxx) eq '1'"}
+                      {volist name='bumen' id='vo'}
+                        {if condition="$vo.orgid eq $userxx.orgid"}
+                        <option value="{$vo.orgid}" selected="">{$vo.orgname}</option>
+                        {else/}
+                        <option value="{$vo.orgid}">{$vo.orgname}</option>
+                        {/if}
+                      {/volist} 
+                  {else /}
+                      {volist name='bumen' id='vo'}
+                        {if condition="$vo.orgid eq 0"}
+                        <option value="{$vo.orgid}" selected="">{$vo.orgname}</option>
+                        {else/}
+                        <option value="{$vo.orgid}">{$vo.orgname}</option>
+                        {/if}
+                      {/volist}         
+                  {/if}
+                    
+                  </select>
+               </div>
+        </div>
+    </div>
+     
+		  <div class="layui-form-item" pane="">
+           <label class="layui-form-label">权限设置：</label>
+            <div class="layui-input-block">
+          {volist name="quanxianinfo" id="vo"}
+            <input name="quanxian[{$vo.btnid}]" id="{$vo.btnid}" value="{$vo.btnid}" lay-skin="primary" title="{$vo.btnname}" type="checkbox">
+          {/volist}
+
+          <?php 
+          //var_dump($quanxianinfo);
+          if (@$_GET['username']) {
+            echo '<input name="ctrlFlag" type="hidden" value="2">';
+            echo "\r\n";
+            //var_dump($quanxian);
+            if (isset($quanxian)) {
+              echo "<script>";
+              echo "\r\n";
+              for ($i=0; $i <count($quanxian) ; $i++) { 
+                    echo "$('#".$quanxian[$i]."').attr('checked',true);";
+                    echo "\r\n";
+              }
+              echo "</script>";
+            }
+            
+            
+          }else{
+            echo '<input name="ctrlFlag" type="hidden" value="1">';
+          } 
+          ?>
+
+		   </div>
+         </div>	
+	      <div id="bott">
+	       <button class="layui-btn layui-btn-big layui-btn-radius" id="submit">保存</button>
+	      <!--  <button class="layui-btn-warm layui-btn-radius" id="goback">返回</button> -->
+	      </div>
+	  </div>
+	   </div>
+    </form>
+  </div>
+  
+ </div>
+{include file="common/footer"}
+<script src="__STATIC__/layui/layui.js"></script>
+<script>
+layui.use(['form', 'layedit', 'laydate'], function(){
+  var form = layui.form()
+  ,layer = layui.layer
+  ,layedit = layui.layedit
+  ,laydate = layui.laydate;
+  
+  //创建一个编辑器
+  var editIndex = layedit.build('LAY_demo_editor');
+ 
+  //自定义验证规则
+  form.verify({
+    title: function(value){
+      if(value.length < 5){
+        return '卡片名称至少得5个字符啊';
+      }
+    }
+    
+  });
+  
+ 
+  
+  //监听提交
+  form.on('submit(demo1)', function(data){
+    layer.alert(JSON.stringify(data.field), {
+      title: '最终的提交信息'
+    })
+    return true;
+  });
+  
+  
+});
+$('#submit').click(function(){
+  var username,password,name,juesebeizhu,suoshubumen;
+  var msg="";
+  username=$('#username').val();
+  password=$('#password').val();
+  name=$('#name').val();
+  juesebeizhu=$('#juesebeizhu').val();
+  suoshubumen=$('#suoshubumen').val();
+  if (username=="") {
+    msg="请填写用户名";
+  }else if(password==""){
+    msg="请填写密码";
+  }else if(name==""){
+    msg="请填写姓名";
+  }else if(juesebeizhu==""){
+    msg="请填写角色备注";
+  }else if(suoshubumen==""){
+    msg="请选择部门";
+  }
+  if (msg!='') {
+    alert(msg);
+    return false;
+  };
+
+});
+
+</script>
+</body>
+</html>

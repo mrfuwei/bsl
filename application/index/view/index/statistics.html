@@ -1,0 +1,308 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+{include file="common/header"}
+<link rel="stylesheet" href="__STATIC__/css/97zzw.css"  media="all">
+<style>
+#statistics{background:#62b5d7}
+.listIndex{height:30px !important;line-height: 25px;}
+.listIndex dl{height:30px !important;line-height: 25px;}
+.screenBox dl dd a{
+  height: 30px;line-height: 18px;
+}
+</style>
+<script type="text/javascript" src="__STATIC__/js/jquery-1.4.3.min.js"></script>
+</head>
+
+<body>             
+{include file="common/daohang"}
+ <div class="right">
+  <div class="layui-frome">
+     <span>财务统计</span>
+     <span style="float:right;"><a href="" id="daochu" style="background:#10aff1;padding:5px 30px;color:#fff;">导出</a></span>
+	 <HR>
+	 <div class="selectNumberScreen">
+	<div id="selectList" class="screenBox screenBackground">
+		<dl class="listIndex" attr="terminal_brand_s">
+		  <dt>年&nbsp;&nbsp;卡&nbsp;&nbsp;类&nbsp;&nbsp;别&nbsp;：</dt>
+		  <dd>
+		     <!-- <a href="javascript:void(0)"  values1="all" attrval="全部">全部</a> -->
+         {volist name="cardinfo" id="vo"}
+          <a href="javascript:void(0)" values1="{$vo.CARDID}" attrval="{$vo.CARDNAME}">{$vo.CARDNAME}</a>
+         {/volist}
+		  </dd>
+		</dl>
+		<dl class="listIndex2" attr="筛选时间">
+		  <dt>筛选时间(以内):</dt>
+		  <dd> 
+		     <!-- <a href="javascript:void(0)" values1="all">全部</a>  -->
+		     <a href="javascript:void(0)"  values1="0 day" attrval="1-499">今天</a> 
+		     <a href="javascript:void(0)"  values1="1 day" >昨天</a>
+         <a href="javascript:void(0)"  values1="7 day" >一周</a>
+         <a href="javascript:void(0)"  values1="1 month" >一月</a>
+         <a href="javascript:void(0)"  values1="3 month" >三月</a>
+         <a href="javascript:void(0)"  values1="6 month" >六月</a>
+         <a href="javascript:void(0)"  values1="1 year" >一年</a>
+         <a href="javascript:void(0)"  values1="2 year" >两年</a>
+         <a href="javascript:void(0)"  values1="3 year" >三年</a>
+			
+            <input class="layui-input" name="starttime" id="start" type="text" placeholder="年-月-日" value=""  readonly>
+            <input class="layui-input" name="starttime" id="end" type="text" placeholder="年-月-日" value=""  readonly>
+             <input id="data" type="button" value="搜索" style="margin-top:-10PX;">
+			<script>
+			  $("#data").click(function(){
+
+                console.log($("#d4311").val());
+               });
+
+           </script>
+		  </dd>  
+		</dl>
+	</div>
+	<div class="hasBeenSelected">
+		<dl>
+		  <dt>您已选择：</dt>
+		  <dd style="DISPLAY: none" class=clearDd>
+		  <div class=clearList></div>
+		  <div style="DISPLAY: none" class="eliminateCriteria">清除筛选条件</div>
+		  </dd>
+      
+    </dl>
+
+	</div>
+  <div style="float:left;">
+    <input type="hidden" id="nianka"  name="nianka" value="">
+    <input type="hidden" id="shijian" name="shijian" value="">
+    <button class="layui-btn" id="sousuo" style="float:right;margin-top: 10px;margin-left:5px;">搜索</button>
+  </div>
+  
+</div>
+ <!--表格-->
+   <div class="layui-form" class="table">
+  <table class="layui-table" id="myTable">
+    <colgroup>
+      <col width="50">
+    </colgroup>
+ 	
+     <thead>
+      <tr id="theader">
+        <th>卡号</th>
+        <th>姓名</th>
+        <th>类别</th>
+		<th>手机/电话</th>
+		<th>办卡时间</th>
+		<th>终止日期</th>
+		<th>状态</th>
+    <th>详情</th>
+      </tr> 
+  </thead>
+   
+        {volist name="list" id="vo"}
+      <tr>
+        <td>{$vo.CARDNO}</td>
+        <td>{$vo.MEMBERNAME}</td>
+        <td>{$vo.CARDNAME}</td>
+        <td>{$vo.PHONE}</td>
+
+		<td>{$vo.STARTDATE}</td>
+		<td>{$vo.ENDDATE}</td>
+		<td><?php if(strtotime($vo['ENDDATE'])<time()){echo "过期";}else{echo "正常";} ?></td>
+        <td><a href="chakan.html?id={$vo.CARDNO}">查看</a>&nbsp;&nbsp;
+            <a href="editcard.html?id={$vo.CARDNO}">编辑</a>
+        </td>
+      </tr>
+      {/volist}
+    
+  </table>
+<!--分页-->
+<div id='fenye'>{$list->render()}</div>
+  
+</div>
+ <!--结束-->
+  <div>
+  <table class="layui-table" lay-even="" lay-skin="nob">
+  <thead>
+    <tr>
+      <?php 
+        for ($i=0; $i <count($cardinfo) ; $i++) { 
+         
+      ?>
+        <th><?=$cardinfo[$i]['CARDNAME']?>:<span style="color:red;"><?=$card['num'][$i]?>张</span></th>
+      
+      <?php
+        }
+      ?>
+      <th>总年卡:<span style="color:red;"><?=$card['zongshuliang']?>张</span></th>
+      <th>总金额:<span style="color:red;"><?=$card['zongjiner']?>元</span></th>
+
+    
+    </tr> 
+  </thead>
+ </table> 
+  </div>
+ </div>
+  </div>
+<script src="__STATIC__/js/layui.js" charset="utf-8"></script>
+<script src="__STATIC__/js/font.js" charset="utf-8"></script>
+<script type="text/javascript" src="__STATIC__/jeDate/jedate.js" charset="utf-8"></script>
+<script>
+  jeDate({
+    dateCell:"#start",//isinitVal:true,
+    format:"YYYY-MM-DD",
+    isTime:false
+  })
+  jeDate({
+    dateCell:"#end",//isinitVal:true,
+    format:"YYYY-MM-DD",
+    isTime:false
+  })
+
+
+
+ var dlNum  =$("#selectList").find("dl");
+    for (i = 0; i < dlNum.length; i++) {
+        $(".hasBeenSelected .clearList").append("<div class=\"selectedInfor selectedShow\" style=\"display:none\"><span></span><label></label><em></em></div>");
+    }
+    
+    var refresh = "true";
+    
+    $(".listIndex a ").live("click",function(){
+        var text =$(this).text();
+        var val =$(this).attr('values1');
+        var selectedShow = $(".selectedShow");
+        var textTypeIndex =$(this).parents("dl").index();
+        var textType =$(this).parent("dd").siblings("dt").text();
+        index = textTypeIndex -(2);
+        $(".clearDd").show();
+        $(".selectedShow").eq(index).show();
+        $(this).addClass("selected").siblings().removeClass("selected");
+        selectedShow.eq(index).find("span").text(textType);
+        selectedShow.eq(index).find("label").text(text);
+        var show = $(".selectedShow").length - $(".selectedShow:hidden").length;
+        if (show > 1) {
+            $(".eliminateCriteria").show();
+        }
+        $('#nianka').val(val);
+        //alert(text);
+    });
+
+    $(".listIndex2 a ").live("click",function(){
+        var text =$(this).text();
+        var val =$(this).attr('values1');
+        var selectedShow = $(".selectedShow");
+        var textTypeIndex =$(this).parents("dl").index();
+        var textType =$(this).parent("dd").siblings("dt").text();
+        index = textTypeIndex -(2);
+        $(".clearDd").show();
+        $(".selectedShow").eq(index).show();
+        $(this).addClass("selected").siblings().removeClass("selected");
+        selectedShow.eq(index).find("span").text(textType);
+        selectedShow.eq(index).find("label").text(text);
+        var show = $(".selectedShow").length - $(".selectedShow:hidden").length;
+        if (show > 1) {
+            $(".eliminateCriteria").show();
+        }
+        $('#shijian').val(val);
+        //alert(text);
+    });
+
+    $(".selectedShow em").live("click",function(){
+        $(this).parents(".selectedShow").hide();
+        var textTypeIndex =$(this).parents(".selectedShow").index();
+        index = textTypeIndex;
+        $(".listIndex").eq(index).find("a").removeClass("selected");
+        
+        if($(".listIndex .selected").length < 2){
+            $(".eliminateCriteria").hide();
+        }
+    });
+    
+    $(".eliminateCriteria").live("click",function(){
+        $(".selectedShow").hide();
+        $(this).hide();
+        $(".listIndex a ").removeClass("selected");
+    }); 
+	
+
+layui.use(['layedit', 'laydate'], function(){
+  var form = layui.form()
+  ,layer = layui.layer
+  ,layedit = layui.layedit
+  ,laydate = layui.laydate; 
+});
+
+layui.use('form', function(){
+ var $ = layui.jquery, form = layui.form();
+  
+  //全选
+  form.on('checkbox(allChoose)', function(data){
+   var child = $(data.elem).parents('table').find('tbody input[type="checkbox"]');
+   child.each(function(index, item){
+    item.checked = data.elem.checked;
+   });
+    form.render('checkbox');
+  });
+  
+});
+
+//分页
+layui.use(['laypage', 'layer'], function(){
+  var laypage = layui.laypage
+  ,layer = layui.layer;
+  
+  //调用分页
+laypage({
+    cont: 'demo1'
+    ,pages: 100 //总页数
+    ,groups: 5 //连续显示分页数
+  });
+  
+});
+
+function GetQueryString(name)
+{
+     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+     var r = window.location.search.substr(1).match(reg);
+     if(r!=null)return  unescape(r[2]); return null;
+}
+
+
+$('#sousuo').click(function(){
+  var nianka,shijian;
+  nianka=$('#nianka').val();
+  shijian=$('#shijian').val();
+  location.href='?zhonglei='+nianka+'&time='+shijian;
+});
+
+
+$(function(){
+  var d=window.location.search;
+  //alert(d);
+  var b="";
+  $('#daochu').attr('href','importExcel.html'+d);
+  $('#fenye .pagination li').each(function(){
+    if ((d.indexOf("page")>0)&&(d.indexOf("zhonglei")>0) || (d.indexOf("page")>0)&&(d.indexOf("time")>0)) {
+        var kaishi=d.indexOf("page");
+        var jieshu=d.indexOf("&");
+        var changdu=jieshu-kaishi;
+        var shuzi=d.substr(kaishi,changdu+1);
+        //alert(shuzi);
+        b=d.replace(shuzi,"");
+        b=b.replace("?","&");
+        var c=$(this).children("a").attr("href");
+        $(this).children("a").attr('href',c+b);
+    }
+    else if(d.indexOf("zhonglei")>0||d.indexOf("time")>0){
+        //alert(2);
+        var b=d.replace("?","&");
+        var c=$(this).children("a").attr("href");
+        $(this).children("a").attr('href',c+b);
+    }
+    
+    //location.href=c;
+  });
+});
+
+</script>
+</body>
+</html>

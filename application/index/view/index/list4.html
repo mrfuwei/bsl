@@ -1,0 +1,223 @@
+﻿<!doctype html>
+<html>
+<head>
+{include file="common/header"}
+</head>
+<style>
+#list2{background:#62b5d7}
+</style>
+<script>
+//搜索
+$(function(){
+    $("input[type=button]").click(function(){
+      var txt=$("input[type=text]").val();
+      if($.trim(txt)!=""){
+ 
+        $("table tr:not('#theader')").hide().filter(":contains('"+txt+"')").show().css("background","#63b5d7");
+      }else{
+        $("table tr:not('#theader')").css("background","#fff").show();
+      }
+    });
+  })
+  </script>
+<body>
+              
+{include file="common/daohang"}
+ <div class="right">
+  <div class="layui-frome">
+
+      <span>过期会员</span>
+
+       <input type="text" id="name" placeholder="请输入 姓名查询">&nbsp;<button id="chaxun">&nbsp;查询&nbsp;</button>
+
+     
+	 
+	 <HR>
+	 <!-- <div style="float:RIGHT;">
+     <input type="text"></input>
+     <input type="button" value="搜索"></input>
+     </div> -->
+ <div class="layui-form" class="table" style="margin-top:40px;">
+  <table class="layui-table" id="myTable">
+ 
+    <colgroup>
+      <col width="50">
+    <!--  <col width="200">
+      <col width="200">
+      <col width="200">
+	  <col width="200">
+	  <col width="200">
+	  <col width="200">
+	  <col width="200">
+      <col>
+	  -->
+    </colgroup>
+ 	
+     <thead>
+      <tr id="theader">
+        <th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose"></th>
+        <th>姓名</th>
+        <th>类别</th>
+        <th>卡号</th>
+		<th>手机/电话</th>
+		<th>开始日期</th>
+    <th>终止日期</th>
+		<th>详情</th>
+      </tr> 
+  </thead>
+   {volist name="list" id="user"}
+      <tr>
+        <td><input id="{$user.cardno}" value="{$user.cardno}" class="delusers" type="checkbox" name="" lay-skin="primary"></td>
+        <td>{$user.membername}</td>
+        <td>{$user.cardname}</td>
+        <td>{$user.cardno}</td>
+		<td>{$user.phone}</td>
+		<td>{$user.startdate}</td>
+    <td>{$user.enddate}</td>
+		<td><a href="chakan2.html?id={$user.cardno}">查看</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:xufei({$user.cardno});">续卡</a></td>
+      </tr>
+      {/volist}
+    
+  </table>
+<!--分页-->
+  <div>{$list->render()}</div>
+
+
+
+
+
+<span style="display:block;text-align:center;"><button class="layui-btn layui-btn-dange layui-btn-normal" id="delRow"><i class="layui-icon"></i> 删除</button></span>
+ </div>
+ </div>
+  </div>
+ 
+{include file="common/footer"}
+
+<script>
+
+layui.use(['layedit', 'laydate'], function(){
+  var form = layui.form()
+  ,layer = layui.layer
+  ,layedit = layui.layedit
+  ,laydate = layui.laydate; 
+});
+
+layui.use('form', function(){
+ var $ = layui.jquery, form = layui.form();
+  
+  //全选
+  form.on('checkbox(allChoose)', function(data){
+   var child = $(data.elem).parents('table').find('tbody input[type="checkbox"]');
+   child.each(function(index, item){
+     item.checked = data.elem.checked;
+   });
+    form.render('checkbox');
+  });
+  
+});
+
+//分页
+layui.use(['laypage', 'layer'], function(){
+  var laypage = layui.laypage
+  ,layer = layui.layer;
+  
+  //调用分页
+laypage({
+    cont: 'demo1'
+    ,pages: 100 //总页数
+    ,groups: 5 //连续显示分页数
+  });
+  
+});
+
+
+
+
+
+$('#delRow').click(function(){
+    var ids = '';
+    $(".delusers").each(function() {
+    if ($(this).is(':checked')) {
+      ids += ',' + $(this).val(); //逐个获取id
+      }
+    });
+    ids = ids.substring(1); // 对id进行处理，去除第一个逗号
+    //alert(ids);
+    if (ids.length == 0) {
+      alert('请选择要删除的选项');
+    } else {
+      if (confirm("您确定要删除这些吗？删除后将无法恢复。")) {
+
+        //url = "action=del_call_record&ids=" + ids;
+        $.ajax({
+          type: "post",
+          url: "delcarduser.html",
+          data:{"id":ids},
+          dataType:'json',
+          success: function(data) {
+            // alert(data);
+            if (parseInt(data) > 0) {
+              alert("删除成功！");
+              location.reload();
+            } else {
+              alert("删除失败！");
+            }
+          }
+          // error: function(XMLHttpRequest, textStatus) {
+          //   alert("页面请求错误，请检查重试或联系管理员！\n" + textStatus);
+          // }
+        });
+      }
+    }
+
+});
+</script>
+
+<script>
+  function xufei(id){
+  if (confirm("本次操作将该用户移至年卡列表,请到年卡列表再进行修改时间")) {
+      // exit();
+      $.ajax({
+          url:"huifu",
+          type:"POST", 
+          data:{id:id},
+          dataType:"json",
+          success:function(data){
+            // alert(data);
+            if (parseInt(data) > 0) {
+                  alert("成功！");
+                  window.location.href="editcard.html?id="+id;
+                } else {
+                  alert("失败！");
+                }
+          }
+        });
+  }
+  
+
+  
+}
+
+</script>
+<script>
+  $('#chaxun').click(function(){
+    var name=$('#name').val();
+    $.ajax({
+      url:"cxoutuser",
+      type:"post",
+      data:{name:name},
+      dataType:"json",
+      success:function(data){
+        $('#myTable>tbody>tr').remove();
+        // alert(data.MEMBERNAME);
+        var str;
+        str='<tr><td><input id="'+data.CARDNO+'" value="'+data.CARDNO+'" class="delusers" type="checkbox" lay-skin="primary"></td><td>'+data.MEMBERNAME+'</td><td>'+data.CARDNAME+'</td><td>'+data.CARDNO+'</td><td>'+data.PHONE+'</td><td>'+data.STARTDATE+'</td><td>'+data.ENDDATE+'</td><td><a href="chakan2.html?id='+data.CARDNO+'">查看</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:xufei('+data.CARDNO+');">续卡</a></td></tr>';
+          $('#myTable>tbody').html(str);
+          // 
+
+      }
+    });
+  });
+</script>
+</body>
+</html>
