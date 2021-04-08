@@ -1,0 +1,33 @@
+#bott{width:100%;height:auto;}
+#bott>ul{padding:auto 20%;}
+#bott>ul>li{float:left;width:20%;}
+.layui-form{float:left;width:90%;padding-left:5%;margin-top: 3%}
+.right-main{float:left;width:68%;height:auto;}
+.con4{width:27%;text-align: center;margin-right: 5%}
+.con4 .btn{
+	margin:auto;
+
+}
+#cvs{width:90%;height:250px;margin:0 auto 13px;}
+.cot{float:left;}
+.layui-inline{width:45%;}
+.layui-form-label{font-weight: bold;color:#5d5d5d;}
+.layui-input-inline{width:60%;}
+
+.saomiao{float:left;width:25%;height:160px;}
+.layui-btn{width:60%;margin-top: 12%;}
+#bott{float:left;margin:auto;margin-bottom: 30px;}
+#bott ul{width:60%;margin:0 auto 20px;height:auto;}
+#bott ul li{text-align: center;width:50%;}
+.layui-btn-radius{margin-bottom:30px;}
+.zwsm,.zwyz{width: 60%;margin-top: 12%;display: inline-block;height: 38px;line-height: 38px;
+padding: 0 18px;
+background-color: #277899;
+color: #fff;
+white-space: nowrap;
+text-align: center;
+font-size: 14px;
+border: none;
+border-radius: 2px;
+cursor: pointer;
+opacity: .9;}

@@ -1,0 +1,55 @@
+   body{background:#c2c2c2;}
+   #layui-center{
+       text-align:center;
+	   width:100%;
+	   height:120px;
+	   background:#0d7aa7;
+	   font-size:28px;
+	   color:#FFFFFF;
+	   line-height:120px;
+      }
+    .right{float:right;width:84%;height:auto;background:#FFFFFF}
+	#layui-left{float:left;position:fidex;}
+	.layui-frome{height:auto;margin:40px;border:0px solid #000000;}
+/*ÉÏ´«Í¼Æ¬µÄ*/
+.con4{ 
+     overflow: hidden;
+     color: #FFFFFF;
+}
+.con4 .btn{
+     width: 200px;
+     height: 40px;
+     line-height: 40px;
+     text-align: center;
+     background: #277899;
+     display: block;
+     font-size: 16px;
+     border-radius: 5px;
+	 color:#FFFFFF;
+}
+.upload{
+     position: relative;
+}
+.upload_pic{
+     display: block;
+     width: 100%;
+     height: 40px;
+     position: absolute;
+     left: 0;
+     top: 0;
+     opacity: 0;
+     border-radius: 5px;
+}
+#cvs{
+	background:#cccccc;
+}
+.cot{
+	width:100%;
+}
+
+#bott button{width:210px;}
+
+#login span{font-size:25px;color:#ffffff;position:relative;height:200px;
+
+}
+#demo1{text-align:right;}

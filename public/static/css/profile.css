@@ -1,0 +1,18 @@
+.main{width:60%;margin:30px auto}
+.layui-inline{float:left;width:49%;text-align: left;}
+.layui-input-inline{width:55%;}
+.layui-input{width:100%;}
+.layui-form-label{display: block;float:left;}
+.layui-input-block{width:80%;float: left}
+#bott{text-align: center;}
+#bott button{margin-right: 80px;}
+#goback{height: 38px;
+line-height: 38px;
+padding: 0 25px;
+font-size: 16px;display: inline-block;
+color: #fff;
+white-space: nowrap;
+text-align: center;
+border: none;
+border-radius: 100px;
+}
