@@ -15,29 +15,61 @@ use think\Db;
 class Index extends Controller
 {
 
-    private function jsonFailMsg($msg){
-         return json(['msg'=>$msg,'code'=>500]);  
-    }
+//    private function jsonFailMsg($msg){
+//         return json(['msg'=>$msg,'code'=>500]);
+//    }
+//
+//    private function jsonFail(){
+//         return json(['msg'=>'失败','code'=>500]);
+//    }
+//
+//    private function jsonSuccess(){
+//         return json(['msg'=>'成功','code'=>200]);
+//    }
+//
+//
+//    private function jsonSuccessData($data){
+//         return json(['msg'=>'成功','code'=>200,'data'=>$data]);
+//    }
+//
+//    private function jsonFailCodeMsg($code,$msg){
+//         return json(['msg'=>$msg,'code'=>$code]);
+//    }
 
-    private function jsonFail(){
-         return json(['msg'=>'失败','code'=>500]);  
-    }
+    public function __construct(){
+        //使用父类的构造函数，也就是调用Controller类的构造函数
+        parent::__construct();
+        $contact = db('admin_index_contact')->find();
+        $this->assign('contact', $contact);
 
-    private function jsonSuccess(){
-         return json(['msg'=>'成功','code'=>200]);  
-    }
-
-
-    private function jsonSuccessData($data){
-         return json(['msg'=>'成功','code'=>200,'data'=>$data]);  
-    }
-
-    private function jsonFailCodeMsg($code,$msg){
-         return json(['msg'=>$msg,'code'=>$code]);  
     }
 
     public function index(){
+        $banner=db('admin_index_banner')->select();
+        $part2=db('admin_index_part2')->find();
+//        var_dump($part2);
+        $this->assign("list", $banner);
+        $this->assign("part2", $part2);
+        $part3_1=db('admin_index_part3')->where('id',1)->find();
+        $part3_2=db('admin_index_part3')->where('id',2)->find();
+
+        $this->assign("part3_1", $part3_1);
+        $this->assign("part3_2", $part3_2);
+        $part4=db('admin_index_part4')->find();
+        $this->assign("part4", $part4);
+        $part5=db('admin_index_part5')->find();
+        $this->assign("part5", $part5);
+        $part6=db('admin_index_part6')->find();
+        $this->assign("part6", $part6);
         return $this->fetch('index');
+    }
+
+    public function eight(){
+        return $this->fetch('eight');
+    }
+
+    public function brand(){
+        return $this->fetch('brand');
     }
 
      public function getIndexBanner(){
@@ -54,18 +86,18 @@ class Index extends Controller
 
     }
 
-    public function login()
-    {
-        $cookie = cookie('token');
-        $data[0] = "";
-        $data[1] = "";
-        if (Cookie::has('token') == 1) {
-            $data = $this->jiemi($cookie, 5);
-
-        }
-        $this->assign('data', $data);
-        return $this->fetch('login');
-    }
+//    public function login()
+//    {
+//        $cookie = cookie('token');
+//        $data[0] = "";
+//        $data[1] = "";
+//        if (Cookie::has('token') == 1) {
+//            $data = $this->jiemi($cookie, 5);
+//
+//        }
+//        $this->assign('data', $data);
+//        return $this->fetch('login');
+//    }
 
     public function loginyz()
     {
