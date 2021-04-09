@@ -227,6 +227,54 @@ class Api extends Controller
 
     }
 
+    public function indexHonorModify(){
+        if(input('str_1')) $data['sort']=input('str_1');
+        if(input('id')) $id=input('id');
+        if(empty(input('id'))&&count($data)<1) return $this->jsonFail();
+        if(request()->file("pic_1")){
+            $path=$this->upload("pic_1");
+            $data['pic_url'] = '/uploads' . DS . $path['save'];
+        }
+        $res=db('admin_honor')->where('id',$id)->update($data);
+        if($res){
+            return $this->jsonSuccess();
+        }else{
+            return $this->jsonFail();
+        }
+
+    }
+
+    public function indexHonorDelete(){
+        if(input('id')) $id=input('id');
+        if(empty(input('id'))) return $this->jsonFail();
+        $res = db('admin_honor')->where('id', $id)->delete();
+        if($res){
+            return $this->jsonSuccess();
+        }else{
+            return $this->jsonFail();
+        }
+
+    }
+
+    public function indexHonorAdd(){
+        if(input('str_1')) $data['sort']=input('str_1');
+        if(input('pic_type')) $data['pic_type']=input('pic_type');
+        if(request()->file("pic_1")){
+            $path=$this->upload("pic_1");
+            $data['pic_url'] = '/uploads' . DS . $path['save'];
+        }
+
+        if(count($data)<1) return $this->jsonFail();
+
+        $res=db('admin_honor')->insert($data);
+        if($res){
+            return $this->jsonSuccess();
+        }else{
+            return $this->jsonFail();
+        }
+
+    }
+
 
 
     private function upload($name)
@@ -274,6 +322,28 @@ class Api extends Controller
 //        return json(['data'=>$userInfo]);
     }
 
+    public function honorList(){
+        $data=input('get.');
+        if(empty($data)){
+            return $this->jsonFailMsg(1);
+        }
+        $map['pic_type'] = $data['pic_type'];
+        $start = ($data['start']==0)?1:$data['start'];
+
+        $info=db('admin_honor')->where('pic_type',$data['pic_type'])->page($start,$data['length'])->order('sort '.$data['order'][0]['dir'])->select();
+        $result['draw'] = $data['draw'];
+        $result['recordsTotal'] = count($info);
+        $result['recordsFiltered'] = count($info);
+        $result['data'] = $info;
+
+//        if ($info) {
+            return json($result);
+//            return $this->jsonSuccessData($info);
+//        }else{
+//            return $this->jsonFailMsg(2);
+//        }
+
+    }
 
     public function getIndexBanner(){
         $id=input('id');
@@ -302,6 +372,8 @@ class Api extends Controller
         }
 
     }
+
+
 
     public function getIndexPart3(){
         $id=input('id');
