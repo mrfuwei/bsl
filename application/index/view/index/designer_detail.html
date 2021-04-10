@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>宝仕龙</title>
+    {include file="common/header"}
+</head>
+<style>
+    .inside-banner .banner_left{position:absolute;width:50%;height:100%;overflow:hidden;right:50%;background:#fff;z-index:10;}
+    .inside-banner .banner_right{position:absolute;left:50%;width:50%;height:100%;overflow:hidden;background:#fff;z-index:10;}
+    .inside-banner.active .banner_left{right:100%;transition:all 0.85s cubic-bezier(1, 0.08, 0.94, 0.71);-webkit-transition:all 0.85s cubic-bezier(1, 0.08, 0.94, 0.71);-moz-transition:all 0.85s cubic-bezier(1, 0.08, 0.94, 0.71);-ms-transition:all 0.85s cubic-bezier(1, 0.08, 0.94, 0.71);-o-transition:all 0.85s cubic-bezier(1, 0.08, 0.94, 0.71);}
+    .inside-banner.active .banner_right{left:100%;transition:all 0.85s cubic-bezier(1, 0.08, 0.94, 0.71);-webkit-transition:all 0.85s cubic-bezier(1, 0.08, 0.94, 0.71);-moz-transition:all 0.85s cubic-bezier(1, 0.08, 0.94, 0.71);-ms-transition:all 0.85s cubic-bezier(1, 0.08, 0.94, 0.71);-o-transition:all 0.85s cubic-bezier(1, 0.08, 0.94, 0.71);}
+    .inside-banner .banner_video {position: absolute;top: 0;width: 100%;height: 100%;}
+    .inside-banner .banner_video video{object-fit:cover;width:100%;height:100%;}
+    .inside-banner {overflow: hidden;position: relative;height: 100vh;}
+    .inside-banner .banner_img{width:100%;height:100%;position:absolute;top:0;left:0;}
+    .inside-banner.active .banner_video,.inside-banner.active .banner_img{transform:scale(1.02);-webkit-transform:scale(1.02);-moz-transform:scale(1.02);-ms-transform:scale(1.02);-o-transform:scale(1.02);transform-origin:center center;transition:all 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);-webkit-transition:all 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);-moz-transition:all 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);-ms-transition:all 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);-o-transition:all 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);}
+    .inside-banner .banner_zz{position:absolute;top:0;width:100%;height:100%;background:linear-gradient(to bottom, rgba(178, 154, 116, 0.25) 10%, rgba(2,130,172,0) 100%);background: -moz-linear-gradient(to bottom, rgba(178, 154, 116, 0.25) 10%, rgba(2,130,172,0) 100%);background: -webkit-linear-gradient(to bottom, rgba(178, 154, 116, 0.25) 10%, rgba(2,130,172,0) 100%);filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3FB29A74',endColorstr='#000099cb',GradientType=0);}
+    /*此样式在移动端时设置为block*/
+    .vis_xs{display:none;}
+    .inside-banner .shadows {position: absolute;z-index: 3;left: 50%;top: 0;bottom: 0;width: 0px;max-width: 320px;border-left: 1px solid #000;border-right: 1px solid #000;opacity: 0;-webkit-transform: translateX(-50%);transform: translateX(-50%);-webkit-transition: opacity .75s,visibility .75s,width .75s;transition: opacity .75s,visibility .75s,width .75s;-webkit-transition-delay: .8s;transition-delay: .8s;pointer-events: none;}
+    .inside-banner.active .shadows {width: 320px;opacity: 0.25;}
+    .inside-banner .shadow {position: absolute;width: 47px;height: 100%;}
+    .inside-banner .shadow.shadow-left {right: 100%;-webkit-transform: scale(-1);transform: scale(-1);}
+    .inside-banner .shadow.shadow-right {left: 100%;}
+    .inside-banner .banner_contair {width: 100%;height: 100%; display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-pack: center;-ms-flex-pack: center;justify-content: center;-webkit-box-align: center;-ms-flex-align: center;align-items: center;}
+    .inside-banner .inside-banner-heading {-webkit-transition:none;transition:none;-webkit-transform:translate3d(0,50px,0);transform:translate3d(0,50px,0)}
+    .inside-banner.active .inside-banner-heading {pointer-events: none;-webkit-transform: translateZ(0);transform: translateZ(0);-webkit-transition: -webkit-transform 1.6s cubic-bezier(.32,.32,0,.99) 0s;transition: -webkit-transform 1.6s cubic-bezier(.32,.32,0,.99) 0s;transition: transform 1.6s cubic-bezier(.32,.32,0,.99) 0s;transition: transform 1.6s cubic-bezier(.32,.32,0,.99) 0s,-webkit-transform 1.6s cubic-bezier(.32,.32,0,.99) 0s;-webkit-transition-delay: 0.85s;transition-delay: 0.85s;display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-orient: vertical;-webkit-box-direction: normal;-ms-flex-direction: column;flex-direction: column;-webkit-box-pack: center;-ms-flex-pack: center;justify-content: center;-webkit-box-align: center;-ms-flex-align: center;align-items: center;}
+    .inside-banner .sub-heading {visibility:hidden;opacity:0;-webkit-transform:translateY(20px);transform:translateY(20px)}
+    .inside-banner.active .sub-heading {color: #fff;display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-orient: vertical;-webkit-box-direction: normal;-ms-flex-direction: column;flex-direction: column;-webkit-box-pack: center;-ms-flex-pack: center;justify-content: center;-webkit-box-align: center;-ms-flex-align: center;align-items: center;opacity: 1;visibility: inherit;-webkit-transition: opacity 1.5s,visibility 1.5s,-webkit-transform 1.5s;transition: opacity 1.5s,visibility 1.5s,-webkit-transform 1.5s;transition: transform 1.5s,opacity 1.5s,visibility 1.5s;transition: transform 1.5s,opacity 1.5s,visibility 1.5s,-webkit-transform 1.5s;-webkit-transition-delay: 0.85s;transition-delay: 0.85s;}
+    .inside-banner-heading h2 {line-height: 80px;}
+    .inside-banner-heading h2.inside-banner-title {font-size: 50px;}
+    .inside-banner-heading h2.inside-banner-title2 {font-size: 25px;}
+
+    .designer-detail-inner * {font-family: SourceHanSansCN;}
+    .designer-detail-inner {width: 90%;max-width: 1568px;margin: 0 auto;padding-bottom: 50px;margin-top: 90px;}
+    .designer-present {display: flex;}
+    .designer-present .designer-img {width: 50%;padding-right: 4.17vw;box-sizing: border-box;border-bottom: 1px solid #26231E;}
+    .designer-present .designer-img img {width: 100%;vertical-align: top;max-width: 510px;padding: 4vw 0;}
+    .designer-present .designer-present-txt {padding-top: 6.8vw;width: 50%;padding-left: 3vw;box-sizing: border-box;position: relative;padding-right: 4.2vw;}
+    .designer-present .designer-present-txt h2 {font-size: 42px;font-weight: 400;opacity: .8;}
+    .designer-present .designer-present-txt p {margin-top: 1.5vw;font-size: 14px;line-height: 32px;}
+    .designer-present .designer-present-txt .designer-720 {position: absolute;left: 4vw;bottom: 0;}
+    .designer-present .designer-present-txt .designer-720 img {display: inline-block;vertical-align: bottom}
+    .designer-present .designer-present-txt .designer-720 span {color: #666666;margin-left: 12px;font-size: 12px;}
+    .designer-works {padding-top: 2.1vw;display: flex}
+    .designer-works .designer-delegate {width: 50%;box-sizing: border-box;padding-right: 4.2vw;}
+    .designer-delegate-item {margin-top: 2.1vw;}
+    .designer-delegate-item>img {width: 100%;}
+    .designer-delegate-item .delegate-handlebox {float: right;display: flex}
+    .delegate-handlebox .delegate-handle img {display: inline-block;cursor: pointer;height: 8px;vertical-align: middle;margin-right: 6px;}
+    .delegate-handlebox .delegate-handle:first-child {margin-right: 18px;}
+    .designer-delegate-item-info {padding: 1vw 0;}
+    .designer-delegate-item-info .delegatename {font-weight: bold;}
+    .designer-other {width: 50%;box-sizing: border-box;padding-right: 4.2vw;padding-left: 3vw;}
+    .designer-other-info {}
+    .designer-other-info h3 {font-size: 20px;font-weight: 400;margin-bottom: 25px;}
+    .designer-other-info p {font-size: 12px;margin-bottom: 10px;}
+    .designer-other-info p span {color: #e6002d;}
+
+    .designer-other-form {border: 1px solid #E6002D;margin-top: 2.34vw;}
+    .designer-other-form-inner {width: 90%;max-width: 386px;margin: 0 auto;padding: 2.6vw 0;text-align: center}
+    .designer-other-form-inner .designer-line {margin: 15px 0;}
+    .designer-other-form-inner h2 {color: #e6002d;font-size: 28px;}
+    .designer-other-form-inner h4 {color: #000000;font-size: 18px;margin-bottom: 2.34vw;}
+    .designer-form-item {height: 66px;line-height: 66px;display: flex;border: 1px solid #A0A0A0;margin-bottom: 20px;}
+    .designer-form-item .designer-form-icon {padding: 0 20px}
+    .designer-form-item .designer-form-icon img {
+        position: relative;
+        top: 50%;transform: translateY(-50%)}
+    .designer-form-item input {flex: 1;padding-left: 15px;}
+    .designer-form-item {}
+    .designer-form-item input {border: none;border-left: 1px solid #A0A0A0;}
+    .designer-form-item:last-child {margin-bottom: 0;margin-top: 35px;
+        height: auto;cursor: pointer}
+    .designer-form-btn {
+        width: 100%;
+        height: 44px;
+        line-height: 44px;
+        color: #ffffff;font-size: 18px;
+        background-color: #000;}
+
+</style>
+<body>
+{include file="common/daohang"}
+    <div class="main">
+        <div class="cooperation-section designer-detail">
+			<div class="designer-detail-inner">
+                <div class="designer-present">
+                    <div class="designer-img">
+                        <img src="/static/images/designerDetail/designer-detail-photo.jpg" class="wow animated1 fadeInRight" alt="">
+                    </div>
+                    <div class="designer-present-txt wow animated1 fadeInLeft">
+                        <h2>Futian zheng</h2>
+                        <p>拥有9年的设计实操经历，擅长新中式风格，对于定制顶墙效果设计运用到极致，结合中国元素，打造出兼具现代古典气息的新中式风格，作品让人过目不忘。</p>
+                        <p>以宫廷建筑为代表的中国古典建筑的室内装饰设计艺术风格。中国传统的室内设计融合了庄重与优雅双重气质。中式风格更多的利用了后现代手法，把传统的结构形式通过重新设计组合以另一种民族特色的标志出现。</p>
+                        <div class="designer-720 wow animated1 fadeInRight">
+                            <img src="/static/images/designerDetail/designer-detail-code.jpg" alt=""><span>720°全景</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="designer-works">
+                    <div class="designer-delegate">
+                        <h2>代表作</h2>
+                        <div class="designer-delegate-list">
+                            <div class="designer-delegate-item wow animated1 fadeInUp1">
+                                <img src="/static/images/designerDetail/designer-detail-jpg.jpg" alt="">
+                                <div class="designer-delegate-item-info">
+                                    <span class="delegatename">杭州佳茵花园</span>
+                                    <div class="delegate-handlebox">
+                                        <div class="delegate-handle">
+                                            <img src="/static/images/designerDetail/designer-icon-eyes.png" alt="">
+                                            <span>58</span>
+                                        </div>
+                                        <div class="delegate-handle">
+                                            <img src="/static/images/designerDetail/designer-icon-forks.png" alt="">
+                                            <span>58</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="designer-delegate-item wow animated1 fadeInUp1">
+                                <img src="/static/images/designerDetail/designer-detail-jpg.jpg" alt="">
+                                <div class="designer-delegate-item-info">
+                                    <span class="delegatename">杭州佳茵花园</span>
+                                    <div class="delegate-handlebox">
+                                        <div class="delegate-handle">
+                                            <img src="/static/images/designerDetail/designer-icon-eyes.png" alt="">
+                                            <span>58</span>
+                                        </div>
+                                        <div class="delegate-handle">
+                                            <img src="/static/images/designerDetail/designer-icon-forks.png" alt="">
+                                            <span>58</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="designer-other">
+                        <div class="designer-other-info wow animated1 fadeInRight">
+                            <h3>设计领军者</h3>
+                            <p>已有<span>75</span>人预约TA</p>
+                            <p>联系Ta：400-818-4820</p>
+                            <br>
+                            <p>风格：现代简约</p>
+                        </div>
+                        <div class="designer-other-form wow animated1 fadeInDown">
+
+                            <div class="designer-other-form-inner">
+                                <h2>我要申请户型规划</h2>
+                                <img src="/static/images/designerDetail/designer-line.png" alt="" class="designer-line">
+                                <h4>专业设计师1对1家装指导</h4>
+                                <form action="/index/index/form" method="post" id="ghForm">
+                                    <div class="designer-form-item">
+                                        <div class="designer-form-icon">
+                                            <img src="/static/images/designerDetail/designer-icon-people.png" alt="">
+                                        </div>
+                                        <input type="text" placeholder="你的姓名" name="username">
+                                    </div>
+                                    <div class="designer-form-item">
+                                        <div class="designer-form-icon">
+                                            <img src="/static/images/designerDetail/designer-icon-tel.png" alt="">
+                                        </div>
+                                        <input type="text" placeholder="联系方式" name="mobile">
+                                    </div>
+                                    <div class="designer-form-item">
+                                        <div class="designer-form-icon">
+                                            <img src="/static/images/designerDetail/designer-icon-address.png" alt="">
+                                        </div>
+                                        <input type="text" placeholder="所在楼盘" name="desc">
+                                        <input type="hidden" placeholder="所在楼盘" name="form_type" value="2">
+                                    </div>
+                                    <div class="designer-form-item">
+                                        <div class="designer-form-btn" id="submit">立即申请</div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--公用-->
+    {include file="common/footer"}
+    
+	<div class="popup-section popup-navigation">
+            <div class="popup-container">
+                <div class="navigation-left">
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="index.html">
+                                <span>首页</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="../application/index/view/index/brand.html">
+                                <span>走进宝仕龙</span>
+                            </a>
+                        </div>
+                    </div>
+    <!--                <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="brandWitness.html">
+                                <span>品牌见证</span>
+                            </a>
+                        </div>
+                    </div> -->
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="../application/index/view/index/eight.html">
+                                <span>八大空间</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="live_museum.html">
+                                <span>百套案例</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="pos.html">
+                                <span>大商样板</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="cooperate-people.html">
+                                <span>商学院</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="contact.html">
+                                <span>联系我们</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="productSearch.html">
+                                <span>防伪查询</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="navigation-right">
+    
+                    <div class="navigation-add">
+                        <div class="navigation-add-line"></div>
+                        <div class="address">
+                            Jl. Duren Tiga Raya No. 33<br>
+                            Jakarta Selatan - 12760 <br>
+                            Indonesia
+                        </div>
+                        <p></p>
+                        +62 21 799 1521
+                        <br>
+                        +62 21 722 5003
+                        <br>
+                        info@prodotti-id.com
+                        <p></p>
+                        <div class="socials">
+                            <div class="icon">
+                                <a href="javascript:;">
+                                    <img src="/static/images/logo-facebook.svg" alt="">
+                                </a>
+                            </div>
+                            <div class="icon">
+                                <a href="javascript:;">
+                                    <img src="/static/images/logo-instagram.svg" alt="">
+                                </a>
+                            </div>
+                            <div class="icon">
+                                <a href="javascript:;">
+                                    <img src="/static/images/logo-youtube.svg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="navigation-add">
+                        <div class="navigation-add-line"></div>
+                        <div>
+                            Monday - Friday<br>
+                            09.00 A.M - 06.00 P.M<br><p></p>
+                            Saturday - Sunday<br>
+                            Appointment Only<br>
+                        </div>
+                        <div class="navigation-bottom">
+                            <div class="navigation-bottom-item">
+                                <a href="javascript:;">
+                                    <span>Privacy & Cookie Policy</span>
+                                </a>
+                            </div>
+                        </div>
+    
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+    <div class="popup-section popup-search">
+
+        <div class="popup-container">
+            <div class="search-form">
+                <input type="text" placeholder="Search for Products, Brands or News" class="input-form" style="width: 0;">
+                <div class="search-result">
+                    <div class="search-result-item"></div>
+                    <div class="search-result-item"></div>
+                    <div class="search-result-item"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="popup-brand">
+        <div class="brand-list">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <div class="slider-image">
+                                <div class="background-image" style="background-image: url('/static/images/brand_swiper_01.jpg')"></div>
+                            </div>
+                            <div class="slider-title">Alexander Lamont</div>
+                            <div class="slider-hr"></div>
+                            <div class="slider-category">Furniture</div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <div class="slider-image">
+                                <div class="background-image" style="background-image: url('/static/images/brand_swiper_02.jpg')"></div>
+                            </div>
+                            <div class="slider-title">Alexander Lamont</div>
+                            <div class="slider-hr"></div>
+                            <div class="slider-category">Furniture</div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <div class="slider-image">
+                                <div class="background-image" style="background-image: url('/static/images/brand_swiper_01.jpg')"></div>
+                            </div>
+                            <div class="slider-title">Alexander Lamont</div>
+                            <div class="slider-hr"></div>
+                            <div class="slider-category">Furniture</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </div>
+    <!--公用-->
+
+    <script>
+		(function ($) {
+			$.fn.numberRock = function (options) {
+				var defaults = {speed: 1000, count: 100};
+				var opts = $.extend({}, defaults, options);
+				var div_by = 100, count = opts["count"], speed = Math.floor(count / div_by), sum = 0, $display = this,
+						run_count = 1, int_speed = opts["speed"];
+				var int = setInterval(function () {
+					if (run_count <= div_by && speed != 0) {
+						$display.text(sum = speed * run_count);
+						run_count++;
+					} else if (sum < count) {
+						$display.text(++sum);
+					} else {
+						clearInterval(int);
+					}
+				}, int_speed);
+			}
+		})(jQuery);
+		new WOW().init();
+		
+        $('.inside-banner').height($(window).height())
+        $(function () {
+            if(true){
+                $('.inside-banner').addClass('active')
+            }
+        })
+		$('.abTeam_ico').on('click',function(){
+			if($('.znList_stop').css("display")=='none'){
+				$('.znList_stop').css("display","block");
+				$('.znList_play').css("display","none");
+				$('#tmkVideo')[0].pause();
+			}else if($('.znList_play').css("display")=='none'){
+				$('.znList_stop').css("display","none");
+				$('.znList_play').css("display","block");
+				$('#tmkVideo')[0].play();
+			}
+		})
+
+		var topshop_swiper = new Swiper(".topshop-bsl-swiper .swiper-container", {
+			speed: 1000,
+			slidesPerView: 'auto',
+			// autoplay:true,
+			loop:true,
+			navigation: {
+				nextEl: '.topshop-swiper-btnbox .topshop-swiper-btnbox-next',
+				prevEl: '.topshop-swiper-btnbox .topshop-swiper-btnbox-prev',
+			},
+		});
+
+		var l=$('.znList_thr-container .swiper-slide').length;
+		var left_swiper = new Swiper(".znList_thr-container", {
+			speed: 1000,
+			slidesPerView: '1',
+			loop:true,
+			spaceBetween : 40,
+			navigation: {
+				prevEl: '.banner-switchbutton-left',
+				nextEl: '.banner-switchbutton-right',
+			},
+			pagination: {
+				clickable: true,
+			},
+			on: {
+				slideChangeTransitionStart: function () {
+					$(".realIndex").html("0"+(this.realIndex+1));
+					$(".indexLength").html("0"+l);				
+				}
+			},
+		});
+		var target=true;
+		$(window).scroll(function(){
+			if((($('.topshop-footer').offset().top - $(document).scrollTop())<$(window).height())&&target){
+				target=false;
+				$(".num1").numberRock({
+					speed:10,
+					count:68000
+				})
+				$(".num2").numberRock({
+					speed:10,
+					count:314
+				})
+				$(".num3").numberRock({
+					speed:10,
+					count:3000
+				})
+				$(".num4").numberRock({
+					speed:10,
+					count:319
+				})
+				$(".num5").numberRock({
+					speed:10,
+					count:653
+				})
+				$(".num6").numberRock({
+					speed:10,
+					count:500
+				})
+			}
+		})
+
+
+        $('#submit').on('click',function(){
+            $('#ghForm').submit();
+        })
+    </script>
+</body>
+</html>

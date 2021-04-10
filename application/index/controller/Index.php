@@ -3,38 +3,14 @@
 namespace app\index\controller;
 
 use think\Controller;
+use think\Db;
 use think\Exception;
 use think\exception\PDOException;
-use think\Log;
-use think\Session;
 use think\Request;
-use think\Cookie;
-use think\Paginator;
-use think\Db;
+use think\Session;
 
 class Index extends Controller
 {
-
-//    private function jsonFailMsg($msg){
-//         return json(['msg'=>$msg,'code'=>500]);
-//    }
-//
-//    private function jsonFail(){
-//         return json(['msg'=>'失败','code'=>500]);
-//    }
-//
-//    private function jsonSuccess(){
-//         return json(['msg'=>'成功','code'=>200]);
-//    }
-//
-//
-//    private function jsonSuccessData($data){
-//         return json(['msg'=>'成功','code'=>200,'data'=>$data]);
-//    }
-//
-//    private function jsonFailCodeMsg($code,$msg){
-//         return json(['msg'=>$msg,'code'=>$code]);
-//    }
 
     public function __construct(){
         //使用父类的构造函数，也就是调用Controller类的构造函数
@@ -42,6 +18,22 @@ class Index extends Controller
         $contact = db('admin_index_contact')->find();
         $this->assign('contact', $contact);
 
+    }
+
+    public function form(){
+        if(request()->isPost()){
+            $data=input('post.');
+            $res=db('admin_form')->insert($data);
+            if($res){
+                echo "<script>alert('提交成功');history.go(-2)</script>";
+
+                return;
+            }else{
+                echo "<script>alert('提交失败');history.go(-2)</script>";
+
+                return;
+            }
+        }
     }
 
     public function index(){
@@ -69,7 +61,17 @@ class Index extends Controller
     }
 
     public function brand(){
+        $list1 = db('admin_honor')->where('pic_type', 1)->select();
+        $list2 = db('admin_honor')->where('pic_type', 2)->select();
+        $list3 = db('admin_honor')->where('pic_type', 3)->select();
+        $this->assign('list1', $list1);
+        $this->assign('list2', $list2);
+        $this->assign('list3', $list3);
         return $this->fetch('brand');
+    }
+
+    public function productSearch(){
+        return $this->fetch('productSearch');
     }
 
     public function topshop(){
@@ -133,6 +135,26 @@ class Index extends Controller
 
     public function recruit(){
         return $this->fetch('recruit');
+    }
+
+    public function service(){
+        return $this->fetch('service');
+    }
+
+    public function prize(){
+        return $this->fetch('prize');
+    }
+
+    public function patent(){
+        return $this->fetch('patent');
+    }
+
+    public function designer_detail(){
+        return $this->fetch('designer_detail');
+    }
+
+    public function say(){
+        return $this->fetch('say');
     }
 
 

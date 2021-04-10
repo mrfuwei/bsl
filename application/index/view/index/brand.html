@@ -271,8 +271,8 @@
 
     <div class="main">
         <div class="inside-banner">
-            <div class="banner_img hid_xs" style="background:url(/static/images/brand-banner.png) no-repeat center center;background-size:cover;"></div>
-            <div class="banner_img hid_xs" style="background:url(/static/images/brand-banner.png) no-repeat center center;background-size:cover;"></div>
+            <div class="banner_img hid_xs" style="background:url(/static/images/banner6.jpg) no-repeat center center;background-size:cover;"></div>
+            <div class="banner_img hid_xs" style="background:url(/static/images/banner6.jpg) no-repeat center center;background-size:cover;"></div>
            <div class="banner_zz"></div>
             <div class="banner_left"></div>
             <div class="banner_right"></div>
@@ -835,59 +835,32 @@
 					<div class="brand_main-container">
 						<div class="swiper-container active">
 							<div class="swiper-wrapper">
+                                {volist id="vo" name="list1"}
 								<div class="swiper-slide">
-									<img src="/static/images/inside/history/brand-swiper-item.jpg" alt="">
+									<img src="{$vo.pic_url}" alt="">
 								</div>
-								<div class="swiper-slide">
-									<img src="/static/images/inside/history/brand-swiper-item.jpg" alt="">
-								</div>
-								<div class="swiper-slide">
-									<img src="/static/images/inside/history/brand-swiper-item.jpg" alt="">
-								</div>
-								<div class="swiper-slide">
-									<img src="/static/images/inside/history/brand-swiper-item.jpg" alt="">
-								</div>
-								<div class="swiper-slide">
-									<img src="/static/images/inside/history/brand-swiper-item.jpg" alt="">
-								</div>
+                                {/volist}
+
 							</div>
 						</div>
 						<div class="swiper-container">
 						    <div class="swiper-wrapper">
+                                {volist id="vo" name="list2"}
 						        <div class="swiper-slide">
-						            <img src="/static/images/inside/history/brand-swiper-item.jpg" alt="">
+						            <img src="{$vo.pic_url}" alt="">
 						        </div>
-						        <div class="swiper-slide">
-						            <img src="/static/images/inside/history/brand-swiper-item.jpg" alt="">
-						        </div>
-						        <div class="swiper-slide">
-						            <img src="/static/images/inside/history/brand-swiper-item.jpg" alt="">
-						        </div>
-						        <div class="swiper-slide">
-						            <img src="/static/images/inside/history/brand-swiper-item.jpg" alt="">
-						        </div>
-						        <div class="swiper-slide">
-						            <img src="/static/images/inside/history/brand-swiper-item.jpg" alt="">
-						        </div>
+                                {/volist}
+
 						    </div>
 						</div>
 						<div class="swiper-container">
 						    <div class="swiper-wrapper">
+                                {volist id="vo" name="list3"}
 						        <div class="swiper-slide">
-						            <img src="/static/images/inside/history/brand-swiper-item.jpg" alt="">
+						            <img src="{$vo.pic_url}" alt="">
 						        </div>
-						        <div class="swiper-slide">
-						            <img src="/static/images/inside/history/brand-swiper-item.jpg" alt="">
-						        </div>
-						        <div class="swiper-slide">
-						            <img src="/static/images/inside/history/brand-swiper-item.jpg" alt="">
-						        </div>
-						        <div class="swiper-slide">
-						            <img src="/static/images/inside/history/brand-swiper-item.jpg" alt="">
-						        </div>
-						        <div class="swiper-slide">
-						            <img src="/static/images/inside/history/brand-swiper-item.jpg" alt="">
-						        </div>
+                                {/volist}
+
 						    </div>
 						</div>
 					</div>
@@ -967,103 +940,7 @@
         </ul>
     </div>
 
-    <!--公用-->
-    <div class="footer">
-            <div class="footer-top">
-                <div class="top-list">
-            		<div class="top-item">
-            			<img src="/static/images/ico01.png" alt="">
-            			<div class="top-item-txt">
-            				防伪查询
-            			</div>
-            		</div>
-            		<div class="top-item">
-            			<img src="/static/images/ico02.png" alt="">
-            			<div class="top-item-txt">
-            				帮助中心
-            			</div>
-            		</div>
-            		<div class="top-item">
-            			<img src="/static/images/ico05.png" alt="">
-            			<div class="top-item-txt">
-            				天猫官方直营店
-            			</div>
-            		</div>
-            		<div class="top-item">
-            			<img src="/static/images/ico04.png" alt="">
-            			<div class="top-item-txt">
-            				宝仕龙商城
-            			</div>
-            		</div>
-            		<div class="top-item backtoTop">
-            			<img src="/static/images/ico5.png" alt="">
-            		</div>
-            	</div>
-            </div>
-        	<div class="footer-center">
-        		<div class="footer-center-left">
-        			<div class="footer-center-left-list">
-        				<div class="footer-center-left-item">
-        					<a href="/index/index/index/index.html" >首页</a>
-        				</div>
-        				<div class="footer-center-left-item">
-        					<a href="brand.html" >走进宝仕龙</a>
-        					<a href="brand.html" >品牌文化</a>
-        					<a href="javascript:;" >工厂1号店</a>
-        					<a href="/index/index/museum.html" >吊顶博物馆</a>
-        				</div>
-        				<div class="footer-center-left-item">
-        					<a href="eight.html" >定制生活馆</a>
-        					<a href="eight.html" >生活DIY</a>
-        					<a href="/index/index/live_museum.html">百套案例</a>
-        					<a href="/index/index/live_museum.html">万城万景</a>
-        					<a href="/index/index/remould.html">旧屋改造</a>
-        				</div>
-        				<div class="footer-center-left-item">
-        					<a href="/index/index/news.html" >新闻中心</a>
-        					<a href="/index/index/news.html" >企业新闻</a>
-        					<a href="/index/index/news.html" >市场新闻</a>
-        				</div>
-        				<div class="footer-center-left-item">
-        					<a href="javascript:;" >品牌见证</a>
-        					<a href="javascript:;" >设计师</a>
-        					<a href="/index/index/cooperation.html" >大咖品推官</a>
-        					<a href="/index/index/say.html" >TA有话说</a>
-        				</div>
-        				<div class="footer-center-left-item">
-        					<a href="/index/index/service.html" >服务中心</a>
-        					<a href="/index/index/service.html#customer" >客服中心</a>
-        					<a href="/index/index/service.html#need" >客户中心</a>
-        					<a href="/index/index/contact.html" >我要反馈</a>
-        				</div>
-        				<div class="footer-center-left-item">
-        					<a href="/index/index/join.html" >招商合作</a>
-        					<a href="/index/index/join.html" >加盟共赢</a>
-        					<a href="/index/index/cooperate-people.html" >商学院</a>
-        					<a href="/index/index/pos.html" >大商样板</a>
-        					<a href="/index/index/live-grid-sketch.html" >大单分享</a>
-        				</div>
-        				<div class="footer-center-left-item">
-        					<a href="/index/index/contact.html" >联系我们</a>
-        					<a href="/index/index/productSearch.html" >防伪查询</a>
-        				</div>
-        			</div>
-        		</div>
-        		<div class="footer-center-right">
-        			<div class="footer-center-txt1">关注我们</div>
-        			<div class="footer-center-txt2">全国客服电话</div>
-        			<div class="footer-center-txt3">400-8877-831</div>
-        			<div class="footer-center-txt4">邮箱：sales@jxbsl.com</div>
-        			<div class="footer-center-txt5">
-        				<img src="/static/images/wb.png" alt="">
-        				<img src="/static/images/wx.png" alt="">
-        			</div>
-        		</div>
-        	</div>
-            <div class="bottom">
-                <p class="bottom-p">COPYRIGHTS 2020 BOSLON AL RIGHTS RESERVED. 浙ICP备09002255号-1    技术支持：PERSONAL TAILOR </p>
-            </div>
-        </div>
+{include file="common/footer"}
 
         <div class="popup-section popup-navigation">
             <div class="popup-container">

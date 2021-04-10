@@ -42,6 +42,35 @@ class Api extends Controller
 
     }
 
+    public function indexFormList(){
+        $data=input('get.');
+        if(empty($data)){
+            return $this->jsonFailMsg(1);
+        }
+        $map['form_type'] = $data['form_type'];
+        $start = ($data['start']==0)?1:$data['start'];
+
+        $info=db('admin_form')->where('form_type',$data['form_type'])->page($start,$data['length'])->order('id '.$data['order'][0]['dir'])->select();
+        $result['draw'] = $data['draw'];
+        $result['recordsTotal'] = count($info);
+        $result['recordsFiltered'] = count($info);
+        $result['data'] = $info;
+        return json($result);
+
+    }
+
+    public function indexFormDelete(){
+        if(input('id')) $id=input('id');
+        if(empty(input('id'))) return $this->jsonFail();
+        $res = db('admin_form')->where('id', $id)->delete();
+        if($res){
+            return $this->jsonSuccess();
+        }else{
+            return $this->jsonFail();
+        }
+
+    }
+
     public function indexBannerModify(){
         if(input('title')) $data['title']=input('title');
         if(input('sub_title')) $data['sub_title']=input('sub_title');
@@ -335,13 +364,7 @@ class Api extends Controller
         $result['recordsTotal'] = count($info);
         $result['recordsFiltered'] = count($info);
         $result['data'] = $info;
-
-//        if ($info) {
-            return json($result);
-//            return $this->jsonSuccessData($info);
-//        }else{
-//            return $this->jsonFailMsg(2);
-//        }
+        return json($result);
 
     }
 

@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>宝仕龙</title>
+    {include file="common/header"}
+	<style>
+		.section1{
+			display: flex;
+			padding:10% 80px;	
+			justify-content: space-between;
+		}
+		.section1-left{
+			width: 50%;
+		}
+		.section1-right{
+			width: 400px;
+			padding-top: 80px;
+			display: flex;
+			justify-content: center;
+			/* align-items: center; */
+			flex-direction: column;
+		}
+		.section1-right-tit{
+			font-size: 25px;
+			color: #8f8f8f;
+		}
+		.section1-right-txt{
+			font-size: 14px;
+			color: #C1C1C1;
+			line-height: 25px;
+			margin-top: 40px;
+		}
+		.section1-right-more{
+			color: #8f8f8f;
+			font-size: 14px;
+			width: 150px;
+			height: 30px;
+			line-height: 30px;
+			text-align: center;
+			border: 1px solid #8f8f8f;
+			border-radius: 15px;
+			margin-top: 80px;
+		}
+		.section2{
+			padding: 10% 60px;
+			display: flex;
+			position: relative;
+		}
+		.section2:after {
+		    content: "BAOSHILONG";
+		    position: absolute;
+		    bottom: 0;
+		    left: 10%;
+		    font-size: 240px;
+		    font-weight: bold;
+		    white-space: nowrap;
+		    color: rgba(255, 88, 81, .08);
+		    letter-spacing: 3px;
+		    text-transform: uppercase;
+		}
+		.section2-left{
+			width: 50%;
+		}
+		.section2-right{
+			width: 50%;
+		}
+		.section2-right .swiper-slide img{
+			width: 80%;
+		}
+		.section2-left-tit{
+			font-size: 20px;
+			color: #000000;
+		}
+		.section2-left-tit1{
+			font-size: 14px;
+			color: #E6002D;
+			margin-top: 20px;
+		}
+		.section2-left-txt{
+			font-size: 14px;
+			color: #000;
+			margin-top: 55px;
+			line-height: 25px;
+		}
+		.section2-left-more{
+			font-size: 14px;
+			color: #E6002D;
+			margin-top: 55px;
+			display: inline-block;
+			position: relative;
+		}
+		.section2-left-more:after{
+			content: '';
+			position: absolute;
+			right: -40px;
+			top: 50%;
+			transform: translateY(-50%);
+			background-image: url(/static/images/icon19.png);
+			background-repeat: no-repeat;
+			background-position: center;
+			width: 18px;
+			height: 14px;
+			background-size: 18px 14px;
+		}
+		.section3{
+			padding: 0 60px;		
+			background: #f7f7f7;
+		}
+		.section3-list{
+			display: flex;
+			justify-content: space-between;
+			flex-wrap: wrap;
+		}
+		.section3-item{
+			width: calc((100% - 80px)/3);
+			margin-top: 40px;
+		}
+		ul.pagination {
+			display: flex;
+			justify-content: center;
+			padding: 80px 0;
+		}
+		
+		ul.pagination li {display: inline;line-height: 40px;}
+		ul.pagination li:nth-child(1){
+			margin-right: 10px;
+		}
+		ul.pagination li a {
+		    color: black;
+		    float: left;
+			width:40px;
+			height: 40px;
+			color: #000;
+			font-size: 12px;
+		    /* padding: 8px 16px; */
+		    text-decoration: none;
+			padding: 0;
+			text-align: center;
+			line-height: 40px;
+			background-color: #fff;
+			border-radius: 5px;
+			border: 1px solid #999;
+		}
+		.pagination a.active, .pagination a:hover {
+		    border: none;
+		    background: #000;
+		    color: #fff;
+		}
+		.newsBox {
+		    overflow: hidden;
+		}
+		*, ::before, ::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+		.clearfix::after, .clearfix::before {
+    content: ".";
+    height: 0;
+    line-height: 0;
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+.newsA {
+    float: left;
+    margin-left: 2%;
+    display: block;
+    width: 32%;
+    position: relative;
+    margin-bottom: 48px;
+}
+.newsA:nth-child(3n-2) {
+    margin-left: 0;
+}
+.newsImg {
+    position: relative;
+    padding-top: 58%;
+    overflow: hidden;
+}
+.newsImg img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 1s;
+    transform: scale(1.1);
+}
+.newsTxt {
+    background: #fff;
+    padding: 38px 40px 34px;
+}
+.newsTit_time {
+    color: #3e1743;
+    font-weight: 400;
+    font-size: 14px;
+}
+.newsTit_time img {
+    vertical-align: top;
+    margin-top: 2px;
+    margin-right: 3px;
+    display: inline;
+}
+.newsTit {
+    display: block;
+    font-size: 20px;
+    line-height: 1.6;
+    transition: all 0.48s;
+    min-height: 96px;
+    color: #000;
+}
+.newsA:hover .newsTit {
+    color: #E6002D;
+}
+.newsA:hover .newsImg img {
+    transform: scale(1);
+}
+.newsP {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 18px;
+    color: #666;
+    letter-spacing: 0.5px;
+    font-weight: 300;
+    display: none;
+}
+.tmkMore {
+    position: relative;
+}
+.indMore {
+    cursor: pointer;
+    margin-top: 12px;
+    display: block;
+    transition: all 0.48s;
+    color: #1b2f5f;
+}
+.tmkMore .indMore {
+    margin-top: 48px;
+    display: inline-block;
+    padding: 10px 34px;
+    border: 1px solid #3e1743;
+    position: relative;
+    z-index: 11;
+    color: #3e1743;
+}
+.tmkMore.sm .indMore {
+    padding: 7px 24px;
+    font-size: 12px;
+    font-weight: 300;
+}
+.indMore::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background: #3e1743;
+    z-index: -1;
+    transition: all 0.8s;
+}
+.indMore:not(.none):hover {
+    color: #Fff;
+}
+.tmkMore .indMore:hover {
+    -webkit-animation: gelatine 0.5s 1;
+    animation: gelatine 0.5s 1;
+}
+.indMore:not(.none):hover::before {
+    height: 100%;
+}
+.indMore::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background: #3e1743;
+    z-index: -1;
+    transition: all 0.8s;
+}
+@keyframes gelatine {
+
+    from,
+    to {
+        transform: scale(1, 1);
+    }
+
+    25% {
+        transform: scale(0.9, 1.1);
+    }
+
+    50% {
+        transform: scale(1.1, 0.9);
+    }
+
+    75% {
+        transform: scale(0.95, 1.05);
+    }
+}
+	</style>
+</head>
+
+<body>
+
+
+{include file="common/daohang"}
+    <div class="main">
+        <div class="inside-banner">
+        	<div class="banner_img hid_xs" style="background:url(/static/images/s-banner.png) no-repeat center center;background-size:cover;"></div>
+        	<div class="banner_img vis_xs" style="background:url(/static/images/s-banner.png) no-repeat center center;background-size:cover;"></div>
+        	<div class="banner_zz"></div>
+        	<div class="banner_left"></div>
+        	<div class="banner_right"></div>
+        	<div class="banner_contair">
+        		<div class="inside-banner-heading">
+        			<div class="sub-heading">
+        				<h2 class="inside-banner-title">人·物·居 相融共生</h2>
+        				<!--<p class="inside0banner-txt" style="max-width: 285px;font-size: 12px;color: #f5f5f5;text-align: justify;">系统赋能 思维升级 系统升级</p>-->
+        			</div>
+        		</div>
+        	</div>
+        	<div class="shadows">
+        		<img src="/static/images/common/shadow.png" alt="" class="shadow shadow-left">
+        		<img src="/static/images/common/shadow.png" alt="" class="shadow shadow-right">
+        	</div>
+        </div>
+		<div class="container">
+			<section class="section1">
+				<div class="section1-left">
+					<img src="/static/images/zm.png" alt="">
+				</div>
+				<div class="section1-right">
+					<div class="section1-right-tit">让家更美,<br>生活更美好。</div>
+					<div class="section1-right-txt">宝仕龙服务臻于艺术于生活细微之处，以媲美天鹅湖芭蕾的优雅为您倾心呵护，从阅读第一张熨烫过的报纸开始，享受每一个被尊崇的日子源于英式物管的服务艺术让您珍藏世人叹为观止的生活。</div>
+					<a class="section1-right-more">了解更多</a>
+				</div>
+			</section>
+			<section class="section2" style="display: none;">
+				<div class="section2-left">
+					<div class="section2-left-tit">为什么选择宝仕龙</div>
+					<div class="section2-left-tit1">你是否其中一员</div>
+					<div class="section2-left-txt">选择宝仕龙，<br>来源与我们对美好生活的追求</div>
+					<a class="section2-left-more">学到更多</a>
+				</div>
+				<div class="section2-right swiper-container">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<img src="/static/images/123.png" alt="">
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="section3">
+				<div class="newsBox clearfix">
+                    <a href="javascript:;" class="newsA">
+                        <div class="newsImg animated2 fadeInUp2 wow">
+                            <img src="/static/images/s1.png" alt="">
+                        </div>
+                        <div class="newsTxt animated2 fadeInUp2 wow">
+                            <span class="newsTit_time"><img src="/static/images/time.png" alt=""> Aug 07,2020</span>
+                            <span class="newsTit">XXXXXXXX</span>
+                            <p class="newsP">
+                                                           </p>
+                            <div class="tmkMore animated2 fadeInUp2 wow">
+                                <span class="indMore">探索更多</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="javascript:;" class="newsA">
+                        <div class="newsImg animated2 fadeInUp2 wow">
+                            <img src="/static/images/s2.png" alt="">
+
+                        </div>
+                        <div class="newsTxt animated2 fadeInUp2 wow">
+                            <span class="newsTit_time"><img src="/static/images/time.png" alt=""> Aug 07,2020</span>
+                            <span class="newsTit">XXXXXXXX</span>
+                            <p class="newsP">
+                                                           </p>
+                            <div class="tmkMore animated2 fadeInUp2 wow">
+                                <span class="indMore">探索更多</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="javascript:;" class="newsA">
+                        <div class="newsImg animated2 fadeInUp2 wow">
+                            <img src="/static/images/s3.png" alt="">
+
+                        </div>
+                        <div class="newsTxt animated2 fadeInUp2 wow">
+                            <span class="newsTit_time"><img src="/static/images/time.png" alt=""> Jul 13,2020</span>
+                            <span class="newsTit">XXXXXXXX</span>
+                            <p class="newsP">
+                                                           </p>
+                            <div class="tmkMore animated2 fadeInUp2 wow">
+                                <span class="indMore">探索更多</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="javascript:;" class="newsA">
+                        <div class="newsImg animated2 fadeInUp2 wow">
+                            <img src="/static/images/s4.png" alt="">
+
+                        </div>
+                        <div class="newsTxt animated2 fadeInUp2 wow">
+                            <span class="newsTit_time"><img src="/static/images/time.png" alt=""> Jun 03,2020</span>
+                            <span class="newsTit">XXXXXXXX</span>
+                            <p class="newsP">
+                                                           </p>
+                            <div class="tmkMore animated2 fadeInUp2 wow">
+                                <span class="indMore">探索更多</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="javascript:;" class="newsA">
+                        <div class="newsImg animated2 fadeInUp2 wow">
+                            <img src="/static/images/s5.png" alt="">
+
+                        </div>
+                        <div class="newsTxt animated2 fadeInUp2 wow">
+                            <span class="newsTit_time"><img src="/static/images/time.png" alt=""> May 28,2020</span>
+                            <span class="newsTit">XXXXXXXX</span>
+                            <p class="newsP">
+                                                           </p>
+                            <div class="tmkMore animated2 fadeInUp2 wow">
+                                <span class="indMore">探索更多</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="javascript:;" class="newsA">
+                        <div class="newsImg animated2 fadeInUp2 wow">
+                            <img src="/static/images/s6.png" alt="">
+
+                        </div>
+                        <div class="newsTxt animated2 fadeInUp2 wow">
+                            <span class="newsTit_time"><img src="/static/images/time.png" alt=""> May 19,2020</span>
+                            <span class="newsTit">XXXXXXXX</span>
+                            <p class="newsP">
+                                                           </p>
+                            <div class="tmkMore animated2 fadeInUp2 wow">
+                                <span class="indMore">探索更多</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+				<div class="pagination-box">
+					<ul class="pagination">
+					  <li>页面</li>
+					  <li><a href="#">1</a></li>
+					  <li><a class="active" href="#">2</a></li>
+					  <li><a href="#">3</a></li>
+					  <li><a href="#">4</a></li>
+					  <li><a href="#">→</a></li>
+					</ul>
+				</div>
+			</section>
+		</div>
+	</div>
+
+    <div class="measure-container measure-common">
+    	<div class="measure-tit">免费设计</div>
+    	<div class="measure-tit1">专业设计师1对1家装指导</div>
+    	<form action="" method="" class="measure">
+    		<div class="measure-item">
+    			<label><img src="/static/images/people.png" alt=""></label>
+    			<input class="mul_input" placeholder="您的姓名"> 
+    		</div>
+    		<div class="measure-item">
+    			<label><img src="/static/images/phone.png" alt=""></label>
+    			<input class="mul_input"  placeholder="联系方式"> 
+    		</div>
+    		<div class="measure-item">
+    			<label><img src="/static/images/add.png" alt=""></label>
+    			<input class="mul_input" placeholder="所在楼盘"> 
+    		</div>
+    		<div class="button">
+    			<input type="button" value="立即申请">
+    		</div>
+    	</form>
+    </div>
+{include file="common/footer"}
+    
+        <div class="popup-section popup-navigation">
+            <div class="popup-container">
+                <div class="navigation-left">
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="index.html">
+                                <span>首页</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="../application/index/view/index/brand.html">
+                                <span>走进宝仕龙</span>
+                            </a>
+                        </div>
+                    </div>
+    <!--                <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="brandWitness.html">
+                                <span>品牌见证</span>
+                            </a>
+                        </div>
+                    </div> -->
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="../application/index/view/index/eight.html">
+                                <span>八大空间</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="live_museum.html">
+                                <span>百套案例</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="pos.html">
+                                <span>大商样板</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="cooperate-people.html">
+                                <span>商学院</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="contact.html">
+                                <span>联系我们</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="productSearch.html">
+                                <span>防伪查询</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="navigation-right">
+    
+                    <div class="navigation-add">
+                        <div class="navigation-add-line"></div>
+                        <div class="address">
+                            Jl. Duren Tiga Raya No. 33<br>
+                            Jakarta Selatan - 12760 <br>
+                            Indonesia
+                        </div>
+                        <p></p>
+                        +62 21 799 1521
+                        <br>
+                        +62 21 722 5003
+                        <br>
+                        info@prodotti-id.com
+                        <p></p>
+                        <div class="socials">
+                            <div class="icon">
+                                <a href="javascript:;">
+                                    <img src="/static/images/logo-facebook.svg" alt="">
+                                </a>
+                            </div>
+                            <div class="icon">
+                                <a href="javascript:;">
+                                    <img src="/static/images/logo-instagram.svg" alt="">
+                                </a>
+                            </div>
+                            <div class="icon">
+                                <a href="javascript:;">
+                                    <img src="/static/images/logo-youtube.svg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="navigation-add">
+                        <div class="navigation-add-line"></div>
+                        <div>
+                            Monday - Friday<br>
+                            09.00 A.M - 06.00 P.M<br><p></p>
+                            Saturday - Sunday<br>
+                            Appointment Only<br>
+                        </div>
+                        <div class="navigation-bottom">
+                            <div class="navigation-bottom-item">
+                                <a href="javascript:;">
+                                    <span>Privacy & Cookie Policy</span>
+                                </a>
+                            </div>
+                        </div>
+    
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+    <div class="popup-section popup-search">
+
+        <div class="popup-container">
+            <div class="search-form">
+                <input type="text" placeholder="Search for Products, Brands or News" class="input-form" style="width: 0;">
+                <div class="search-result">
+                    <div class="search-result-item"></div>
+                    <div class="search-result-item"></div>
+                    <div class="search-result-item"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="popup-brand">
+        <div class="brand-list">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <div class="slider-image">
+                                <div class="background-image" style="background-image: url('/static/images/brand_swiper_01.jpg')"></div>
+                            </div>
+                            <div class="slider-title">Alexander Lamont</div>
+                            <div class="slider-hr"></div>
+                            <div class="slider-category">Furniture</div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <div class="slider-image">
+                                <div class="background-image" style="background-image: url('/static/images/brand_swiper_02.jpg')"></div>
+                            </div>
+                            <div class="slider-title">Alexander Lamont</div>
+                            <div class="slider-hr"></div>
+                            <div class="slider-category">Furniture</div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <div class="slider-image">
+                                <div class="background-image" style="background-image: url('/static/images/brand_swiper_01.jpg')"></div>
+                            </div>
+                            <div class="slider-title">Alexander Lamont</div>
+                            <div class="slider-hr"></div>
+                            <div class="slider-category">Furniture</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </div>
+    <!--公用-->
+
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/commen.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/rellax.min.js"></script>
+	<script src="js/swiper.min.js"></script>
+    <script src="js/iconfont.js"></script>
+	<script src="js/fixed.js"></script>
+    <script>
+		new WOW().init();
+		var left_swiper1 = new Swiper(".section2-right", {
+			speed: 1000,
+			slidesPerView: '1',
+			// autoplay:true,
+			loop:true,
+			pagination: {
+				clickable: true,
+			},
+		});
+	</script>
+</body>
+</html>

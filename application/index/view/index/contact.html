@@ -160,31 +160,32 @@
 					<p class="b">400 -8877 -831 </p>
 				</div>
 				<div class="contact-form">
-					<form action="/feedback/contact" method="post" name="contactForm" id="contactForm">
+					<form action="/index/index/form" method="post" name="contactForm" id="contactForm">
 						<div class="form-container">
 							<div class="form-group">
 								<label class="form-title">姓名</label>
 								<div>
-									<input type="text" name="name" id="name">
+									<input type="text" name="username" id="name">
 								</div>
 								<label class="msg">请输入您的名字</label>
 							</div>
 							<div class="form-group">
 								<label class="form-title">电子邮件</label>
 								<div>
-									<input type="text" name="mail" id="mail">
+									<input type="text" name="mobile" id="mail">
 								</div>
 								<label class="msg">请输入您的电子邮件地址</label>
 							</div>
 							<div class="form-group">
 								<label class="form-title">信息</label>
 								<div>
-									<input type="text" name="msg" id="msg">
+									<input type="text" name="desc" id="msg">
 								</div>
 								<label class="msg">请控制在50个字以内</label>
 							</div>
+                            <input type="hidden" name="form_type" value="1">
 							<div class="send-full fr">
-								<a href="javascript:;" id="btn-submit">发送</a>
+								<a href="javascript:void(0)" id="btn-submit">发送</a>
 							</div>
 						</div>
 					</form>
@@ -197,21 +198,22 @@
     <div class="measure-container measure-common">
     	<div class="measure-tit">免费设计</div>
     	<div class="measure-tit1">专业设计师1对1家装指导</div>
-    	<form action="" method="" class="measure">
+    	<form action="?" method="post" class="measure">
     		<div class="measure-item">
     			<label><img src="/static/images/people.png" alt=""></label>
-    			<input class="mul_input" placeholder="您的姓名"> 
+    			<input class="mul_input" placeholder="您的姓名">
     		</div>
     		<div class="measure-item">
     			<label><img src="/static/images/phone.png" alt=""></label>
-    			<input class="mul_input"  placeholder="联系方式"> 
+    			<input class="mul_input"  placeholder="联系方式">
     		</div>
     		<div class="measure-item">
     			<label><img src="/static/images/add.png" alt=""></label>
-    			<input class="mul_input" placeholder="所在楼盘"> 
+    			<input class="mul_input" placeholder="所在楼盘">
     		</div>
+
     		<div class="button">
-    			<input type="button" value="立即申请">
+    			<input type="submit" value="立即申请">
     		</div>
     	</form>
     </div>
@@ -394,13 +396,12 @@
     </div>
     <!--公用-->
 
-    <script src="js/jquery-1.11.3.min.js"></script>
-    <script src="js/commen.js"></script>
-    <script src="js/swiper.min.js"></script>
-    <script src="js/swiper.animate1.0.3.min.js"></script>
-    <script src="js/wow.min.js"></script>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=lDvSAVMmEWSfw2CDZRi2cOaMrT6dzoXs"></script>
-    <script src="js/iconfont.js"></script>
-	<script src="js/fixed.js"></script>
+<script>
+    $('#btn-submit').on('click',function(){
+        $('#contactForm').submit();
+    })
+
+</script>
 </body>
 </html>
