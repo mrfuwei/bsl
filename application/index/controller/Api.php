@@ -340,8 +340,15 @@ class Api extends Controller
 
     }
 
+    public function newMenuList2(){
+        $info=db('admin_new_menu')->select();
+        $result['data'] = $info;
+        return json($result);
+    }
+
     public function newMenuModify(){
         if(input('str_1')) $data['title']=input('str_1');
+        if(input('str_2')) $data['title_en']=input('str_2');
         if(input('id')) $id=input('id');
         if(empty(input('id'))&&count($data)<1) return $this->jsonFail();
         $res=db('admin_new_menu')->where('id',$id)->update($data);
@@ -367,6 +374,7 @@ class Api extends Controller
 
     public function newMenuAdd(){
         if(input('str_1')) $data['title']=input('str_1');
+        if(input('str_2')) $data['title_en']=input('str_2');
 //        if(request()->file("pic_1")){
 //            $path=$this->upload("pic_1");
 //            $data['pic_url'] = '/uploads' . DS . $path['save'];
@@ -392,7 +400,7 @@ class Api extends Controller
         $map=array();
         if(!empty($data['search']['value'])) $map['a.title'] = ['like', "%" . $data['search']['value'] . "%"];
 
-        $info=db('admin_new')->alias('a')->join('admin_new_menu menu','a.menu_id=menu.id')->where($map)->field('a.*,b.title as menu_name')->page($start,$data['length'])->order('a.id '.$data['order'][0]['dir'])->select();
+        $info=db('admin_new')->alias('a')->join('admin_new_menu menu','a.menu_id=menu.id')->where($map)->field('a.*,menu.title as menu_name')->page($start,$data['length'])->order('a.id '.$data['order'][0]['dir'])->select();
         $result['draw'] = $data['draw'];
         $result['recordsTotal'] = count($info);
         $result['recordsFiltered'] = count($info);
