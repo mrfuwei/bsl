@@ -256,6 +256,23 @@ class Api extends Controller
 
     }
 
+    public function honorList(){
+        $data=input('get.');
+        if(empty($data)){
+            return $this->jsonFailMsg(1);
+        }
+        $map['pic_type'] = $data['pic_type'];
+        $start = ($data['start']==0)?1:$data['start'];
+
+        $info=db('admin_honor')->where('pic_type',$data['pic_type'])->page($start,$data['length'])->order('sort '.$data['order'][0]['dir'])->select();
+        $result['draw'] = $data['draw'];
+        $result['recordsTotal'] = count($info);
+        $result['recordsFiltered'] = count($info);
+        $result['data'] = $info;
+        return json($result);
+
+    }
+
     public function indexHonorModify(){
         if(input('str_1')) $data['sort']=input('str_1');
         if(input('id')) $id=input('id');
@@ -305,6 +322,139 @@ class Api extends Controller
     }
 
 
+    public function newMenuList(){
+        $data=input('get.');
+        if(empty($data)){
+            return $this->jsonFailMsg(1);
+        }
+        $start = ($data['start']==0)?1:$data['start'];
+        $map=array();
+        if(!empty($data['search']['value'])) $map['title'] = ['like', "%" . $data['search']['value'] . "%"];
+
+        $info=db('admin_new_menu')->where($map)->page($start,$data['length'])->order('id '.$data['order'][0]['dir'])->select();
+        $result['draw'] = $data['draw'];
+        $result['recordsTotal'] = count($info);
+        $result['recordsFiltered'] = count($info);
+        $result['data'] = $info;
+        return json($result);
+
+    }
+
+    public function newMenuModify(){
+        if(input('str_1')) $data['title']=input('str_1');
+        if(input('id')) $id=input('id');
+        if(empty(input('id'))&&count($data)<1) return $this->jsonFail();
+        $res=db('admin_new_menu')->where('id',$id)->update($data);
+        if($res){
+            return $this->jsonSuccess();
+        }else{
+            return $this->jsonFail();
+        }
+
+    }
+
+    public function newMenuDelete(){
+        if(input('id')) $id=input('id');
+        if(empty(input('id'))) return $this->jsonFail();
+        $res = db('admin_new_menu')->where('id', $id)->delete();
+        if($res){
+            return $this->jsonSuccess();
+        }else{
+            return $this->jsonFail();
+        }
+
+    }
+
+    public function newMenuAdd(){
+        if(input('str_1')) $data['title']=input('str_1');
+//        if(request()->file("pic_1")){
+//            $path=$this->upload("pic_1");
+//            $data['pic_url'] = '/uploads' . DS . $path['save'];
+//        }
+        if(count($data)<1) return $this->jsonFail();
+
+        $res=db('admin_new_menu')->insert($data);
+        if($res){
+            return $this->jsonSuccess();
+        }else{
+            return $this->jsonFail();
+        }
+
+    }
+
+
+    public function newList(){
+        $data=input('get.');
+        if(empty($data)){
+            return $this->jsonFailMsg(1);
+        }
+        $start = ($data['start']==0)?1:$data['start'];
+        $map=array();
+        if(!empty($data['search']['value'])) $map['a.title'] = ['like', "%" . $data['search']['value'] . "%"];
+
+        $info=db('admin_new')->alias('a')->join('admin_new_menu menu','a.menu_id=menu.id')->where($map)->field('a.*,b.title as menu_name')->page($start,$data['length'])->order('a.id '.$data['order'][0]['dir'])->select();
+        $result['draw'] = $data['draw'];
+        $result['recordsTotal'] = count($info);
+        $result['recordsFiltered'] = count($info);
+        $result['data'] = $info;
+        return json($result);
+
+    }
+
+    public function newModify(){
+        if(input('str_1')) $data['title']=input('str_1');
+        if(input('str_2')) $data['menu_id']=input('str_2');
+        if(input('str_3')) $data['content']=input('str_3');
+        if(input('str_4')) $data['desc']=input('str_4');
+        if(input('id')) $id=input('id');
+        if(empty(input('id'))&&count($data)<1) return $this->jsonFail();
+        if(request()->file("pic_1")){
+            $path=$this->upload("pic_1");
+            $data['pic'] = '/uploads' . DS . $path['save'];
+        }
+        $res=db('admin_new')->where('id',$id)->update($data);
+        if($res){
+            return $this->jsonSuccess();
+        }else{
+            return $this->jsonFail();
+        }
+
+    }
+
+    public function newDelete(){
+        if(input('id')) $id=input('id');
+        if(empty(input('id'))) return $this->jsonFail();
+        $res = db('admin_new')->where('id', $id)->delete();
+        if($res){
+            return $this->jsonSuccess();
+        }else{
+            return $this->jsonFail();
+        }
+
+    }
+
+    public function newAdd(){
+        if(input('str_1')) $data['title']=input('str_1');
+        if(input('str_2')) $data['menu_id']=input('str_2');
+        if(input('str_3')) $data['content']=input('str_3');
+        if(input('str_4')) $data['desc']=input('str_4');
+        if(count($data)<1) return $this->jsonFail();
+        if(request()->file("pic_1")){
+            $path=$this->upload("pic_1");
+            $data['pic'] = '/uploads' . DS . $path['save'];
+        }
+
+        $res=db('admin_new')->insert($data);
+        if($res){
+            return $this->jsonSuccess();
+        }else{
+            return $this->jsonFail();
+        }
+
+    }
+
+
+
 
     private function upload($name)
     {
@@ -351,22 +501,7 @@ class Api extends Controller
 //        return json(['data'=>$userInfo]);
     }
 
-    public function honorList(){
-        $data=input('get.');
-        if(empty($data)){
-            return $this->jsonFailMsg(1);
-        }
-        $map['pic_type'] = $data['pic_type'];
-        $start = ($data['start']==0)?1:$data['start'];
 
-        $info=db('admin_honor')->where('pic_type',$data['pic_type'])->page($start,$data['length'])->order('sort '.$data['order'][0]['dir'])->select();
-        $result['draw'] = $data['draw'];
-        $result['recordsTotal'] = count($info);
-        $result['recordsFiltered'] = count($info);
-        $result['data'] = $info;
-        return json($result);
-
-    }
 
     public function getIndexBanner(){
         $id=input('id');
@@ -501,8 +636,6 @@ class Api extends Controller
         );
         return base64_encode(json_encode($arr));
     }
-
-
 
 
 
