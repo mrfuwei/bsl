@@ -264,7 +264,7 @@ class Api extends Controller
         $map['pic_type'] = $data['pic_type'];
         $start = ($data['start']==0)?1:$data['start'];
 
-        $info=db('admin_honor')->where('pic_type',$data['pic_type'])->page($start,$data['length'])->order('sort '.$data['order'][0]['dir'])->select();
+        $info=db('admin_honor')->where('pic_type',$data['pic_type'])->limit($start,$data['length'])->order('sort '.$data['order'][0]['dir'])->select();
         $all = db('admin_honor')->where('pic_type', $data['pic_type'])->select();
         $result['draw'] = $data['draw'];
         $result['recordsTotal'] = count($all);
@@ -332,10 +332,11 @@ class Api extends Controller
         $map=array();
         if(!empty($data['search']['value'])) $map['title'] = ['like', "%" . $data['search']['value'] . "%"];
 
-        $info=db('admin_new_menu')->where($map)->page($start,$data['length'])->order('id '.$data['order'][0]['dir'])->select();
+        $info=db('admin_new_menu')->where($map)->limit($start,$data['length'])->order('id '.$data['order'][0]['dir'])->select();
+        $all = db('admin_new_menu')->where($map)->select();
         $result['draw'] = $data['draw'];
-        $result['recordsTotal'] = count($info);
-        $result['recordsFiltered'] = count($info);
+        $result['recordsTotal'] = count($all);
+        $result['recordsFiltered'] = count($all);
         $result['data'] = $info;
         return json($result);
 
