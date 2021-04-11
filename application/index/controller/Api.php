@@ -262,7 +262,7 @@ class Api extends Controller
             return $this->jsonFailMsg(1);
         }
         $map['pic_type'] = $data['pic_type'];
-        $start = ($data['start']==0)?1:$data['start'];
+        $start = $data['start'];
 
         $info=db('admin_honor')->where('pic_type',$data['pic_type'])->limit($start,$data['length'])->order('sort '.$data['order'][0]['dir'])->select();
         $all = db('admin_honor')->where('pic_type', $data['pic_type'])->select();
@@ -328,7 +328,7 @@ class Api extends Controller
         if(empty($data)){
             return $this->jsonFailMsg(1);
         }
-        $start = ($data['start']==0)?1:$data['start'];
+        $start = $data['start'];
         $map=array();
         if(!empty($data['search']['value'])) $map['title'] = ['like', "%" . $data['search']['value'] . "%"];
 
@@ -403,9 +403,10 @@ class Api extends Controller
         if(!empty($data['search']['value'])) $map['a.title'] = ['like', "%" . $data['search']['value'] . "%"];
 
         $info=db('admin_new')->alias('a')->join('admin_new_menu menu','a.menu_id=menu.id')->where($map)->field('a.*,menu.title as menu_name')->page($start,$data['length'])->order('a.id '.$data['order'][0]['dir'])->select();
+        $all = db('admin_new')->alias('a')->join('admin_new_menu menu','a.menu_id=menu.id')->where($map)->select();
         $result['draw'] = $data['draw'];
-        $result['recordsTotal'] = count($info);
-        $result['recordsFiltered'] = count($info);
+        $result['recordsTotal'] = count($all);
+        $result['recordsFiltered'] = count($all);
         $result['data'] = $info;
         return json($result);
 

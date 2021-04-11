@@ -91,8 +91,37 @@ class Index extends Controller
     }
 
     public function news(){
+        if(request()->isGet()){
+            $getData=input('get.');
+            $page=(empty($getData['page']))?1:$getData['page'];
+            $pageSize=(empty($getData['page_size']))?8:$getData['page_size'];
+            $info=db('admin_new')->page($page,$pageSize)->order('c_time desc')->select();
+            $this->assign('list', $info);
+            $menu_info=db('admin_new_menu')->select();
+            $this->assign('menu_list', $menu_info);
+
+        }
+
+
+
         return $this->fetch('news');
     }
+
+    public function news_detail(){
+        if(request()->isGet()){
+            $getData=input('get.');
+            $info=db('admin_new')->where('id',$getData['id'])->find();
+            $this->assign('list', $info);
+        }else{
+            $this->assign('list', '');
+        }
+
+
+
+        return $this->fetch('news_detail');
+    }
+
+
 
     public function news_video(){
         return $this->fetch('news_video');
