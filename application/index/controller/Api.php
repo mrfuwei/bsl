@@ -265,9 +265,10 @@ class Api extends Controller
         $start = ($data['start']==0)?1:$data['start'];
 
         $info=db('admin_honor')->where('pic_type',$data['pic_type'])->page($start,$data['length'])->order('sort '.$data['order'][0]['dir'])->select();
+        $all = db('admin_honor')->where('pic_type', $data['pic_type'])->select();
         $result['draw'] = $data['draw'];
-        $result['recordsTotal'] = count($info);
-        $result['recordsFiltered'] = count($info);
+        $result['recordsTotal'] = count($all);
+        $result['recordsFiltered'] = count($all);
         $result['data'] = $info;
         return json($result);
 

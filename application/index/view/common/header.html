@@ -22,3 +22,24 @@
 <script src="__STATIC__/js/mymin.js" charset="utf-8"></script>
 <script src="__STATIC__/js/iconfont.js"></script>
 <script src="__STATIC__/js/fixed.js"></script>
+<script>
+    // $('body').on('change','#move',function(){
+    //     let top=$(this).css('top');
+    //     console.log("top",top)
+    // })
+    onload = function ()
+    {
+        var div = document.getElementById ('div')
+        document.onmousemove = function (e)
+        {
+            e = e || window.event;
+            console.log("top",e.clientX)
+            e.
+            div.innerHTML = (e.clientX + ',' + e.clientY);
+        }
+        console.log("#move",document.body.offsetLeft)
+
+    }
+
+
+</script>
