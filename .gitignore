@@ -5,4 +5,5 @@
 public/static/images/*
 public/static/media/*
 public/uploads/*
+application/database.php
 
