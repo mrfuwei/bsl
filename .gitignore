@@ -4,4 +4,5 @@
 .gitignore
 public/static/images/*
 public/static/media/*
+public/uploads/*
 
