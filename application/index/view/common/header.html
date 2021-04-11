@@ -29,15 +29,27 @@
     // })
     onload = function ()
     {
-        var div = document.getElementById ('div')
+
         document.onmousemove = function (e)
         {
             e = e || window.event;
-            console.log("top",e.clientX)
-            e.
-            div.innerHTML = (e.clientX + ',' + e.clientY);
+            let scrollTop = window.pageYOffset ||document.documentElement.scrollTop|| document.body.scrollTop || 0;
+            if(scrollTop==0){
+                if (e.clientY<120){
+                    $('.header').addClass('cur')
+                }
+                if(e.clientY>250){
+                    $('.header').removeClass('cur')
+                }
+                // var color = window.getComputedStyle(
+                //     document.querySelector('.header2-comboBox'),':before'
+                // ).getPropertyValue('color')
+                // console.log('color',color)
+            }
+
+            // $('#move').html(e.clientX + ',' + e.clientY);
+
         }
-        console.log("#move",document.body.offsetLeft)
 
     }
 
