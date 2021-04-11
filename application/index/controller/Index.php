@@ -61,9 +61,9 @@ class Index extends Controller
     }
 
     public function brand(){
-        $list1 = db('admin_honor')->where('pic_type', 1)->select();
-        $list2 = db('admin_honor')->where('pic_type', 2)->select();
-        $list3 = db('admin_honor')->where('pic_type', 3)->select();
+        $list1 = db('admin_honor')->where('pic_type', 1)->order('sort desc')->select();
+        $list2 = db('admin_honor')->where('pic_type', 2)->order('sort desc')->select();
+        $list3 = db('admin_honor')->where('pic_type', 3)->order('sort desc')->select();
         $this->assign('list1', $list1);
         $this->assign('list2', $list2);
         $this->assign('list3', $list3);
