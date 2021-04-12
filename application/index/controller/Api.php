@@ -48,9 +48,9 @@ class Api extends Controller
             return $this->jsonFailMsg(1);
         }
         $map['form_type'] = $data['form_type'];
-        $start = ($data['start']==0)?1:$data['start'];
+        $start = empty($data['start'])?0:$data['start'];
 
-        $info=db('admin_form')->where('form_type',$data['form_type'])->page($start,$data['length'])->order('id '.$data['order'][0]['dir'])->select();
+        $info=db('admin_form')->where('form_type',$data['form_type'])->limit($start,$data['length'])->order('id '.$data['order'][0]['dir'])->select();
         $result['draw'] = $data['draw'];
         $result['recordsTotal'] = count($info);
         $result['recordsFiltered'] = count($info);
@@ -398,11 +398,11 @@ class Api extends Controller
         if(empty($data)){
             return $this->jsonFailMsg(1);
         }
-        $start = ($data['start']==0)?1:$data['start'];
+        $start = empty($data['start'])?0:$data['start'];
         $map=array();
         if(!empty($data['search']['value'])) $map['a.title'] = ['like', "%" . $data['search']['value'] . "%"];
 
-        $info=db('admin_new')->alias('a')->join('admin_new_menu menu','a.menu_id=menu.id')->where($map)->field('a.*,menu.title as menu_name')->page($start,$data['length'])->order('a.id '.$data['order'][0]['dir'])->select();
+        $info=db('admin_new')->alias('a')->join('admin_new_menu menu','a.menu_id=menu.id')->where($map)->field('a.*,menu.title as menu_name')->limit($start,$data['length'])->order('a.id '.$data['order'][0]['dir'])->select();
         $all = db('admin_new')->alias('a')->join('admin_new_menu menu','a.menu_id=menu.id')->where($map)->select();
         $result['draw'] = $data['draw'];
         $result['recordsTotal'] = count($all);
@@ -464,7 +464,29 @@ class Api extends Controller
 
     }
 
+    public function upload_img()
+    {
+        // 获取表单上传文件 例如上传了001.jpg
+        $file = request()->file("file");
+        // 移动到框架应用根目录/public/uploads/ 目录下
+        $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads');
+//        $info = $file->move(ROOT_PATH . 'uploads');
 
+        if ($info) {
+            // 成功上传后 获取上传信息
+            // 输出 jpg
+            $upload['houzhui'] = $info->getExtension();
+            // 输出 20160820/42a79759f284b767dfcb2a0197904287.jpg
+            $upload['save'] = $info->getSaveName();
+            // 输出 42a79759f284b767dfcb2a0197904287.jpg
+            $upload['name'] = $info->getFilename();
+        } else {
+            // 上传失败获取错误信息
+            $upload['error'] = $file->getError();
+        }
+        $path = DS . 'uploads' . DS . $upload['save'];
+        return json(['data' => $path]);
+    }
 
 
     private function upload($name)
