@@ -83,7 +83,65 @@ class Index extends Controller
     }
 
     public function live_museum(){
+        if(request()->isGet()){
+            $str_1=input('get.str_1');
+            $str_2=input('get.str_2');
+            $menu_id=input('get.menu_id');
+            $map=[];
+            if(!empty($str_1)){
+                if($str_1=='1'||$str_1==2) {
+                    $map['str_1'] = $str_1;
+                }
+            }else if(!empty($str_2)){
+                    $map['str_2']=$str_2;
+            }else if(!empty($menu_id)){
+                $map['menu_id']=$menu_id;
+            }
+              $list=db('admin_example')->alias('a')->join('admin_example_menu b','a.menu_id=b.id')->where('b.menu_type',1)->where($map)->paginate(8);
+                $this->assign("list",$list);
+
+        }
+            $menu_list=db('admin_example_menu')->where('menu_type',1)->select();
+            $this->assign("menu_list", $menu_list);
         return $this->fetch('live_museum');
+    }
+
+    public function live_museum2(){
+        if(request()->isGet()){
+            $str_1=input('get.str_1');
+            $str_2=input('get.str_2');
+            $menu_id=input('get.menu_id');
+            $map=[];
+            if(!empty($str_1)){
+                if($str_1=='1'||$str_1==2) {
+                    $map['str_1'] = $str_1;
+                }
+            }else if(!empty($str_2)){
+                $map['str_2']=$str_2;
+            }else if(!empty($menu_id)){
+                $map['menu_id']=$menu_id;
+            }
+            $list=db('admin_example')->alias('a')->join('admin_example_menu b','a.menu_id=b.id')->where('b.menu_type',2)->where($map)->paginate(8);
+            $this->assign("list",$list);
+
+        }
+        $menu_list=db('admin_example_menu')->where('menu_type',2)->select();
+        $this->assign("menu_list", $menu_list);
+        return $this->fetch('live_museum');
+    }
+
+    public function live_museum_detail(){
+        if(request()->isGet()){
+            $getData=input('get.');
+            $info=db('admin_example')->where('id',$getData['id'])->find();
+            $this->assign('list', $info);
+        }else{
+            $this->assign('list', '');
+        }
+
+        $tuijianlist=db('admin_example')->where('str_6',1)->select();
+        $this->assign('tjlist', $tuijianlist);
+        return $this->fetch('live_museum_detail');
     }
 
     public function remould(){
@@ -92,18 +150,15 @@ class Index extends Controller
 
     public function news(){
         if(request()->isGet()){
-            $getData=input('get.');
-            $page=(empty($getData['page']))?1:$getData['page'];
-            $pageSize=(empty($getData['page_size']))?8:$getData['page_size'];
-            $info=db('admin_new')->page($page,$pageSize)->order('c_time desc')->select();
+//            $getData=input('get.');
+//            $page=(empty($getData['page']))?1:$getData['page'];
+//            $pageSize=(empty($getData['page_size']))?8:$getData['page_size'];
+            $info=db('admin_new_menu')->alias("a")->join('admin_new b','a.id=b.menu_id','left')->where('a.menu_type',1)->order('b.c_time desc')->field('b.*')->paginate(8);
             $this->assign('list', $info);
-            $menu_info=db('admin_new_menu')->select();
+            $menu_info=db('admin_new_menu')->where('menu_type',1)->select();
             $this->assign('menu_list', $menu_info);
 
         }
-
-
-
         return $this->fetch('news');
     }
 
@@ -123,7 +178,21 @@ class Index extends Controller
 
 
 
+
     public function news_video(){
+        if(request()->isGet()){
+//            $getData=input('get.');
+//            $page=(empty($getData['page']))?1:$getData['page'];
+//            $pageSize=(empty($getData['page_size']))?8:$getData['page_size'];
+            $menu_id = input('get.menu_id');
+            $map = [];
+                if(!empty($menu_id)) $map['menu_id'] = $menu_id;
+            $info=db('admin_new_menu')->alias("a")->join('admin_new b','a.id=b.menu_id','left')->where($map)->order('b.c_time desc')->field('b.*')->paginate(6);
+            $this->assign('list', $info);
+            $menu_info=db('admin_new_menu')->select();
+            $this->assign('menu_list', $menu_info);
+
+        }
         return $this->fetch('news_video');
     }
 
@@ -183,6 +252,13 @@ class Index extends Controller
     }
 
     public function say(){
+        if(request()->isGet()){
+            $getData=input('get.');
+            $page=(empty($getData['page']))?1:$getData['page'];
+            $pageSize=(empty($getData['page_size']))?8:$getData['page_size'];
+            $info=db('admin_new_menu')->alias("a")->join('admin_new b','a.id=b.menu_id','left')->where('a.menu_type',2)->page($page,$pageSize)->order('b.c_time desc')->field('b.*')->select();
+            $this->assign('list', $info);
+        }
         return $this->fetch('say');
     }
 

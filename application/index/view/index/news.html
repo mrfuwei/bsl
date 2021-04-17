@@ -368,7 +368,7 @@
 			    	</li>
 					{volist id="vo" name="menu_list"}
 					<li>
-						<a href="javasctipt:;">
+						<a href="?menu_id=<?=$vo['id'];?>">
 							<span class="en">{$vo.title_en}</span>
 							<span class="cn">{$vo.title}</span>
 						</a>
@@ -406,16 +406,18 @@
 				{/volist}
 			</div>
 			<div class="pagination-box">
-				<ul class="pagination">
-				  <li><a href="#">首页</a></li>
-				  <li><a href="#">上一页</a></li>
-				  <li><a href="#">1</a></li>
-				  <li><a class="active" href="#">2</a></li>
-				  <li><a href="#">3</a></li>
-				  <li><a href="#">4</a></li>
-				  <li><a href="#">下一页</a></li>
-				  <li><a href="#">末页</a></li>
-				</ul>
+                {$list->render()}
+<!--				<ul class="pagination">-->
+
+<!--				  <li><a href="#">首页</a></li>-->
+<!--				  <li><a href="#">上一页</a></li>-->
+<!--				  <li><a href="#">1</a></li>-->
+<!--				  <li><a class="active" href="#">2</a></li>-->
+<!--				  <li><a href="#">3</a></li>-->
+<!--				  <li><a href="#">4</a></li>-->
+<!--				  <li><a href="#">下一页</a></li>-->
+<!--				  <li><a href="#">末页</a></li>-->
+<!--				</ul>-->
 			</div>
         </div>
     </div>

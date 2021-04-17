@@ -464,6 +464,193 @@ class Api extends Controller
 
     }
 
+
+    public function exampleMenuList(){
+        $data=input('get.');
+        if(empty($data)){
+            return $this->jsonFailMsg(1);
+        }
+        $start = empty($data['start'])?0:$data['start'];
+        $map=array();
+        if(!empty($data['search']['value'])) $map['a.title'] = ['like', "%" . $data['search']['value'] . "%"];
+
+        $info=db('admin_example_menu')->where($map)->limit($start,$data['length'])->order('id '.$data['order'][0]['dir'])->select();
+        $all = db('admin_example_menu')->where($map)->select();
+        $result['draw'] = $data['draw'];
+        $result['recordsTotal'] = count($all);
+        $result['recordsFiltered'] = count($all);
+        $result['data'] = $info;
+        return json($result);
+
+    }
+
+    public function exampleMenuList2(){
+        $info=db('admin_example_menu')->select();
+        $result['data'] = $info;
+        return json($result);
+    }
+
+    public function exampleMenuModify(){
+        if(input('str_1')) $data['title']=input('str_1');
+        if(input('str_2')) $data['title_en']=input('str_2');
+        if(input('str_3')) $data['menu_type']=input('str_3');
+        if(input('id')) $id=input('id');
+        if(empty(input('id'))&&count($data)<1) return $this->jsonFail();
+        $res=db('admin_example_menu')->where('id',$id)->update($data);
+        if($res){
+            return $this->jsonSuccess();
+        }else{
+            return $this->jsonFail();
+        }
+
+    }
+
+    public function exampleMenuDelete(){
+        if(input('id')) $id=input('id');
+        if(empty(input('id'))) return $this->jsonFail();
+        $res = db('admin_example_menu')->where('id', $id)->delete();
+        if($res){
+            return $this->jsonSuccess();
+        }else{
+            return $this->jsonFail();
+        }
+
+    }
+
+    public function exampleMenuAdd(){
+        if(input('str_1')) $data['title']=input('str_1');
+        if(input('str_2')) $data['title_en']=input('str_2');
+        if(input('str_3')) $data['menu_type']=input('str_3');
+        if(count($data)<1) return $this->jsonFail();
+        $res=db('admin_example_menu')->insert($data);
+        if($res){
+            return $this->jsonSuccess();
+        }else{
+            return $this->jsonFail();
+        }
+
+    }
+    public function exampleList(){
+        $data=input('get.');
+        if(empty($data)){
+            return $this->jsonFailMsg(1);
+        }
+        $start = empty($data['start'])?0:$data['start'];
+        $map=array();
+        if(!empty($data['search']['value'])) $map['a.title'] = ['like', "%" . $data['search']['value'] . "%"];
+
+        $info=db('admin_example')->alias('a')->join('admin_example_menu menu','a.menu_id=menu.id')->where($map)->field('a.*,menu.title as menu_name')->limit($start,$data['length'])->order('a.id '.$data['order'][0]['dir'])->select();
+        $all = db('admin_example')->alias('a')->join('admin_example_menu menu','a.menu_id=menu.id')->where($map)->select();
+        $result['draw'] = $data['draw'];
+        $result['recordsTotal'] = count($all);
+        $result['recordsFiltered'] = count($all);
+        $result['data'] = $info;
+        return json($result);
+
+    }
+
+    public function exampleModify(){
+        if(input('title')) $data['title']=input('title');
+        if(input('menu_id')) $data['menu_id']=input('menu_id');
+        if(input('content')) $data['content']=input('content');
+        if(input('str_1')) $data['str_1']=input('str_1');
+        if(input('str_2')) $data['str_2']=input('str_2');
+        if(input('str_3')) $data['str_3']=input('str_3');
+        if(input('str_4')) $data['str_4']=input('str_4');
+        if(input('str_5')) $data['str_5']=input('str_5');
+        if(input('str_6')) $data['str_6']=input('str_6');
+        if(request()->file("pic_1")){
+            $path=$this->upload("pic_1");
+            $data['pic_1'] = '/uploads' . DS . $path['save'];
+        }
+        if(request()->file("pic_2")){
+            $path=$this->upload("pic_2");
+            $data['pic_2'] = '/uploads' . DS . $path['save'];
+        }
+        if(request()->file("pic_3")){
+            $path=$this->upload("pic_3");
+            $data['pic_3'] = '/uploads' . DS . $path['save'];
+        }
+        if(request()->file("pic_4")){
+            $path=$this->upload("pic_4");
+            $data['pic_4'] = '/uploads' . DS . $path['save'];
+        }
+        if(request()->file("pic_5")){
+            $path=$this->upload("pic_5");
+            $data['pic_5'] = '/uploads' . DS . $path['save'];
+        }
+        if(request()->file("pic_6")){
+            $path=$this->upload("pic_6");
+            $data['pic_6'] = '/uploads' . DS . $path['save'];
+        }
+        if(input('id')) $id=input('id');
+        if(empty(input('id'))&&count($data)<1) return $this->jsonFail();
+        $res=db('admin_example')->where('id',$id)->update($data);
+        if($res){
+            return $this->jsonSuccess();
+        }else{
+            return $this->jsonFail();
+        }
+
+    }
+
+    public function exampleDelete(){
+        if(input('id')) $id=input('id');
+        if(empty(input('id'))) return $this->jsonFail();
+        $res = db('admin_example')->where('id', $id)->delete();
+        if($res){
+            return $this->jsonSuccess();
+        }else{
+            return $this->jsonFail();
+        }
+
+    }
+
+    public function exampleAdd(){
+        if(input('title')) $data['title']=input('title');
+        if(input('menu_id')) $data['menu_id']=input('menu_id');
+        if(input('content')) $data['content']=input('content');
+        if(input('str_1')) $data['str_1']=input('str_1');
+        if(input('str_2')) $data['str_2']=input('str_2');
+        if(input('str_3')) $data['str_3']=input('str_3');
+        if(input('str_4')) $data['str_4']=input('str_4');
+        if(input('str_5')) $data['str_5']=input('str_5');
+        if(input('str_6')) $data['str_6']=input('str_6');
+
+        if(request()->file("pic_1")){
+            $path=$this->upload("pic_1");
+            $data['pic_1'] = '/uploads' . DS . $path['save'];
+        }
+        if(request()->file("pic_2")){
+            $path=$this->upload("pic_2");
+            $data['pic_2'] = '/uploads' . DS . $path['save'];
+        }
+        if(request()->file("pic_3")){
+            $path=$this->upload("pic_3");
+            $data['pic_3'] = '/uploads' . DS . $path['save'];
+        }
+        if(request()->file("pic_4")){
+            $path=$this->upload("pic_4");
+            $data['pic_4'] = '/uploads' . DS . $path['save'];
+        }
+        if(request()->file("pic_5")){
+            $path=$this->upload("pic_5");
+            $data['pic_5'] = '/uploads' . DS . $path['save'];
+        }
+        if(request()->file("pic_6")){
+            $path=$this->upload("pic_6");
+            $data['pic_6'] = '/uploads' . DS . $path['save'];
+        }
+        if(count($data)<1) return $this->jsonFail();
+        $res=db('admin_example')->insert($data);
+        if($res){
+            return $this->jsonSuccess();
+        }else{
+            return $this->jsonFail();
+        }
+
+    }
+
     public function upload_img()
     {
         // 获取表单上传文件 例如上传了001.jpg

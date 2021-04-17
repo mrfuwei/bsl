@@ -534,24 +534,15 @@
 			    		<span class="cn">全部</span>
 			    		</a>
 			    	</li>
-			    	<li>
-			    		<a href="javasctipt:;">
-			    		<span class="en">ENTERPRISE</span>
-			    		<span class="cn">企业</span>
-			    		</a>
-			    	</li>
-			    	<li>
-			    		<a href="javasctipt:;">
-			    		<span class="en">MARKET</span>
-			    		<span class="cn">市场</span>
-			    		</a>
-			    	</li>
-			    	<li>
-			    		<a href="javasctipt:;">
-			    		<span class="en">ACTIVITY</span>
-			    		<span class="cn">活动</span>
-			    		</a>
-			    	</li>
+                    {volist id="vo" name="menu_list"}
+                    <li>
+                        <a href="?menu_id=<?=$vo['id'];?>">
+                            <span class="en">{$vo.title_en}</span>
+                            <span class="cn">{$vo.title}</span>
+                        </a>
+                    </li>
+                    {/volist}
+
 			    	<!--<li>-->
 			    		<!--<a href="javasctipt:;">-->
 			    		<!--<span class="en">VIDEO</span>-->
@@ -572,14 +563,15 @@
 			</div>
 			<section class="section3">
 				<div class="newsBox clearfix">
+                    {volist id="vo" name="list"}
                     <a href="javascript:;" class="newsA">
                         <div class="newsImg animated2 fadeInUp2 wow">
-                            <img src="/static/images/s1.png" alt="">
+                            <img src="<?=$vo['pic']?>" alt="">
                             <span class="section1-left-img-play"></span>
                         </div>
                         <div class="newsTxt animated2 fadeInUp2 wow">
-                            <span class="newsTit_time"><img src="/static/images/time.png" alt=""> Aug 07,2020</span>
-                            <span class="newsTit">XXXXXXXX</span>
+                            <span class="newsTit_time"><img src="/static/images/time.png" alt=""><?=date('Y-m-d',strtotime($vo['c_time']))?></span>
+                            <span class="newsTit">{$vo.title}</span>
                             <p class="newsP">
                                                            </p>
                             <div class="tmkMore animated2 fadeInUp2 wow">
@@ -587,91 +579,93 @@
                             </div>
                         </div>
                     </a>
-                    <a href="javascript:;" class="newsA">
-                        <div class="newsImg animated2 fadeInUp2 wow">
-                            <img src="/static/images/s2.png" alt="">
-							<span class="section1-left-img-play"></span>
-                        </div>
-                        <div class="newsTxt animated2 fadeInUp2 wow">
-                            <span class="newsTit_time"><img src="/static/images/time.png" alt=""> Aug 07,2020</span>
-                            <span class="newsTit">XXXXXXXX</span>
-                            <p class="newsP">
-                                                           </p>
-                            <div class="tmkMore animated2 fadeInUp2 wow">
-                                <span class="indMore">探索更多</span>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="javascript:;" class="newsA">
-                        <div class="newsImg animated2 fadeInUp2 wow">
-                            <img src="/static/images/s3.png" alt="">
-							<span class="section1-left-img-play"></span>
-                        </div>
-                        <div class="newsTxt animated2 fadeInUp2 wow">
-                            <span class="newsTit_time"><img src="/static/images/time.png" alt=""> Jul 13,2020</span>
-                            <span class="newsTit">XXXXXXXX</span>
-                            <p class="newsP">
-                                                           </p>
-                            <div class="tmkMore animated2 fadeInUp2 wow">
-                                <span class="indMore">探索更多</span>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="javascript:;" class="newsA">
-                        <div class="newsImg animated2 fadeInUp2 wow">
-                            <img src="/static/images/s4.png" alt="">
-							<span class="section1-left-img-play"></span>
-                        </div>
-                        <div class="newsTxt animated2 fadeInUp2 wow">
-                            <span class="newsTit_time"><img src="/static/images/time.png" alt=""> Jun 03,2020</span>
-                            <span class="newsTit">XXXXXXXX</span>
-                            <p class="newsP">
-                                                           </p>
-                            <div class="tmkMore animated2 fadeInUp2 wow">
-                                <span class="indMore">探索更多</span>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="javascript:;" class="newsA">
-                        <div class="newsImg animated2 fadeInUp2 wow">
-                            <img src="/static/images/s5.png" alt="">
-							<span class="section1-left-img-play"></span>
-                        </div>
-                        <div class="newsTxt animated2 fadeInUp2 wow">
-                            <span class="newsTit_time"><img src="/static/images/time.png" alt=""> May 28,2020</span>
-                            <span class="newsTit">XXXXXXXX</span>
-                            <p class="newsP">
-                                                           </p>
-                            <div class="tmkMore animated2 fadeInUp2 wow">
-                                <span class="indMore">探索更多</span>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="javascript:;" class="newsA">
-                        <div class="newsImg animated2 fadeInUp2 wow">
-                            <img src="/static/images/s6.png" alt="">
-							<span class="section1-left-img-play"></span>
-                        </div>
-                        <div class="newsTxt animated2 fadeInUp2 wow">
-                            <span class="newsTit_time"><img src="/static/images/time.png" alt=""> May 19,2020</span>
-                            <span class="newsTit">XXXXXXXX</span>
-                            <p class="newsP">
-                                                           </p>
-                            <div class="tmkMore animated2 fadeInUp2 wow">
-                                <span class="indMore">探索更多</span>
-                            </div>
-                        </div>
-                    </a>
+                    {/volist}
+<!--                    <a href="javascript:;" class="newsA">-->
+<!--                        <div class="newsImg animated2 fadeInUp2 wow">-->
+<!--                            <img src="/static/images/s2.png" alt="">-->
+<!--							<span class="section1-left-img-play"></span>-->
+<!--                        </div>-->
+<!--                        <div class="newsTxt animated2 fadeInUp2 wow">-->
+<!--                            <span class="newsTit_time"><img src="/static/images/time.png" alt=""> Aug 07,2020</span>-->
+<!--                            <span class="newsTit">XXXXXXXX</span>-->
+<!--                            <p class="newsP">-->
+<!--                                                           </p>-->
+<!--                            <div class="tmkMore animated2 fadeInUp2 wow">-->
+<!--                                <span class="indMore">探索更多</span>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </a>-->
+<!--                    <a href="javascript:;" class="newsA">-->
+<!--                        <div class="newsImg animated2 fadeInUp2 wow">-->
+<!--                            <img src="/static/images/s3.png" alt="">-->
+<!--							<span class="section1-left-img-play"></span>-->
+<!--                        </div>-->
+<!--                        <div class="newsTxt animated2 fadeInUp2 wow">-->
+<!--                            <span class="newsTit_time"><img src="/static/images/time.png" alt=""> Jul 13,2020</span>-->
+<!--                            <span class="newsTit">XXXXXXXX</span>-->
+<!--                            <p class="newsP">-->
+<!--                                                           </p>-->
+<!--                            <div class="tmkMore animated2 fadeInUp2 wow">-->
+<!--                                <span class="indMore">探索更多</span>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </a>-->
+<!--                    <a href="javascript:;" class="newsA">-->
+<!--                        <div class="newsImg animated2 fadeInUp2 wow">-->
+<!--                            <img src="/static/images/s4.png" alt="">-->
+<!--							<span class="section1-left-img-play"></span>-->
+<!--                        </div>-->
+<!--                        <div class="newsTxt animated2 fadeInUp2 wow">-->
+<!--                            <span class="newsTit_time"><img src="/static/images/time.png" alt=""> Jun 03,2020</span>-->
+<!--                            <span class="newsTit">XXXXXXXX</span>-->
+<!--                            <p class="newsP">-->
+<!--                                                           </p>-->
+<!--                            <div class="tmkMore animated2 fadeInUp2 wow">-->
+<!--                                <span class="indMore">探索更多</span>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </a>-->
+<!--                    <a href="javascript:;" class="newsA">-->
+<!--                        <div class="newsImg animated2 fadeInUp2 wow">-->
+<!--                            <img src="/static/images/s5.png" alt="">-->
+<!--							<span class="section1-left-img-play"></span>-->
+<!--                        </div>-->
+<!--                        <div class="newsTxt animated2 fadeInUp2 wow">-->
+<!--                            <span class="newsTit_time"><img src="/static/images/time.png" alt=""> May 28,2020</span>-->
+<!--                            <span class="newsTit">XXXXXXXX</span>-->
+<!--                            <p class="newsP">-->
+<!--                                                           </p>-->
+<!--                            <div class="tmkMore animated2 fadeInUp2 wow">-->
+<!--                                <span class="indMore">探索更多</span>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </a>-->
+<!--                    <a href="javascript:;" class="newsA">-->
+<!--                        <div class="newsImg animated2 fadeInUp2 wow">-->
+<!--                            <img src="/static/images/s6.png" alt="">-->
+<!--							<span class="section1-left-img-play"></span>-->
+<!--                        </div>-->
+<!--                        <div class="newsTxt animated2 fadeInUp2 wow">-->
+<!--                            <span class="newsTit_time"><img src="/static/images/time.png" alt=""> May 19,2020</span>-->
+<!--                            <span class="newsTit">XXXXXXXX</span>-->
+<!--                            <p class="newsP">-->
+<!--                                                           </p>-->
+<!--                            <div class="tmkMore animated2 fadeInUp2 wow">-->
+<!--                                <span class="indMore">探索更多</span>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </a>-->
                 </div>
 				<div class="pagination-box">
-					<ul class="pagination">
-					  <li>页面</li>
-					  <li><a href="#">1</a></li>
-					  <li><a class="active" href="#">2</a></li>
-					  <li><a href="#">3</a></li>
-					  <li><a href="#">4</a></li>
-					  <li><a href="#">→</a></li>
-					</ul>
+                    {$list->render()}
+<!--					<ul class="pagination">-->
+<!--					  <li>页面</li>-->
+<!--					  <li><a href="#">1</a></li>-->
+<!--					  <li><a class="active" href="#">2</a></li>-->
+<!--					  <li><a href="#">3</a></li>-->
+<!--					  <li><a href="#">4</a></li>-->
+<!--					  <li><a href="#">→</a></li>-->
+<!--					</ul>-->
 				</div>
 			</section>
 <!--			<div class="pagination-box">-->

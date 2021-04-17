@@ -360,13 +360,14 @@
 			</section>
 			<section class="section3">
 				<div class="newsBox clearfix">
-                    <a href="javascript:;" class="newsA">
+                    {volist id="vo" name="list"}
+                    <a href="news_detail.html?id=<?=$vo['id'];?>" class="newsA">
                         <div class="newsImg animated2 fadeInUp2 wow">
-                            <img src="/static/images/s1.png" alt="">
+                            <img src="<?=$vo['pic']?>" alt="">
                         </div>
                         <div class="newsTxt animated2 fadeInUp2 wow">
-                            <span class="newsTit_time"><img src="/static/images/time.png" alt=""> Aug 07,2020</span>
-                            <span class="newsTit">XXXXXXXX</span>
+                            <span class="newsTit_time"><img src="/static/images/time.png" alt=""> <?=date('Y-m-d',strtotime($vo['c_time']))?></span>
+                            <span class="newsTit">{$vo.title}</span>
                             <p class="newsP">
                                                            </p>
                             <div class="tmkMore animated2 fadeInUp2 wow">
@@ -374,6 +375,7 @@
                             </div>
                         </div>
                     </a>
+                    {/volist}
                     <a href="javascript:;" class="newsA">
                         <div class="newsImg animated2 fadeInUp2 wow">
                             <img src="/static/images/s2.png" alt="">
