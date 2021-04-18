@@ -1,3 +1,6 @@
+
+
+
 <div class="mutual on">
     <ul class="list">
         <li>
@@ -14,7 +17,7 @@
             </a>
         </li>
         <li>
-            <a target="_blank"  class="vid-play-btn">
+            <a target="_blank"  class="vid-play-btn" onclick="postForm();">
                 <div class="mutualIco">
                     <img src="/static/images/ico3.png" alt="">
                     <div class="mutualIco-text">免费量房</div>
@@ -39,6 +42,34 @@
             </a>
         </li>
     </ul>
+</div>
+
+<div class="tell_consultation_box">
+    <div class="tell_consultation">
+        <img src="/static/images/close_btn.png" class="close_btn">
+        <form action="/index/index/form" method="post">
+            <p>输入您的电话，我们即刻给您回电</p>
+            <div class="tell_box">
+                <input type="text" name="username" placeholder="请输入您的姓名">
+                <input type="text" name="mobile" placeholder="请输入您的电话">
+            </div>
+            <div class="tell_box">
+                <input type="text" name="desc" placeholder="请输入您的地址">
+                <button  type="submit"  class="tell_submit">我要报名</button>
+            </div>
+        </form>
+
+        <p>您也可直接拨打24小时：400-8877-831 或线上咨询</p>
+        <div class="btn_box">
+            <!--<span class="shangqiaobtn">在线咨询</span>-->
+            <span>
+                            <a href="javascript:;">
+                                qq咨询
+                            </a>
+                        </span>
+        </div>
+
+    </div>
 </div>
 
 <div class="footer">
@@ -137,3 +168,10 @@
         <p class="bottom-p">COPYRIGHTS 2020 BOSLON AL RIGHTS RESERVED. 浙ICP备09002255号-1 技术支持：PERSONAL TAILOR </p>
     </div>
 </div>
+
+<script>
+    function postForm(){
+        $('.tell_consultation_box').show()
+    }
+
+</script>
