@@ -153,7 +153,9 @@ class Index extends Controller
 //            $getData=input('get.');
 //            $page=(empty($getData['page']))?1:$getData['page'];
 //            $pageSize=(empty($getData['page_size']))?8:$getData['page_size'];
-            $info=db('admin_new_menu')->alias("a")->join('admin_new b','a.id=b.menu_id','left')->where('a.menu_type',1)->order('b.c_time desc')->field('b.*')->paginate(8);
+            $map = [];
+            if(!empty(input('get.menu_id'))) $map['menu_id'] = input('get.menu_id');
+            $info=db('admin_new')->alias("a")->join('admin_new_menu b','a.menu_id=b.id','left')->where($map)->where('b.menu_type',1)->order('a.c_time desc')->paginate(8);
             $this->assign('list', $info);
             $menu_info=db('admin_new_menu')->where('menu_type',1)->select();
             $this->assign('menu_list', $menu_info);
@@ -188,6 +190,7 @@ class Index extends Controller
             $map = [];
                 if(!empty($menu_id)) $map['menu_id'] = $menu_id;
             $info=db('admin_new_menu')->alias("a")->join('admin_new b','a.id=b.menu_id','left')->where($map)->order('b.c_time desc')->field('b.*')->paginate(6);
+
             $this->assign('list', $info);
             $menu_info=db('admin_new_menu')->select();
             $this->assign('menu_list', $menu_info);

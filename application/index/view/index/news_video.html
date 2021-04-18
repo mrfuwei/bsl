@@ -177,12 +177,14 @@
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-between;
+        min-height: 500px;
 	}
 	.news-list-active .active-item{
 		width: 350px;
 		display: inline-block;
 		vertical-align: top;
 		margin-top: 60px;
+        margin-bottom: 100px;
 	}
 	.news-list-active .active-item>div {
 	    position: relative;
@@ -478,6 +480,7 @@
 }
 .section3{
 	margin-top: 60px;
+    min-height: 500px;
 }
 
 @keyframes gelatine {
@@ -529,14 +532,14 @@
 			<div class="sm-mod-category wow fadeInUp animated">
 			    <ul class="js-filter-select">
 			    	<li>
-			    		<a href="javasctipt:;" class="current">
+			    		<a href="?" id="all">
 			    		<span class="en">ALL</span>
 			    		<span class="cn">全部</span>
 			    		</a>
 			    	</li>
                     {volist id="vo" name="menu_list"}
                     <li>
-                        <a href="?menu_id=<?=$vo['id'];?>">
+                        <a href="?menu_id=<?=$vo['id'];?>" id="menu_<?=$vo['id'];?>">
                             <span class="en">{$vo.title_en}</span>
                             <span class="cn">{$vo.title}</span>
                         </a>
@@ -892,7 +895,33 @@
             if(true){
                 $('.inside-banner').addClass('active')
             }
+
+            let menu_id=''
+            menu_id=getUrlParam('menu_id')
+            if(menu_id!=undefined){
+                $('#menu_'+menu_id).addClass('current')
+            }else{
+                $('#all').addClass('current')
+            }
+
+
+            $('.pagination li').find('a').each(function(){
+                let menu_id=getUrlParam('menu_id')
+                if(menu_id!=undefined){
+                    let url = $(this).attr('href');
+                    url=url+"&menu_id="+menu_id
+                    $(this).attr('href',url)
+                }
+            })
         })
+
+        //获取url中的参数
+        function getUrlParam(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+            var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+            if (r != null) return unescape(r[2]); return null; //返回参数值
+        }
+    </script>
 
     </script>
 </body>
