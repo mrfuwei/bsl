@@ -159,7 +159,7 @@
 </style>
 <div class="tell_consultation_box" style="display: none">
     <div class="tell_consultation">
-        <img src="/static/images/close_btn.png" class="close_btn">
+        <img src="/static/images/close_btn.png" class="close_btn" onclick="btnClose()">
         <form action="/index/index/form" method="post">
             <p>输入您的电话，我们即刻给您回电</p>
             <div class="tell_box">
@@ -285,6 +285,12 @@
 <script>
     function postForm(){
         $('.tell_consultation_box').show()
+    }
+
+    // $('.tell_consultation_box .close_btn').on
+
+    function btnClose(){
+        $('.tell_consultation_box').hide()
     }
 
 </script>
