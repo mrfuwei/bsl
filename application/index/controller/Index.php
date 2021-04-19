@@ -148,6 +148,10 @@ class Index extends Controller
         return $this->fetch('remould');
     }
 
+    public function remould_detail(){
+        return $this->fetch('remould_detail');
+    }
+
     public function news(){
         if(request()->isGet()){
 //            $getData=input('get.');
@@ -155,8 +159,9 @@ class Index extends Controller
 //            $pageSize=(empty($getData['page_size']))?8:$getData['page_size'];
             $map = [];
             if(!empty(input('get.menu_id'))) $map['menu_id'] = input('get.menu_id');
-            $info=db('admin_new')->alias("a")->join('admin_new_menu b','a.menu_id=b.id','left')->where($map)->where('b.menu_type',1)->order('a.c_time desc')->paginate(8);
+            $info=db('admin_new')->alias("a")->join('admin_new_menu b','a.menu_id=b.id','left')->where($map)->where('b.menu_type',1)->field("a.*")->order('a.c_time desc')->paginate(8);
             $this->assign('list', $info);
+//            var_dump($info);
             $menu_info=db('admin_new_menu')->where('menu_type',1)->select();
             $this->assign('menu_list', $menu_info);
 
@@ -205,6 +210,14 @@ class Index extends Controller
 
     public function cooperation(){
         return $this->fetch('cooperation');
+    }
+
+    public function cooperation_detail(){
+        return $this->fetch('cooperation_detail');
+    }
+
+    public function cooperate_people_detail(){
+        return $this->fetch('cooperate_people_detail');
     }
 
     public function contact(){

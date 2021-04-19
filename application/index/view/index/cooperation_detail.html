@@ -33,144 +33,204 @@
     .inside-banner-heading h2.inside-banner-title2 {font-size: 25px;}
 
     .cooperation-section {
-        padding-bottom: 75px;padding-top: 120px;
-		width: 80%;
-		margin: 0 auto;}
-    .cooperation-container {width: 100%;max-width: 1440px;margin: 0 auto}
-    .cooper-item {
-        margin-top: 75px;}
-    .cooper-item-box {display: flex}
-    .cooper-item:nth-child(even) .cooper-item-box{display: flex;flex-direction: row-reverse;}
-    .cooper-item .cooper-img {width: 66%;}
-    .cooper-item .cooper-img img {width: 100%;}
-    .cooper-item .cooper-info {flex: 1;}
-    .cooper-info-inner {padding: 50px 75px;background-color: #EEEEEE;position: relative;top: 50%;transform: translateY(-50%);margin-left: -75px;}
-    .cooper-item:nth-child(even) .cooper-info-inner {
-        margin-left: 0px;
-        margin-right: -75px;}
-    .cooper-info-inner h2 {}
-    .cooper-info-inner h2.cn {font-size: 18px;
-        color: #333333;
-		margin-bottom: 30px;}
-    .cooper-info-inner h2.en {
-        color: #666666;font-size: 14px;margin: 15px 0 25px;text-transform: uppercase;}
-    .cooper-info-inner p {font-size: 12px;
-        line-height: 2;text-align: justify;
-        color: #000000;}
-    .cooper-info-inner a {
-        margin-top: 25px;
-		display: inline-block;
-		vertical-align: top;
-		width: 102px;
-		height: 30px;
-		line-height: 30px;
-		text-align: center;
-		background-color: #000;
-		color: #ffffff;
-		font-size: 13px;
-		letter-spacing: 2px;
+    }
+	.znList_one {
+	    padding: 90px 0;
 	}
-	.cooper-item:nth-child(even) .cooper-info-inner h2.cn{
-		text-align: right;
+	.inner {
+	    width: 80%;
+	    margin: 0 auto;
+	    max-width: 1520px;
 	}
-	.cooper-item:nth-child(even) .cooper-info-inner p{
-		text-align: right;
-	}
-	.cooper-item:nth-child(even) .cooper-info-inner{
-		overflow: hidden;
-	}
-	.cooper-item:nth-child(even) .cooper-info-inner a{
-		float: right;
-	}
-	.cooperation-section-top{
-		padding: 0 60px;
-		display: flex;
-		margin-top: 60px;
-	}
-	.cooperation-section-left{
-		width: 45%;
-		margin-top: 104px;
-	}
-	.cooperation-section-left img{
-		width: 100%;
-		height: auto;
-	}
-	.cooperation-section-right{
-		padding-left: 4.8%;
-		width: 55%;
-	}
-	.cooperation-section-tit {
-	    font-size: 30px;
-	    color: #000;
-	    line-height: 40px;
-	}
-	.cooperation-section-box{
-		margin-top: 64px;
-	}
-	.cooperation-section-box p {
-	    font-size: 16px;
-	    line-height: 26px;
-	    color: #999;
-	    text-align: justify;
-	}
-	.bold{
-		font-weight: bold;
-	}
-	.indTit {
+	.znList_tit {
 	    position: relative;
-	    margin-bottom: 78px;
-	    padding-top: 32px;
-	    z-index: 11;
 	}
-	.indTit.center {
-	    text-align: center;
+	.znList_one .znList_tit {
+	    max-width: 1280px;
+	    margin: 0 auto;
 	}
-	.indTit b {
-	    font-size: 68px;
-	    line-height: 1;
+	.znList_tit span {
+	    display: block;
+	    text-transform: uppercase;
+	    font-size:25px;
+	    color: #333;
+	    margin: 14px 0 28px;
+	}
+	.znList_tit p {
+	    font-weight: 300;
+	    font-size: 14px;
+	    opacity: 0.8;
+	    letter-spacing: 0.5px;
+	    line-height: 2;
+		color: #000;
+	}
+	.znOne {
+	    position: relative;
+	    padding-top: 38%;
+		margin-top:30px;
+	}
+	.znOne video, .znOne img {
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    height: 100%;
+	    width: 100%;
+	    object-fit: cover;
+	}
+	.abTeam_ico {
+	    z-index: 7;
+	    background: url(/static/images/btnPlay.png) no-repeat;
+	    height: 75px;
+	    width: 75px;
+	    position: absolute;
+	    top: 50%;
+	    left: 50%;
+	    transform: translate(-50%, -50%);
+	    margin: 0 auto;
+	    cursor: pointer;
+	}
+	.znList_stop{
+	    display: none;
+	}
+	.znList_play.abTeam_ico {
+	    background: url(/static/images/stop.png) no-repeat;
+	}
+	.abTeam_ico::before {
+	    content: '';
+	    position: absolute;
+	    background: url(/static/images/btnPlayRo.png);
+	    background-size: cover;
+	    height: 103px;
+	    width: 103px;
+	    left: 50%;
+	    top: 50%;
+	    margin-left: -51.5px;
+	    margin-top: -51.5px;
+	    cursor: pointer;
+	    -webkit-animation: palyAnimate 2s ease infinite;
+	    animation: palyAnimate 2s ease infinite;
+	}
+	@keyframes palyAnimate {
+	    0% {
+	        -webkit-transform: rotate(0deg)
+	    }
+	
+	    100% {
+	        -webkit-transform: rotate(360deg)
+	    }
+	}
+	
+	@-webkit-keyframes palyAnimate {
+	    0% {
+	        -webkit-transform: rotate(0deg)
+	    }
+	
+	    100% {
+	        -webkit-transform: rotate(360deg)
+	    }
+	}
+	.znList_two {
+	    background: #f7f7f7;
+	    padding: 80px 0;
+	}
+	.znTwo {
+	    display: flex;
+	    align-items: stretch;
+	    justify-content: space-between;
+	}
+	.znTwo_l {
+	    width: 34%;
+	}
+	.znTwo_l .znTwo_img {
+	    padding-top: 148%;
+	}
+	
+	.znTwo_img {
+	    height: 56%;
+	}
+	.znTwo_img {
+	    position: relative;
+	}
+	.znTwo_img img {
 	    position: absolute;
 	    top: 0;
 	    left: 0;
 	    width: 100%;
-	    z-index: -1;
-	    text-transform: uppercase;
-	    opacity: 0.05;
-	    color: #1b2f5f;
-		font-weight: 400;
+	    height: 100%;
+	    object-fit: cover;
 	}
-	.indTit span {
-	    font-size: 36px;
-	    font-weight: 400;
-	    text-transform: capitalize;
-	    color: #000;
-	    font-family: "阿里巴巴普惠体";
-	    letter-spacing: 1px;
+	.znTwo_r {
+	    order: -1;
+	    display: flex;
+	    align-items: flex-start;
+	    flex-wrap: wrap;
+	    justify-content: space-between;
+	    width: 64%;
 	}
-	.indTit i {
-	    background: #fff;
-	    width: 108px;
-	    height: 5px;
-	    display: block;
-	    margin: 21px auto;
+	/* .znTwo_r>div {
+	    width: 100%;
+	    height: 50%;
+	} */
+	.znTwo_img {
+	    height: 56%;
+		width: 100%;
+	}
+	.znList_tit {
 	    position: relative;
 	}
-	.indTit i::before, .indTit i::after {
-	    content: "";
-	    position: absolute;
-	    top: 0;
-	    width: 33.33%;
-	    height: 100%;
+	.znTwo_txt {
+	    padding: 48px 0;
+		height: 44%;
+		width: 100%;
 	}
-	.indTit i::before {
-	    left: 0;
-	    background: #B21D23;
+	.znTwo_txt p {
+	    font-weight: 300;
+	    font-size: 14px;
+	    opacity: 0.8;
+	    letter-spacing: 0.5px;
+	    line-height: 1.8;
 	}
-	.indTit i::after {
-	    right: 0;
-	    background: #1B2F5F;
+	.banner-switchbutton-left{
+		padding: 0 7px;
+		cursor: pointer;
+		font-weight: 100;
+		outline: none
+	}
+	.banner-switchbutton-right{
+		padding: 0 7px;
+		cursor: pointer;
+		font-weight: 100;
+		outline: none;
+	}
+	.banner-right{
+		font-size: 12px;
+		font-weight: bold;
+		float: right;
+	}
+	.banner-switchbutton{
+		width: 100%;
+		margin: 0 auto;
+		overflow: hidden;
+	}
+	.znList_thr{
+		margin: 60px 0;
+	}
+	.znList_thr .swiper-slide {
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+	}
+	.znList_thr .swiper-slide .swiper-img{
+		width: calc(50% - 15px);
+		margin-bottom: 30px;
+	}
+	.znList_thr .swiper-slide .swiper-img img{
+		width: 100%;
+		height: auto;
 	}
 </style>
 <body>
+
 {include file='common/daohang'}
 
     <div class="main">
@@ -193,128 +253,117 @@
             </div>
 
         </div>
-		<div class="cooperation-section-top">
-			<div class="cooperation-section-left">
-				<img src="/static/images/coop1.png" alt="">
-			</div>
-			<div class="cooperation-section-right">
-				<div class="cooperation-section-tit">ABOUT US</div>
-				<div class="cooperation-section-box">
-					<p>Baoshilong customized ceiling adopts flexible customized integrated design, realizing various personalized customization such as space customization, style customization, function customization, color customization and size customization, perfectly presenting arbitrary shape of gypsum board, 1:1 restoring the design effect, harmonizing the top space with the whole house environment and reflecting each other.</p>
-					<p>&nbsp;</p>
-					<p>宝仕龙定制吊顶采用柔性定制一体化设计，实现空间定制、风格定制、功能定制、色彩定制、尺寸定制等多样个性化定制，完美呈现石膏板任意造型，1:1还原设计效果，将顶上空间与全屋环境和谐统一，相交辉映。</p>
-					<p>&nbsp;</p>
-					<p class="bold">BOUNDLESS CREATIVITY AND IMAGINATION</p>
-					<p class="bold">无限创意，无限想象</p>
-					<p>&nbsp;</p>
-					<p>Baoshelong not only provides ceiling, but also a new life attitude. The management of an aesthetic concept. Change the concept of general ceiling company</p>
-					<p>&nbsp;</p>
-					<p>宝仕龙提供的不仅是吊顶，更是一种新的生活态度。一种美学概念的经营。改变客户对一般吊顶公司的概念</p>
-					<p>&nbsp;</p>
-					<p>Established in 2006, baoshilong home has two brands, baoshilong and sofitello. It is an integrated home enterprise integrating R &amp; D, design, production and sales. Over the past 15 years, we have always adhered to the strategic positioning of "professional, original and quality", focusing on the breakthrough and innovation of customized ceiling, integrated wall, integrated ceiling and other plates in the field of home decoration. Through strong brand marketing ability, promote and lead the whole ceiling industry to "assembly, integration, customization, intelligent" transformation.</p>
-					<p>&nbsp;</p>
-					<p>宝仕龙家居创建于2006年，旗下拥有宝仕龙、索菲尼洛两个品牌，是一家集研发、设计、生产、销售于一体的集成家居企业。十五年来，始终秉持“专业、原创、品质”的战略定位，专注于家装领域中定制吊顶、集成墙面、集成吊顶等板块的突破创新。通过强大的品牌营销能力，推动并引领整个吊顶产业向“装配式、集成化、定制化、智能化”转型。</p>
-					<p>&nbsp;</p>
-					<p class="bold">HITTING A NEW MILESTONE TOGETHER WITH baoshilong</p>
-					<p class="bold">与宝仕龙展开吊顶新里程</p>
-					<p>&nbsp;</p>
-					<p>In the future, baosilong will adhere to the corporate mission of making home more beautiful and life better, customize personalized home life for every user, and move forward to the vision of becoming a "high quality home furnishing model enterprise".</p>
-					<p>&nbsp;</p>
-					<p>未来，宝仕龙将秉承让家更美、生活更美好的企业使命，为每一位用户定制个性化的家居生活，向着成为“高品质家居典范企业”的愿景迈进。 </p>
-					<p>&nbsp;</p>
-					<p class="bold">STAYING INQUISITIVE AND PERSISTING IN BEING INNOVATIVE BUT KEEPING ABREAST OF CURRENT TRENDS</p>
-					<p class="bold">不断展开新的旅程，与时并进</p>
-					<p>&nbsp;</p>
-					<p>baoshilong currently cultivating an extraordinary collection for you all</p>
-					<p>"Baoshilong" ceiling specially designed for happy life</p>
-					<p>&nbsp;</p>
-					<p>宝仕龙现正进行开发与别不同的新系列:</p>
-					<p>“宝仕龙”专门为幸福生活而设计的吊顶</p>
-				</div>
-			</div>
-		</div>
         <div class="cooperation-section">
-			<div class="indTit center wgt-fade-animate appear">
-				<div>
-					<b>famous official</b>
-					<span>大咖品推官</span>
-					<i></i>
+			<div class="cooperation-section-list">
+				<div class="znList_one">
+					<div class="inner">
+						<div class="znList_tit ">
+							<span class="wow animated1 fadeInUp1">潘天勇</span>
+							<p class="wow animated1 fadeInUp1">
+								创意不仅仅只是敲墙把大空间做“小”这里的小是要你们各个击破。                      
+							</p>
+							<p class="wow animated1 fadeInUp1">
+							   做为设计师我希望大家都有“两把尺”。一把是我们做设计时需要量数据的尺子。另一把是来量我们人生的尺子。   
+							</p>
+						</div>
+						<div class="znOne wow animated1 fadeInUp1">
+							<video autoplay="" loop="" muted="" playsinline="" id="tmkVideo" class="video-sign" preload="auto" src="banners.mp4" poster="/static/images/coo.png">
+								您的浏览器不支持 video 标签。
+							</video>
+							<div class="abTeam_ico znList_stop"></div>
+							<div class="abTeam_ico znList_play"></div>
+						</div>
+					</div>
+				</div>
+				<div class="znList_two">
+					<div class="inner">
+						<div class="znTwo">
+							<div class="znTwo_l">
+								<div class="znTwo_img wow animated1 fadeInUp1">
+									<img src="/static/images/2-1.png" alt="">
+								</div>
+							</div>
+							<div class="znTwo_r">
+								<div class="znTwo_txt">
+									<div>
+										<div class="znList_tit wow animated1 fadeInUp1">
+											<span>
+												推荐定制吊顶                                       </span>
+										</div>
+										<p class="wow animated1 fadeInUp1">
+										   心中无敌，无敌于天下。换个角度看空间，你能有不同的构思的。
+											<br>一个没有文化支持的造型是空洞的，就如同人没有灵魂。                                  </p>
+									</div>
+	
+								</div>
+								<div class="znTwo_img wow animated1 fadeInUp1">
+									<img src="/static/images/2-33.png" alt="">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="znList_thr">
+					<div class="inner">
+						<div class="znList_thr-container swiper-container">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide">
+									<div class="swiper-img wow animated1 fadeInUp1">
+										<img src="/static/images/coo6.png" alt="">
+									</div>
+									<div class="swiper-img wow animated1 fadeInUp1">
+										<img src="/static/images/coo7.png" alt="">
+									</div>
+									<div class="swiper-img wow animated1 fadeInUp1">
+										<img src="/static/images/coo5.png" alt="">
+									</div>
+									<div class="swiper-img wow animated1 fadeInUp1">
+										<img src="/static/images/coo8.png" alt="">
+									</div>
+								</div>
+								<div class="swiper-slide">
+									<div class="swiper-img wow animated1 fadeInUp1">
+										<img src="/static/images/coo6.png" alt="">
+									</div>
+									<div class="swiper-img wow animated1 fadeInUp1">
+										<img src="/static/images/coo7.png" alt="">
+									</div>
+									<div class="swiper-img wow animated1 fadeInUp1">
+										<img src="/static/images/coo5.png" alt="">
+									</div>
+									<div class="swiper-img wow animated1 fadeInUp1">
+										<img src="/static/images/coo8.png" alt="">
+									</div>
+								</div>
+								<div class="swiper-slide">
+									<div class="swiper-img wow animated1 fadeInUp1">
+										<img src="/static/images/coo6.png" alt="">
+									</div>
+									<div class="swiper-img wow animated1 fadeInUp1">
+										<img src="/static/images/coo7.png" alt="">
+									</div>
+									<div class="swiper-img wow animated1 fadeInUp1">
+										<img src="/static/images/coo5.png" alt="">
+									</div>
+									<div class="swiper-img wow animated1 fadeInUp1">
+										<img src="/static/images/coo8.png" alt="">
+									</div>
+								</div>
+							</div>
+							<div class="banner-switchbutton">
+								<div class="banner-right">
+								   <span class="banner-switchbutton-left">◀ </span>
+								   <span class="realIndex">  </span>
+								   <span>/</span>
+								   <span class="indexLength">  </span>
+								   <span class="banner-switchbutton-right"> ▶</span>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
-            <div class="cooperation-container">
-                <div class="cooper-item">
-                    <div class="cooper-item-box">
-                        <div class="cooper-img wow animated1 fadeInUp1">
-                            <img src="/static/images/2.png" alt="">
-                        </div>
-                        <div class="cooper-info">
-                            <div class="cooper-info-inner">
-                                <h2 class="cn  wow animated1 fadeInUp1">潘天勇</h2>
-                                <p class=" wow animated1 fadeInUp1">海宁华视品牌广告设计公司公司CEO，多年广告设计经历；
-									<br>集成吊顶参与发明者；
-									<br>集成吊顶产品外观研发设计者；
-									<br>集成吊顶行业最有影响力的外协设计力量。
-								</p>
-                                <a class=" wow animated1 fadeInUp1" href="cooperation_detail.html">了解更多</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="cooper-item">
-                    <div class="cooper-item-box">
-                        <div class="cooper-img  wow animated1 fadeInUp1">
-                            <img src="/static/images/6001.png" alt="">
-                        </div>
-                        <div class="cooper-info">
-                            <div class="cooper-info-inner">
-                                <h2 class="cn  wow animated1 fadeInUp1">陆建明</h2>
-                                <p class="  wow animated1 fadeInUp1">人无我有，人有我优，一直走在行业发展的前沿
-									16年集成吊顶行业亲历见证者,集成吊顶发明者,
-									索菲尼洛品牌创始人,复式吊顶创造者,全房吊顶行业奠基者,天花吊顶行业“五年功勋人物”，定制吊顶发明者。
-								</p>
-                                <a class="  wow animated1 fadeInUp1" href="cooperation_detail.html">了解更多</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-				<div class="cooper-item">
-				    <div class="cooper-item-box">
-				        <div class="cooper-img wow animated1 fadeInUp1">
-				            <img src="/static/images/603.png" alt="">
-				        </div>
-				        <div class="cooper-info">
-				            <div class="cooper-info-inner">
-				                <h2 class="cn  wow animated1 fadeInUp1">鲍伯</h2>
-				                <p class="  wow animated1 fadeInUp1">全球知名设计师
-									<br>全球家居设计师 
-									<br>美国艺术设计师 
-								</p>
-				                <a class="  wow animated1 fadeInUp1" href="cooperation_detail.html">了解更多</a>
-				            </div>
-				        </div>
-				    </div>
-				</div>
-				<div class="cooper-item">
-				    <div class="cooper-item-box">
-				        <div class="cooper-img  wow animated1 fadeInUp1">
-				            <img src="/static/images/604.png" alt="">
-				        </div>
-				        <div class="cooper-info">
-				            <div class="cooper-info-inner">
-				                <h2 class="cn  wow animated1 fadeInUp1">爱德华</h2>
-				                <p class="  wow animated1 fadeInUp1">全球知名设计师
-				                	<br>全球家居设计师 
-				                	<br>美国艺术设计师 
-				                </p>
-				                <a class="  wow animated1 fadeInUp1" href="cooperation_detail.html">了解更多</a>
-				            </div>
-				        </div>
-				    </div>
-				</div>
-            </div>
-
         </div>
-
     </div>
 
     <div class="measure-container measure-common">
@@ -338,6 +387,8 @@
     		</div>
     	</form>
     </div>
+
+
 {include file="common/footer"}
     
         <div class="popup-section popup-navigation">
@@ -533,7 +584,37 @@
                 $('.inside-banner').addClass('active')
             }
         })
-
+		$('.abTeam_ico').on('click',function(){
+			if($('.znList_stop').css("display")=='none'){
+				$('.znList_stop').css("display","block");
+				$('.znList_play').css("display","none");
+				$('#tmkVideo')[0].pause();
+			}else if($('.znList_play').css("display")=='none'){
+				$('.znList_stop').css("display","none");
+				$('.znList_play').css("display","block");
+				$('#tmkVideo')[0].play();
+			}
+		})
+		var l=$('.znList_thr-container .swiper-slide').length;
+		var left_swiper = new Swiper(".znList_thr-container", {
+			speed: 1000,
+			slidesPerView: '1',
+			loop:true,
+			spaceBetween : 40,
+			navigation: {
+				prevEl: '.banner-switchbutton-left',
+				nextEl: '.banner-switchbutton-right',
+			},
+			pagination: {
+				clickable: true,
+			},
+			on: {
+				slideChangeTransitionStart: function () {
+					$(".realIndex").html("0"+(this.realIndex+1));
+					$(".indexLength").html("0"+l);				
+				}
+			},
+		});
 
     </script>
 </body>

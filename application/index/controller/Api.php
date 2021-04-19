@@ -553,12 +553,12 @@ class Api extends Controller
         if(input('title')) $data['title']=input('title');
         if(input('menu_id')) $data['menu_id']=input('menu_id');
         if(input('content')) $data['content']=input('content');
-        if(input('str_1')) $data['str_1']=input('str_1');
-        if(input('str_2')) $data['str_2']=input('str_2');
-        if(input('str_3')) $data['str_3']=input('str_3');
-        if(input('str_4')) $data['str_4']=input('str_4');
-        if(input('str_5')) $data['str_5']=input('str_5');
-        if(input('str_6')) $data['str_6']=input('str_6');
+        $data['str_1']=input('str_1');
+        $data['str_2']=input('str_2');
+        $data['str_3']=input('str_3');
+        $data['str_4']=input('str_4');
+        $data['str_5']=input('str_5');
+        $data['str_6']=input('str_6');
         if(request()->file("pic_1")){
             $path=$this->upload("pic_1");
             $data['pic_1'] = '/uploads' . DS . $path['save'];

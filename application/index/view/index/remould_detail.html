@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{include file="common/header"}
+    <title>宝仕龙</title>
+
+    <script src="js/modernizr-custom.js"></script>
+</head>
+<style>
+
+    /*该页面专属*/
+	.remould-detail-section1{
+		width: 80%;
+		margin: 80px auto;
+	}
+	.remould-detail-section1-top{
+		letter-spacing: 3px;
+	}
+	.remould-detail-section1-tit{
+		font-size: 25px;
+		color: #000;	
+		font-weight: bold;
+		display: inline-block;
+	}
+	.remould-detail-section1-list{
+		font-size: 14px;
+		color: #000;	
+		display: flex;
+		margin-top: 35px;
+	}
+	.remould-detail-section1-item{
+		margin-right: 25px;
+		line-height: 20px;
+	}
+	.remould-detail-section1-text1{
+		font-size: 16px;
+		color: #000;
+		line-height: 30px;
+		margin-top: 60px;
+	}
+	.remould-detail-section1-text2{
+		font-size: 14px;
+		color: #999;
+		line-height: 30px;
+		margin-top: 30px;
+	}
+	.remould-detail-section2{
+		width: 80%;
+		margin: 0 auto;
+	}
+	.remould-detail-section-img{
+		width: 85%;
+	}
+	.remould-detail-section-img img{
+		width: 100%;
+		height: auto;
+	}
+	.remould-detail-section-text{
+		color: #000;
+		width: 275px;
+	}
+	.remould-detail-section-text p:nth-child(1){
+		color: #000;
+		font-size: 15px;
+		font-weight: bold;
+		margin: 30px 0 20px;
+	}
+	.remould-detail-section-text p:nth-child(2){
+		color: #000;
+		font-size: 14px;
+		letter-spacing: 3px;
+		line-height: 25px;
+	}
+	.remould-detail-section3{
+		width: 80%;
+		margin: 60px auto;
+	}
+	.remould-detail-section3-list{
+		display: flex;
+		justify-content: space-between;
+	}
+	.remould-detail-section3-item{
+		width: 47%;
+	}
+	.remould-detail-section3-img{
+		position: relative;
+	}
+	.remould-detail-section3-img:after{
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%,-50%);
+		content: '';
+		width: 40px;
+		height: 40px;
+		background-image: url(/static/images/remould-r.png);
+		background-size: 100% 100%;
+		z-index: 10;
+	}
+	.remould-detail-section3-img img{
+		height: auto;
+		width: 100%;
+	}
+	.remould-section2{
+		margin: 60px 0 80px;
+	}
+	.remould-section2-tit{
+		margin-left: 10%;
+	}
+	.remould-section2-title{
+		color: #000;
+		font-size: 20px;
+		letter-spacing: 2px;
+		font-weight: bold;
+	}
+	.remould2-container{
+		padding-left: 10%;
+		margin-top: 30px;
+	}
+	.remould2-container .swiper-slide{
+		width:33%;
+	}
+	.remould2-container .swiper-slide img{
+		width: 100%;
+		height: auto;
+	}
+	.remould2-text{
+		display: flex;
+		justify-content: space-between;
+		margin: 15px 0 10px;
+	}
+	.remould2-text-left{
+		font-size: 22px;
+		color: #000;
+		position: relative;
+		line-height: 30px;
+	}
+	.remould2-text-left:after{
+		position: absolute;
+		content: '';
+		width: 40px;
+		height: 1px;
+		background: #999;
+		left: 50%;
+		bottom: -5px;
+		transform: translateX(-50%);
+	}
+	.remould2-text-right .h{
+		width: 25px;
+		height: 15px;
+		background-image:url(/static/images/h.png) ;
+		background-size: 25px 15px;
+		display: inline-block;
+		cursor: pointer;
+		background-position: center;
+		background-repeat: no-repeat;
+		outline: none;	
+		padding: 7.5px 10px;
+	}
+	.remould2-text-right .q{
+		width: 25px;
+		height: 15px;
+		background-image:url(/static/images/q.png) ;
+		background-size: 25px 15px;
+		display: inline-block;
+		cursor: pointer;
+		background-position: center;
+		background-repeat: no-repeat;
+		outline: none;	
+		padding: 7.5px 10px;
+	}
+	.remould2-text-right span{
+		font-size: 18px;
+		line-height: 30px;
+		color: #999;
+	}
+</style>
+<body>
+
+{include file='common/daohang'}
+
+    <div class="main">
+		<div class="inside-banner">
+		    <div class="banner_img hid_xs" style="background:url(/static/images/remould-banner.png) no-repeat center center;background-size:cover;"></div>
+		    <div class="banner_contair">
+		        <div class="inside-banner-heading">
+		            <div class="sub-heading">
+		                <h2 class="inside-banner-title">"老破小"旧房改造</h2>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+       <div class="container">
+		   <div class="remould-detail-section1">
+			   <div class="remould-detail-top">
+				   <div class="remould-detail-section1-tit wow fadeInRight animated">宁波-东湖新苑</div>
+				   <div class="remould-detail-section1-list  wow fadeInUp animated">
+					   <div class="remould-detail-section1-item">面积：200㎡</div>
+					   <div class="remould-detail-section1-item">户型：小区</div>
+					   <div class="remould-detail-section1-item">业主姓名：金小姐</div>
+					   <div class="remould-detail-section1-item">风格：简约</div>
+				   </div>
+					<div class="remould-detail-section1-text1 wow fadeInUp animated">
+						以点定线，以线定面，以面定型，照构而制，宝仕龙定制吊顶不仅是还原设计，更是一种新的艺术对设计空间的创造性和独特性有极高的造诣，每一方顶都像一副风景，承载着对家的向往。
+					</div>
+					<div class="remould-detail-section1-text2 wow fadeInUp animated">
+						Baoshilong's customized ceiling is not only a restoration design, but also a new art. It has high attainments in the creativity and uniqueness of the design space. Each roof is like a landscape, carrying the yearning for home.
+					</div>
+			   </div>
+		   </div>
+		   <div class="remould-detail-section2">
+			   <div class="remould-detail-section-img wow fadeInUp animated">
+				   <img src="/static/images/remould0002.png" alt="">
+			   </div>
+			   <div class="remould-detail-section-text wow fadeInUp animated">
+				   <p>客厅</p>
+				   <p>
+					   以点定线，以线定面，以面定型，照构而制，宝仕龙定制吊顶不仅是还原设计，更是一种新的艺术。
+				   </p>
+			   </div>
+		   </div>
+		   <div class="remould-detail-section3">
+			   <div class="remould-detail-section3-list ">
+				   <div class="remould-detail-section3-item">
+					   <div class="remould-detail-section3-img swiper-container wow fadeInUp animated">
+					      <div class="swiper-wrapper">
+							   <div class="swiper-slide">
+									<img src="/static/images/remould10002.png" alt="">
+							   </div>
+							   <div class="swiper-slide">
+							   		<img src="/static/images/remould10001.png" alt="">
+							   </div>
+					      </div>
+					   </div>
+					   <div class="remould-detail-section-text wow fadeInUp animated">
+						   <p>卧室</p>
+						   <p>
+							   全景顶是在厨卫吊顶基础上，通过科技创新和设计升级，针对材料、色彩、结构、功能等全面融合。
+						   </p>
+					   </div>
+				   </div>
+				   <div class="remould-detail-section3-item">
+					   <div class="remould-detail-section3-img swiper-container wow fadeInUp animated">
+						  <div class="swiper-wrapper">
+							   <div class="swiper-slide">
+									<img src="/static/images/remould10002.png" alt="">
+							   </div>
+							   <div class="swiper-slide">
+									<img src="/static/images/remould10003.png" alt="">
+							   </div>
+						  </div>
+					   </div>
+					   <div class="remould-detail-section-text wow fadeInUp animated">
+						   <p>餐厅</p>
+						   <p>
+							   坚持原创之美，营造家居设计之美，传达艺术生活理念，“人·物·居”相融共生，全景顶因美而生。
+						   </p>
+					   </div>
+				   </div>
+			   </div>
+		   </div>
+		   <div class="remould-detail-section2">
+			   <div class="remould-detail-section-img wow fadeInUp animated">
+				   <img src="/static/images/remould325.png" alt="">
+			   </div>
+			   <div class="remould-detail-section-text wow fadeInUp animated">
+				   <p>书房</p>
+				   <p>
+					   坚持原创之美，营造家居设计之美，传达艺术生活理念，“人·物·居”相融共生，全景顶因美而生。
+				   </p>
+			   </div>
+		   </div>
+		   <div class="remould-section2">
+			   <div class="remould-section2-tit">
+				   <div class="remould-section2-title">推荐查看更多</div>
+			   </div>
+			   <div class="remould2-container-list wow fadeInRight animated">
+					<div class="remould2-container swiper-container">
+					   <div class="swiper-wrapper">
+						   <a href="remould-detail.html" class="swiper-slide">
+							   <img src="/static/images/remould10.png" alt="">
+							   <div class="remould2-text">
+								   <div class="remould2-text-left">
+									   上海-星湖小区
+								   </div>
+								   <div class="remould2-text-right">
+									   <span class="h"></span>
+									   <span class="remould2-text-right-num">58</span>
+									   <span class="q"></span>
+									   <span class="remould2-text-right-num1">58</span>
+								   </div>
+							   </div>
+						   </a>
+						   <a href="remould-detail.html"  class="swiper-slide">
+							   <img src="/static/images/remould23.png" alt="">
+							   <div class="remould2-text">
+								   <div class="remould2-text-left">
+									   杭州-东湖花苑
+								   </div>
+								   <div class="remould2-text-right">
+									   <span class="h"></span>
+									   <span class="remould2-text-right-num">60</span>
+									   <span class="q"></span>
+									   <span class="remould2-text-right-num1">58</span>
+								   </div>
+							   </div>
+						   </a>
+						   <a href="remould-detail.html"  class="swiper-slide">
+								<img src="/static/images/remould24.png" alt="">
+								<div class="remould2-text">
+								   <div class="remould2-text-left">
+									   宁波-海蓝花园
+								   </div>
+								   <div class="remould2-text-right">
+									   <span class="h"></span>
+									   <span class="remould2-text-right-num">58</span>
+									   <span class="q"></span>
+									   <span class="remould2-text-right-num1">58</span>
+								   </div>
+								</div>
+						   </a>
+						   <a href="remould-detail.html"  class="swiper-slide">
+								<img src="/static/images/remould10.png" alt="">
+								<div class="remould2-text">
+								   <div class="remould2-text-left">
+									   上海-星湖小区
+								   </div>
+								   <div class="remould2-text-right">
+									   <span class="h"></span>
+									   <span class="remould2-text-right-num">58</span>
+									   <span class="q"></span>
+									   <span class="remould2-text-right-num1">58</span>
+								   </div>
+								</div>
+						   </a>
+					   </div>
+					</div>
+			   </div>
+		   </div>
+		
+    </div>
+
+   <div class="measure-container measure-common">
+   	<div class="measure-tit">免费设计</div>
+   	<div class="measure-tit1">专业设计师1对1家装指导</div>
+   	<form action="" method="" class="measure">
+   		<div class="measure-item">
+   			<label><img src="/static/images/people.png" alt=""></label>
+   			<input class="mul_input" placeholder="您的姓名"> 
+   		</div>
+   		<div class="measure-item">
+   			<label><img src="/static/images/phone.png" alt=""></label>
+   			<input class="mul_input"  placeholder="联系方式"> 
+   		</div>
+   		<div class="measure-item">
+   			<label><img src="/static/images/add.png" alt=""></label>
+   			<input class="mul_input" placeholder="所在楼盘"> 
+   		</div>
+   		<div class="button">
+   			<input type="button" value="立即申请">
+   		</div>
+   	</form>
+   </div>
+
+		{include file="common/footer"}
+    
+        <div class="popup-section popup-navigation">
+            <div class="popup-container">
+                <div class="navigation-left">
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="index.html">
+                                <span>首页</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="/index/index/brand.html">
+                                <span>走进宝仕龙</span>
+                            </a>
+                        </div>
+                    </div>
+    <!--                <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="brandWitness.html">
+                                <span>品牌见证</span>
+                            </a>
+                        </div>
+                    </div> -->
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="/index/index/eight.html">
+                                <span>八大空间</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="live_museum.html">
+                                <span>百套案例</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="pos.html">
+                                <span>大商样板</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="cooperate-people.html">
+                                <span>商学院</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="contact.html">
+                                <span>联系我们</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navigation-item">
+                        <div class="navigation-span">
+                            <a href="productSearch.html">
+                                <span>防伪查询</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="navigation-right">
+    
+                    <div class="navigation-add">
+                        <div class="navigation-add-line"></div>
+                        <div class="address">
+                            Jl. Duren Tiga Raya No. 33<br>
+                            Jakarta Selatan - 12760 <br>
+                            Indonesia
+                        </div>
+                        <p></p>
+                        +62 21 799 1521
+                        <br>
+                        +62 21 722 5003
+                        <br>
+                        info@prodotti-id.com
+                        <p></p>
+                        <div class="socials">
+                            <div class="icon">
+                                <a href="javascript:;">
+                                    <img src="/static/images/logo-facebook.svg" alt="">
+                                </a>
+                            </div>
+                            <div class="icon">
+                                <a href="javascript:;">
+                                    <img src="/static/images/logo-instagram.svg" alt="">
+                                </a>
+                            </div>
+                            <div class="icon">
+                                <a href="javascript:;">
+                                    <img src="/static/images/logo-youtube.svg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="navigation-add">
+                        <div class="navigation-add-line"></div>
+                        <div>
+                            Monday - Friday<br>
+                            09.00 A.M - 06.00 P.M<br><p></p>
+                            Saturday - Sunday<br>
+                            Appointment Only<br>
+                        </div>
+                        <div class="navigation-bottom">
+                            <div class="navigation-bottom-item">
+                                <a href="javascript:;">
+                                    <span>Privacy & Cookie Policy</span>
+                                </a>
+                            </div>
+                        </div>
+    
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+    <div class="popup-section popup-search">
+
+        <div class="popup-container">
+            <div class="search-form">
+                <input type="text" placeholder="Search for Products, Brands or News" class="input-form" style="width: 0;">
+                <div class="search-result">
+                    <div class="search-result-item"></div>
+                    <div class="search-result-item"></div>
+                    <div class="search-result-item"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="popup-brand">
+        <div class="brand-list">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <div class="slider-image">
+                                <div class="background-image" style="background-image: url('/static/images/brand_swiper_01.jpg')"></div>
+                            </div>
+                            <div class="slider-title">Alexander Lamont</div>
+                            <div class="slider-hr"></div>
+                            <div class="slider-category">Furniture</div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <div class="slider-image">
+                                <div class="background-image" style="background-image: url('/static/images/brand_swiper_02.jpg')"></div>
+                            </div>
+                            <div class="slider-title">Alexander Lamont</div>
+                            <div class="slider-hr"></div>
+                            <div class="slider-category">Furniture</div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <div class="slider-image">
+                                <div class="background-image" style="background-image: url('/static/images/brand_swiper_01.jpg')"></div>
+                            </div>
+                            <div class="slider-title">Alexander Lamont</div>
+                            <div class="slider-hr"></div>
+                            <div class="slider-category">Furniture</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </div>
+    <!--公用-->
+
+    <script>
+		new WOW().init();
+		
+		var left_swiper = new Swiper(".remould-detail-section3-img ", {
+			speed: 1000,
+			slidesPerView: 'auto',
+		})
+		var remould2_swiper = new Swiper(".remould2-container", {
+			speed: 1000,
+			slidesPerView: 'auto',
+			spaceBetween : 60,
+			// centeredSlides: true,
+			freeMode: true,
+			pagination: {
+				clickable: true,
+			},
+		})
+		
+    </script>
+</body>
+</html>
+
+</html>
