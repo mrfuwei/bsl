@@ -97,8 +97,9 @@ class Index extends Controller
             }else if(!empty($menu_id)){
                 $map['menu_id']=$menu_id;
             }
-              $list=db('admin_example')->alias('a')->join('admin_example_menu b','a.menu_id=b.id')->where('b.menu_type',1)->where($map)->paginate(8);
+              $list=db('admin_example')->alias('a')->join('admin_example_menu b','a.menu_id=b.id')->where('b.menu_type',1)->where($map)->field('a.*')->paginate(8);
                 $this->assign("list",$list);
+                var_dump($list);
 
         }
             $menu_list=db('admin_example_menu')->where('menu_type',1)->select();
@@ -121,7 +122,7 @@ class Index extends Controller
             }else if(!empty($menu_id)){
                 $map['menu_id']=$menu_id;
             }
-            $list=db('admin_example')->alias('a')->join('admin_example_menu b','a.menu_id=b.id')->where('b.menu_type',2)->where($map)->paginate(8);
+            $list=db('admin_example')->alias('a')->join('admin_example_menu b','a.menu_id=b.id')->where('b.menu_type',2)->where($map)->field('a.*')->paginate(8);
             $this->assign("list",$list);
 
         }
